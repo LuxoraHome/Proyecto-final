@@ -5,3 +5,15 @@ function laCajaDePandora(numero){
         return numero.toString(16)
     }
     }
+
+const TomasKMorelli = () => {
+    const datos = {
+        name: "Tomas Morelli",
+        edad: "24",
+        nacionalidad: "Argentino"
+    }
+    return datos;
+
+}
+
+
