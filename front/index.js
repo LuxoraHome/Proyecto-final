@@ -42,3 +42,12 @@ const TomasKMorelli = () => {
     }
     return datos;
 }
+
+const GianLucaCaravon = () => {
+    const datos = {
+        name: "Tomas Morelli",
+        edad: "24",
+        nacionalidad: "Argentino"
+    }
+    return datos;
+}
