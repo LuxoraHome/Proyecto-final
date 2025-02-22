@@ -1,4 +1,15 @@
 
+function convertirNumero(numero) {
+    if (numero % 2 === 0) {
+        return numero.toString(2); 
+    } else {
+        return numero.toString(16); 
+    }
+}
+
+console.log(convertirNumero(10)); 
+console.log(convertirNumero(15)); 
+
 function laCajaDePandora(numero){
     if (!Number.isInteger(numero)) {
         return "Por favor, ingresa un número entero.";
@@ -23,8 +34,6 @@ const DanielVelazco = () => {
 
 return datos;
 
- 
-
 const TomasKMorelli = () => {
     const datos = {
         name: "Tomas Morelli",
@@ -32,9 +41,4 @@ const TomasKMorelli = () => {
         nacionalidad: "Argentino"
     }
     return datos;
-
 }
-
-
-
-
