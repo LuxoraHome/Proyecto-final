@@ -1,3 +1,4 @@
+
 function laCajaDePandora(numero){
     if (!Number.isInteger(numero)) {
         return "Por favor, ingresa un número entero.";
@@ -9,3 +10,31 @@ function laCajaDePandora(numero){
         return numero.toString(16); // Convierte a hexadecimal
     }
 }
+
+const DanielVelazco = () => {
+
+    const datos = {
+        name: 'Daniel Velazco',
+        edad: "35",
+        nacionalidad: "Colombiano"
+    }
+
+}
+
+return datos;
+
+ 
+
+const TomasKMorelli = () => {
+    const datos = {
+        name: "Tomas Morelli",
+        edad: "24",
+        nacionalidad: "Argentino"
+    }
+    return datos;
+
+}
+
+
+
+
