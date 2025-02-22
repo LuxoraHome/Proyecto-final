@@ -4,10 +4,9 @@ function laCajaDePandora(numero) {
     } else {
         return numero.toString(16)
     }
-}
-function laCajaDePandora(numero) {
-    // proximamente escribiremos codigo aqui
-}
+
+
+
 
 const DanielVelazco = () => {
 
@@ -20,3 +19,18 @@ const DanielVelazco = () => {
 }
 
 return datos;
+
+ 
+
+const TomasKMorelli = () => {
+    const datos = {
+        name: "Tomas Morelli",
+        edad: "24",
+        nacionalidad: "Argentino"
+    }
+    return datos;
+
+}
+
+
+
