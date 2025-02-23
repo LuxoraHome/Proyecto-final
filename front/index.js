@@ -1,4 +1,5 @@
 
+
 function laCajaDePandora(numero){
     if (!Number.isInteger(numero)) {
         return "Por favor, ingresa un número entero.";
@@ -37,4 +38,12 @@ const TomasKMorelli = () => {
 
 
 
+function funcionRaul() {
+    const dattosRaul = {
+        nombre: "Raul",
+        edad: 30,
+        nacionalidad: "Colombiano"
+    }
+    return dattosRaul;
+}
 
