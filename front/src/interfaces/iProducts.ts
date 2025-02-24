@@ -5,5 +5,10 @@ export interface iProducts {
     name: string,
     image: string,
     price: string,
-    description: string,
+    product: string,
+    description : string,
 } 
+
+export interface iPro {
+    products : iProducts
+}
