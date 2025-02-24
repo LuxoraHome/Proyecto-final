@@ -9,15 +9,15 @@ export const ProductRender: React.FC<iRenderProps> = ({ products }) => {
     const { name, image, price, id, description } = products;
 
 
-    return (<div key={id}>
+    return (<div key={id} className="flex items-center content-center flex-col w-full sm:w-1/2 lg:w-1/4 gap-2 border-b border-gray-400 pb-4 ">
         <img src={image} />
-        <h3>{name}</h3>
-        <p>{description}</p>
-        <h3>{price}</h3>
+        <h3 className="font-bold">{name}</h3>
+        <p className="text-gray-500">{description}</p>
+        <h3 className="font-bold">${price}</h3>
 
         <div>
-            <button>
-                Details
+            <button className="text-gray-600 font-medium">
+         DETAILS
             </button>
         </div>
     </div>)
