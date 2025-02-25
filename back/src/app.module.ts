@@ -12,11 +12,11 @@ import typeOrmConfig from "./config/typeOrm"
       load: [typeOrmConfig]
     }),
     TypeOrmModule.forRootAsync({
-    inject: [ConfigService],
-    useFactory: (configService: ConfigService) => configService.get("typeorm")
-  }),
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => configService.get("typeorm")
+    }),
     ProductModule],
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }
