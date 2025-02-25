@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
 import { ConfigModule } from '@nestjs/config';
+import { ProductModule } from './product/product.module';
 import typeOrmConfig from "./config/typeOrm"
 
 @Module({
@@ -13,7 +14,8 @@ import typeOrmConfig from "./config/typeOrm"
     TypeOrmModule.forRootAsync({
     inject: [ConfigService],
     useFactory: (configService: ConfigService) => configService.get("typeorm")
-  })],
+  }),
+    ProductModule],
   controllers: [],
   providers: [],
 })
