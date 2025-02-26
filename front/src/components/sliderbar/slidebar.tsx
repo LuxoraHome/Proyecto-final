@@ -22,7 +22,7 @@ export const Slidebar=()=> {
     }, [images.length]);
 
     return (
-        <div id="indicators-carousel" className="relative w-screen h-screen">
+        <div id="indicators-carousel" className="relative w-screen h-screen z-10">
             <div className="relative w-full h-full overflow-hidden">
                 {images.map((image, index) => (
                     <div
