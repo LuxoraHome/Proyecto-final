@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ProductModule } from './product/product.module';
 import { UserModule } from './user/user.module';
 import typeOrmConfig from "./config/typeOrm"
+import { SeedModule } from './seeds/seeds.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import typeOrmConfig from "./config/typeOrm"
       useFactory: (configService: ConfigService) => configService.get("typeorm")
     }),
     ProductModule,
-    UserModule
+    UserModule,
+    SeedModule
   ],
   controllers: [],
   providers: [],
