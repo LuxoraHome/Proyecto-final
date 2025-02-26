@@ -6,6 +6,7 @@ import { ProductModule } from './product/product.module';
 import { UserModule } from './user/user.module';
 import typeOrmConfig from "./config/typeOrm"
 import { SeedModule } from './seeds/seeds.module';
+import { CategoryModule } from './category/category.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { SeedModule } from './seeds/seeds.module';
     }),
     ProductModule,
     UserModule,
-    SeedModule
+    SeedModule,
+    CategoryModule
   ],
   controllers: [],
   providers: [],
