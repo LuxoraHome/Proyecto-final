@@ -12,3 +12,12 @@ export const getProductsId = (id: number) => {
 
     return filtredProducts;
 }
+
+export const searchProduct = (query: string, products: iProducts[]): iProducts[] => {
+    if(!query) return products
+
+    return products.filter((product) => 
+        product.name && product.name?.toLowerCase().includes(query.toLowerCase())
+    )
+
+}
