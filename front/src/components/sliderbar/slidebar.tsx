@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-function Slidebar() {
+export const Slidebar=()=> {
     const images = [
         "/assets/Imagem-slider1.jpg",
         "/assets/Imagem-slider2.jpg",
@@ -38,7 +38,7 @@ function Slidebar() {
                     </div>
                 ))}
             </div>
-            {/* Indicadores */}
+          
             <div className="absolute z-30 flex space-x-3 bottom-5 left-1/2 transform -translate-x-1/2">
                 {images.map((_, index) => (
                     <button
@@ -51,7 +51,7 @@ function Slidebar() {
                     />
                 ))}
             </div>
-            {/* Botón Anterior */}
+   
             <button
                 type="button"
                 className="absolute top-1/2 left-4 transform -translate-y-1/2 z-30 flex items-center justify-center px-4 cursor-pointer group focus:outline-none"
@@ -64,7 +64,7 @@ function Slidebar() {
                     <span className="sr-only">Previous</span>
                 </span>
             </button>
-            {/* Botón Siguiente */}
+       
             <button
                 type="button"
                 className="absolute top-1/2 right-4 transform -translate-y-1/2 z-30 flex items-center justify-center px-4 cursor-pointer group focus:outline-none"
