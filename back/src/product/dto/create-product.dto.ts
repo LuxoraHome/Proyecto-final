@@ -49,7 +49,6 @@ export class CreateProductDto {
     @IsNumber()
     price: number
 
-
     @ApiProperty({
         type: String,
         description: 'The designer of the product. This designer is required and is generated for the user',
