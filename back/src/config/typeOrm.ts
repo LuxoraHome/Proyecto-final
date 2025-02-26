@@ -24,6 +24,7 @@ const config = {
 
 
 export default registerAs("typeorm", () => config)
+
 export const connectionsSource = new DataSource(config as DataSourceOptions)
 
 
@@ -41,4 +42,5 @@ export const connectionsSource = new DataSource(config as DataSourceOptions)
 
 // export default registerAs("typeorm", () => config)
 // export const connectionsSource = new DataSource (config as DataSourceOptions)
+
 
