@@ -1,18 +1,20 @@
 "use client";
-import { useFormik } from "formik";
-import { FaInstagram, FaFacebook, FaPinterest, FaYoutube, FaLinkedin, FaTiktok } from "react-icons/fa";
 
-export const Footer = () => {
+import { Formik, ErrorMessage, Field, Form } from "formik"
+import validateFormNew from "@/helpers/validateFormNew"
+import { FaInstagram, FaFacebook, FaPinterest, FaYoutube, FaLinkedin, FaTiktok } from "react-icons/fa";
+import React from "react";
+
+export const Footer: React.FC = () => {
   const backToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const formik = useFormik({
-    initialValues: { email: "" },
-    onSubmit: () => {
-      alert("Supscription sended!");
-    },
-  });
+  const handelSubmit = () => {
+    alert("Thank you very much for subscribing!")
+
+  }
+
 
   return (
     <footer className="bg-white text-black border-t border-gray-300 relative">
@@ -25,19 +27,19 @@ export const Footer = () => {
             <p className="font-semibold">
               Receive by email the latest news and offers from LUXORA
             </p>
-            <form onSubmit={formik.handleSubmit} className="flex flex-col items-center mt-4 gap-4 w-full">
-              <input
-                type="email"
-                name="email"
-                placeholder="your email address (name@luxora.com)"
-                className="border p-2 w-full"
-                onChange={formik.handleChange}
-                value={formik.values.email}
-              />
-              <button type="submit" className="bg-black text-white px-4 py-2 w-full">
-                Subscribe
-              </button>
-            </form>
+
+
+              <Formik initialValues={{ email: "" }} validate={validateFormNew} onSubmit={handelSubmit}>
+                <Form className="flex flex-col items-center mt-4 gap-4 w-full">
+                    <Field name="email" type="text" className="border p-2 w-full" placeholder="                           your email address (name@luxora.com) " />
+                    <ErrorMessage name="email"  component="p" className="text-black font-bold "/>
+              
+                  <button className="bg-black text-white px-4 py-2 w-full">Subscribe</button>
+
+                </Form>
+              </Formik>
+
+           
             <p className="text-sm text-gray-600 mt-4">
               By entering your email in the box above, you agree to receive marketing emails from us and agree to your data being processed in accordance with our
               <span className="underline hover:text-black cursor-pointer"> Terms of Use</span> and
@@ -61,8 +63,6 @@ export const Footer = () => {
         <div className="max-w-7xl mx-auto flex flex-col items-center px-4 space-y-4">
           <div className="flex flex-col items-center text-center space-y-2">
             <span className="hover:text-gray-400 cursor-pointer">CONTACT</span>
-            <span className="hover:text-gray-400 cursor-pointer">CATALOGUES</span>
-            <span className="hover:text-gray-400 cursor-pointer">CUSTOMER SERVICES</span>
           </div>
         </div>
       </div>
