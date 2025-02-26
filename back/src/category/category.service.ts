@@ -15,11 +15,11 @@ export class CategoryService {
 
   async create(createCategoryDto: CreateCategoryDto) {
     const newCategoty = this.categoryRepository.create(createCategoryDto);
-    return this.categoryRepository.save(newCategoty);
+    return await this.categoryRepository.save(newCategoty);
   }
 
-  findAll() {
-    return `This action returns all category`;
+  async findAll() {
+    return await this.categoryRepository.find();
   }
 
   findOne(id: number) {
