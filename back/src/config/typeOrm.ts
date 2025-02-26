@@ -13,34 +13,15 @@ const config = {
   port: parseInt(process.env.DB_PORT, 10),
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
-
   autoLoadEntities: true,
   synchronize: true,
-  logging: true,
+  // dropSchema: true,
+  // logging: true,
   entities: ['dist/**/*.entity{.ts,.js}'],
-  migrations: ['dist/migration/*{.ts,.js}'],
-
+  migrations: ['dist/migration/*{.ts,.js}']
 }
 
 
 export default registerAs("typeorm", () => config)
 
 export const connectionsSource = new DataSource(config as DataSourceOptions)
-
-
-//   port: process.env.DB_PORT,
-//   username: process.env.DB_USERNAME,
-//   password: process.env.DB_PASSWORD,
-//   autoLoadEntities: true,
-//   synchronize: true,
-//   // dropSchema: true,
-//   logging: true,
-//   // entities: ['dist/**/*.entity{.ts,.js}'],
-//   // migrations: ['dist/migrations/*{.js,.ts}'],
-// }
-
-
-// export default registerAs("typeorm", () => config)
-// export const connectionsSource = new DataSource (config as DataSourceOptions)
-
-
