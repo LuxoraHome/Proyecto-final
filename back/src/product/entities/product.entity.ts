@@ -56,9 +56,7 @@ export class Product {
         required: true
     })
     @Column({
-        type: 'decimal',
-        precision: 10,
-        scale: 2,
+        type: 'double precision',
         nullable: false
     })
     price: number
