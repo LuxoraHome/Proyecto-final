@@ -1,7 +1,7 @@
 "use client";
 import { FaInstagram, FaFacebook, FaPinterest, FaYoutube, FaLinkedin, FaTiktok } from "react-icons/fa";
 
-export default function Footer() {
+export const Footer = () => {
   const backToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -18,6 +18,7 @@ export default function Footer() {
               Receive by email the latest news and offers from LUXORA
             </p>
             <div className="flex flex-col md:flex-row mt-2 gap-2">
+              
               <input
                 type="email"
                 placeholder="your email address (name@domain.com)"
