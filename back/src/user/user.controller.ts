@@ -26,9 +26,9 @@ export class UserController {
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     try {
       await this.userService.update(id, updateUserDto);
-      return {message: "Usuario actualizado con exito", id}
+      return {message: "User updated successfully", id}
     } catch (error) {
-      throw new BadRequestException ("Error al actualizar usuario")
+      throw new BadRequestException ("Error updating user")
     }
   }
 
