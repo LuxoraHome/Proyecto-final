@@ -2,16 +2,28 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException,
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserSeed } from './seeder/user.seed';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly userSeed: UserSeed
+  ) {}
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
     return await this.userService.create(createUserDto);
   }
 
+  @Post("seeder")
+  async seeder(){
+    try {
+      return await this.userSeed.createUserSeeder()
+    } catch (error) {
+      throw new BadRequestException("Error al cargar los usuarios precargados")
+    }
+  }
   @Get()
   async findAll() {
     return await this.userService.findAll();
