@@ -34,7 +34,8 @@ export class CategoryService {
     return this.categoryRepository.findOneBy({ id });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} category`;
+  async remove(id: string) {
+    await this.categoryRepository.delete(id);
+    return { id };
   }
 }
