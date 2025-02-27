@@ -23,7 +23,7 @@ export class CreateUserDto {
     address: string
 
     @IsNumber({}, { message: 'El número de teléfono debe ser un número.' })
-    phone: number
+    phone: string
 
     @IsString()
     @MinLength(5, { message: 'El país debe tener al menos 5 caracteres.' })
