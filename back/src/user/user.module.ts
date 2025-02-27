@@ -9,5 +9,6 @@ import { UserSeed } from './seeder/user.seed';
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [UserController],
   providers: [UserService, UserSeed],
+  exports: [UserService],
 })
 export class UserModule {}
