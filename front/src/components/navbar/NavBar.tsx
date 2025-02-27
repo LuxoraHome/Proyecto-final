@@ -9,10 +9,6 @@ import Link from "next/link";
 export const Navbar: React.FC = async () => {
 
 
-
-
-
-
   return (
 
     <nav>
