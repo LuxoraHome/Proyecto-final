@@ -1,22 +1,42 @@
 import { iProducts } from "@/interfaces/iProducts"
-import products from "./products"
-
-const APIURL=process.env.NEXT_PUBLIC_API_URL
 
 
-export const getProductsId = (id: number) => {
+const APIURL = process.env.NEXT_PUBLIC_API_URL
 
-    const data: iProducts[] = products;
+export const getProducts = async () => {
+    try {
+        const response = await fetch(`${APIURL}/product`, { cache: "no-cache" })
+        const data = response.json()
+        return data
+    } catch (error) {
+        console.log(`aca esta el error ${error}`);
 
-    const filtredProducts = data.find((item: iProducts) => (item.id === id))
-
-    return filtredProducts;
+    }
 }
 
-export const searchProduct = (query: string, products: iProducts[]): iProducts[] => {
-    if(!query) return products
 
-    return products.filter((product) => 
+export const getProductsId = async (id: number) => {
+
+    try {
+        const response = await fetch(`${APIURL}/product/${id}`)
+        const data = response.json()
+        return data;
+
+    } catch (error) {
+        console.log(`hay un error ${error}`);
+
+    }
+
+
+}
+
+
+
+
+export const searchProduct = (query: string, products: iProducts[]): iProducts[] => {
+    if (!query) return products
+
+    return products.filter((product) =>
         product.name && product.name?.toLowerCase().includes(query.toLowerCase())
     )
 
