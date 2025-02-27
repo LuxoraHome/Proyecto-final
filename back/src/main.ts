@@ -4,6 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { UserSeed } from './user/seeder/user.seed';
 import { ProductsSeed } from './seeds/products/products.seeds';
 import { loggerGlobal } from './middleware/logger.middleware';
+import { CategoriesSeed } from './seeds/categories/categories.seeds';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -26,6 +27,10 @@ async function bootstrap() {
   const productsSeed = app.get(ProductsSeed);
   await productsSeed.seed();
   console.log('*** LA INSERCION DE PRODUCTOS FUE EXITOSA ***');
+
+  const categoriesSeed = app.get(CategoriesSeed);
+  await categoriesSeed.seed();
+  console.log('*** LA INSERCION DE CATEGORIAS FUE EXITOSA ***');
 
   await app.listen(process.env.PORT ?? 3000);
 }
