@@ -5,7 +5,7 @@ import { PiShoppingBag } from "react-icons/pi";
 import Link from "next/link";
 import { searchProduct } from "@/helpers/getProducts";
 import products from "@/helpers/products";
-
+import { FaRegUser } from "react-icons/fa";
 
 export const Navbar: React.FC = () => {
   const [search, setSearch] = useState("");
@@ -18,7 +18,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <div>
-      <nav className="bg-gray-200 shadow shadow-gray-300 px-2 md:px-auto border-b-2 border-black">
+      <nav className="bg-white border-b border-gray-300 px-2 md:px-auto">
         <div className="md:h-16 h-28 sm:h-8 mx-auto md:px-2 container flex items-center justify-between flex-wrap md:">
           <div className="flex-1 md:order-1 ">
             <ul>
@@ -51,7 +51,7 @@ export const Navbar: React.FC = () => {
                         value={search}
                         onChange={handleSearch}
                         id="search"
-                        className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="block w-full p-1 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-800 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search" 
                         required
                       />
@@ -92,17 +92,21 @@ export const Navbar: React.FC = () => {
           </div>
           
 
-          <div className="text-gray-500 order-3 w-full md:w-auto md:order-2 items-center">
+          <div className="text-black order-3 w-full md:w-auto md:order-2 items-center">
             <ul className="flex justify-center items-center font-semibold text-center">
                 <Link href="/">
-                <h1>LUXORA</h1>
+                <h1 className="text-2xl font-bold">LUXORA</h1>
                 </Link>
             </ul>
           </div>
-          <div className=" flex-1 md:order-3 flex justify-end items-center order-3">
+          <div className=" flex-1 md:order-3 flex justify-end items-center order-3 gap-12 ">
+            
+            <Link href="/">
+            <FaRegUser className="order-2 text-xl "/>
+            </Link>
+
             <Link href="/cart">
-              <h3>Cart</h3>
-              <PiShoppingBag className="order-2 " />
+              <PiShoppingBag className="order-2 text-2xl " />
             </Link>
           </div>
 
