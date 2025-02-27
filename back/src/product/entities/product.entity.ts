@@ -1,95 +1,37 @@
 import { ApiProperty } from "@nestjs/swagger"
-import { Column, Entity, Generated, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm"
+import { OrderDetail } from "src/order_details/entities/order_detail.entity"
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { v4 as uuid } from 'uuid'
 
-@Entity()
+
+
+@Entity({ name: 'products' })
 export class Product {
+    @PrimaryGeneratedColumn("uuid")
+    id: string;
 
-    @ApiProperty({
-        type: String,
-        description: 'The id of the product',
-        required: true
-    })
-    @PrimaryColumn({
-        type: 'uuid',
-        unique: true,
-        nullable: false
-    })
-    @Generated('uuid')
-    id: string = uuid()
+    @Column({ length: 100, nullable: false })
+    name: string;
 
-    @ApiProperty({
-        type: String,
-        description: 'The name of the product',
-        maxLength: 100,
-        required: true
-    })
-    @Column({
-        length: 100,
-        nullable: false
-    })
-    name: string
+    @Column({ nullable: false })
+    description: string;
 
-    @ApiProperty({
-        type: String,
-        description: 'The description of the product',
-        required: true
-    })
-    @Column({
-        nullable: false
-    })
-    description: string
+    @Column({ nullable: false })
+    type: string;
 
-    @ApiProperty({
-        type: String,
-        description: 'The type of the product',
-        required: true
-    })
-    @Column({
-        nullable: false
-    })
-    type: string
+    @Column({ type: 'double precision', nullable: false })
+    price: number;
 
-    @ApiProperty({
-        type: Number,
-        description: 'The price of the product',
-        required: true
-    })
-    @Column({
-        type: 'double precision',
-        nullable: false
-    })
-    price: number
+    @Column({ nullable: false })
+    designer: string;
 
-    @ApiProperty({
-        type: String,
-        description: 'The designer of the product',
-        required: true
-    })
-    @Column({
-        nullable: false
-    })
-    designer: string
+    @Column({ nullable: false })
+    image: string;
 
-    @ApiProperty({
-        type: String,
-        description: 'The image of the product',
-        required: true
-    })
-    @Column({
-        nullable: false
-    })
-    image: string
+    @Column({ type: 'int', nullable: false })
+    stock: number;
 
-    @ApiProperty({
-        type: Number,
-        description: 'The stock of the product',
-        required: true
-    })
-    @Column({
-        type: 'int',
-        nullable: false
-    })
-    stock: number
-
+    @OneToMany(() => OrderDetail, (orderDetail) => orderDetail.product)
+    orderDetails: OrderDetail[];
 }
+
