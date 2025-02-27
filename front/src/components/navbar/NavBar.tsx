@@ -82,8 +82,7 @@ export const Navbar: React.FC = () => {
                             </Link>
                           ))}
                         </ul>
-                      )}
-                      
+                      )}  
                     </div>
                   </div>
                 </form>
