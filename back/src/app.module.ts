@@ -6,7 +6,11 @@ import { ProductModule } from './product/product.module';
 import { UserModule } from './user/user.module';
 import typeOrmConfig from "./config/typeOrm"
 import { SeedModule } from './seeds/seeds.module';
+import { AuthModule } from './auth/auth.module';
+import { OrderModule } from './order/order.module';
+import { OrderDetailsModule } from './order_details/order_details.module';
 import { CategoryModule } from './category/category.module';
+
 
 @Module({
   imports: [
@@ -21,6 +25,9 @@ import { CategoryModule } from './category/category.module';
     ProductModule,
     UserModule,
     SeedModule,
+    AuthModule,
+    OrderModule,
+    OrderDetailsModule,
     CategoryModule
   ],
   controllers: [],
