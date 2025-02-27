@@ -9,6 +9,7 @@ import { SeedModule } from './seeds/seeds.module';
 import { AuthModule } from './auth/auth.module';
 import { OrderModule } from './order/order.module';
 import { OrderDetailsModule } from './order_details/order_details.module';
+import { CategoryModule } from './category/category.module';
 
 
 @Module({
@@ -24,9 +25,10 @@ import { OrderDetailsModule } from './order_details/order_details.module';
     ProductModule,
     UserModule,
     SeedModule,
-    AuthModule
+    AuthModule,
     OrderModule,
-    OrderDetailsModule
+    OrderDetailsModule,
+    CategoryModule
   ],
   controllers: [],
   providers: [],
