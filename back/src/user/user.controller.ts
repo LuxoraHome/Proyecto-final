@@ -13,7 +13,7 @@ export class UserController {
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
-    return await this.userService.create(createUserDto);
+    return await this.userService.createUser(createUserDto);
   }
 
   @Post("seeder")
@@ -26,18 +26,18 @@ export class UserController {
   }
   @Get()
   async findAll() {
-    return await this.userService.findAll();
+    return await this.userService.findAllUsers();
   }
 
   @Get(':id')
   async findOne(@Param('id') id: string) {
-    return await this.userService.findOne(id);
+    return await this.userService.findOneById(id);
   }
 
   @Put(':id')
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     try {
-      await this.userService.update(id, updateUserDto);
+      await this.userService.updateUser(id, updateUserDto);
       return {message: "User updated successfully", id}
     } catch (error) {
       throw new BadRequestException ("Error updating user")
@@ -46,6 +46,6 @@ export class UserController {
 
   @Delete(':id')
   async remove(@Param('id') id: string) {
-    return await this.userService.remove(id);
+    return await this.userService.removeUser(id);
   }
 }
