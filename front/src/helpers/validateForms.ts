@@ -7,6 +7,7 @@ export const validateRegisterForm = (values: IRegister) => {
     address: "",
     phone: "",
     password: "",
+    confirmPassword: "",
   };
 
   if (!values.name.trim()) {
