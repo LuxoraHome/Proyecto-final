@@ -8,6 +8,8 @@ export const validateRegisterForm = (values: IRegister) => {
     phone: "",
     password: "",
     confirmPassword: "",
+    city: "",
+    country: "",
   };
 
   if (!values.name.trim()) {
@@ -34,6 +36,18 @@ export const validateRegisterForm = (values: IRegister) => {
     errors.password = "Password is required";
   } else if (values.password.length < 6) {
     errors.password = "Minimum 6 characters";
+  }
+
+  if (!values.confirmPassword.trim()) {
+    errors.confirmPassword = "Confirmation of password is required";
+  }
+
+  if (!values.city.trim()) {
+    errors.city = "City is required";
+  }
+
+  if (!values.country.trim()) {
+    errors.country = "Country is required";
   }
 
   return errors;

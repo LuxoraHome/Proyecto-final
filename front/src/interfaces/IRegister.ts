@@ -6,4 +6,7 @@ export interface IRegister {
     confirmPassword: string;
     address: string;
     phone: string;
+    city: string;
+    country: string;
+    termsAccepted?: boolean;
 }
