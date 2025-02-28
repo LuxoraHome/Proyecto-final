@@ -3,6 +3,7 @@ import { IUserProfile } from "@/interfaces/IUserProfile";
 export const users: IUserProfile[] = [
     {
 
+ 
         id: "1",
         name: "Juan Pérez",
         email: "juan.perez@example.com",
@@ -13,7 +14,9 @@ export const users: IUserProfile[] = [
     },
     {
 
+
         id: "2",
+
         name: "María López",
         email: "maria.lopez@example.com",
         address: "Avenida Siempre Viva 742, Córdoba",
@@ -24,6 +27,7 @@ export const users: IUserProfile[] = [
     },
     {
 
+ 
         id: "3",
         name: "Carlos Gómez",
         email: "carlos.gomez@example.com",
@@ -35,6 +39,7 @@ export const users: IUserProfile[] = [
     },
     {
 
+ 
         id: "4",
         name: "Ana Rodríguez",
         email: "ana.rodriguez@example.com",
@@ -46,6 +51,7 @@ export const users: IUserProfile[] = [
     },
     {
 
+ 
         id: "5",
         name: "Lucas Fernández",
         email: "lucas.fernandez@example.com",

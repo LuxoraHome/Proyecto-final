@@ -4,6 +4,7 @@ import { Formik, ErrorMessage, Field, Form } from "formik"
 import validateFormNew from "@/helpers/validateFormNew"
 import { FaInstagram, FaFacebook, FaPinterest, FaYoutube, FaLinkedin, FaTiktok } from "react-icons/fa";
 import React from "react";
+import Link from "next/link";
 
 export const Footer: React.FC = () => {
   const backToTop = () => {
@@ -62,7 +63,7 @@ export const Footer: React.FC = () => {
       <div className="bg-black text-white text-sm py-4">
         <div className="max-w-7xl mx-auto flex flex-col items-center px-4 space-y-4">
           <div className="flex flex-col items-center text-center space-y-2">
-            <span className="hover:text-gray-400 cursor-pointer">CONTACT</span>
+          <Link href="/contact">  <span className="hover:text-gray-400 cursor-pointer">CONTACT</span> </Link>
           </div>
         </div>
       </div>
