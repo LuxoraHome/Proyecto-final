@@ -14,12 +14,17 @@ export class OrderController {
 
   @Get()
   findAll() {
-    return this.orderService.findAll();
+    return this.orderService.findAllOrders();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.orderService.findOne(id);
+    return this.orderService.findOneOrder(id);
+  }
+
+  @Get('user/:id')
+  findOneByUser(@Param('id') id: string) {
+    return this.orderService.findUserById(id)
   }
 
   @Patch(':id')
