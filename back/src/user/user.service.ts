@@ -12,25 +12,26 @@ export class UserService {
     private readonly userRepository: Repository<User>
   ){}
 
-  async create(createUserDto: CreateUserDto) {
+  async createUser(createUserDto: CreateUserDto) {
     const newUser = await this.userRepository.create(createUserDto)
     return this.userRepository.save(newUser)
   }
 
-  async findAll() {
+  async findAllUsers() {
     return await this.userRepository.find()
   }
 
-  async findOne(id: string) {
+  async findOneById(id: string) {
     return await this.userRepository.findOne({where: {id}})
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto) {
+  async updateUser(id: string, updateUserDto: UpdateUserDto) {
     return await this.userRepository.update(id, updateUserDto)
   }
 
-  async remove(id: string) {
-    return await this.userRepository.delete(id)
+  async removeUser(id: string) {
+    await this.userRepository.delete(id)
+    return {id}
   }
   async findByEmail(email: string) {
     return this.userRepository.findOne({ where: { email } });
