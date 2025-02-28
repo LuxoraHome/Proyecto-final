@@ -16,7 +16,11 @@ export class Order {
 
     // Relación N:1 con User
     @ManyToOne(() => User, (user) => user.orders)
+<<<<<<< HEAD
     @JoinColumn({ name: 'user_Id' })
+=======
+    @JoinColumn({ name: 'user_id' })
+>>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
     user: User
 
     @OneToMany(() => OrderDetail, (orderDetail) => orderDetail.order)

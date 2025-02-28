@@ -6,7 +6,9 @@ import { FaInstagram, FaFacebook, FaPinterest, FaYoutube, FaLinkedin, FaTiktok }
 import React from "react";
 import Link from "next/link";
 
-export const Footer: React.FC = () => {
+
+export const Footer = () => {
+
   const backToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -18,7 +20,7 @@ export const Footer: React.FC = () => {
 
 
   return (
-    <footer className="bg-white text-black border-t border-gray-300 relative">
+    <footer className="bg-white text-black border-t border-gray-300 relative mt-20">
       <div className="bg-white text-gray-500 text-sm py-2 flex justify-end px-4 border-t">
         <button onClick={backToTop} className="hover:text-black">↑ Back to top</button>
       </div>

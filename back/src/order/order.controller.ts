@@ -9,7 +9,11 @@ export class OrderController {
 
   @Post()
   create(@Body() createOrderDto: CreateOrderDto) {
+<<<<<<< HEAD
     return this.orderService.create(createOrderDto);
+=======
+    return this.orderService.createOrder(createOrderDto);
+>>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
   }
 
   @Get()
@@ -19,7 +23,11 @@ export class OrderController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
+<<<<<<< HEAD
     return this.orderService.findOne(+id);
+=======
+    return this.orderService.findOne(id);
+>>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
   }
 
   @Patch(':id')

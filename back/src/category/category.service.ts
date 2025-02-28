@@ -11,9 +11,15 @@ export class CategoryService {
   constructor(
     @InjectRepository(Category)
     private readonly categoryRepository: Repository<Category>
+<<<<<<< HEAD
   ) { }
 
   async create(createCategoryDto: CreateCategoryDto) {
+=======
+  ) {}
+
+  async createCategory(createCategoryDto: CreateCategoryDto) {
+>>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
     const newCategoty = this.categoryRepository.create(createCategoryDto);
     return await this.categoryRepository.save(newCategoty);
   }
@@ -22,7 +28,11 @@ export class CategoryService {
     return await this.categoryRepository.find();
   }
 
+<<<<<<< HEAD
   async findOne(id: string) {
+=======
+  async findOneById(id: string) {
+>>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
     return await this.categoryRepository.findOneBy({ id });
   }
 
