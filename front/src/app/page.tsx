@@ -1,6 +1,7 @@
 import React from "react";
 import HomeView from "@/views/HomeView";
 import Slidebar from "@/components/sliderbar/slidebar";
+import ProfileView from "@/views/ProfileView";
 
 
 export const Home: React.FC = ()=>{
@@ -13,6 +14,7 @@ return(
   </div>
   <div>
     <HomeView />
+    <ProfileView/>
   </div>
 </div>
 )
