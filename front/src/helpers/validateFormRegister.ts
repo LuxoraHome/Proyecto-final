@@ -28,9 +28,8 @@ export const validateRegisterForm = (values: IRegister) => {
 
   if (!values.phone.trim()) {
     errors.phone = "Phone number is required";
-  } else if (!/^\d+$/.test(values.phone)) {
-    errors.phone = "Must contain only numbers";
-  }
+  } 
+  
 
   if (!values.password.trim()) {
     errors.password = "Password is required";
