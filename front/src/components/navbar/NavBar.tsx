@@ -80,8 +80,7 @@ export const Navbar: React.FC = async () => {
                             </Link>
                           ))}
                         </ul>
-                      )}
-                      
+                      )}  
                     </div>
                   </div>
                 </form>
