@@ -7,17 +7,7 @@ import { RegisterUser } from "@/helpers/users";
 import { IUserRegister } from "@/interfaces/Iuser";
 
 export const RegisterFormView: React.FC = () => {
-  const initialValues: IUserRegister = {
-    name: "",
-    email: "",
-    address: "",
-    phone: "",
-    password: "",
-    confirmPassword: "",
-    country: "",
-    city: "",
-    // termsAccepted: false, 
-  };
+
 
   const handleSubmit = async (values: IUserRegister) => {
     await RegisterUser(values);
@@ -27,7 +17,16 @@ export const RegisterFormView: React.FC = () => {
     <div className="w-1/2 mx-auto p-6 bg-white border border-black rounded-xl shadow-lg mt-10 mb-20">
       <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
       <Formik
-        initialValues={initialValues}
+        initialValues={{
+          name: "",
+          email: "",
+          address: "",
+          phone: "",
+          password: "",
+          confirmPassword: "",
+          country: "",
+          city: "",
+        }}
         validate={validateRegisterForm}
         onSubmit={handleSubmit}
       >
@@ -112,22 +111,12 @@ export const RegisterFormView: React.FC = () => {
             <ErrorMessage name="city" component="div" className="text-red-500 text-sm" />
           </div>
 
-          <div className="flex items-center gap-2">
-            <Field
-              type="checkbox"
-              name="termsAccepted"
-              className="w-5 h-5 border border-black rounded"
-            />
-            <label className="text-sm">
-              I accept the <a href="#" className="text-blue-500 hover:underline">terms and conditions</a> of <span className="font-bold">Luxora</span>.
-            </label>
-          </div>
+      
           <ErrorMessage name="termsAccepted" component="div" className="text-red-500 text-sm" />
 
           <button
-            type="submit"
             className="w-full font-bold py-2 rounded transition-all bg-black text-white hover:bg-gray-800">
-            <h3> Register</h3>
+            Register
           </button>
         </Form>
       </Formik>
