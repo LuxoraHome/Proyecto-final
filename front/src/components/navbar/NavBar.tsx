@@ -1,16 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
-export const NavBar = () => {
-  return (
-    <div>
-      daleboke
-
-    </div>
-  )
-}
-
-export default NavBar
-=======
 import { PiShoppingBag } from "react-icons/pi";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
@@ -64,4 +52,3 @@ export const Navbar: React.FC = async () => {
 };
 
 export default Navbar;
->>>>>>> d4ab5f84115c14d5f1e0a3aa67c5565e978ee073

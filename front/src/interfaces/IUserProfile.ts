@@ -2,7 +2,8 @@ import { IOrder } from "./IOrder";
 
 export interface IUserProfile {
 
-    id?: number;
+
+    id: string;
     name: string;
     email: string;
     address: string;
