@@ -25,6 +25,7 @@ export const RegisterFormView: React.FC = () => {
             email: "",
             address: "",
             phone: "",
+            confirmPassword:"",
             password: "",
             country: "",
             city: "",
@@ -81,6 +82,18 @@ export const RegisterFormView: React.FC = () => {
                 className="w-full p-2 border border-black rounded"
               />
               <ErrorMessage name="password" component="p" className="text-red-500 text-sm" />
+            </div>
+
+
+            
+            <div className="flex flex-col">
+              <label className="font-medium">Confirm password</label>
+              <Field
+                type="password"
+                name="confirmPassword"
+                className="w-full p-2 border border-black rounded"
+              />
+              <ErrorMessage name="confirmPassword" component="p" className="text-red-500 text-sm" />
             </div>
 
 

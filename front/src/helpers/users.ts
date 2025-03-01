@@ -14,7 +14,10 @@ export const RegisterUser = async (userData: IUserRegister) => {
         if (response.ok) {
             alert("Register successful")
             return response.json()
-        }
+        }else {
+            const errorData = await response.json();
+            console.log("Error response from server:", errorData)
+          }
 
     } catch (error) {
      
