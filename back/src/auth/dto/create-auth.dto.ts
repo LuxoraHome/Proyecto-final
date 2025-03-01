@@ -1,5 +1,6 @@
 import {
   IsEmail,
+  IsEmpty,
   IsNotEmpty,
   IsNumber,
   IsString,
@@ -46,4 +47,9 @@ export class CreateAuthDto {
   @IsString()
   @Length(5, 20)
   city: string;
+
+  @IsEmpty()
+  isAdmin: boolean;
 }
+
+

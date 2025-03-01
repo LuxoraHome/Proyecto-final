@@ -1,9 +1,11 @@
-import { Controller, Get, Post, Body, Param, Delete, ParseUUIDPipe, HttpException, HttpStatus, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, ParseUUIDPipe, HttpException, HttpStatus, Put, UseGuards } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { ProductsSeed } from 'src/seeds/products/products.seeds';
+import { AuthGuard } from 'src/auth/auth.guards';
+import { RolesGuard } from 'src/auth/roles.guards';
 
 @ApiTags('Product')
 @Controller('product')

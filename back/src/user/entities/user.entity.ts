@@ -32,6 +32,9 @@ export class User {
     @Column({type: 'text', nullable: true})
     address: string
 
+    @Column({default: false})
+    isAdmin: boolean;
+
     // Relación 1:N con Order
     @OneToMany(() => Order, (order) => order.user)
     orders: Order[]
