@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { PiShoppingBag } from "react-icons/pi";
 import { FaRegUserCircle } from "react-icons/fa";
