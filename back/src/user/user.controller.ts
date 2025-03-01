@@ -12,7 +12,6 @@ export class UserController {
   ) {}
 
   @Post()
-  @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
   async create(@Body() createUserDto: CreateUserDto) {
     return await this.userService.createUser(createUserDto);
   }
