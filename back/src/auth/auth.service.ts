@@ -4,6 +4,7 @@ import { UserService } from 'src/user/user.service';
 import * as bcrypt from 'bcrypt';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { LoginAuthDto } from './dto/login-auth.dto';
+import { Role } from './enum/roles.enum';
 
 @Injectable()
 export class AuthService {
@@ -66,10 +67,16 @@ export class AuthService {
     const payload = {
       userId: user.id,
       email: user.email,
+      roles: [user.isAdmin ? Role.Admin : Role.User]
     };
     const access_token = await this.jwtService.signAsync(payload, {
-      expiresIn: '1h',
+      expiresIn: '2h',
     });
-    return { access_token };
+
+    return { 
+      access_token, 
+      ...user
+    };
+
   }
 }
