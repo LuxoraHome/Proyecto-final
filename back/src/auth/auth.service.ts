@@ -41,7 +41,7 @@ export class AuthService {
 
     if (!hashedPassword) throw new Error('Error hashing password');
 
-    const newUser = await this.userService.create({
+    const newUser = await this.userService.createUser({
       name,
       email,
       address,

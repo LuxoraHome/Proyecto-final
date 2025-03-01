@@ -77,4 +77,9 @@ export class CreateProductDto {
     @IsNumber()
     stock: number
 
+    @IsString()
+    @IsNotEmpty()
+    @IsUUID()
+    categoryId: string
+
 }

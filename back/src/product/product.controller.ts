@@ -3,25 +3,33 @@ import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { ProductsSeed } from 'src/seeds/products/products.seeds';
 
 @ApiTags('Product')
 @Controller('product')
 export class ProductController {
-  constructor(private readonly productService: ProductService) { }
+  constructor(
+    private readonly productService: ProductService,
+    private readonly productSeed: ProductsSeed
+  ) {}
 
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
-    return this.productService.create(createProductDto);
+    return this.productService.createProduct(createProductDto);
+  }
+  @Post("seeder")
+  createSeeder() {
+    return this.productSeed.createSeedProduct()
   }
 
   @Get()
   findAll() {
-    return this.productService.findAll();
+    return this.productService.findAllProducts();
   }
 
   @Get(':id')
   async asyncfindOne(@Param('id', new ParseUUIDPipe()) id: string) {
-    const product = await this.productService.findOne(id);
+    const product = await this.productService.findOneById(id);
     if (!product) {
       throw new HttpException('Product not found', HttpStatus.NOT_FOUND);
     }
@@ -30,11 +38,11 @@ export class ProductController {
 
   @Put(':id')
   update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return this.productService.update(id, updateProductDto);
+    return this.productService.updateProduct(id, updateProductDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.productService.remove(id);
+    return this.productService.removeProduct(id);
   }
 }

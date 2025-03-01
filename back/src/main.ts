@@ -17,15 +17,19 @@ async function bootstrap() {
     .setVersion('1.0.0')
     .addBearerAuth()
     .build();
-  const documet = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('api', app, documet);
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('api', app, document);
+
+  const categorySeeder = app.get(CategoriesSeed);
+  await categorySeeder.seedCategories();
+  console.log('*** LA INSERCION DE CATEGORIAS FUE EXITOSA ***');
 
   const userSeeder = app.get(UserSeed);
   await userSeeder.createUserSeeder();
   console.log('*** LA INSERCION DE USUARIOS FUE EXITOSA ***');
 
   const productsSeed = app.get(ProductsSeed);
-  await productsSeed.seed();
+  await productsSeed.createSeedProduct();
   console.log('*** LA INSERCION DE PRODUCTOS FUE EXITOSA ***');
 
   const categoriesSeed = app.get(CategoriesSeed);

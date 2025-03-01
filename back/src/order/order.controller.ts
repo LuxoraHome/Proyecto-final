@@ -9,17 +9,22 @@ export class OrderController {
 
   @Post()
   create(@Body() createOrderDto: CreateOrderDto) {
-    return this.orderService.create(createOrderDto);
+    return this.orderService.createOrder(createOrderDto);
   }
 
   @Get()
   findAll() {
-    return this.orderService.findAll();
+    return this.orderService.findAllOrders();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.orderService.findOne(+id);
+    return this.orderService.findOneOrder(id);
+  }
+
+  @Get('user/:id')
+  findOneByUser(@Param('id') id: string) {
+    return this.orderService.findUserById(id)
   }
 
   @Patch(':id')
