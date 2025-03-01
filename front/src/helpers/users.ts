@@ -17,6 +17,7 @@ export const RegisterUser = async (userData: IUserRegister) => {
         }
 
     } catch (error) {
+        alert("login fail")
         console.log(`aqui esta el error ${error}`);
 
     }
