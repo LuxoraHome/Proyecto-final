@@ -50,7 +50,6 @@ export class CreateAuthDto {
 
   @IsEmpty()
   isAdmin: boolean;
-  
 }
 
 
