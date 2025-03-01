@@ -1,6 +1,6 @@
 import { IUserLogin, IUserRegister } from "@/interfaces/Iuser";
 
-const APIURL= process.env.NEXT_PUBLIC_API_URL
+const APIURL=process.env.NEXT_PUBLIC_API_URL
 
 
 export const RegisterUser = async (userData: IUserRegister) => {
