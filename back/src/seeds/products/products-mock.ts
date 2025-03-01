@@ -16,7 +16,7 @@ export const productsMock = [
         "price": 5390,
         "designer": "Sacha Lakic",
         "image": "https://media.roche-bobois.com/is/image/rochebobois/Bubble2_C3-4P_calin_ocre_pers?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
-        "stock": 8,
+        "stock": 13,
         "category": 'Living Room'
     },
     {
@@ -46,7 +46,7 @@ export const productsMock = [
         "price": 4450,
         "designer": "Studio Roche Bobois",
         "image": "https://media.roche-bobois.com/is/image/rochebobois/Sense_gc3p_Bleu_Nuit_v4_face?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
-        "stock": 7,
+        "stock": 10,
         "category": 'Living Room'
     },
     {
@@ -76,7 +76,7 @@ export const productsMock = [
         "price": 7820,
         "designer": "Maurizio Manzoni",
         "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/Opale_Cp_2p_Pers02_V2?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=Revp&color=236,231,220",
-        "stock": 6,
+        "stock": 12,
         "category": 'Living Room'
     },
     {
@@ -86,7 +86,7 @@ export const productsMock = [
         "price": 13630,
         "designer": "Sacha Lakic",
         "image": "https://media.roche-bobois.com/is/image/rochebobois/Setup_CompoA_15_16_Bleu-Canard_face_v4?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
-        "stock": 8,
+        "stock": 11,
         "category": 'Living Room'
     }
 ]
