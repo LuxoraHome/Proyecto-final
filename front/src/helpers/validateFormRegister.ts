@@ -2,7 +2,7 @@ import { IUserRegister } from "@/interfaces/Iuser";
 
 export const validateRegister = (values: IUserRegister) => {
 
-  const errors: { name?: string, email?: string, password?: string, confirmPassword?:string, address?: string, phone?: string, city?: string, country?: string } = {}
+  const errors: { name?: string, email?: string, password?: string, confirmPassword?: string, address?: string, phone?: string, city?: string, country?: string } = {}
 
 
   if (!values.name) {
@@ -15,6 +15,8 @@ export const validateRegister = (values: IUserRegister) => {
 
   if (!values.password) {
     errors.password = "password is required"
+  } else if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(values.password)) {
+    errors.password = "Password must be at least 8 characters, include one uppercase letter, one number, and one special character";
   }
 
   if (!values.confirmPassword) {
