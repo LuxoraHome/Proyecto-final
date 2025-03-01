@@ -1,0 +1,21 @@
+###
+# @name orderIdName
+@orderId2={{orderIdName.response.body.id}}
+
+POST http://localhost:3000/order
+Content-Type: application/json
+
+{
+  "userId": "4ac0a90a-7034-456d-b48b-8b1cbe450337",
+  "orderDetails": [    
+    {
+      "productId": "c59626ff-ed12-405f-ad77-3f0497b72e8a",
+      "quantity": 1
+    }
+  ]
+}
+
+###
+
+###
+GET http://localhost:3000/order/{{orderId2}}

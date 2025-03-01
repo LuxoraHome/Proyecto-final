@@ -7,17 +7,14 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class OrderDetailsService {
-
   constructor(
     @InjectRepository(OrderDetail)
-    private readonly orderDetailRepository: Repository<OrderDetail>
-){}
+    private readonly orderDetailRepository: Repository<OrderDetail>,
+  ) {}
 
-
-async  create(createOrderDetailDto: CreateOrderDetailDto) {
+  async create(createOrderDetailDto: any) {
     const orderDetail = this.orderDetailRepository.create(createOrderDetailDto);
     return await this.orderDetailRepository.save(orderDetail);
-
   }
 
   findAll() {

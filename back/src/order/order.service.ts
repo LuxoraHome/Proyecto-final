@@ -27,16 +27,15 @@ export class OrderService {
 
   async createOrder(createOrderDto: CreateOrderDto) {
     const { userId, orderDetails } = createOrderDto;
-
+    
     const findUser = await this.userService.findOneById(userId);
     if (!findUser) throw new NotFoundException('User not found');
-
+    
     const order = this.orderRepository.create({ user: findUser, total: 0 });
     await this.orderRepository.save(order);
 
     let total = 0;
 
-    // const orderDetailEntities: OrderDetail[] = [];
 
     for (const element of orderDetails) {
       const product = await this.productService.findOneById(element.productId);
@@ -48,15 +47,13 @@ export class OrderService {
       const subtotal = element.quantity * product.price;
       total += subtotal;
 
-      // const orderDetailEntity = await this.orderDetailService.create({
       await this.orderDetailService.create({
-        orderId: order.id,
-        productId: product.id,
+        order: order,
+        product: product,
         quantity: element.quantity,
         unitPrice: product.price,
         subtotal: subtotal,
       });
-      // orderDetailEntities.push(orderDetailEntity)
 
       product.stock -= element.quantity;
       await this.productService.updateProduct(product.id, {
@@ -70,13 +67,28 @@ export class OrderService {
     return order;
   }
 
-  async findAll() {
+  async findAllOrders() {
     return await this.orderRepository.find();
   }
 
-  async findOne(id: string) {
-    const order = await this.orderRepository.findOne({ where: { id } });
+  async findOneOrder(id: string) {
+    const order = await this.orderRepository.findOne({ where: { id },
+      relations: ['user', 'orderDetails', 'orderDetails.product'],
+    });
+
+    if (!order) {
+      throw new Error(`Order with ID ${id} not found`);
+    }
+
     return order;
+  }
+
+  async findUserById(id: string) {
+    const user = await this.userService.findOneById(id)
+    const order = await this.orderRepository.find({
+      where: { user: { id: user.id } },
+    });
+    return { order: order, user };  
   }
 
   update(id: number, updateOrderDto: UpdateOrderDto) {
