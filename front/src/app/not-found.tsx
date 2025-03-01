@@ -1,7 +1,6 @@
 import { Montserrat_Alternates } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
-
 const fount = Montserrat_Alternates({ subsets: ["latin"], weight: ['500', '700'] });
 
 function CustomNotFound() {
