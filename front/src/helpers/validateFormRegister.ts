@@ -1,8 +1,5 @@
 import { IUserRegister } from "@/interfaces/Iuser";
 
-
-
-
 export const validateRegister = (values : IUserRegister) =>{
 
 const errors : {name?:string , email?:string , password?:string , address?:string , phone?:string , city?:string , country?:string } = {}
@@ -38,7 +35,7 @@ if (!values.country) {
 
 
 
-return errors ;
+return errors 
 
 
 }
