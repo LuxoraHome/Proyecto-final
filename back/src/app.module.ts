@@ -32,7 +32,7 @@ import { JwtModule } from '@nestjs/jwt';
     CategoryModule,
     JwtModule.register({
       global: true, //para usarlo en cualquier lado
-      signOptions: { expiresIn: '1h' }, //entiende el string como hora(h), minuto(m),segundo(s)
+      signOptions: { expiresIn: '2h' }, //entiende el string como hora(h), minuto(m),segundo(s)
       secret: process.env.JWT_SECRET, //asegurar que es un jwt generado y no construido por alguien externo
     })
   ],

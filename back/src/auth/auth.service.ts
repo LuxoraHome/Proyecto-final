@@ -70,7 +70,7 @@ export class AuthService {
       roles: [user.isAdmin ? Role.Admin : Role.User]
     };
     const access_token = await this.jwtService.signAsync(payload, {
-      expiresIn: '1h',
+      expiresIn: '2h',
     });
 
     return { 
