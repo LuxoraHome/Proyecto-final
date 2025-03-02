@@ -5,6 +5,7 @@ import { UserSeed } from './user/seeder/user.seed';
 import { ProductsSeed } from './seeds/products/products.seeds';
 import { loggerGlobal } from './middleware/logger.middleware';
 import { CategoriesSeed } from './seeds/categories/categories.seeds';
+import { ValidationPipe } from '@nestjs/common';
 
 
 async function bootstrap() {
@@ -18,6 +19,7 @@ async function bootstrap() {
 
 
   app.use(loggerGlobal);
+  app.useGlobalPipes(new ValidationPipe());
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Proyecto LUXORA')

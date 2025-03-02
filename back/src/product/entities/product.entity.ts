@@ -28,7 +28,11 @@ export class Product {
     @Column({ nullable: false })
     designer: string;
 
-    @Column({ nullable: false })
+    @Column({
+        type: "text",
+        nullable: true,
+        default: 'default-image-url.jpg'
+    })
     image: string;
 
     @Column({ type: 'int', nullable: false })

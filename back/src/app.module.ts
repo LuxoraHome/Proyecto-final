@@ -11,6 +11,8 @@ import { OrderModule } from './order/order.module';
 import { OrderDetailsModule } from './order_details/order_details.module';
 import { CategoryModule } from './category/category.module';
 import { JwtModule } from '@nestjs/jwt';
+import { CloudinaryService } from './services/cloudinary/cloudinary.service';
+import { FileUploadModule } from './file-upload/file-upload.module';
 
 
 @Module({
@@ -34,10 +36,11 @@ import { JwtModule } from '@nestjs/jwt';
       global: true, //para usarlo en cualquier lado
       signOptions: { expiresIn: '2h' }, //entiende el string como hora(h), minuto(m),segundo(s)
       secret: process.env.JWT_SECRET, //asegurar que es un jwt generado y no construido por alguien externo
-    })
+    }),
+    FileUploadModule
   ],
   controllers: [],
-  providers: [],
+  providers: [CloudinaryService],
 })
 
 export class AppModule { }

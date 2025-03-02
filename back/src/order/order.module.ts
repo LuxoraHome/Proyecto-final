@@ -14,6 +14,8 @@ import { ProductService } from 'src/product/product.service';
 import { UserService } from 'src/user/user.service';
 import { OrderDetailsService } from 'src/order_details/order_details.service';
 import { CategoryModule } from 'src/category/category.module';
+import { FileUploadService } from 'src/file-upload/file-upload.service';
+import { CloudinaryService } from 'src/services/cloudinary/cloudinary.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Order, User, OrderDetail, Product, Category]),
@@ -23,6 +25,6 @@ import { CategoryModule } from 'src/category/category.module';
   CategoryModule
 ],
   controllers: [OrderController],
-  providers: [OrderService, ProductService, UserService, OrderDetailsService],
+  providers: [OrderService, ProductService, UserService, OrderDetailsService, FileUploadService, CloudinaryService],
 })
 export class OrderModule {}
