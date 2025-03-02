@@ -1,0 +1,34 @@
+services:
+  nest-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3000
+    command: [ "node", "dist/main.js" ]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    env_file:
+      - .env.development
+    depends_on:
+      - postgresdb
+    networks:
+      - app-network
+
+  postgresdb:
+    image: postgres
+    ports:
+      - 5433:5432
+    env_file:
+      - .env.development
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+volumes:
+  pgdata:
+
+
+networks:
+  app-network:

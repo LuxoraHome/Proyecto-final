@@ -42,10 +42,6 @@ async function bootstrap() {
   await productsSeed.createSeedProduct();
   console.log('*** LA INSERCION DE PRODUCTOS FUE EXITOSA ***');
 
-  //const categoriesSeed = app.get(CategoriesSeed);
-  //await categoriesSeed.seed();
-  //console.log('*** LA INSERCION DE CATEGORIAS FUE EXITOSA ***');
-
   await app.listen(process.env.PORT ?? 3000);
 }
 
