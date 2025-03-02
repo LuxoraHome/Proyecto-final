@@ -14,6 +14,7 @@ import { Product } from 'src/product/entities/product.entity';
 import { OrderDetailsService } from 'src/order_details/order_details.service';
 import { UserService } from 'src/user/user.service';
 import { ProductService } from 'src/product/product.service';
+import { OrderStatusEnum } from './orderStatus-enum';
 
 @Injectable()
 export class OrderService {
@@ -31,7 +32,11 @@ export class OrderService {
     const findUser = await this.userService.findOneById(userId);
     if (!findUser) throw new NotFoundException('User not found');
     
-    const order = this.orderRepository.create({ user: findUser, total: 0 });
+    const order = this.orderRepository.create({ 
+      user: findUser, 
+      total: 0,
+      status: OrderStatusEnum.PENDING 
+     });
     await this.orderRepository.save(order);
 
     let total = 0;
@@ -91,11 +96,20 @@ export class OrderService {
     return { order: order, user };  
   }
 
+  async updateOrderStatus(orderId: string, status: OrderStatusEnum) {
+    const order = await this.orderRepository.findOne({ where: { id: orderId } });
+    if (!order) throw new NotFoundException('Order not found');
+  
+    order.status = status;
+    await this.orderRepository.save(order);
+    return order
+  }
+
   update(id: number, updateOrderDto: UpdateOrderDto) {
     return `This action updates a #${id} order`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} order`;
   }
 }
