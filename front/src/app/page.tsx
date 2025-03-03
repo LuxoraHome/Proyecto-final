@@ -1,6 +1,6 @@
 import React from "react";
 import HomeView from "@/views/HomeView";
-import Slidebar from "@/components/slidebar/slidebar";
+import Slidebar from "@/components/sliderbar/slidebar";
 
 export const Home: React.FC = () => {
   return (
