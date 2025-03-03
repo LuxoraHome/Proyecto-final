@@ -2,7 +2,7 @@ export interface IUserRegister {
     name: string,
     email: string,
     password: string,
-    confirmPassword : string ,
+    confirmPassword: string,
     address: string,
     phone: string,
     city: string,
@@ -36,6 +36,7 @@ export interface IUserBack {
 export interface IUserContext {
     user: IUserBack | null;
     setUser: (user: IUserBack) => void;
+    logout: () => void
 }
 
 export interface iAuthProvider {
