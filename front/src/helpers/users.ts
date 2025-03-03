@@ -17,11 +17,9 @@ export const RegisterUser = async (userData: IUserRegister) => {
         }
 
     } catch (error) {
-        alert("login fail")
-        console.log(`aqui esta el error ${error}`);
 
+        console.log(`aqui esta el error`, error);
     }
-
 }
 
 export const LoginUser = async (userData: IUserLogin) => {
@@ -37,13 +35,16 @@ export const LoginUser = async (userData: IUserLogin) => {
             alert("login Successful")
             return response.json()
         }
+    }
 
 
-    } catch (error) {
+    catch (error) {
         console.log(`Aqui esta el error ${error}`);
 
 
     }
-
-
 }
+
+
+
+
