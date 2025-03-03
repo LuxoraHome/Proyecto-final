@@ -3,8 +3,14 @@ import { LoginUser } from "@/helpers/users";
 import { ILogin, ILoginErrors, validateLogin } from "@/helpers/validateLogin";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import { useAuth } from "@/context/AuthContext";
 
 const LoginView = () => {
+
+
+const{setUser}=useAuth()
+
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [userData, setUserData] = useState<ILogin>({
@@ -16,9 +22,14 @@ const LoginView = () => {
   const handleSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitted(true);
-
     const response = await LoginUser(userData)
-  };
+    console.log(`esto responde el back`, response);
+ };
+
+
+
+
+ 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserData({
@@ -44,6 +55,7 @@ const LoginView = () => {
             <div className="text-left ml-4" >
               <input
                 type="text"
+                name="email"
                 value={userData.email}
                 onChange={handleChange}
                 placeholder="Example@mail.com"
@@ -54,7 +66,8 @@ const LoginView = () => {
             <label className="px-2" >Password:</label>
             <div className="text-left ml-4">
               <input
-                type="text"
+                type="password"
+                name="password"
                 value={userData.password}
                 onChange={handleChange}
                 placeholder="****"
@@ -67,7 +80,7 @@ const LoginView = () => {
 
             <div className="py-5 px-1.5 w-full text-center  ">
 
-              <Link href="#_" className="relative w-full inline-block ml-1 px-2 py-3 overflow-hidden font-medium text-gray-600 bg-gray-100 border border-gray-100 shadow-inner group">
+              <Link href="/"  className="relative w-full inline-block ml-1 px-2 py-3 overflow-hidden font-medium text-gray-600 bg-gray-100 border border-gray-100 shadow-inner group">
                 <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-gray-600 group-hover:w-full ease"></span>
                 <span className="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-gray-600 group-hover:w-full ease"></span>
                 <span className="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-gray-600 group-hover:h-full ease"></span>
