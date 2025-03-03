@@ -51,13 +51,13 @@ export class ProductController {
   }
 
   // @HttpCode(201)
-  @Post("upload/:id")
-  // @UseGuards(AuthGuard)
-  @HttpCode(HttpStatus.OK)
-  @UseInterceptors(FileInterceptor("file"))
-  async uploadFile(@Param("id", ParseUUIDPipe) id: string, 
-  @UploadedFile(new ImageUploadPipe()) file: Express.Multer.File)
-  {
-      return await this.productService.fileUpload(id, file)
-  }
+  // @Post("upload/:id")
+  // // @UseGuards(AuthGuard)
+  // @HttpCode(HttpStatus.OK)
+  // @UseInterceptors(FileInterceptor("file"))
+  // async uploadFile(@Param("id", ParseUUIDPipe) id: string, 
+  // @UploadedFile(new ImageUploadPipe()) file: Express.Multer.File)
+  // {
+  //     return await this.productService.fileUpload(id, file)
+  // }
 }

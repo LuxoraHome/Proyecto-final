@@ -42,7 +42,7 @@ async function bootstrap() {
   await productsSeed.createSeedProduct();
   console.log('*** LA INSERCION DE PRODUCTOS FUE EXITOSA ***');
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 3001);
 }
 
 bootstrap();
