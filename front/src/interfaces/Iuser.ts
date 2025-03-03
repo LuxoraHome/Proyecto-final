@@ -2,7 +2,7 @@ export interface IUserRegister {
     name: string,
     email: string,
     password: string,
-    confirmPassword : string ,
+    confirmPassword: string,
     address: string,
     phone: string,
     city: string,
