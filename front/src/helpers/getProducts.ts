@@ -31,13 +31,20 @@ export const getProductsId = async (id: number) => {
 }
 
 
+export const searchProduct = async (query: string): Promise<iProducts[]> => {
+    try {
+        const response = await fetch(`${APIURL}/product`, { cache: "no-cache" });
+        if (!response.ok) throw new Error("Error al obtener productos");
 
+        const products: iProducts[] = await response.json();
 
-export const searchProduct = (query: string, products: iProducts[]): iProducts[] => {
-    if (!query) return products
+        if (!query) return products;
 
-    return products.filter((product) =>
-        product.name && product.name?.toLowerCase().includes(query.toLowerCase())
-    )
-
-}
+        return products.filter((product) =>
+            product.name?.toLowerCase().includes(query.toLowerCase())
+        );
+    } catch (error) {
+        console.error("Error en searchProduct:", error);
+        return [];
+    }
+};
