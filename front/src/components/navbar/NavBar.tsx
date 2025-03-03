@@ -2,7 +2,8 @@ import React from "react";
 import { PiShoppingBag } from "react-icons/pi";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
-import { FaRegUser } from "react-icons/fa"; import { RiLogoutCircleRLine } from "react-icons/ri";
+import { FaRegUser } from "react-icons/fa";
+ 
 
 
 import Link from "next/link";
