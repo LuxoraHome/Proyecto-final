@@ -1,6 +1,6 @@
 import { IUserLogin, IUserRegister } from "@/interfaces/Iuser";
 
-const APIURL = process.env.NEXT_PUBLIC_API_URL
+const APIURL=process.env.NEXT_PUBLIC_API_URL
 
 
 export const RegisterUser = async (userData: IUserRegister) => {
@@ -14,10 +14,13 @@ export const RegisterUser = async (userData: IUserRegister) => {
         if (response.ok) {
             alert("Register successful")
             return response.json()
-        }
+        }else {
+            const errorData = await response.json();
+            console.log("Error response from server:", errorData)
+          }
 
     } catch (error) {
-        alert("login fail")
+     
         console.log(`aqui esta el error ${error}`);
 
     }

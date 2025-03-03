@@ -1,54 +1,52 @@
-import { IRegister } from "@/interfaces/IRegister";
+import { IUserRegister } from "@/interfaces/Iuser";
 
-export const validateRegisterForm = (values: IRegister) => {
-  const errors: IRegister = {
-    name: "",
-    email: "",
-    address: "",
-    phone: "",
-    password: "",
-    confirmPassword: "",
-    city: "",
-    country: "",
-  };
+export const validateRegister = (values: IUserRegister) => {
 
-  if (!values.name.trim()) {
-    errors.name = "Name is required";
+  const errors: { name?: string, email?: string, password?: string, confirmPassword?: string, address?: string, phone?: string, city?: string, country?: string } = {}
+
+
+  if (!values.name) {
+    errors.name = "name is required"
   }
 
-  if (!values.email.trim()) {
-    errors.email = "Email is required";
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-    errors.email = "Invalid email";
+  if (!values.email) {
+    errors.email = "email is required"
   }
 
-  if (!values.address.trim()) {
-    errors.address = "Address is required";
+  if (!values.password) {
+    errors.password = "password is required"
+  } else if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(values.password)) {
+    errors.password = "Password must be at least 8 characters, include one uppercase letter, one number, and one special character";
   }
 
-  if (!values.phone.trim()) {
-    errors.phone = "Phone number is required";
-  } else if (!/^\d+$/.test(values.phone)) {
-    errors.phone = "Must contain only numbers";
+  if (!values.confirmPassword) {
+    errors.confirmPassword = "password dont match"
+  }
+  if (values.password && values.confirmPassword && values.password !== values.confirmPassword) {
+    errors.confirmPassword = "Passwords do not match";
   }
 
-  if (!values.password.trim()) {
-    errors.password = "Password is required";
-  } else if (values.password.length < 6) {
-    errors.password = "Minimum 6 characters";
+  if (!values.address) {
+    errors.address = "address is required"
   }
 
-  if (!values.confirmPassword.trim()) {
-    errors.confirmPassword = "Confirmation of password is required";
+  if (!values.phone) {
+    errors.phone = "phone is required"
   }
 
-  if (!values.city.trim()) {
-    errors.city = "City is required";
+  if (!values.city) {
+    errors.city = "city is required"
   }
 
-  if (!values.country.trim()) {
-    errors.country = "Country is required";
+  if (!values.country) {
+    errors.country = "country is required"
   }
 
-  return errors;
-};
+
+
+  return errors
+
+
+}
+
+export default validateRegister
