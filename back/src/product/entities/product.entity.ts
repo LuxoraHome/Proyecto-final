@@ -29,9 +29,9 @@ export class Product {
     designer: string;
 
     @Column({
-        type: "text",
+        // type: "text",
         nullable: true,
-        default: 'default-image-url.jpg'
+        // default: 'default-image-url.jpg'
     })
     image: string;
 

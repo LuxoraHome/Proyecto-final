@@ -69,16 +69,16 @@ export class ProductService {
     return { id };
   }
 
-  async fileUpload(id: string, file: FileUploadDto){
-    const url = await this.fileUploadService.createFileUpload({
-        fieldname: file.fieldname,
-        originalname: file.originalname,
-        mimetype: file.mimetype,
-        size: file.size,
-        buffer: file.buffer
-    })
+//   async fileUpload(id: string, file: FileUploadDto){
+//     const url = await this.fileUploadService.createFileUpload({
+//         fieldname: file.fieldname,
+//         originalname: file.originalname,
+//         mimetype: file.mimetype,
+//         size: file.size,
+//         buffer: file.buffer
+//     })
 
-    await this.productRepository.update(id, {image: url})
-    return {image: url}
-}
+//     await this.productRepository.update(id, {image: url})
+//     return {image: url}
+// }
 }
