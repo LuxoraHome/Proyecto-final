@@ -32,7 +32,7 @@ export const Navbar: React.FC = async () => {
       </div>
 
       <div className="flex items-center space-x-6 text-2xl text-gray-800">
-        <Link href="/">
+        <Link href="/register">
           <FaRegUser />
         </Link>
         <Link href="/cart">
