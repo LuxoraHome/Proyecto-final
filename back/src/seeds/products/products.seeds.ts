@@ -39,7 +39,7 @@ export class ProductsSeed {
                 newProduct.type = productData.type;
                 newProduct.price = productData.price;
                 newProduct.designer = productData.designer;
-                // newProduct.image = productData.image;
+                newProduct.image = productData.image;
                 newProduct.stock = productData.stock;
                 newProduct.category = await this.findCategories(productData.category)
                 await this.productRepository.save(newProduct);
