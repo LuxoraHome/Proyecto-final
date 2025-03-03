@@ -1,55 +1,39 @@
 "use client";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { validateRegisterForm } from "@/helpers/validateFormRegister";
 import React from "react";
 import { RegisterUser } from "@/helpers/users";
 import { IUserRegister } from "@/interfaces/Iuser";
+import validateRegister from "@/helpers/validateFormRegister";
 import { useRouter } from "next/navigation";
-
 import Link from "next/link";
-
 
 
 export const RegisterFormView: React.FC = () => {
   const router = useRouter();
 
-  const initialValues: IUserRegister = {
-    name: "",
-    email: "",
-    address: "",
-    phone: "",
-    password: "",
-    confirmPassword: "",
-    country: "",
-    city: "",
-  };
-
 
   const handleSubmit = async (values: IUserRegister) => {
-    try {
-      await RegisterUser(values);
-      router.push("/login");
-    } catch (error) {
-      console.error("Error to register user:", error);
-    }
-  };
+    await RegisterUser(values);
+    router.push("/login");
+  }
+    ;
 
   return (
-    <div className="w-1/2 mx-auto p-6 bg-white border border-black rounded-xl shadow-lg mt-10 mb-30">
-      <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
+    <div className="w-1/2 mx-auto p-6 bg-white border border-black rounded-xl shadow-lg ">
+      <h2 className="text-2xl font-bold mb-6  text-center">Register</h2>
       <Formik
         initialValues={{
           name: "",
           email: "",
           address: "",
           phone: "",
-          password: "",
           confirmPassword: "",
+          password: "",
           country: "",
           city: "",
         }}
-        validate={validateRegisterForm}
+        validate={validateRegister}
         onSubmit={handleSubmit}
       >
         <Form className="space-y-4">
@@ -60,7 +44,7 @@ export const RegisterFormView: React.FC = () => {
               name="name"
               className="w-full p-2 border border-black rounded"
             />
-            <ErrorMessage name="name" component="div" className="text-red-500 text-sm" />
+            <ErrorMessage name="name" component="p" className="text-red-500 text-sm" />
           </div>
 
           <div className="flex flex-col">
@@ -70,7 +54,7 @@ export const RegisterFormView: React.FC = () => {
               name="email"
               className="w-full p-2 border border-black rounded"
             />
-            <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
+            <ErrorMessage name="email" component="p" className="text-red-500 text-sm" />
           </div>
 
           <div className="flex flex-col">
@@ -80,7 +64,7 @@ export const RegisterFormView: React.FC = () => {
               name="address"
               className="w-full p-2 border border-black rounded"
             />
-            <ErrorMessage name="address" component="div" className="text-red-500 text-sm" />
+            <ErrorMessage name="address" component="p" className="text-red-500 text-sm" />
           </div>
 
           <div className="flex flex-col">
@@ -90,7 +74,7 @@ export const RegisterFormView: React.FC = () => {
               name="phone"
               className="w-full p-2 border border-black rounded"
             />
-            <ErrorMessage name="phone" component="div" className="text-red-500 text-sm" />
+            <ErrorMessage name="phone" component="p" className="text-red-500 text-sm" />
           </div>
 
           <div className="flex flex-col">
@@ -100,18 +84,21 @@ export const RegisterFormView: React.FC = () => {
               name="password"
               className="w-full p-2 border border-black rounded"
             />
-            <ErrorMessage name="password" component="div" className="text-red-500 text-sm" />
+            <ErrorMessage name="password" component="p" className="text-red-500 text-sm" />
           </div>
 
+
+
           <div className="flex flex-col">
-            <label className="font-medium">Confirm Password</label>
+            <label className="font-medium">Confirm password</label>
             <Field
               type="password"
               name="confirmPassword"
               className="w-full p-2 border border-black rounded"
             />
-            <ErrorMessage name="confirmPassword" component="div" className="text-red-500 text-sm" />
+            <ErrorMessage name="confirmPassword" component="p" className="text-red-500 text-sm" />
           </div>
+
 
           <div className="flex flex-col">
             <label className="font-medium">Country</label>
@@ -120,7 +107,7 @@ export const RegisterFormView: React.FC = () => {
               name="country"
               className="w-full p-2 border border-black rounded"
             />
-            <ErrorMessage name="country" component="div" className="text-red-500 text-sm" />
+            <ErrorMessage name="country" component="p" className="text-red-500 text-sm" />
           </div>
 
           <div className="flex flex-col">
@@ -130,21 +117,14 @@ export const RegisterFormView: React.FC = () => {
               name="city"
               className="w-full p-2 border border-black rounded"
             />
-            <ErrorMessage name="city" component="div" className="text-red-500 text-sm" />
+            <ErrorMessage name="city" component="p" className="text-red-500 text-sm" />
           </div>
 
-      
-          <ErrorMessage name="termsAccepted" component="div" className="text-red-500 text-sm" />
-
-
-          <button type="submit"
-
           <button
-
+            type="submit"
             className="w-full font-bold py-2 rounded transition-all bg-black text-white hover:bg-gray-800">
             Register
           </button>
-
 
           <div className="text-gray-800 dark:text-white text-lg">
             <span className="mr-1 text-black">Already have an account?</span>
