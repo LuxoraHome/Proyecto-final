@@ -90,3 +90,4 @@ export const productsMock = [
         "category": 'Living Room'
     }
 ]
+
