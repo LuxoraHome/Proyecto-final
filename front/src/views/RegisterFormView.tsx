@@ -7,6 +7,10 @@ import { RegisterUser } from "@/helpers/users";
 import { IUserRegister } from "@/interfaces/Iuser";
 import { useRouter } from "next/navigation";
 
+import Link from "next/link";
+
+
+
 export const RegisterFormView: React.FC = () => {
   const router = useRouter();
 
@@ -132,7 +136,11 @@ export const RegisterFormView: React.FC = () => {
       
           <ErrorMessage name="termsAccepted" component="div" className="text-red-500 text-sm" />
 
+
+          <button type="submit"
+
           <button
+
             className="w-full font-bold py-2 rounded transition-all bg-black text-white hover:bg-gray-800">
             Register
           </button>
