@@ -1,3 +1,4 @@
+
 import { NextResponse } from "next/server"
 import { NextRequest } from "next/server"
 import { NextURL } from "next/dist/server/web/next-url"
@@ -19,6 +20,15 @@ else{
 
 
 }
+
+
+
+
+export const middleware = ()=>{
+
+
+}
+
 
 
 export default middleware ;
