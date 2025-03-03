@@ -25,7 +25,7 @@ export const RenderProductDetail: React.FC<iProducts> = ({ name, image, descript
         <div key={id} className="flex items-center justify-center w-full max-w-[2000px] mx-auto p-4 sm:p-6 lg:p-8 min-h-[50vh] sm:min-h-[60vh] lg:min-h-[80vh]">
 
             <div className="w-full  mx-auto p-4 sm:p-6 lg:p-8 flex justify-center">
-                <img src={image}  className="w-full h-auto rounded-lg shadow-lg"/>
+                <img src={image} className="w-full h-auto rounded-lg shadow-lg" />
             </div>
 
             <div className="flex items-start flex-col gap-3 p-4" >
@@ -36,6 +36,8 @@ export const RenderProductDetail: React.FC<iProducts> = ({ name, image, descript
                 <button className="border border-gray-700 bg-gray-700 text-white  rounded-md px-2 py-1  hover:bg-gray-800 transition duration-200 " onClick={onClick}>
                     ADD CART
                 </button>
+
+
             </div>
 
         </div>

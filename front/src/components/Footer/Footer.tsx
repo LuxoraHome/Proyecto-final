@@ -4,8 +4,11 @@ import { Formik, ErrorMessage, Field, Form } from "formik"
 import validateFormNew from "@/helpers/validateFormNew"
 import { FaInstagram, FaFacebook, FaPinterest, FaYoutube, FaLinkedin, FaTiktok } from "react-icons/fa";
 import React from "react";
+import Link from "next/link";
 
-export const Footer: React.FC = () => {
+
+export const Footer = () => {
+
   const backToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -17,7 +20,7 @@ export const Footer: React.FC = () => {
 
 
   return (
-    <footer className="bg-white text-black border-t border-gray-300 relative">
+    <footer className="bg-white text-black border-t border-gray-300 relative mt-20">
       <div className="bg-white text-gray-500 text-sm py-2 flex justify-end px-4 border-t">
         <button onClick={backToTop} className="hover:text-black">↑ Back to top</button>
       </div>
@@ -62,7 +65,7 @@ export const Footer: React.FC = () => {
       <div className="bg-black text-white text-sm py-4">
         <div className="max-w-7xl mx-auto flex flex-col items-center px-4 space-y-4">
           <div className="flex flex-col items-center text-center space-y-2">
-            <span className="hover:text-gray-400 cursor-pointer">CONTACT</span>
+          <Link href="/contact">  <span className="hover:text-gray-400 cursor-pointer">CONTACT</span> </Link>
           </div>
         </div>
       </div>
