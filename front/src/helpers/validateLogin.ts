@@ -14,4 +14,9 @@ export const validateLogin = (values: ILogin) => {
     if(!values.email) {
         errors.email = "email required"
     }
+
+    if (!values.password) {
+        errors.password = "password is required"
+    }
+    return errors
 }

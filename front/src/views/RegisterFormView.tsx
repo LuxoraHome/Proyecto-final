@@ -136,6 +136,17 @@ export const RegisterFormView: React.FC = () => {
             className="w-full font-bold py-2 rounded transition-all bg-black text-white hover:bg-gray-800">
             Register
           </button>
+
+
+          <div className="text-gray-800 dark:text-white text-lg">
+            <span className="mr-1 text-black">Already have an account?</span>
+            <Link href="/login " className="font-semibold underline hover:text-gray-600 transition-colors text-black">
+              Log in
+            </Link>
+          </div>
+
+
+
         </Form>
       </Formik>
     </div>
