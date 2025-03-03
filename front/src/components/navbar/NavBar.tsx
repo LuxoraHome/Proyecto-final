@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { PiShoppingBag } from "react-icons/pi";
 import { FaRegUserCircle, FaRegUser } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
@@ -8,12 +8,14 @@ import { useAuth } from "@/context/AuthContext";
 
 
 
-
-
 export const Navbar: React.FC = () => {
-  const { user, logout } = useAuth();
-  const handleLogout = () => {
-    logout()
+
+
+  const { user, setUser } = useAuth()
+
+
+  const handelLogOut = () => {
+    alert("logOut")
   }
 
 
@@ -38,28 +40,28 @@ export const Navbar: React.FC = () => {
 
 
 
-      {user?.access_token ? (
-        <div className="flex items-center space-x-6 text-2xl text-gray-800">
-          <Link href="/cart">
-            <PiShoppingBag />
-          </Link>
-          <Link href="/">
-            <FaRegUserCircle />
-          </Link>
 
-          <button onClick={handleLogout} >
-            <IoLogOutOutline />
-          </button>
+      <div className="flex items-center space-x-6 text-2xl text-gray-800">
+        <Link href="/cart">
+          <PiShoppingBag />
+        </Link>
+        <Link href="/">
+          <FaRegUserCircle />
+        </Link>
 
-        </div>
-      ) : (
-        <div className="flex items-center space-x-6 text-2xl text-gray-800">
+        <button onClick={handelLogOut } >
+          <IoLogOutOutline />
+        </button>
 
-          <Link href="/register">
-            <FaRegUser />
-          </Link>
-        </div>
-      )}
+      </div>
+
+      <div className="flex items-center space-x-6 text-2xl text-gray-800">
+
+        <Link href="/register">
+          <FaRegUser />
+        </Link>
+      </div>
+
 
     </nav>
   );

@@ -7,17 +7,15 @@ import { iAuthProvider } from "@/interfaces/Iuser";
 
 export const AuthContext = createContext<IUserContext>({
     user: null,
-    setUser: (user: IUserBack) => { },
-    logout:() => {}
+    setUser: (user: IUserBack) => { }
+    
 })
 
 
 export const AuthProvider: React.FC<iAuthProvider> = ({ children }) => {
     const [user, setUser] = useState<IUserBack | null>(null)
-    const logout = () => {
-        setUser(null)
-    }
-    return (<AuthContext.Provider value={{ user, setUser, logout }}>{children}</AuthContext.Provider>)
+  
+    return (<AuthContext.Provider value={{ user, setUser }}>{children}</AuthContext.Provider>)
 }
 
 
