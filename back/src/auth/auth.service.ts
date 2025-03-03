@@ -1,0 +1,79 @@
+import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { UserService } from 'src/user/user.service';
+import * as bcrypt from 'bcrypt';
+import { CreateAuthDto } from './dto/create-auth.dto';
+import { LoginAuthDto } from './dto/login-auth.dto';
+
+@Injectable()
+export class AuthService {
+  constructor(
+    private readonly jwtService: JwtService,
+    private readonly userService: UserService,
+  ) {}
+
+  async signUp(CreateAuthDto: CreateAuthDto) {
+    const {
+      name,
+      email,
+      password,
+      confirmPassword,
+      address,
+      phone,
+      country,
+      city,
+    } = CreateAuthDto;
+    const dbUser = await this.userService.findByEmail(email);
+    if (dbUser) {
+      throw new HttpException(
+        { statusCode: HttpStatus.BAD_REQUEST, message: 'Email already exists' },
+        HttpStatus.BAD_REQUEST
+      );
+    }
+    if (password !== confirmPassword) {
+      throw new HttpException(
+        { statusCode: HttpStatus.BAD_REQUEST, message: 'Passwords do not match' },
+        HttpStatus.BAD_REQUEST
+      );
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    if (!hashedPassword) throw new Error('Error hashing password');
+
+<<<<<<< HEAD
+    const newUser = await this.userService.create({
+=======
+    const newUser = await this.userService.createUser({
+>>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
+      name,
+      email,
+      address,
+      phone,
+      country,
+      city,
+      password: hashedPassword,
+    });
+
+    return { ...newUser, password: undefined };
+  }
+
+  async signIn(loginAuthDto: LoginAuthDto): Promise<{ access_token: string }> {
+    const { email, password } = loginAuthDto;
+
+    const user = await this.userService.findByEmail(email);
+    if (!user) throw new BadRequestException('User not found');
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) throw new BadRequestException('Invalid credentials');
+
+    const payload = {
+      userId: user.id,
+      email: user.email,
+    };
+    const access_token = await this.jwtService.signAsync(payload, {
+      expiresIn: '1h',
+    });
+    return { access_token };
+  }
+}

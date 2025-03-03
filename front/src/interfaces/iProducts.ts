@@ -1,5 +1,5 @@
 export interface iProducts {
-    id: number,
+    id: string,
     categoriId?: string,
     stock?: string,
     name?: string,
