@@ -19,14 +19,14 @@ export const LoginForm = () => {
         const response = await LoginUser(values)
         const { access_token } = response
         setUser(access_token)
-        Cookies.set("token", access_token)
+        Cookies.set("access_token", access_token)
         router.push("/")
     }
 
 
     return (
         <div className="grid justify-center h-48 m-8 mb-96 mt-20 ">
-        
+
             <fieldset className="border border-black rounded-lg shadow-lg max-w-screen-md mr-auto p-8">
                 <h1 className="mt-10 text-center text-2xl font-bold tracking-tight text-gray-900 m-2">
                     Welcome to LUXORA
