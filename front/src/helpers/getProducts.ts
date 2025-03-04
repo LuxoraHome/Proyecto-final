@@ -23,3 +23,4 @@ export const getProductsId = async (id: number) => {
         console.log(`hay un error ${error}`);
     }
 }
+
