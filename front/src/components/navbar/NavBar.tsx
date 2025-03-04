@@ -5,17 +5,22 @@ import { FaRegUserCircle, FaRegUser } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 
 
 export const Navbar: React.FC = () => {
 
+  const router = useRouter()
 
-  const { user, setUser } = useAuth()
-
+ 
 
   const handelLogOut = () => {
     alert("logOut")
+    localStorage.clear()
+    Cookies.remove("access_token")
+    router.push("/")
   }
 
 
@@ -38,9 +43,6 @@ export const Navbar: React.FC = () => {
         />
       </div>
 
-
-
-
       <div className="flex items-center space-x-6 text-2xl text-gray-800">
         <Link href="/cart">
           <PiShoppingBag />
@@ -49,7 +51,7 @@ export const Navbar: React.FC = () => {
           <FaRegUserCircle />
         </Link>
 
-        <button onClick={handelLogOut } >
+        <button onClick={handelLogOut} >
           <IoLogOutOutline />
         </button>
 
