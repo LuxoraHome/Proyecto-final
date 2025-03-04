@@ -4,7 +4,8 @@ const APIURL=process.env.NEXT_PUBLIC_API_URL
 
 export const getProducts = async () => {
     try {
-        const response = await fetch(`${APIURL}/product`, { cache: "no-cache" })
+        const response = await fetch(`${APIURL}/product`)
+       
         const data = await response.json()
         return data
     } catch (error) {
@@ -23,3 +24,4 @@ export const getProductsId = async (id: number) => {
         console.log(`hay un error ${error}`);
     }
 }
+
