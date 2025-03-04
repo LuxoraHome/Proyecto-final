@@ -13,15 +13,17 @@ import Cookies from "js-cookie";
 export const Navbar: React.FC = () => {
 
   const router = useRouter()
+  const { user , setUser } = useAuth()
 
- 
+
 
   const handelLogOut = () => {
-    alert("logOut")
-    localStorage.clear()
+    setUser(null)
     Cookies.remove("access_token")
+    alert("logOut")
     router.push("/")
   }
+    
 
 
   return (
@@ -43,7 +45,7 @@ export const Navbar: React.FC = () => {
         />
       </div>
 
-      <div className="flex items-center space-x-6 text-2xl text-gray-800">
+      {user ? (<div className="flex items-center space-x-6 text-2xl text-gray-800">
         <Link href="/cart">
           <PiShoppingBag />
         </Link>
@@ -55,14 +57,15 @@ export const Navbar: React.FC = () => {
           <IoLogOutOutline />
         </button>
 
-      </div>
+      </div>) : (
+        <div className="flex items-center space-x-6 text-2xl text-gray-800">
 
-      <div className="flex items-center space-x-6 text-2xl text-gray-800">
+          <Link href="/register">
+            <FaRegUser />
+          </Link>
+        </div>
+      )}
 
-        <Link href="/register">
-          <FaRegUser />
-        </Link>
-      </div>
 
 
     </nav>

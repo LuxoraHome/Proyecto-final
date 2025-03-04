@@ -17,8 +17,8 @@ export const LoginForm = () => {
 
     const handelSubmit = async (values: IUserLogin) => {
         const response = await LoginUser(values)
+        setUser(response)
         const { access_token } = response
-        setUser(access_token)
         Cookies.set("access_token", access_token)
         router.push("/")
     }

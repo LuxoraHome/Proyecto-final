@@ -35,7 +35,7 @@ export interface IUserBack {
 
 export interface IUserContext {
     user: IUserBack | null;
-    setUser: (user: IUserBack) => void; 
+    setUser: (user: IUserBack | null) => void; 
 }
 
 export interface iAuthProvider {
