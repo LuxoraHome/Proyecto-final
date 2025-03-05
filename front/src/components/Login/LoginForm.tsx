@@ -8,8 +8,7 @@ import Cookies from "js-cookie"
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation" ;
 import { useAuth } from "@/context/AuthContext" ;
-import { signInWithEmailAndPassword } from "firebase/auth" ;
-import { auth } from "../../../firebase" ;
+
 
 
 export const LoginForm = () => {
@@ -21,7 +20,7 @@ export const LoginForm = () => {
     const handelSubmit = async (values: IUserLogin) => {
 
         try {
-            signInWithEmailAndPassword(auth, values.email, values.password)
+        
             const response = await LoginUser(values)
             setUser(response)
             const { access_token } = response
