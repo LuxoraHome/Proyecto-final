@@ -23,7 +23,7 @@ export const authProvider = async (provider : AuthProvider) => {              //
 
     try {
         const response = await signInWithPopup(auth , provider)   //3 // uso el provider//  signInWithPopup crea el modulo mail de google
-        console.log(response);
+        console.log(`esto me responde fireBase` ,response);
         
 
     } catch (error) {

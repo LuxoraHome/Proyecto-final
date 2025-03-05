@@ -9,7 +9,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation" ;
 import { useAuth } from "@/context/AuthContext" ;
 import { authProvider, googleProvider } from "@/services/Firebase"
-import { GoogleAuthProvider } from "firebase/auth"
+
 
 
 
@@ -36,17 +36,15 @@ export const LoginForm = () => {
     }
 
 
-    const handelOnClick = async (event : any) => {
+    const handelOnClick = async (event : React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
-
         try {
-            const data = await authProvider(googleProvider)
+            const user = await authProvider(googleProvider)
             
         } catch (error) {
             console.log(`Aca esta el error` , error);
             
         }
-
     }
 
     return (
