@@ -23,7 +23,7 @@ export const authProvider = async (provider : AuthProvider) => {
 
     try {
         const response = await signInWithPopup(auth , provider)   
-        console.log(`esto me responde fireBase` ,response);
+        console.log(`esto me responde fireBase` ,response.user);
         
     } catch (error) {
         console.log(`aca esta el error`, error);  }
