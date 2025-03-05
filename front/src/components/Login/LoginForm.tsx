@@ -8,6 +8,8 @@ import Cookies from "js-cookie"
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation" ;
 import { useAuth } from "@/context/AuthContext" ;
+import { authProvider, googleProvider } from "@/services/Firebase"
+import { GoogleAuthProvider } from "firebase/auth"
 
 
 
@@ -33,6 +35,19 @@ export const LoginForm = () => {
         }
     }
 
+
+    const handelOnClick = async (event : any) => {
+        event.preventDefault()
+
+        try {
+            const data = await authProvider(googleProvider)
+            
+        } catch (error) {
+            console.log(`Aca esta el error` , error);
+            
+        }
+
+    }
 
     return (
         <div className="grid justify-center h-48 m-8 mb-96 mt-10 ">
@@ -89,7 +104,7 @@ export const LoginForm = () => {
                                 </p>
                             </div>
 
-                            <button className="flex items-center gap-3 px-6 py-3 border-2 border-black rounded-lg shadow-md transition-transform duration-200 hover:scale-105">
+                            <button onClick={handelOnClick} className="flex items-center gap-3 px-6 py-3 border-2 border-black rounded-lg shadow-md transition-transform duration-200 hover:scale-105">
                                 <FcGoogle className="text-2xl" />
                                 <span className="font-medium text-gray-800">Login with Google</span>
                             </button>

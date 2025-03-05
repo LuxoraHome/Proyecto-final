@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { AuthProvider, getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 
 const firebaseConfig = {
@@ -14,15 +14,15 @@ const firebaseConfig = {
 
 
 initializeApp(firebaseConfig);
+
 const auth = getAuth()
 
+export const googleProvider = new GoogleAuthProvider()  // 1 defino mi proveedor/es externo
 
-const googleProvider = new GoogleAuthProvider()  // 1 defino mi proveedor/es externo
-
-export const authProvider = async (provider: GoogleAuthProvider) => {  // 2 creo funcion async donde solicito la interaccion de mi proveedor.
+export const authProvider = async (provider : AuthProvider) => {              // 2 creo funcion async donde defino mi provider que recibo
 
     try {
-        const response = await signInWithPopup(auth, provider)   //signInWithPopup crea el modulo mail de google
+        const response = await signInWithPopup(auth , provider)   //3 // uso el provider//  signInWithPopup crea el modulo mail de google
         console.log(response);
         
 
