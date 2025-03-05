@@ -2,7 +2,6 @@ import { IUserLogin, IUserRegister } from "@/interfaces/Iuser";
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL
 
-
 export const RegisterUser = async (userData: IUserRegister) => {
 
     try {
@@ -15,33 +14,24 @@ export const RegisterUser = async (userData: IUserRegister) => {
             alert("Register successful")
             return response.json()
         }
-
     } catch (error) {
-
-        console.log(`aqui esta el error`, error);
+        console.log(`Here is the error:`, error);
     }
 }
 
 export const LoginUser = async (userData: IUserLogin) => {
-
     try {
         const response = await fetch(`${APIURL}/auth/login`, {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(userData)
         })
-
         if (response.ok) {
-            alert("login Successful")
+            alert("Login Successful")
             return response.json()
         }
-    }
-
-
-    catch (error) {
-        console.log(`Aqui esta el error ${error}`);
-
-
+    } catch (error) {
+        console.log(`Here is the error ${error}`);
     }
 }
 
