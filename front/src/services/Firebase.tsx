@@ -17,18 +17,15 @@ initializeApp(firebaseConfig);
 
 const auth = getAuth()
 
-export const googleProvider = new GoogleAuthProvider()  // 1 defino mi proveedor/es externo
+export const googleProvider = new GoogleAuthProvider()  
 
-export const authProvider = async (provider : AuthProvider) => {              // 2 creo funcion async donde defino mi provider que recibo
+export const authProvider = async (provider : AuthProvider) => {                
 
     try {
-        const response = await signInWithPopup(auth , provider)   //3 // uso el provider//  signInWithPopup crea el modulo mail de google
+        const response = await signInWithPopup(auth , provider)   
         console.log(`esto me responde fireBase` ,response);
         
-
     } catch (error) {
-        console.log(`aca esta el error`, error);
-
-    }
+        console.log(`aca esta el error`, error);  }
 
 }

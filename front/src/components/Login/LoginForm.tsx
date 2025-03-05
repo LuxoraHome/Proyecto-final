@@ -22,14 +22,13 @@ export const LoginForm = () => {
     const handelSubmit = async (values: IUserLogin) => {
 
         try {
-        
             const response = await LoginUser(values)
             setUser(response)
             const { access_token } = response
             Cookies.set("access_token", access_token)
             router.push("/")
-
-        } catch (error) {
+  }
+       catch (error) {
             console.log(`Aca esta el error`, error);
 
         }
