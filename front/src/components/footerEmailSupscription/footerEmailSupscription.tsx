@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import Swal from "sweetalert2";
 
 export const FooterEmailSubscription: React.FC = () => {
     
@@ -9,24 +10,32 @@ export const FooterEmailSubscription: React.FC = () => {
         e.preventDefault();
 
         emailjs.sendForm(
-            'service_qwk3g6q', // ID de servicio de EmailJS
+            'service_0de9t6n', // ID de servicio de EmailJS
             'luxora-template', // ID de plantilla de EmailJS
             form.current as HTMLFormElement, 
-            { publicKey: '4-agjYYN_tQ3yMoZz' } // clave pública de EmailJS
+            { publicKey: 'qFk39yauCxI9F_MJF' } // clave pública de EmailJS
         )
         .then(() => {
             console.log('SUCCESS!');
-            alert("¡Correo enviado!");
+            Swal.fire({
+                icon: "success",
+                title: "Email Sent",
+                text: "Your email has been sent successfully."
+            });
         }, (error) => {
             console.log('FAILED...', error.text);
-            alert("Hubo un error al enviar el correo.");
+            Swal.fire({
+                icon: "error",
+                title: "Error Sending Email",
+                text: "There was an error sending the email. Please try again."
+            });
         });
     };
 
     return (
         <form ref={form} onSubmit={sendEmail} className="flex flex-col items-center mt-4 gap-4 w-full">
             <label>Email</label>
-            <input type="email" name="user_email" required className="border p-2 w-full"placeholder= "your email address (name@luxora.com) " />
+            <input type="email" name="user_email" required className="border p-2 w-full" placeholder="your email address (name@luxora.com)" />
             <button type="submit" className="bg-black text-white px-4 py-2 w-full">Subscribe</button>
         </form>
     );
