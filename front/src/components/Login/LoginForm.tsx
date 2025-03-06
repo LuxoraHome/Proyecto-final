@@ -25,7 +25,7 @@ export const LoginForm = () => {
         try {
             const userRegister = await signInWithEmailAndPassword(auth, values.email, values.password)
             const uid = userRegister.user.uid
-            const userData = {...values , uid}
+            const userData = { ...values, uid }
             const response = await LoginUser(userData)
             console.log(`esto me responde el back`, response);
             setUser(response)
