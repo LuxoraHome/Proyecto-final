@@ -21,8 +21,10 @@ export const RegisterFormView: React.FC = () => {
 
   const handleSubmit = async (values: IUserRegister) => {
     try {
-      await createUserWithEmailAndPassword(auth ,  values.email , values.password)
-      await RegisterUser(values);
+      const usercredential =await createUserWithEmailAndPassword(auth ,  values.email , values.password)
+      const uid = usercredential.user.uid
+      const userData = {...values , uid}
+      await RegisterUser( userData);
       router.push("/login");
     } catch (error) {
       console.log(error);
