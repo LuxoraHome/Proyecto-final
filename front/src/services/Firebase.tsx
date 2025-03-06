@@ -1,9 +1,9 @@
-"use client"
 
-import { useAuth } from "@/context/AuthContext";
+import { IUserBack } from "@/interfaces/Iuser";
 import { initializeApp } from "firebase/app";
 import { AuthProvider, getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+
 
 
 const firebaseConfig = {
@@ -18,20 +18,15 @@ const firebaseConfig = {
 
 
 initializeApp(firebaseConfig);
-
 const auth = getAuth()
-
 export const googleProvider = new GoogleAuthProvider()
-
-export const authProvider = async (provider: AuthProvider) => {
-
-    const { setUser } = useAuth()
+export const authProvider = async (provider: AuthProvider, setUser: (user: IUserBack | null) => void) => {
 
     try {
         const response = await signInWithPopup(auth, provider)
-
-        setUser({ uid: response.user.uid })
-
+        console.log(response);
+        Cookies.set("access_uid", response.user.uid)
+        setUser({ uid: response.user.uid, displayName: response.user.displayName, email: response.user.email });
         console.log(`esto me responde fireBase`, response.user);
 
     } catch (error) {

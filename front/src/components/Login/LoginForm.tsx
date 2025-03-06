@@ -30,8 +30,8 @@ export const LoginForm = () => {
 
             console.log(`esto me responde el back`, response);
             setUser(response)
-            const { access_token } = response
-            Cookies.set("access_token", access_token)
+        
+            Cookies.set("access_uid", uid)
             router.push("/")
         }
         catch (error) {
@@ -44,8 +44,8 @@ export const LoginForm = () => {
     const handelOnClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
         try {
-            const user = await authProvider(googleProvider)
-        
+            const user = await authProvider(googleProvider , setUser)
+                router.push("/")
 
         } catch (error) {
             console.log(`Aca esta el error`, error);

@@ -19,7 +19,7 @@ export const Navbar: React.FC = () => {
 
   const handelLogOut = () => {
     setUser(null)
-    Cookies.remove("access_token")
+    Cookies.remove("access_uid")
     alert("logOut")
     router.push("/")
   }
