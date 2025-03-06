@@ -16,6 +16,7 @@ export class AuthService {
   async signUp(CreateAuthDto: CreateAuthDto) {
     const {
       name,
+      uid,
       email,
       password,
       confirmPassword,
@@ -44,6 +45,7 @@ export class AuthService {
 
     const newUser = await this.userService.createUser({
       name,
+      uid,
       email,
       address,
       phone,
@@ -67,6 +69,7 @@ export class AuthService {
     const payload = {
       userId: user.id,
       email: user.email,
+      uid: user.uid,
       roles: [user.isAdmin ? Role.Admin : Role.User]
     };
     const access_token = await this.jwtService.signAsync(payload, {
