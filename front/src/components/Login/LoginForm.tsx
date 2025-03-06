@@ -6,8 +6,8 @@ import { validateLogin } from "@/helpers/validateLogin"
 import Link from "next/link"
 import Cookies from "js-cookie"
 import { FcGoogle } from "react-icons/fc";
-import { useRouter } from "next/navigation" ;
-import { useAuth } from "@/context/AuthContext" ;
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 import { authProvider, googleProvider } from "@/services/Firebase"
 import { auth } from "../../../firebase"
 import { signInWithEmailAndPassword } from "firebase/auth"
@@ -23,28 +23,29 @@ export const LoginForm = () => {
     const handelSubmit = async (values: IUserLogin) => {
 
         try {
-            await signInWithEmailAndPassword(auth , values.email , values.password)
+            await signInWithEmailAndPassword(auth, values.email, values.password)
             const response = await LoginUser(values)
+            console.log(`esto me responde el back`, response);
             setUser(response)
             const { access_token } = response
             Cookies.set("access_token", access_token)
             router.push("/")
-  }
-       catch (error) {
+        }
+        catch (error) {
             console.log(`Aca esta el error`, error);
 
         }
     }
 
 
-    const handelOnClick = async (event : React.MouseEvent<HTMLButtonElement>) => {
+    const handelOnClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
         try {
             const user = await authProvider(googleProvider)
-            
+
         } catch (error) {
-            console.log(`Aca esta el error` , error);
-            
+            console.log(`Aca esta el error`, error);
+
         }
     }
 

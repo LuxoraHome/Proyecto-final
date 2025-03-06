@@ -1,5 +1,6 @@
 export interface IUserRegister {
     name: string,
+    uid: string,
     email: string,
     password: string,
     confirmPassword: string,
@@ -35,7 +36,7 @@ export interface IUserBack {
 
 export interface IUserContext {
     user: IUserBack | null;
-    setUser: (user: IUserBack | null) => void; 
+    setUser: (user: IUserBack | null) => void;
 }
 
 export interface iAuthProvider {
