@@ -13,6 +13,8 @@ import { CategoryModule } from './category/category.module';
 import { JwtModule } from '@nestjs/jwt';
 import { CloudinaryService } from './services/cloudinary/cloudinary.service';
 import { FileUploadModule } from './file-upload/file-upload.module';
+import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
+import { CartProductsModule } from './cart-products/cartProducts.module';
 
 
 @Module({
@@ -32,12 +34,15 @@ import { FileUploadModule } from './file-upload/file-upload.module';
     OrderModule,
     OrderDetailsModule,
     CategoryModule,
-    // JwtModule.register({
-    //   global: true, //para usarlo en cualquier lado
-    //   signOptions: { expiresIn: '2h' }, //entiende el string como hora(h), minuto(m),segundo(s)
-    //   secret: process.env.JWT_SECRET, //asegurar que es un jwt generado y no construido por alguien externo
-    // }),
-    FileUploadModule
+    JwtModule.register({
+      global: true, //para usarlo en cualquier lado
+      signOptions: { expiresIn: '2h' }, //entiende el string como hora(h), minuto(m),segundo(s)
+      secret: process.env.JWT_SECRET, //asegurar que es un jwt generado y no construido por alguien externo
+    }),
+    FileUploadModule,
+    ShoppingCartModule,
+    CartProductsModule
+
   ],
   controllers: [],
 

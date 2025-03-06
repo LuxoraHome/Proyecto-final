@@ -14,6 +14,10 @@ export class CreateAuthDto {
   @Length(3, 80)
   name: string;
 
+  @IsString()
+  @IsNotEmpty()
+  uid: string
+
   @IsEmail()
   email: string;
 
