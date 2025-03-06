@@ -14,6 +14,8 @@ export const AuthContext = createContext<IUserContext>({
 
 export const AuthProvider: React.FC<iAuthProvider> = ({ children }) => {
     const [user, setUser] = useState<IUserBack | null>(null)
+    console.log(`esto tenfo en userContext` , user);
+    
 
     return (<AuthContext.Provider value={{ user, setUser }}>{children}</AuthContext.Provider>)
 }

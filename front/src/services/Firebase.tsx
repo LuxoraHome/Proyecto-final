@@ -1,5 +1,8 @@
+
+
 import { initializeApp } from "firebase/app";
 import { AuthProvider, getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 
 const firebaseConfig = {
@@ -21,8 +24,10 @@ export const googleProvider = new GoogleAuthProvider()
 
 export const authProvider = async (provider : AuthProvider) => {                
 
+
     try {
         const response = await signInWithPopup(auth , provider)   
+     
         console.log(`esto me responde fireBase` ,response.user);
         
     } catch (error) {

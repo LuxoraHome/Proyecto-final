@@ -15,6 +15,7 @@ export interface IUserRegister {
 export interface IUserLogin {
 
     email: string,
+    uid ? : string
     password: string,
 
 }
@@ -22,6 +23,7 @@ export interface IUserLogin {
 
 export interface IUserBack {
     access_token: string,
+    uid : string ,
     id: string,
     name: string,
     email: string,

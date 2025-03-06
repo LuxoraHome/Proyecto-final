@@ -27,6 +27,7 @@ export const LoginForm = () => {
             const uid = userRegister.user.uid
             const userData = { ...values, uid }
             const response = await LoginUser(userData)
+
             console.log(`esto me responde el back`, response);
             setUser(response)
             const { access_token } = response
@@ -44,6 +45,7 @@ export const LoginForm = () => {
         event.preventDefault()
         try {
             const user = await authProvider(googleProvider)
+        
 
         } catch (error) {
             console.log(`Aca esta el error`, error);
