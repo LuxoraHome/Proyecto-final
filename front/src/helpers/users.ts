@@ -1,50 +1,68 @@
+import Swal from "sweetalert2";
 import { IUserLogin, IUserRegister } from "@/interfaces/Iuser";
 
-const APIURL = process.env.NEXT_PUBLIC_API_URL
-
+const APIURL = process.env.NEXT_PUBLIC_API_URL;
 
 export const RegisterUser = async (userData: IUserRegister) => {
-
     try {
         const response = await fetch(`${APIURL}/auth/register`, {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(userData)
-        })
+        });
+
         if (response.ok) {
-            alert("Register successful")
-            return response.json()
+            Swal.fire({
+                icon: "success",
+                title: "Registration Successful",
+                text: "Your account has been created successfully."
+            });
+            return response.json();
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Registration Error",
+                text: "There was a problem creating the account."
+            });
         }
-
     } catch (error) {
-
-        console.log(`aqui esta el error`, error);
+        Swal.fire({
+            icon: "error",
+            title: "Unexpected Error",
+            text: "An error occurred, please try again."
+        });
+        console.log(`Here is the error:`, error);
     }
-}
+};
 
 export const LoginUser = async (userData: IUserLogin) => {
-
     try {
         const response = await fetch(`${APIURL}/auth/login`, {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(userData)
-        })
+        });
 
         if (response.ok) {
-            alert("login Successful")
-            return response.json()
+            Swal.fire({
+                icon: "success",
+                title: "Login Successful",
+                text: "You have logged in successfully."
+            });
+            return response.json();
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Login Error",
+                text: "Incorrect username or password."
+            });
         }
+    } catch (error) {
+        Swal.fire({
+            icon: "error",
+            title: "Unexpected Error",
+            text: "An error occurred, please try again."
+        });
+        console.log(`Here is the error:`, error);
     }
-
-
-    catch (error) {
-        console.log(`Aqui esta el error ${error}`);
-
-
-    }
-}
-
-
-
-
+};
