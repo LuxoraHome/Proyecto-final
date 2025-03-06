@@ -42,9 +42,11 @@ import { CartProductsModule } from './cart-products/cartProducts.module';
     FileUploadModule,
     ShoppingCartModule,
     CartProductsModule
+
   ],
   controllers: [],
-  providers: [CloudinaryService],
+
+  //providers: [CloudinaryService],
 })
 
 export class AppModule { }

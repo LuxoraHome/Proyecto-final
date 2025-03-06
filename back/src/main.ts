@@ -13,7 +13,7 @@ async function bootstrap() {
 
   app.enableCors({
     origin: 'http://localhost:3001',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    methods: 'GET,T,PATCHEAD,PUH,POST,DELETE',
     credentials: true,
   });
 
@@ -42,7 +42,7 @@ async function bootstrap() {
   await productsSeed.createSeedProduct();
   console.log('*** LA INSERCION DE PRODUCTOS FUE EXITOSA ***');
 
-  await app.listen(process.env.PORT ?? 3001);
+  await app.listen(process.env.PORT ?? 3000);
 }
 
 bootstrap();
