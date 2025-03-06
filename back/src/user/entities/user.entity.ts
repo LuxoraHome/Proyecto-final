@@ -10,6 +10,9 @@ export class User {
 
     @PrimaryGeneratedColumn("uuid")
     id: string 
+
+    @Column({nullable: true})
+    uid: string
     
     @Column({length: 50, nullable: false})
     name: string
