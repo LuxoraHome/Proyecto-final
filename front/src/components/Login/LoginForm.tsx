@@ -9,6 +9,9 @@ import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation" ;
 import { useAuth } from "@/context/AuthContext" ;
 import { authProvider, googleProvider } from "@/services/Firebase"
+import { auth } from "../../../firebase"
+import { signInWithEmailAndPassword } from "firebase/auth"
+
 
 
 
@@ -22,6 +25,7 @@ export const LoginForm = () => {
     const handelSubmit = async (values: IUserLogin) => {
 
         try {
+            await signInWithEmailAndPassword(auth , values.email , values.password)
             const response = await LoginUser(values)
             setUser(response)
             const { access_token } = response
