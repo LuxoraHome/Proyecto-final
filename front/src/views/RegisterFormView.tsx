@@ -29,7 +29,7 @@ export const RegisterFormView: React.FC = () => {
     }
 
   }
-    ;
+    
 
   return (
     <div className="w-1/2 mx-auto p-6 bg-white border border-black rounded-xl shadow-lg ">
