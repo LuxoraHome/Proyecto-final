@@ -7,16 +7,38 @@ import { IUserRegister } from "@/interfaces/Iuser";
 import validateRegister from "@/helpers/validateFormRegister";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+
+
 
 
 export const RegisterFormView: React.FC = () => {
+
+
   const router = useRouter();
 
 
   const handleSubmit = async (values: IUserRegister) => {
+
+    try {
+      const usercredential =await createUserWithEmailAndPassword(auth ,  values.email , values.password)
+      const uid = usercredential.user.uid
+      const userData = {...values , uid}
+      
+      await RegisterUser( userData);
+      router.push("/login");
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
+    
+
     await RegisterUser(values);
     router.push("/login");
   };
+
 
   return (
     <div className="w-1/2 mx-auto p-6 bg-white border border-black rounded-xl shadow-lg ">
