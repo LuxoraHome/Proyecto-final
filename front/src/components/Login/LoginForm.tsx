@@ -23,8 +23,10 @@ export const LoginForm = () => {
     const handelSubmit = async (values: IUserLogin) => {
 
         try {
-            await signInWithEmailAndPassword(auth, values.email, values.password)
-            const response = await LoginUser(values)
+            const userRegister = await signInWithEmailAndPassword(auth, values.email, values.password)
+            const uid = userRegister.user.uid
+            const userData = {...values , uid}
+            const response = await LoginUser(userData)
             console.log(`esto me responde el back`, response);
             setUser(response)
             const { access_token } = response
