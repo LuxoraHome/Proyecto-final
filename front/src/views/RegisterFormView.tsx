@@ -7,6 +7,8 @@ import { IUserRegister } from "@/interfaces/Iuser";
 import validateRegister from "@/helpers/validateFormRegister";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 
 
 
@@ -19,6 +21,7 @@ export const RegisterFormView: React.FC = () => {
 
   const handleSubmit = async (values: IUserRegister) => {
     try {
+      await createUserWithEmailAndPassword(auth ,  values.email , values.password)
       await RegisterUser(values);
       router.push("/login");
     } catch (error) {
