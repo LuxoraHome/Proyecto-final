@@ -22,16 +22,16 @@ export interface IUserLogin {
 
 
 export interface IUserBack {
-    access_token: string,
-    uid : string ,
-    id: string,
-    name: string,
-    email: string,
-    password: string,
-    address: string,
-    phone: string,
-    city: string,
-    country: string,
+    access_token?: string,
+    uid?: string ,
+    id?: string,
+    name?: string,
+    email?: string,
+    password?: string,
+    address?: string,
+    phone?: string,
+    city?: string,
+    country?: string,
 
 }
 

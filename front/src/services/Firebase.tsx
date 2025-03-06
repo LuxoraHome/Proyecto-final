@@ -1,5 +1,6 @@
+"use client"
 
-
+import { useAuth } from "@/context/AuthContext";
 import { initializeApp } from "firebase/app";
 import { AuthProvider, getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRouter } from "next/navigation";
@@ -20,17 +21,21 @@ initializeApp(firebaseConfig);
 
 const auth = getAuth()
 
-export const googleProvider = new GoogleAuthProvider()  
+export const googleProvider = new GoogleAuthProvider()
 
-export const authProvider = async (provider : AuthProvider) => {                
+export const authProvider = async (provider: AuthProvider) => {
 
+    const { setUser } = useAuth()
 
     try {
-        const response = await signInWithPopup(auth , provider)   
-     
-        console.log(`esto me responde fireBase` ,response.user);
-        
+        const response = await signInWithPopup(auth, provider)
+
+        setUser({ uid: response.user.uid })
+
+        console.log(`esto me responde fireBase`, response.user);
+
     } catch (error) {
-        console.log(`aca esta el error`, error);  }
+        console.log(`aca esta el error`, error);
+    }
 
 }

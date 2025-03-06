@@ -13,9 +13,9 @@ import Cookies from "js-cookie";
 export const Navbar: React.FC = () => {
 
   const router = useRouter()
-  const { user , setUser } = useAuth()
+  const { user, setUser } = useAuth()
 
-const uid = user?.uid
+  const uid = user?.uid
 
   const handelLogOut = () => {
     setUser(null)
@@ -23,7 +23,7 @@ const uid = user?.uid
     alert("logOut")
     router.push("/")
   }
-    
+
 
 
   return (
@@ -45,7 +45,7 @@ const uid = user?.uid
         />
       </div>
 
-      {uid  ? (<div className="flex items-center space-x-6 text-2xl text-gray-800">
+      {uid ? (<div className="flex items-center space-x-6 text-2xl text-gray-800">
         <Link href="/cart">
           <PiShoppingBag />
         </Link>
