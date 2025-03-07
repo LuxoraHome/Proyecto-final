@@ -7,6 +7,9 @@ import { CartProductsService } from 'src/cart-products/cartProducts.service';
 import { UserService } from 'src/user/user.service';
 import { GetCartDto } from './dto/getCart.dto';
 import { AddToCartDto } from './dto/addtocart.dto';
+import { UpdateShoppingCartDto } from './dto/update-shopping-cart.dto';
+import { CartProducts } from 'src/cart-products/carProducts.entity';
+import { RemoveCartDto } from './dto/removecart.dto';
 
 @Injectable()
 export class ShoppingCartService {
@@ -109,5 +112,46 @@ export class ShoppingCartService {
     return cart;
   }
   
+  async updateCartProductQuantity(updateCartDto: UpdateShoppingCartDto):Promise<GetCartDto>{
+    const cart = await this.findOrCreateCart(updateCartDto.userId);
+    const product = cart.cartProducts.find(cp => cp.product.id === updateCartDto.productId)
+    if(!product)throw new NotFoundException("Product Not Found");
+
+    if(updateCartDto.quantity <= 0) {
+      return this.removeProductCart({userId: updateCartDto.userId, productId: updateCartDto.productId})
+    }
+    
+    product.quantity = updateCartDto.quantity
+
+    cart.totalPrice = cart.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
+
+    await this.shoppingCartRepository.save(cart)
+    return this.getCartByUserId(updateCartDto.userId)
+
+  }
+
+  async removeProductCart(removeDto: RemoveCartDto){
+    const cart = await this.findOrCreateCart(removeDto.userId);
+    const initialLength = cart.cartProducts.length;
+    cart.cartProducts= cart.cartProducts.filter(product => product.id !== removeDto.productId);
+
+    if (cart.cartProducts.length === initialLength) {
+      throw new NotFoundException("Product not found in cart");
+    }
+
+    cart.totalPrice = cart.cartProducts.reduce((total, product) => total + product.price * product.quantity,0);
+
+    await this.shoppingCartRepository.save(cart);
+    return this.getCartByUserId(removeDto.userId)
+  }
+
+  async clearCart(userId: string): Promise<GetCartDto> {
+    const cart = await this.findOrCreateCart(userId);
+    cart.cartProducts = [];
+    cart.totalPrice = 0;
+
+    await this.shoppingCartRepository.save(cart);
+    return this.getCartByUserId(userId);
+  }
 
 }

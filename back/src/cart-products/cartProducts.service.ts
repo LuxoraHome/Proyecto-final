@@ -41,4 +41,8 @@ export class CartProductsService {
     });
     
   }
+
+  async findProductCartId(id: string){
+    return await this.cartProductsRepository.findOne({where: {id}})
+  }
 }
