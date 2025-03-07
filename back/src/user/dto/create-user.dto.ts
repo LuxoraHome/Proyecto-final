@@ -42,5 +42,5 @@ export class CreateUserDto {
     
     @IsEnum(UserClient)
     @IsOptional()
-    client?: string;
+    client?: UserClient;
 }
