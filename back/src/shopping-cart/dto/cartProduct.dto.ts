@@ -1,15 +1,17 @@
-import { ApiProperty } from "@nestjs/swagger";
+
+import { IsString, IsUUID, IsNumber, Min } from 'class-validator';
 
 export class CartProductDto {
-    @ApiProperty()
-    id: string;
-  
-    @ApiProperty()
-    productId: string;
-  
-    @ApiProperty()
-    quantity: number;
-  
-    @ApiProperty()
-    price: number;
-  }
+@IsUUID()
+cartId: string;
+
+@IsUUID()
+productId: string;
+
+@IsNumber()
+@Min(1, { message: 'La cantidad debe ser al menos 1' })
+quantity: number;
+
+}
+
+
