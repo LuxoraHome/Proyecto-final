@@ -5,17 +5,20 @@ import * as bcrypt from 'bcrypt';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { Role } from './enum/roles.enum';
+import { MailService } from 'src/mail/mail.service'; // se agrega el servicio de mail
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
-  ) {}
+    private readonly mailService: MailService,
+  ) { }
 
   async signUp(CreateAuthDto: CreateAuthDto) {
     const {
       name,
+      uid,
       email,
       password,
       confirmPassword,
@@ -44,6 +47,7 @@ export class AuthService {
 
     const newUser = await this.userService.createUser({
       name,
+      uid,
       email,
       address,
       phone,
@@ -67,14 +71,22 @@ export class AuthService {
     const payload = {
       userId: user.id,
       email: user.email,
+      uid: user.uid,
       roles: [user.isAdmin ? Role.Admin : Role.User]
     };
     const access_token = await this.jwtService.signAsync(payload, {
       expiresIn: '2h',
     });
 
-    return { 
-      access_token, 
+    // Enviar correo de notificación de inicio de sesión
+    await this.mailService.sendMail(
+      user.email,
+      'Inicio de sesión exitoso Luxora',
+      `Hola ${user.name}, has iniciado sesión correctamente en nuestro eCommerce Luxora.`,
+    );
+
+    return {
+      access_token,
       ...user
     };
 

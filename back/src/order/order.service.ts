@@ -15,6 +15,7 @@ import { OrderDetailsService } from 'src/order_details/order_details.service';
 import { UserService } from 'src/user/user.service';
 import { ProductService } from 'src/product/product.service';
 import { OrderStatusEnum } from './orderStatus-enum';
+import { MailService } from '../mail/mail.service'; // Se importa el servicio de mail
 
 @Injectable()
 export class OrderService {
@@ -24,19 +25,20 @@ export class OrderService {
     private readonly orderDetailService: OrderDetailsService,
     private readonly userService: UserService,
     private readonly productService: ProductService,
-  ) {}
+    private readonly mailService: MailService, // Se inyecta el servicio de mail
+  ) { }
 
   async createOrder(createOrderDto: CreateOrderDto) {
     const { userId, orderDetails } = createOrderDto;
-    
+
     const findUser = await this.userService.findOneById(userId);
     if (!findUser) throw new NotFoundException('User not found');
-    
-    const order = this.orderRepository.create({ 
-      user: findUser, 
+
+    const order = this.orderRepository.create({
+      user: findUser,
       total: 0,
-      status: OrderStatusEnum.PENDING 
-     });
+      status: OrderStatusEnum.PENDING
+    });
     await this.orderRepository.save(order);
 
     let total = 0;
@@ -69,6 +71,8 @@ export class OrderService {
     order.total = total;
     await this.orderRepository.save(order);
 
+    await this.sendOrderConfirmationEmail(findUser.email, order) // Se envía el email de confirmación de la orden
+
     return order;
   }
 
@@ -77,7 +81,8 @@ export class OrderService {
   }
 
   async findOneOrder(id: string) {
-    const order = await this.orderRepository.findOne({ where: { id },
+    const order = await this.orderRepository.findOne({
+      where: { id },
       relations: ['user', 'orderDetails', 'orderDetails.product'],
     });
 
@@ -93,13 +98,13 @@ export class OrderService {
     const order = await this.orderRepository.find({
       where: { user: { id: user.id } },
     });
-    return { order: order, user };  
+    return { order: order, user };
   }
 
   async updateOrderStatus(orderId: string, status: OrderStatusEnum) {
     const order = await this.orderRepository.findOne({ where: { id: orderId } });
     if (!order) throw new NotFoundException('Order not found');
-  
+
     order.status = status;
     await this.orderRepository.save(order);
     return order
@@ -111,5 +116,13 @@ export class OrderService {
 
   remove(id: string) {
     return `This action removes a #${id} order`;
+  }
+
+  // Se crea el método para enviar el email de confirmación de la orden
+  private async sendOrderConfirmationEmail(email: string, order: Order) {
+    const subject = 'Confirmación de compra';
+    const text = `Gracias por tu compra. Tu orden #${order.id} ha sido procesada correctamente.\n\nDetalles de la orden:\nTotal: $${order.total}\nEstado: ${order.status}`;
+
+    await this.mailService.sendMail(email, subject, text);
   }
 }
