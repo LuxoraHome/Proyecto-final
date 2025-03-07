@@ -16,15 +16,17 @@ import { OrderDetailsService } from 'src/order_details/order_details.service';
 import { CategoryModule } from 'src/category/category.module';
 import { FileUploadService } from 'src/file-upload/file-upload.service';
 import { CloudinaryService } from 'src/services/cloudinary/cloudinary.service';
+import { MailModule } from 'src/mail/mail.module'; //se importa el modulo de mail
 
 @Module({
   imports: [TypeOrmModule.forFeature([Order, User, OrderDetail, Product, Category]),
-  UserModule,
-  ProductModule,
-  OrderDetailsModule,
-  CategoryModule
-],
+    UserModule,
+    ProductModule,
+    OrderDetailsModule,
+    CategoryModule,
+    MailModule
+  ],
   controllers: [OrderController],
   providers: [OrderService, ProductService, UserService, OrderDetailsService, FileUploadService, CloudinaryService],
 })
-export class OrderModule {}
+export class OrderModule { }

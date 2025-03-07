@@ -4,17 +4,28 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
+import { MailService } from 'src/mail/mail.service'; // se agrega el servicio de mail
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private readonly userRepository: Repository<User>
-  ){}
+    private readonly userRepository: Repository<User>,
+    private readonly mailService: MailService,
+  ) { }
 
   async createUser(createUserDto: CreateUserDto) {
-    const newUser = await this.userRepository.create(createUserDto)
-    return this.userRepository.save(newUser)
+    const newUser = await this.userRepository.create(createUserDto);
+    const savedUser = await this.userRepository.save(newUser);
+
+    // Enviar correo de bienvenida
+    await this.mailService.sendMail(
+      savedUser.email,
+      'Bienvenido a Luxora',
+      `Hola ${savedUser.name}, gracias por registrarte en nuestra pagina de Luxora.`,
+    );
+
+    return savedUser;
   }
 
   async findAllUsers() {
@@ -22,7 +33,7 @@ export class UserService {
   }
 
   async findOneById(id: string) {
-    return await this.userRepository.findOne({where: {id}})
+    return await this.userRepository.findOne({ where: { id } })
   }
 
   async updateUser(id: string, updateUserDto: UpdateUserDto) {
@@ -31,11 +42,11 @@ export class UserService {
 
   async removeUser(id: string) {
     await this.userRepository.delete(id)
-    return {id}
+    return { id }
   }
   async findByEmail(email: string) {
     return this.userRepository.findOne({ where: { email } });
   }
-  
+
 
 }

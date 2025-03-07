@@ -15,6 +15,7 @@ import { CloudinaryService } from './services/cloudinary/cloudinary.service';
 import { FileUploadModule } from './file-upload/file-upload.module';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { CartProductsModule } from './cart-products/cartProducts.module';
+import { MailModule } from './mail/mail.module';
 
 
 @Module({
@@ -41,7 +42,8 @@ import { CartProductsModule } from './cart-products/cartProducts.module';
     }),
     FileUploadModule,
     ShoppingCartModule,
-    CartProductsModule
+    CartProductsModule,
+    MailModule
 
   ],
   controllers: [],
