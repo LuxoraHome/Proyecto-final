@@ -1,6 +1,7 @@
 import { Order } from "src/order/entities/order.entity"
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import {v4 as uuid} from "uuid"
+import { UserClient } from "../enum/userClient.enum"
 
 
 @Entity({
@@ -37,6 +38,9 @@ export class User {
 
     @Column({default: false})
     isAdmin: boolean;
+
+    @Column({type: 'enum', enum: UserClient, default: UserClient.STANDARD})
+    client: UserClient;
 
     // Relación 1:N con Order
     @OneToMany(() => Order, (order) => order.user)

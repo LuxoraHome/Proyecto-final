@@ -1,8 +1,14 @@
 export const categories: string[] = [
-    'Living Room',
-    'Dining Room',
-    'Desk',
-    'Bedroom',
-    'Outdoor Furniture',
-    'Other products ',
+    'Sofas & Sofa beds',
+    'Armchairs',
+    'Cocktail Tables',
+    'Bookcases and Cabinets',
+    'Tables',
+    'Chairs Stools Benches',
+    'Dining Room Storage',
+    'Desks',
+    'Office Chairs',
+    'Beds',
+    'Wardrobes',
+    'Rugs'
 ];

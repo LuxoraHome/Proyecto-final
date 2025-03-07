@@ -1,4 +1,5 @@
-import { IsEmail, IsNotEmpty, IsNumber, IsString, Matches, MaxLength, MinLength } from "class-validator"
+import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Matches, MaxLength, MinLength } from "class-validator"
+import { UserClient } from "../enum/userClient.enum"
 
 export class CreateUserDto {
     @IsString()
@@ -37,4 +38,9 @@ export class CreateUserDto {
     @MinLength(5, { message: 'La ciudad debe tener al menos 5 caracteres.' })
     @MaxLength(20, { message: 'La ciudad no puede superar los 20 caracteres.' })
     city?: string
+
+    
+    @IsEnum(UserClient)
+    @IsOptional()
+    client?: string;
 }
