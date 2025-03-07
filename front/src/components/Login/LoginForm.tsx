@@ -27,10 +27,7 @@ export const LoginForm = () => {
             const uid = userRegister.user.uid
             const userData = { ...values, uid }
             const response = await LoginUser(userData)
-
-            console.log(`esto me responde el back`, response);
             setUser(response)
-        
             Cookies.set("access_uid", uid)
             router.push("/")
         }
