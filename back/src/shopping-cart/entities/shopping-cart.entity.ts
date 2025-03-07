@@ -13,7 +13,6 @@ export class ShoppingCart {
   @JoinColumn()
   user: User;
 
-  // @ApiProperty({ type: () => [CartProducts] }) 
   @OneToMany(() => CartProducts, (cartProduct) => cartProduct.cart, { cascade: true })
   cartProducts: CartProducts[];
 
