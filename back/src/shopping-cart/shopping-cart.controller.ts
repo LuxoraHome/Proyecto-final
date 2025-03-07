@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ShoppingCartService } from './shopping-cart.service';
-import { UpdateShoppingCartDto } from './dto/update-shopping-cart.dto';
 import { GetCartDto } from './dto/getCart.dto';
+import { AddToCartDto } from './dto/addtocart.dto';
 
 @Controller('shopping-cart')
 export class ShoppingCartController {
@@ -9,16 +9,12 @@ export class ShoppingCartController {
 
   @Get(':id')
   async getCart(@Param('id') userId: string): Promise<GetCartDto> {
-    return this.shoppingCartService.getCart(userId);
+    return this.shoppingCartService.getCartByUserId(userId);
   }
 
   @Post('add')
-  async addToCart(
-    @Body('userId') userId: string,
-    @Body('productId') productId: string,
-    @Body('quantity') quantity: number,
-  ): Promise<GetCartDto> {
-    return this.shoppingCartService.addToCart(userId, productId, quantity);
+  async addToCart(@Body() addToCartDto: AddToCartDto): Promise<GetCartDto> {
+    return this.shoppingCartService.addProductToCart(addToCartDto);
   }
 
 }

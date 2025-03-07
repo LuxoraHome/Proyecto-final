@@ -1,5 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { UpdateShoppingCartDto } from './dto/update-shopping-cart.dto';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ShoppingCart } from './entities/shopping-cart.entity';
 import { Repository } from 'typeorm';
@@ -7,6 +6,7 @@ import { ProductService } from 'src/product/product.service';
 import { CartProductsService } from 'src/cart-products/cartProducts.service';
 import { UserService } from 'src/user/user.service';
 import { GetCartDto } from './dto/getCart.dto';
+import { AddToCartDto } from './dto/addtocart.dto';
 
 @Injectable()
 export class ShoppingCartService {
@@ -20,7 +20,7 @@ export class ShoppingCartService {
 
   private async findOrCreateCart(userId: string): Promise<ShoppingCart> {
     const user = await this.userService.findOneById(userId);
-    if (!user) throw new NotFoundException('Usuario no encontrado');
+    if (!user) throw new NotFoundException('User not found');
 
     let cart = await this.shoppingCartRepository.findOne({
       where: { user: { id: userId } },
@@ -28,20 +28,20 @@ export class ShoppingCartService {
     });
   
     if (!cart) {
-      cart = this.shoppingCartRepository.create({
+      const newCart = this.shoppingCartRepository.create({
         user: { id: userId }, 
         cartProducts: [], 
         totalPrice: 0,
         shippingCost: 0,
       });
   
-      await this.shoppingCartRepository.save(cart);
-    }
-  
+      await this.shoppingCartRepository.save(newCart);
+    }  
+
     return cart;
   }
 
-  async getCart(userId: string): Promise<GetCartDto> {
+  async getCartByUserId(userId: string): Promise<GetCartDto> {
     const cart = await this.findOrCreateCart(userId);
 
     return {
@@ -49,6 +49,7 @@ export class ShoppingCartService {
       userId: cart.user.id,
       cartProducts: cart.cartProducts.map(cartProduct => ({
         id: cartProduct.id,
+        cartId: cart.id,
         productId: cartProduct.product.id,
         quantity: cartProduct.quantity,
         price: cartProduct.price,
@@ -58,43 +59,55 @@ export class ShoppingCartService {
     };
   }
 
-  async addToCart(userId: string, productId: string, quantity: number): Promise<GetCartDto> {
-    const cart = await this.findOrCreateCart(userId);
+  async addProductToCart(addToCartDto: AddToCartDto): Promise<GetCartDto> {
+    const { userId, productId, quantity } = addToCartDto;
+    
+    const newCart = await this.findOrCreateCart(userId);
+
     const product = await this.productsService.findOneById(productId);
-    if (!product) throw new NotFoundException('Producto no encontrado');
+    if (!product) throw new NotFoundException('Product not found');
 
-    let cartProduct = cart.cartProducts.find(cp => cp.product.id === productId);
-
-    if (cartProduct) {
-      cartProduct.quantity += quantity;
-    } else {
-      cartProduct = await this.cartProductsService.createCartProduct(cart, productId, quantity);
-      cart.cartProducts.push(cartProduct);
+    if (product.stock < quantity) {
+      throw new BadRequestException('Not enough stock available');
     }
 
-    cart.totalPrice = cart.cartProducts.reduce((total, item) => total + item.price * item.quantity, 0);
-    await this.shoppingCartRepository.save(cart);
+    let findCartProduct = newCart.cartProducts.find(findCp => findCp.product.id === productId);
+
+    if (findCartProduct) {
+      findCartProduct.quantity += quantity;
+    } else {
+      const newCartProduct = await this.cartProductsService.createCartProduct({cartId: newCart.id, productId, quantity}, userId);
+      newCart.cartProducts.push(newCartProduct);
+    }
+
+    newCart.totalPrice = newCart.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
+    await this.shoppingCartRepository.save(newCart);
 
     return {
-      id: cart.id,
+      id: newCart.id,
       userId: userId,
-      cartProducts: cart.cartProducts.map(item => ({
-        id: item.id,
-        productId: item.product.id,
-        quantity: item.quantity,
-        price: item.price,
+      cartProducts: newCart.cartProducts.map(cartProduct => ({
+        id: cartProduct.id,
+        cartId: newCart.id,
+        productId: cartProduct.product.id,
+        quantity: cartProduct.quantity,
+        price: cartProduct.price,
       })),
-      totalPrice: cart.totalPrice,
-      shippingCost: cart.shippingCost,
+      totalPrice: newCart.totalPrice,
+      shippingCost: newCart.shippingCost,
     };
   }
 
-
-  update(id: number, updateShoppingCartDto: UpdateShoppingCartDto) {
-    return `This action updates a #${id} shoppingCart`;
+  async findOneById(id: string, userId: string) {
+    const cart = await this.shoppingCartRepository.findOne({
+      where: { id, user: { id: userId } }, 
+      relations: ['user'],
+    });
+  
+    if (!cart) throw new NotFoundException('Shopping cart not found or not owned by user');
+  
+    return cart;
   }
+  
 
-  remove(id: number) {
-    return `This action removes a #${id} shoppingCart`;
-  }
 }
