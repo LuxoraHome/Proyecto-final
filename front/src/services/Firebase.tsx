@@ -24,10 +24,9 @@ export const authProvider = async (provider: AuthProvider, setUser: (user: IUser
 
     try {
         const response = await signInWithPopup(auth, provider)
-        console.log(response);
         Cookies.set("access_uid", response.user.uid)
         setUser({ uid: response.user.uid, displayName: response.user.displayName, email: response.user.email });
-        console.log(`esto me responde fireBase`, response.user);
+      
 
     } catch (error) {
         console.log(`aca esta el error`, error);
