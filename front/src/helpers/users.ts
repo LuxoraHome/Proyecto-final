@@ -10,15 +10,14 @@ export const RegisterUser = async (userData: IUserRegister) => {
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(userData)
         });
-        const data = await response.json()
 
-        if (data.ok) {
+        if (response.ok) {
             Swal.fire({
                 icon: "success",
                 title: "Registration Successful",
                 text: "Your account has been created successfully."
             });
-            return data ;
+            return response.json();
         } else {
             Swal.fire({
                 icon: "error",

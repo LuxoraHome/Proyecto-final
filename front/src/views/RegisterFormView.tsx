@@ -8,7 +8,7 @@ import validateRegister from "@/helpers/validateFormRegister";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+import { auth } from "@/services/Firebase";
 
 
 
@@ -25,10 +25,10 @@ export const RegisterFormView: React.FC = () => {
       const usercredential = await createUserWithEmailAndPassword(auth, values.email, values.password)
       const uid = usercredential.user.uid
       const userData = { ...values, uid }
+      console.log(`esto le mando al back`, userData);
 
-      console.log(userData);
-
-      await RegisterUser(userData);
+      const response = await RegisterUser(userData);
+      console.log("Respuesta del backend:", response);
 
 
       router.push("/login");

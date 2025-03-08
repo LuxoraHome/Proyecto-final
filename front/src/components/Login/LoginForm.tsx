@@ -9,7 +9,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { authProvider, googleProvider } from "@/services/Firebase"
-import { auth } from "../../../firebase"
+import { auth } from "@/services/Firebase"
 import { signInWithEmailAndPassword } from "firebase/auth"
 
 
@@ -27,6 +27,8 @@ export const LoginForm = () => {
             const uid = userRegister.user.uid
             const userData = { ...values, uid }
             const response = await LoginUser(userData)
+            console.log(`esto me responde el back con login` , response);
+            
             setUser(response)
             Cookies.set("access_uid", uid)
             router.push("/")
