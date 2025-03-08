@@ -32,8 +32,8 @@ export class UserService {
     return await this.userRepository.find()
   }
 
-  async findOneById(id: string) {
-    return await this.userRepository.findOne({ where: { id } })
+  async findOneById(uid: string) {
+    return await this.userRepository.findOne({ where: { uid } })
   }
 
   async updateUser(id: string, updateUserDto: UpdateUserDto) {

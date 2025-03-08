@@ -29,9 +29,9 @@ export class OrderService {
   ) { }
 
   async createOrder(createOrderDto: CreateOrderDto) {
-    const { userId, orderDetails } = createOrderDto;
+    const { uid, orderDetails } = createOrderDto;
 
-    const findUser = await this.userService.findOneById(userId);
+    const findUser = await this.userService.findOneById(uid);
     if (!findUser) throw new NotFoundException('User not found');
 
     const order = this.orderRepository.create({

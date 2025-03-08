@@ -40,7 +40,7 @@ export class CreateUserDto {
     city?: string
 
     
-    @IsEnum(UserClient)
-    @IsOptional()
-    client?: UserClient;
+    // @IsEnum(UserClient)
+    // @IsOptional()
+    // client?: UserClient;
 }

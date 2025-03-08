@@ -132,8 +132,10 @@ export class ShoppingCartService {
 
   async removeProductCart(removeDto: RemoveCartDto){
     const cart = await this.findOrCreateCart(removeDto.userId);
+    
     const initialLength = cart.cartProducts.length;
-    cart.cartProducts= cart.cartProducts.filter(product => product.id !== removeDto.productId);
+    
+    cart.cartProducts= cart.cartProducts.filter(cartProduct => cartProduct.product.id !== removeDto.productId);
 
     if (cart.cartProducts.length === initialLength) {
       throw new NotFoundException("Product not found in cart");
