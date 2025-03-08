@@ -1,5 +1,5 @@
 import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Matches, MaxLength, MinLength } from "class-validator"
-import { UserClient } from "../enum/userClient.enum"
+// import { UserClient } from "../enum/userClient.enum"
 
 export class CreateUserDto {
     @IsString()
