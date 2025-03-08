@@ -25,7 +25,12 @@ export const RegisterFormView: React.FC = () => {
       const uid = usercredential.user.uid
       const userData = {...values , uid}
       
-      await RegisterUser( userData);
+      const response = await RegisterUser( userData);
+      console.log(`esta info es la que mandamos al back`, response);
+      
+      if (response.ok) {
+        router.push("/")
+      }
       router.push("/login");
     } catch (error) {
       console.log(error);
