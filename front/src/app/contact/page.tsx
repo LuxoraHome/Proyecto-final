@@ -3,16 +3,10 @@ import ContactCard from "@/components/contact/contact";
 
 function Contact() {
   return (
-    <div className="relative min-h-screen">
-      <div className="absolute bottom-8 right-8 m-4">
+    <div className="flex flex-col items-center min-h-screen p-8">
+      <TimelineSlider />
+      <div className="w-full flex justify-center mt-8">
         <ContactCard />
-      </div>
-
-      
-
-
-      <div>
-        <TimelineSlider />
       </div>
     </div>
   );

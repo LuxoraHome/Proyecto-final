@@ -6,30 +6,31 @@ import Image from 'next/image';
 const timelineData = [
   {
     year: 1960,
-    text: '1960: El nacimiento de LuxoraEn el Salón de Copenhague de 1960, Philippe y François luxora, junto con Patrick y Jean-Claude triner, descubren el mobiliario escandinavo y deciden importarlo a París. Lanzan su primer catálogo y crean una red de franquicias. En 1961, su exitosa campaña en Elle impulsa las ventas y consolida la marca Luxora.',
+    text: '1960: The Birth of LuxoraAt the 1960 Copenhagen Salon, Philippe and François Luxora, along with Patrick and Jean-Claude Triner, discover Scandinavian furniture and decide to import it to Paris. They launch their first catalog and create a franchise network. In 1961, their successful campaign in Elle boosts sales and solidifies the Luxora brand.',
     images: ['/assets/1960-1.jpg', '/assets/1960-2.jpg', '/assets/1960-3.jpg'],
   },
   {
     year: 1980,
-    text: '1970-1990: La evolución de LuxoraEn los años 70, la televisión transforma los hogares, y el sofá se vuelve esencial en la colección Los Contemporáneos de Luxora. En los 80, la marca amplía su oferta con Los Provinciales, reinterpretando el mobiliario francés. En los 90, responde a la tendencia del mestizaje con la colección Los Viajes, inspirada en el mobiliario étnico. Luxora se consolida como una marca global con un estilo único y adaptado a sus clientes.',
+    text: '1970-1990: The Evolution of LuxoraIn the 1970s, television transforms homes, making the sofa an essential part of Luxora’s "The Contemporaries" collection. In the 1980s, the brand expands its offerings with "The Provincials," reinterpreting French furniture. In the 1990s, it responds to the trend of cultural fusion with "The Travels" collection, inspired by ethnic furniture. Luxora establishes itself as a global brand with a unique style tailored to its customers.',
     images: ['/assets/1980-1.jpg', '/assets/1980-2.jpg', '/assets/1980-3.jpg'],
   },
   {
     year: 2000,
-    text: 'Luxora en el siglo XXI Luxora expande su presencia global con nuevas tiendas en ciudades icónicas, desde el antiguo palacio Lupari en Bolonia hasta edificios vanguardistas en Montreal. Además, fortalece su colaboración con diseñadores y arquitectos para crear piezas innovadoras y funcionales, manteniendo su visión de un diseño pensado para vivirse..',
+    text: 'Luxora in the 21st CenturyLuxora expands its global presence with new stores in iconic cities, from the historic Lupari Palace in Bologna to avant-garde buildings in Montreal. Additionally, it strengthens collaborations with designers and architects to create innovative and functional pieces, maintaining its vision of design meant to be lived.',
     images: ['/assets/2000-1.jpg', '/assets/2000-2.jpg', '/assets/2000-3.jpg'],
   },
   {
     year: 2010,
-    text: 'Luxora en el siglo XXI Luxora expande su presencia global con nuevas tiendas en ciudades icónicas, desde el antiguo palacio Lupari en Bolonia hasta edificios vanguardistas en Montreal. Además, fortalece su colaboración con diseñadores y arquitectos para crear piezas innovadoras y funcionales, manteniendo su visión de un diseño pensado para vivirse..',
+    text: 'Luxora in the 21st CenturyLuxora expands its global presence with new stores in iconic cities, from the historic Lupari Palace in Bologna to avant-garde buildings in Montreal. Additionally, it strengthens collaborations with designers and architects to create innovative and functional pieces, maintaining its vision of design meant to be lived.',
     images: ['/assets/2010-1.jpg', '/assets/2010-2.jpg', '/assets/2010-3.jpg'],
   },
   {
     year: 2020,
-    text: '50 años de innovación y diseño con LuxoraLuxora celebra medio siglo de creatividad, colaboraciones con grandes nombres del diseño, la arquitectura y la moda, y una expansión global. Para esta ocasión, presenta Bombom, una vibrante colección de sofás y accesorios diseñados por la artista Joana Vasconcelos, reflejando su compromiso con la creatividad y la artesanía. La marca avanza en la digitalización, permitiendo a los clientes personalizar sus productos y visualizar cómo encajan en su entorno. Además, continúa su enfoque responsable con colecciones ecodiseñadas y mejoras en la sostenibilidad de su producción.',
+    text: '50 Years of Innovation and Design with LuxoraLuxora celebrates half a century of creativity, collaborations with renowned designers, architects, and fashion experts, and global expansion. To mark this occasion, it presents "Bombom," a vibrant collection of sofas and accessories designed by artist Joana Vasconcelos, reflecting its commitment to creativity and craftsmanship. The brand advances in digitalization, allowing customers to customize products and visualize how they fit into their spaces. Additionally, it continues its responsible approach with eco-designed collections and improvements in production sustainability.',
     images: ['/assets/2020-1.jpg', '/assets/2020-2.jpg', '/assets/2020-3.jpg'],
   },
 ];
+
 
 function TimelineSlider() {
   const [index, setIndex] = useState(0);
@@ -38,7 +39,7 @@ function TimelineSlider() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-white text-black p-6">
       
      
-      <h1 className="text-4xl font-bold text-center mb-8">Historia</h1>
+      <h1 className="text-4xl font-bold text-center mb-8">History:</h1>
 
       
       <h2 className="text-3xl font-bold mb-6">{timelineData[index].year}</h2>

@@ -9,7 +9,7 @@ export const getProducts = async () => {
         const data = await response.json()
         return data
     } catch (error) {
-        console.log(`aca esta el error ${error}`);
+        console.log(`here is the error ${error}`);
     }
 }
 
@@ -21,7 +21,7 @@ export const getProductsId = async (id: number) => {
         const data = await response.json()
         return data;
     } catch (error) {
-        console.log(`hay un error ${error}`);
+        console.log(`there is the ${error}`);
     }
 }
 

@@ -14,13 +14,14 @@ import { auth } from "@/services/Firebase";
 
 
 
-export const RegisterFormView: React.FC = () => {
+export const RegisterFormView: React.FC =  () => {
 
 
   const router = useRouter();
 
 
   const handleSubmit = async (values: IUserRegister) => {
+
     try {
       const usercredential =await createUserWithEmailAndPassword(auth ,  values.email , values.password)
       const uid = usercredential.user.uid
@@ -37,6 +38,7 @@ export const RegisterFormView: React.FC = () => {
 
   }
     
+
 
   return (
     <div className="w-1/2 mx-auto p-6 bg-white border border-black rounded-xl shadow-lg ">
@@ -158,4 +160,4 @@ export const RegisterFormView: React.FC = () => {
       </Formik>
     </div>
   );
-};
+}; 
