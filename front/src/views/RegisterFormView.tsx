@@ -13,7 +13,7 @@ import { auth } from "../../firebase";
 
 
 
-export const RegisterFormView: React.FC = () => {
+export const RegisterFormView: React.FC =  () => {
 
 
   const router = useRouter();
@@ -34,10 +34,6 @@ export const RegisterFormView: React.FC = () => {
 
   }
     
-
-    await RegisterUser(values);
-    router.push("/login");
-  };
 
 
   return (
@@ -160,4 +156,4 @@ export const RegisterFormView: React.FC = () => {
       </Formik>
     </div>
   );
-};
+}; 
