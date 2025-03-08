@@ -6,7 +6,7 @@ const ContactCard = () => {
       <Mail className="w-12 h-12 text-black mb-4" />
       
       <div className="text-center space-y-2">
-        <p className="text-lg font-semibold">Por correo</p>
+        <p className="text-lg font-semibold">By Email:</p>
         <p className="text-gray-700">Servicio Clientes Luxora</p>
         <p className="text-gray-700 font-medium">luxora@gmail.com</p>
         <p className="text-gray-700 font-medium">+54 9 11 1234-5678</p>

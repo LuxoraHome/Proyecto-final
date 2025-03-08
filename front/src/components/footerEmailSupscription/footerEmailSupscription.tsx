@@ -13,7 +13,7 @@ export const FooterEmailSubscription: React.FC = () => {
             'service_0de9t6n', // ID de servicio de EmailJS
             'luxora-template', // ID de plantilla de EmailJS
             form.current as HTMLFormElement, 
-            { publicKey: 'qFk39yauCxI9F_MJF' } // clave pública de EmailJS
+            { publicKey: 'CB9ru4SF4iYu5iBIJ' } // clave pública de EmailJS
         )
         .then(() => {
             console.log('SUCCESS!');
