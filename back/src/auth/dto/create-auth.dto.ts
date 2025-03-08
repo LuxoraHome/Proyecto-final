@@ -1,12 +1,15 @@
 import {
   IsEmail,
   IsEmpty,
+  IsEnum,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   Length,
   Matches,
 } from 'class-validator';
+import { UserClient } from 'src/user/enum/userClient.enum';
 
 export class CreateAuthDto {
   @IsString()
@@ -16,7 +19,7 @@ export class CreateAuthDto {
 
   @IsString()
   @IsNotEmpty()
-  uid: string
+  uid: string;
 
   @IsEmail()
   email: string;
@@ -54,6 +57,8 @@ export class CreateAuthDto {
 
   @IsEmpty()
   isAdmin: boolean;
+
+  @IsEnum(UserClient)
+  @IsOptional()
+  client?: UserClient;
 }
-
-
