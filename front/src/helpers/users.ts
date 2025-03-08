@@ -11,10 +11,9 @@ export const RegisterUser = async (userData: IUserRegister) => {
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(userData)
         })
-        if (response.ok) {
-            alert("Register successful")
-            return response.json()
-        }
+        const data = await response.json()
+        alert(`Login ssuccesful`)
+        return data
 
     } catch (error) {
 

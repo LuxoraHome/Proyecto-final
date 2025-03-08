@@ -8,8 +8,8 @@ import Cookies from "js-cookie"
 import { FcGoogle } from "react-icons/fc";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
-import { authProvider, googleProvider } from "@/services/Firebase"
-import { auth } from "../../../firebase"
+import { auth, authProvider, googleProvider } from "@/services/Firebase"
+auth
 import { signInWithEmailAndPassword } from "firebase/auth"
 
 
