@@ -12,7 +12,7 @@ export const RegisterUser = async (userData: IUserRegister) => {
             body: JSON.stringify(userData)
         })
         const data = await response.json()
-        alert(`Login ssuccesful`)
+        alert(`Login Succesful`)
         return data
 
     } catch (error) {
