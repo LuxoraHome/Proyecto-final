@@ -8,7 +8,8 @@ import validateRegister from "@/helpers/validateFormRegister";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase";
+import { auth } from "@/services/Firebase";
+
 
 
 
@@ -25,8 +26,11 @@ export const RegisterFormView: React.FC =  () => {
       const usercredential =await createUserWithEmailAndPassword(auth ,  values.email , values.password)
       const uid = usercredential.user.uid
       const userData = {...values , uid}
+      console.log(`esto tengo en userdata` , userData);
       
-      await RegisterUser( userData);
+      const response = await RegisterUser( userData);
+      console.log(`esta info es la que mandamos al back`, response);
+      
       router.push("/login");
     } catch (error) {
       console.log(error);

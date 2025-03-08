@@ -9,6 +9,12 @@ export const RegisterUser = async (userData: IUserRegister) => {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(userData)
+
+        })
+        const data = await response.json()
+        alert(`Login Succesful`)
+        return data
+
         });
 
         if (response.ok) {
@@ -25,6 +31,7 @@ export const RegisterUser = async (userData: IUserRegister) => {
                 text: "There was a problem creating the account."
             });
         }
+
     } catch (error) {
         Swal.fire({
             icon: "error",
