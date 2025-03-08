@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import { IUserLogin, IUserRegister } from "@/interfaces/Iuser";
 
-const APIURL = process.env.NEXT_PUBLIC_API_URL;
+const APIURL = process.env.NEXT_PUBLIC_API_URL
 
 export const RegisterUser = async (userData: IUserRegister) => {
     try {
@@ -10,14 +10,15 @@ export const RegisterUser = async (userData: IUserRegister) => {
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(userData)
         });
+        const data = await response.json()
 
-        if (response.ok) {
+        if (data.ok) {
             Swal.fire({
                 icon: "success",
                 title: "Registration Successful",
                 text: "Your account has been created successfully."
             });
-            return response.json();
+            return data ;
         } else {
             Swal.fire({
                 icon: "error",

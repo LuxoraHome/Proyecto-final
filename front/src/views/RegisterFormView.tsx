@@ -13,7 +13,7 @@ import { auth } from "../../firebase";
 
 
 
-export const RegisterFormView: React.FC =  () => {
+export const RegisterFormView: React.FC = () => {
 
 
   const router = useRouter();
@@ -22,18 +22,22 @@ export const RegisterFormView: React.FC =  () => {
   const handleSubmit = async (values: IUserRegister) => {
 
     try {
-      const usercredential =await createUserWithEmailAndPassword(auth ,  values.email , values.password)
+      const usercredential = await createUserWithEmailAndPassword(auth, values.email, values.password)
       const uid = usercredential.user.uid
-      const userData = {...values , uid}
-      
-      await RegisterUser( userData);
+      const userData = { ...values, uid }
+
+      console.log(userData);
+
+      await RegisterUser(userData);
+
+
       router.push("/login");
     } catch (error) {
       console.log(error);
     }
 
   }
-    
+
 
 
   return (
