@@ -14,7 +14,8 @@ const ProfileView: React.FC = () => {
       <div className="max-w-md mx-auto bg-white shadow-lg p-6">
           <h2 className="text-xl font-semibold mb-4">User Profile</h2>
           {user ? (
-              <>
+              <> 
+              <h3>GIAN LUCA</h3>
                   <p className="text-gray-700 mb-2">Name: <span className="font-bold">{user.name}</span></p>
                   <p className="text-gray-700 mb-2">Email: <span className="font-bold">{user.email}</span></p>
                   <p className="text-gray-700 mb-2">Address: <span className="font-bold">{user.address}</span></p>
