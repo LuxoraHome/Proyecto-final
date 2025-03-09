@@ -6,6 +6,9 @@ import { CreateAuthDto } from './dto/create-auth.dto';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { Role } from './enum/roles.enum';
 import { MailService } from 'src/mail/mail.service'; // se agrega el servicio de mail
+import { Repository } from 'typeorm';
+import { User } from 'src/user/entities/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class AuthService {
@@ -13,6 +16,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
     private readonly mailService: MailService,
+    @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) { }
 
   async signUp(CreateAuthDto: CreateAuthDto) {
@@ -67,6 +71,12 @@ export class AuthService {
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) throw new BadRequestException('Invalid credentials');
+
+    // Actualiza lastLogin
+    user.lastLogin = new Date();
+    await this.userRepository.save(user);
+    console.log('fecha de último login', user.lastLogin);
+
 
     const payload = {
       userId: user.id,

@@ -16,6 +16,7 @@ import { FileUploadModule } from './file-upload/file-upload.module';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { CartProductsModule } from './cart-products/cartProducts.module';
 import { MailModule } from './mail/mail.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 
 @Module({
@@ -43,7 +44,8 @@ import { MailModule } from './mail/mail.module';
     FileUploadModule,
     ShoppingCartModule,
     CartProductsModule,
-    MailModule
+    MailModule,
+    DashboardModule
 
   ],
   controllers: [],
