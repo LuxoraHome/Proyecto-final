@@ -1,8 +1,8 @@
-import { IsUUID, IsNumber, Min } from 'class-validator';
+import { IsUUID, IsNumber, Min, IsString } from 'class-validator';
 
 export class AddToCartDto {
-  @IsUUID()
-  userId: string;
+  @IsString()
+  uid: string;
 
   @IsUUID()
   productId: string;
@@ -11,3 +11,14 @@ export class AddToCartDto {
   @Min(1, { message: 'La cantidad debe ser al menos 1' })
   quantity: number;
 }
+// export class AddToCartDto {
+//   @IsUUID()
+//   userId: string;
+
+//   @IsUUID()
+//   productId: string;
+
+//   @IsNumber()
+//   @Min(1, { message: 'La cantidad debe ser al menos 1' })
+//   quantity: number;
+// }

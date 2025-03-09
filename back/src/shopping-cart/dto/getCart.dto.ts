@@ -6,7 +6,7 @@ export class GetCartDto {
     id: string;
   
     @ApiProperty()
-    userId: string;
+    uid: string;
   
     @ApiProperty({ type: () => [CartProductDto] })
     cartProducts: CartProductDto[];
@@ -17,3 +17,20 @@ export class GetCartDto {
     @ApiProperty()
     shippingCost: number;
   }
+
+// export class GetCartDto {
+//     @ApiProperty()
+//     id: string;
+  
+//     @ApiProperty()
+//     userId: string;
+  
+//     @ApiProperty({ type: () => [CartProductDto] })
+//     cartProducts: CartProductDto[];
+  
+//     @ApiProperty()
+//     totalPrice: number;
+  
+//     @ApiProperty()
+//     shippingCost: number;
+//   }

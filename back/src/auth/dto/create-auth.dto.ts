@@ -9,6 +9,7 @@ import {
   Length,
   Matches,
 } from 'class-validator';
+import { UserClient } from 'src/user/enum/userClient.enum';
 // import { UserClient } from 'src/user/enum/userClient.enum';
 
 export class CreateAuthDto {
@@ -58,8 +59,8 @@ export class CreateAuthDto {
   @IsEmpty()
   isAdmin: boolean;
 
-  // @IsEnum(UserClient)
-  // @IsOptional()
-  // client?: UserClient;
+  @IsEnum(UserClient)
+  @IsOptional()
+  client?: UserClient;
   
 }

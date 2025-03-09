@@ -3,15 +3,15 @@ import { ShoppingCartService } from './shopping-cart.service';
 import { GetCartDto } from './dto/getCart.dto';
 import { AddToCartDto } from './dto/addtocart.dto';
 import { UpdateShoppingCartDto } from './dto/update-shopping-cart.dto';
-import { RemoveCartDto } from './dto/removecart.dto';
+import { RemoveProductDto } from './dto/removeProduct.dto';
 
 @Controller('shopping-cart')
 export class ShoppingCartController {
   constructor(private readonly shoppingCartService: ShoppingCartService) {}
 
   @Get(':userId')
-  async getCart(@Param('userId') userId: string): Promise<GetCartDto> {
-    return this.shoppingCartService.getCartByUserId(userId);
+  async getCart(@Param('uid') uid: string): Promise<GetCartDto> {
+    return this.shoppingCartService.getCartByUserId(uid);
   }
 
   @Post('add')
@@ -25,7 +25,7 @@ export class ShoppingCartController {
   }
 
   @Delete("remove")
-  async removeProductFromCart(@Body() removeCart: RemoveCartDto): Promise<GetCartDto> {
+  async removeProductFromCart(@Body() removeCart: RemoveProductDto): Promise<GetCartDto> {
     return this.shoppingCartService.removeProductCart(removeCart);
   }
 

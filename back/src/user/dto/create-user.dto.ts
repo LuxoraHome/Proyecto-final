@@ -39,8 +39,4 @@ export class CreateUserDto {
     @MaxLength(20, { message: 'La ciudad no puede superar los 20 caracteres.' })
     city?: string
 
-    
-    // @IsEnum(UserClient)
-    // @IsOptional()
-    // client?: UserClient;
 }
