@@ -7,17 +7,38 @@ import { IUserRegister } from "@/interfaces/Iuser";
 import validateRegister from "@/helpers/validateFormRegister";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/services/Firebase";
+
+
 
 
 export const RegisterFormView: React.FC = () => {
+
+
   const router = useRouter();
 
 
   const handleSubmit = async (values: IUserRegister) => {
-    await RegisterUser(values);
-    router.push("/login");
+
+    try {
+      const usercredential = await createUserWithEmailAndPassword(auth, values.email, values.password)
+      const uid = usercredential.user.uid
+      const userData = { ...values, uid }
+      console.log(`esto le mando al back`, userData);
+
+      const response = await RegisterUser(userData);
+      console.log("Respuesta del backend:", response);
+
+
+      router.push("/login");
+    } catch (error) {
+      console.log(error);
+    }
+
   }
-    ;
+
+
 
   return (
     <div className="w-1/2 mx-auto p-6 bg-white border border-black rounded-xl shadow-lg ">
@@ -139,4 +160,4 @@ export const RegisterFormView: React.FC = () => {
       </Formik>
     </div>
   );
-};
+}; 
