@@ -71,16 +71,17 @@ export const Navbar: React.FC = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <ul className="absolute mt-2 bg-white z-50 rounded-lg ">
+        <ul className="absolute mt-2 bg-white z-50 rounded-lg w-80 ">
           {filteredProducts.map((products) => (
             <Link key={products.id} href={`/productDetail/${products.id}`}>
-            <li key={products.id} className="hover:bg-gray-200 cursor-pointer overflow-y-auto z-50 grid grid-cols-">
-              {products.name}
+            <li key={products.id} className="hover:bg-gray-300 cursor-pointer overflow-y-auto z-50 grid grid-cols-[auto_1fr] w-full transition-all duration-300 ease-in-out border border-gray-300">
               <img src={products.image} 
               alt=""
               height="100px"
-              width="100px" />
+              width="100px"
+              className="object-cover" />
               
+              <span className="text-left text-black">{products.name}</span> 
             </li>
               </Link>
           ))}
