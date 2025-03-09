@@ -15,7 +15,6 @@ import { User } from 'src/user/entities/user.entity';
 
 @Module({
   imports:[TypeOrmModule.forFeature([ShoppingCart, User]),
-  // forwardRef(() => CartProductsModule),
   ProductModule,
   UserModule,
   CartProductsModule
