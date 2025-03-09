@@ -18,10 +18,10 @@ export class CartProductsService {
     private readonly productsService: ProductService    
   ) {}
 
-  async createCartProduct(cartProductDto: CartProductDto, userId: string): Promise<CartProducts> {
+  async createCartProduct(cartProductDto: CartProductDto, uid: string): Promise<CartProducts> {
     const { cartId, productId, quantity } = cartProductDto;
 
-    const cart = await this.shoppingCartService.findOneById(cartId, userId);
+    const cart = await this.shoppingCartService.findOneById(cartId, uid);
     if (!cart) throw new NotFoundException('Shopping cart not found or not owned by user');
 
     const product = await this.productsService.findOneById(productId);
@@ -41,5 +41,16 @@ export class CartProductsService {
     });
     
   }
+
+  async updateCartProductQuantity(cartProduct: CartProducts, quantity: number): Promise<CartProducts> {
+    cartProduct.quantity = quantity;
+    return this.cartProductsRepository.save(cartProduct);
+  }
+
+  async removeCartProduct(cartProductId: string): Promise<void> {
+    await this.cartProductsRepository.delete(cartProductId);
+}
+
+  
 
 }
