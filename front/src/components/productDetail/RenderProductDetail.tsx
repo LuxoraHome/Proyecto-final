@@ -39,7 +39,7 @@ export const RenderProductDetail: React.FC<iProducts> = ({ name, image, descript
                         <h3 className="text-gray-500">{product}</h3>
                         <h3 >{description}</h3>
                         <h3 className="font-bold">${price}</h3>
-                        <button className="border border-gray-700 bg-gray-700 text-white  rounded-md px-2 py-1  hover:bg-gray-800 transition duration-200 " onClick={onClick}>
+                        <button className="bg-black text-white px-4 py-2 w-auto text-center" onClick={onClick}>
                             ADD CART
                         </button>
                     </div>
