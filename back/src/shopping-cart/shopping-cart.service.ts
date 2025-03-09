@@ -27,13 +27,13 @@ export class ShoppingCartService {
     if (!user) throw new NotFoundException('User not found');
 
     let cart = await this.shoppingCartRepository.findOne({
-      where: { user: { id: userId } },
+      where: { user: { uid: userId } },
       relations: ['cartProducts', 'cartProducts.product'],
     });
   
     if (!cart) {
       cart = this.shoppingCartRepository.create({
-        user: { id: userId }, 
+        user: { uid: userId }, 
         cartProducts: [], 
         totalPrice: 0,
         shippingCost: 0,
@@ -45,12 +45,12 @@ export class ShoppingCartService {
     return cart;
   }
 
-  async getCartByUserId(userId: string): Promise<GetCartDto> {
-    const cart = await this.findOrCreateCart(userId);
+  async getCartByUserId(uid: string): Promise<GetCartDto> {
+    const cart = await this.findOrCreateCart(uid);
 
     return {
       id: cart.id,
-      uid: cart.user.id,
+      uid: cart.user.uid,
       cartProducts: cart.cartProducts.map(cartProduct => ({
         id: cartProduct.id,
         cartId: cart.id,
@@ -107,7 +107,7 @@ export class ShoppingCartService {
 
   async findOneById(id: string, userId: string) {
     const cart = await this.shoppingCartRepository.findOne({
-      where: { id, user: { id: userId } }, 
+      where: { id, user: { uid: userId } }, 
       relations: ['user'],
     });
   
@@ -159,7 +159,7 @@ async removeProductCart(removeDto: RemoveProductDto) {
   const quantityToRestore = productToRemove.quantity;
 
   await this.cartProductsService.removeCartProduct(productToRemove.id);
-  
+
   await this.productsService.updateProduct(removeDto.productId, { stock: productInDb.stock + quantityToRestore });
 
   cart.cartProducts = cart.cartProducts.filter(cartProduct => cartProduct.product.id !== removeDto.productId);

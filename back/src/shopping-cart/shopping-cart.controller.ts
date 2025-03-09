@@ -10,8 +10,8 @@ export class ShoppingCartController {
   constructor(private readonly shoppingCartService: ShoppingCartService) {}
 
   @Get(':userId')
-  async getCart(@Param('userId') userId: string): Promise<GetCartDto> {
-    return this.shoppingCartService.getCartByUserId(userId);
+  async getCart(@Param('uid') uid: string): Promise<GetCartDto> {
+    return this.shoppingCartService.getCartByUserId(uid);
   }
 
   @Post('add')
