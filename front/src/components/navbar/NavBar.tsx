@@ -8,10 +8,13 @@ import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
+import { getProducts, searchProduct } from "@/helpers/getProducts";
+import { iProducts } from "@/interfaces/iProducts";
 
 export const Navbar: React.FC = () => {
-  const router = useRouter();
-  const { user, setUser } = useAuth();
+
+  const router = useRouter()
+  const { user, setUser } = useAuth()
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -31,22 +34,63 @@ const handleLogOut = () => {
   router.push("/");
 };
 
+const [query, setQuery] = useState<string>("")
+        const [products, setProducts] = useState<iProducts[]>([])
+        const [filteredProducts, setFilteredProducts] = useState<iProducts[]>([])
+        const [showAll, setShowAll] = useState(false)
+        useEffect(() => {
+          const fetchProducts = async () => {
+            const data = await getProducts()
+            setProducts(data)
+            setFilteredProducts(data)
+          }
+          fetchProducts()
+        },[])
+        useEffect(() => {
+          if(query) {
+            setFilteredProducts(searchProduct(query,products))
+          } else if(showAll) {
+            setFilteredProducts(products)
+          } else {
+            setFilteredProducts([])
+          }
+        },[query,products, showAll]);
+
 
   return (
     <nav className="bg-white flex items-center justify-between px-6 py-4 border-b border-black">
       <div className="flex flex-col items-start">
         <Link href="/">
-          <h1 className="text-4xl font-semibold font-mono tracking-wide">LUXORA</h1>
+          <h1 className="text-4xl font-semibold font-mono tracking-wide">
+            LUXORA
+          </h1>
         </Link>
         <h3 className="text-gray-600 text-xl self-end mt-1">Paris</h3>
       </div>
 
-      <div className="flex items-center justify-center flex-grow mx-4">
+      <div className="w-full max-w-md mx-auto">
         <input
           type="text"
           placeholder="Search..."
-          className="w-80 p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-black"
+          className="w-80 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
         />
+        <ul className="absolute mt-2 bg-white z-50 rounded-lg w-80 ">
+          {filteredProducts.map((products) => (
+            <Link key={products.id} href={`/productDetail/${products.id}`}>
+            <li key={products.id} className="hover:bg-gray-300 cursor-pointer overflow-y-auto z-50 grid grid-cols-[auto_1fr] w-full transition-all duration-300 ease-in-out border border-gray-300">
+              <img src={products.image} 
+              alt=""
+              height="100px"
+              width="100px"
+              className="object-cover" />
+              
+              <span className="text-left text-black font-bold">{products.name}</span> 
+            </li>
+              </Link>
+          ))}
+        </ul>
       </div>
 
       {isLoggedIn ? (
@@ -76,8 +120,10 @@ const handleLogOut = () => {
           </Link>
         </div>
       )}
+
+
+
     </nav>
   );
 };
-
 export default Navbar;

@@ -1,3 +1,4 @@
+import { iProducts } from "@/interfaces/iProducts"
 
 const APIURL=process.env.NEXT_PUBLIC_API_URL
 
@@ -23,5 +24,14 @@ export const getProductsId = async (id: number) => {
     } catch (error) {
         console.log(`there is the ${error}`);
     }
+}
+
+export const searchProduct = (query: string, products: iProducts[]): iProducts[] => {
+    if(!query) return products
+
+    return products.filter((product) => 
+        product.name && product.name?.toLowerCase().includes(query.toLowerCase())
+    )
+
 }
 
