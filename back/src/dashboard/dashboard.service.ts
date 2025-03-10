@@ -64,9 +64,10 @@ export class DashboardService {
       const topProducts = await this.orderdetailsRepository
         .createQueryBuilder('orderdetails')
         .select('product.name', 'productName')
+        .addSelect('product.id', 'productId')
         .addSelect('COUNT(orderdetails.product_id)', 'totalSold')
         .leftJoin('orderdetails.product', 'product')
-        .groupBy('product.name')
+        .groupBy('product.id, product.name')
         .orderBy('"totalSold"', 'DESC')
         .limit(5)
         .getRawMany();
@@ -79,27 +80,28 @@ export class DashboardService {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
-
   }
 
   // 3. Top compradores
   async getBuyersStats() {
 
     try {
+
       const topBuyers = await this.userRepository
-        .createQueryBuilder('user')
-        .leftJoin('user.orders', 'order') // Relación con la entidad Order
-        .select(['user.id', 'user.name', 'user.email']) // Selecciona campos del usuario
-        .addSelect('COUNT(order.id)', 'orderCount') // Cuenta las órdenes por usuario
-        .groupBy('user.id') // Agrupa por usuario
-        .orderBy('orderCount', 'DESC') // Ordena por número de órdenes (de mayor a menor)
-        .limit(5) // Limita a los 5 primeros
-        .getRawMany(); // Obtiene los resultados en formato raw
+        .createQueryBuilder('users')
+        .leftJoin('users.orders', 'orders')
+        .select(['users.id', 'users.uid', 'users.name', 'users.email'])
+        .addSelect('COUNT(orders.id)', 'ordersCount')
+        .groupBy('users.id')
+        .orderBy('"ordersCount"', 'DESC')
+        .limit(5)
+        .getRawMany();
 
       return topBuyers;
+
     } catch (error) {
       throw new HttpException(
-        'Error al obtener el top de compradores',
+        'Error to get top buyers stats.',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
