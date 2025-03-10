@@ -12,24 +12,20 @@ import Swal from "sweetalert2";
 export const Navbar: React.FC = () => {
   const router = useRouter();
   const { user, setUser } = useAuth();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    // Verifica si hay un usuario autenticado en Firebase o una sesión local
-    const localUid = Cookies.get("access_uid");
-    setIsLoggedIn(!!user?.uid || !!localUid);
-  }, [user]);
 
-const handleLogOut = () => {
-  setUser(null);
-  Cookies.remove("access_uid");
-  Swal.fire({
-    icon: "success",
-    title: "Log Out Successful",
-    text: "You have successfully logged out."
-  });
-  router.push("/");
-};
+
+
+  const handleLogOut = () => {
+    setUser(null);
+    Cookies.remove("access_uid");
+    Swal.fire({
+      icon: "success",
+      title: "Log Out Successful",
+      text: "You have successfully logged out."
+    });
+    router.push("/");
+  };
 
 
   return (
@@ -49,7 +45,7 @@ const handleLogOut = () => {
         />
       </div>
 
-      {isLoggedIn ? (
+      {user?.uid ? (
         <div className="flex items-center space-x-6 text-2xl text-gray-800">
           <Link href="/cart" className="flex items-center space-x-2">
             <PiShoppingBag />

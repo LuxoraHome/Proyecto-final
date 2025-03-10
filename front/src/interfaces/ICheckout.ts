@@ -6,5 +6,5 @@ export interface IOrderDetail {
 
 export interface ICheckout {
     uid : string ,
-    ordenDetail : IOrderDetail[],
+    ordenDetails : IOrderDetail[],
 }

@@ -30,6 +30,8 @@ export const CartComponent: React.FC = () => {
         const removedProduct = cart.filter((product) => product.id !== id)
         localStorage.setItem("cart", JSON.stringify(removedProduct))
         setCart(removedProduct)
+        const total = removedProduct.reduce((acc, item) => acc + item.price, 0);
+        setPrice(total);
     }
 
     const handelOnClick = async () => {
@@ -46,12 +48,23 @@ export const CartComponent: React.FC = () => {
 
 
         const ordenData: ICheckout = {
-            uid: user?.uid,
-            ordenDetail: ordenDetail,
+            uid: user.uid,
+            ordenDetails: ordenDetail,
         }
-        
-        await userCheckout (ordenData)
-
+  
+     console.log(`Esto es ordenData` , ordenData);
+     
+         
+       
+       const response = await userCheckout(ordenData)
+       if (response) {
+        setCart([])
+        localStorage.removeItem("cart")
+        alert("Checkout Succesful")
+       }
+        else{ 
+            alert("Checkout Fail")
+        }
     }
 
 
@@ -91,7 +104,7 @@ export const CartComponent: React.FC = () => {
                     </div>
 
 
-                    <button onClick={handelOnClick}  className="w-full bg-black text-white text-lg font-medium py-3 rounded-lg hover:bg-gray-900 transition-all">
+                    <button onClick={handelOnClick} className="w-full bg-black text-white text-lg font-medium py-3 rounded-lg hover:bg-gray-900 transition-all">
                         Checkout
                     </button>
                 </div>
