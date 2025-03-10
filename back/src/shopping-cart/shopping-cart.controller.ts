@@ -23,12 +23,12 @@ export class ShoppingCartController {
 
   @Put('update')
   async updateCartProductQuantity(@Body() updateDto: UpdateShoppingCartDto): Promise<GetCartDto> {
-    return this.shoppingCartService.updateCartProductQuantity(updateDto);
+    return this.shoppingCartService.updateShoppingCartProductQuantity(updateDto);
   }
 
   @Delete("remove")
   async removeProductFromCart(@Body() removeCart: RemoveProductDto): Promise<GetCartDto> {
-    return this.shoppingCartService.removeProductCart(removeCart);
+    return this.shoppingCartService.removeProductCartShopping(removeCart);
   }
 
   @Delete('clear/:uid')

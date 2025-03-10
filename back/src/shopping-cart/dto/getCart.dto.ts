@@ -2,8 +2,8 @@ import { ApiProperty } from "@nestjs/swagger";
 import { CartProductDto } from "./cartProduct.dto";
 
 export class GetCartDto {
-    // @ApiProperty()
-    // id: string;
+    @ApiProperty()
+    id: string;
   
     @ApiProperty()
     uid: string;

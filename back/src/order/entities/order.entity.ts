@@ -23,7 +23,7 @@ export class Order {
 
     // Relación N:1 con User
     @ManyToOne(() => User, (user) => user.orders)
-    @JoinColumn({ name: 'user_id' })
+    @JoinColumn({ name: 'user_uid' })
     user: User
 
     @OneToMany(() => OrderDetail, (orderDetail) => orderDetail.order)
