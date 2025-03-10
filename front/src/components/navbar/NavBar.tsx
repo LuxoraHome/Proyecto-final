@@ -7,46 +7,14 @@ import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import { iProducts } from "@/interfaces/iProducts";
-import { getProducts, searchProduct } from "@/helpers/getProducts";
-
 import Swal from "sweetalert2";
+import { getProducts, searchProduct } from "@/helpers/getProducts";
+import { iProducts } from "@/interfaces/iProducts";
 
 export const Navbar: React.FC = () => {
 
   const router = useRouter()
   const { user, setUser } = useAuth()
-
-  
-
-  
-
-  
-    const [query, setQuery] = useState<string>("")
-    const [products, setProducts] = useState<iProducts[]>([])
-    const [filteredProducts, setFilteredProducts] = useState<iProducts[]>([])
-    const [showAll, setShowAll] = useState(false)
-
-    useEffect(() => {
-      const fetchProducts = async () => {
-
-        const data = await getProducts()
-        setProducts(data)
-        setFilteredProducts(data)
-      }
-
-      fetchProducts()
-    },[])
-    useEffect(() => {
-      if(query) {
-        setFilteredProducts(searchProduct(query,products))
-      } else if(showAll) {
-        setFilteredProducts(products)
-      } else {
-        setFilteredProducts([])
-      }
-    },[query,products, showAll])
-  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -65,6 +33,28 @@ const handleLogOut = () => {
   });
   router.push("/");
 };
+
+const [query, setQuery] = useState<string>("")
+        const [products, setProducts] = useState<iProducts[]>([])
+        const [filteredProducts, setFilteredProducts] = useState<iProducts[]>([])
+        const [showAll, setShowAll] = useState(false)
+        useEffect(() => {
+          const fetchProducts = async () => {
+            const data = await getProducts()
+            setProducts(data)
+            setFilteredProducts(data)
+          }
+          fetchProducts()
+        },[])
+        useEffect(() => {
+          if(query) {
+            setFilteredProducts(searchProduct(query,products))
+          } else if(showAll) {
+            setFilteredProducts(products)
+          } else {
+            setFilteredProducts([])
+          }
+        },[query,products, showAll]);
 
 
   return (
@@ -96,7 +86,7 @@ const handleLogOut = () => {
               width="100px"
               className="object-cover" />
               
-              <span className="text-left text-black">{products.name}</span> 
+              <span className="text-left text-black font-bold">{products.name}</span> 
             </li>
               </Link>
           ))}
