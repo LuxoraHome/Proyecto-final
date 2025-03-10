@@ -12,22 +12,30 @@ import { getProducts, searchProduct } from "@/helpers/getProducts";
 import { iProducts } from "@/interfaces/iProducts";
 
 export const Navbar: React.FC = () => {
+<<<<<<< HEAD
 
   const router = useRouter()
   const { user, setUser } = useAuth()
  
 
+=======
+  const router = useRouter();
+  const { user, setUser } = useAuth();
 
-const handleLogOut = () => {
-  setUser(null);
-  Cookies.remove("access_uid");
-  Swal.fire({
-    icon: "success",
-    title: "Log Out Successful",
-    text: "You have successfully logged out."
-  });
-  router.push("/");
-};
+>>>>>>> cart
+
+
+
+  const handleLogOut = () => {
+    setUser(null);
+    Cookies.remove("access_uid");
+    Swal.fire({
+      icon: "success",
+      title: "Log Out Successful",
+      text: "You have successfully logged out."
+    });
+    router.push("/");
+  };
 
 const [query, setQuery] = useState<string>("")
         const [products, setProducts] = useState<iProducts[]>([])
