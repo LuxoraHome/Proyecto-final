@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateOrderDetailDto } from './dto/create-order_detail.dto';
 import { UpdateOrderDetailDto } from './dto/update-order_detail.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -12,7 +12,7 @@ export class OrderDetailsService {
     private readonly orderDetailRepository: Repository<OrderDetail>,
   ) {}
 
-  async create(createOrderDetailDto: any) {
+  async create(createOrderDetailDto: CreateOrderDetailDto) {
     const orderDetail = this.orderDetailRepository.create(createOrderDetailDto);
     return await this.orderDetailRepository.save(orderDetail);
   }
@@ -29,7 +29,20 @@ export class OrderDetailsService {
     return `This action updates a #${id} orderDetail`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} orderDetail`;
+  async removeOrderDetail(id: string) {
+    const orderDetail = await this.orderDetailRepository.findOne({ where: { id } });
+  
+    if (!orderDetail) {
+      throw new NotFoundException(`OrderDetail with ID ${id} not found`);
+    }
+  
+    await this.orderDetailRepository.delete(id);
+  
+    return {
+      message: 'OrderDetail deleted successfully',
+      orderDetailId: id,
+    };
   }
+  
+  
 }

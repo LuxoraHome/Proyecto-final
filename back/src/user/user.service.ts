@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 import { MailService } from 'src/mail/mail.service'; // se agrega el servicio de mail
 
 @Injectable()
@@ -37,16 +38,39 @@ export class UserService {
   }
 
   async updateUser(id: string, updateUserDto: UpdateUserDto) {
-    return await this.userRepository.update(id, updateUserDto)
+    const userToUpdate = await this.userRepository.findOne({ where: { id } });
+  
+    if (!userToUpdate) {
+      throw new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
+    }
+  
+    // Actualizar solo los campos que están presentes en updateUserDto
+    Object.assign(userToUpdate, updateUserDto);
+  
+    // Guardar los cambios en la base de datos
+    await this.userRepository.save(userToUpdate);
+  
+    return userToUpdate;
   }
 
   async removeUser(id: string) {
-    await this.userRepository.delete(id)
-    return { id }
+    const userToDelete = await this.userRepository.findOne({ where: { id } });
+  
+    if (!userToDelete) {
+      throw new HttpException('Usuario no encontrado', HttpStatus.NOT_FOUND);
+    }
+  
+    await this.userRepository.delete(id);
+  
+    return {
+      message: 'Usuario eliminado correctamente',
+      id,
+    };
   }
+  
+
   async findByEmail(email: string) {
     return this.userRepository.findOne({ where: { email } });
   }
-
 
 }

@@ -1,12 +1,8 @@
-export function loggerGlobal(
+import { NextFunction, Request, Response } from "express";
 
-    req: Request,
-    res: Response,
-    next: () => void
-
-) {
-
-    console.log(`metodo ${req.method} en la ruta ${req.url}, a la hora de ${new Date().getHours()} : ${new Date().getMinutes()}, en la fecha ${new Date().toUTCString()}`);
-    next();
-
+export function loggerGlobal(req: Request, res: Response, next: NextFunction) {
+    const date = new Date().toLocaleTimeString()
+    // const date = new Date().toISOString()
+  console.log(`metodo: ${req.method} ${req.url} at [${date}]`);
+  next();
 }

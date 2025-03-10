@@ -49,7 +49,7 @@ export class ShoppingCartService {
     const cart = await this.findOrCreateCart(uid);
 
     return {
-      id: cart.id,
+      // id: cart.id,
       uid: cart.user.uid,
       cartProducts: cart.cartProducts.map(cartProduct => ({
         id: cartProduct.id,
@@ -91,7 +91,7 @@ export class ShoppingCartService {
     await this.shoppingCartRepository.save(newCart);
 
     return {
-      id: newCart.id,
+      // id: newCart.id,
       uid: uid,
       cartProducts: newCart.cartProducts.map(cartProduct => ({
         id: cartProduct.id,
@@ -118,6 +118,7 @@ export class ShoppingCartService {
   
   async updateCartProductQuantity(updateCartDto: UpdateShoppingCartDto): Promise<GetCartDto> {
     const cart = await this.findOrCreateCart(updateCartDto.uid);
+    
     const product = cart.cartProducts.find(cp => cp.product.id === updateCartDto.productId);
     if (!product) throw new NotFoundException("Product Not Found");
 

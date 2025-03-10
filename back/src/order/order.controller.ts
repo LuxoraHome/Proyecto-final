@@ -32,7 +32,7 @@ export class OrderController {
     return await this.orderService.findOneOrder(id);
   }
 
-  @Get('user/:id')
+  @Get('user/:uid')
   async findOneByUser(@Param('id') id: string) {
     return await this.orderService.findUserById(id);
   }
@@ -42,22 +42,11 @@ export class OrderController {
     @Param('id') id: string,
     @Body() updateOrderDto: UpdateOrderDto,
   ) {
-    return await this.orderService.update(+id, updateOrderDto);
-  }
-
-  @Put('status/:id')
-  async updateStatus(
-    @Param('id') orderId: string,
-    @Body() updateOrderStatusDto: UpdateOrderStatusDto,
-  ) {
-    return this.orderService.updateOrderStatus(
-      orderId,
-      updateOrderStatusDto.status,
-    );
+    return await this.orderService.updateOrder(id, updateOrderDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.orderService.remove(id);
+    return this.orderService.removeOrder(id);
   }
 }

@@ -64,10 +64,18 @@ export class ProductService {
     return await this.productRepository.save(product);
   }
 
-  async removeProduct(id: string): Promise<{ id: string }> {
+  async removeProduct(id: string): Promise<{ message: string; }> {
+    const product = await this.productRepository.findOne({ where: { id } });
+  
+    if (!product) {
+      throw new NotFoundException(`Product with ID ${id} not found`);
+    }
+  
     await this.productRepository.delete(id);
-    return { id };
+    
+    return { message: `Product has been deleted successfully`};
   }
+  
 
 //   async fileUpload(id: string, file: FileUploadDto){
 //     const url = await this.fileUploadService.createFileUpload({

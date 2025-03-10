@@ -4,12 +4,14 @@ import { GetCartDto } from './dto/getCart.dto';
 import { AddToCartDto } from './dto/addtocart.dto';
 import { UpdateShoppingCartDto } from './dto/update-shopping-cart.dto';
 import { RemoveProductDto } from './dto/removeProduct.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('ShoppingCart')
 @Controller('shopping-cart')
 export class ShoppingCartController {
   constructor(private readonly shoppingCartService: ShoppingCartService) {}
 
-  @Get(':userId')
+  @Get(':uid')
   async getCart(@Param('uid') uid: string): Promise<GetCartDto> {
     return this.shoppingCartService.getCartByUserId(uid);
   }
@@ -29,7 +31,7 @@ export class ShoppingCartController {
     return this.shoppingCartService.removeProductCart(removeCart);
   }
 
-  @Delete('clear/:userId')
+  @Delete('clear/:uid')
   async clearCart(@Param('userId') userId: string): Promise<GetCartDto> {
     return this.shoppingCartService.clearCart(userId);
   }

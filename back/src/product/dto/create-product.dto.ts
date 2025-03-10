@@ -1,14 +1,12 @@
-import { ApiProperty } from "@nestjs/swagger"
+import { ApiHideProperty, ApiProperty } from "@nestjs/swagger"
 import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID } from "class-validator"
 
 export class CreateProductDto {
 
-    @ApiProperty({
-        type: String,
-        description: 'The id of the product. This id is unique and is generated automatically',
-        required: true
-    })
-    id: string
+    @ApiHideProperty()
+    @IsUUID()
+    @IsOptional() 
+    id?: string
 
     @ApiProperty({
         type: String,

@@ -1,19 +1,28 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { OrderDetail } from "src/order_details/entities/order_detail.entity";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsArray, IsNotEmpty, IsNumber, IsString, ValidateNested } from 'class-validator';
+import { Type } from 'class-transformer';
+
+class OrderDetailDto {
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  productId: string;
+
+  @ApiProperty()
+  @IsNumber()
+  @IsNotEmpty()
+  quantity: number;
+}
 
 export class CreateOrderDto {
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  uid: string;
 
-    @ApiProperty()
-    uid: string;
-
-    @ApiProperty({ type: () => [OrderDetail] })
-    orderDetails: { productId: string; quantity: number }[];
+  @ApiProperty({ type: [OrderDetailDto] })
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => OrderDetailDto)
+  orderDetails: OrderDetailDto[];
 }
-// export class CreateOrderDto {
-
-//     @ApiProperty()
-//     userId: string;
-
-//     @ApiProperty({ type: () => [OrderDetail] })
-//     orderDetails: { productId: string; quantity: number }[];
-// }
