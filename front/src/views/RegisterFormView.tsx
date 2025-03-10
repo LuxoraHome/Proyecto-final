@@ -41,8 +41,8 @@ export const RegisterFormView: React.FC = () => {
 
 
   return (
-    <div className="w-1/2 mx-auto p-6 bg-white border border-black rounded-xl shadow-lg ">
-      <h2 className="text-2xl font-bold mb-6  text-center">Register</h2>
+    <div className="w-1/2 mx-auto p-6 bg-white border border-black shadow-lg mt-10"> {/* Agregado mt-10 para despejar más el top */}
+      <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
       <Formik
         initialValues={{
           name: "",
@@ -67,7 +67,7 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="name" component="p" className="text-red-500 text-sm" />
           </div>
-
+  
           <div className="flex flex-col">
             <label className="font-medium">Email</label>
             <Field
@@ -77,7 +77,7 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="email" component="p" className="text-red-500 text-sm" />
           </div>
-
+  
           <div className="flex flex-col">
             <label className="font-medium">Address</label>
             <Field
@@ -87,7 +87,7 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="address" component="p" className="text-red-500 text-sm" />
           </div>
-
+  
           <div className="flex flex-col">
             <label className="font-medium">Phone</label>
             <Field
@@ -97,7 +97,7 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="phone" component="p" className="text-red-500 text-sm" />
           </div>
-
+  
           <div className="flex flex-col">
             <label className="font-medium">Password</label>
             <Field
@@ -107,9 +107,7 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="password" component="p" className="text-red-500 text-sm" />
           </div>
-
-
-
+  
           <div className="flex flex-col">
             <label className="font-medium">Confirm password</label>
             <Field
@@ -119,8 +117,7 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="confirmPassword" component="p" className="text-red-500 text-sm" />
           </div>
-
-
+  
           <div className="flex flex-col">
             <label className="font-medium">Country</label>
             <Field
@@ -130,7 +127,7 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="country" component="p" className="text-red-500 text-sm" />
           </div>
-
+  
           <div className="flex flex-col">
             <label className="font-medium">City</label>
             <Field
@@ -140,24 +137,22 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="city" component="p" className="text-red-500 text-sm" />
           </div>
-
+  
           <button
             type="submit"
-            className="w-full font-bold py-2 rounded transition-all bg-black text-white hover:bg-gray-800">
+            className="w-full font-bold py-2 bg-black text-white hover:bg-gray-800 transition-all"> {/* Eliminado border-radius */}
             Register
           </button>
-
+  
           <div className="text-gray-800 dark:text-white text-lg">
             <span className="mr-1 text-black">Already have an account?</span>
-            <Link href="/login " className="font-semibold underline hover:text-gray-600 transition-colors text-black">
+            <Link href="/login" className="font-semibold underline hover:text-gray-600 transition-colors text-black">
               Log in
             </Link>
           </div>
-
-
-
         </Form>
       </Formik>
     </div>
   );
+  
 }; 

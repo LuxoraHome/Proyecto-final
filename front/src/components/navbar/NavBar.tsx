@@ -10,22 +10,16 @@ import Cookies from "js-cookie";
 import { iProducts } from "@/interfaces/iProducts";
 import { getProducts, searchProduct } from "@/helpers/getProducts";
 
-
-
+import Swal from "sweetalert2";
 
 export const Navbar: React.FC = () => {
 
   const router = useRouter()
   const { user, setUser } = useAuth()
 
-  const uid = user?.uid
+  
 
-  const handelLogOut = () => {
-    setUser(null)
-    Cookies.remove("access_uid")
-    alert("logOut")
-    router.push("/")
-  }
+  
 
   
     const [query, setQuery] = useState<string>("")
@@ -52,6 +46,27 @@ export const Navbar: React.FC = () => {
         setFilteredProducts([])
       }
     },[query,products, showAll])
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Verifica si hay un usuario autenticado en Firebase o una sesión local
+    const localUid = Cookies.get("access_uid");
+    setIsLoggedIn(!!user?.uid || !!localUid);
+  }, [user]);
+
+const handleLogOut = () => {
+  setUser(null);
+  Cookies.remove("access_uid");
+  Swal.fire({
+    icon: "success",
+    title: "Log Out Successful",
+    text: "You have successfully logged out."
+  });
+  router.push("/");
+};
+
+
   return (
     <nav className="bg-white flex items-center justify-between px-6 py-4 border-b border-black">
       <div className="flex flex-col items-start">
@@ -88,23 +103,30 @@ export const Navbar: React.FC = () => {
         </ul>
       </div>
 
-      {uid ? (<div className="flex items-center space-x-6 text-2xl text-gray-800">
-        <Link href="/cart">
-          <PiShoppingBag />
-        </Link>
-        <Link href="/">
-          <FaRegUserCircle />
-        </Link>
-
-        <button onClick={handelLogOut} >
-          <IoLogOutOutline />
-        </button>
-
-      </div>) : (
+      {isLoggedIn ? (
         <div className="flex items-center space-x-6 text-2xl text-gray-800">
-
-          <Link href="/register">
+          <Link href="/cart" className="flex items-center space-x-2">
+            <PiShoppingBag />
+            <span className="text-sm">Cart</span>
+          </Link>
+          <Link href="/profile" className="flex items-center space-x-2">
+            <FaRegUserCircle />
+            <span className="text-sm">Profile</span>
+          </Link>
+          <button onClick={handleLogOut} className="flex items-center space-x-2">
+            <IoLogOutOutline />
+            <span className="text-sm">Log Out</span>
+          </button>
+        </div>
+      ) : (
+        <div className="flex items-center space-x-6 text-2xl text-gray-800">
+          <Link href="/register" className="flex items-center space-x-2">
             <FaRegUser />
+            <span className="text-sm">Sign Up</span>
+          </Link>
+          <Link href="/login" className="flex items-center space-x-2">
+            <FaRegUserCircle />
+            <span className="text-sm">Login</span>
           </Link>
         </div>
       )}
