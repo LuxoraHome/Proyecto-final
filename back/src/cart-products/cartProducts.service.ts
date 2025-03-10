@@ -2,7 +2,6 @@ import { forwardRef, Inject, Injectable, NotFoundException } from "@nestjs/commo
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { CartProducts } from "./carProducts.entity";
-import { ShoppingCart } from "src/shopping-cart/entities/shopping-cart.entity";
 import { ProductService } from "src/product/product.service";
 import { ShoppingCartService } from "src/shopping-cart/shopping-cart.service";
 import { CartProductDto } from "src/shopping-cart/dto/cartProduct.dto";

@@ -18,6 +18,9 @@ export class Order {
     @Column({ type: 'enum', enum: OrderStatusEnum, default: OrderStatusEnum.PENDING })
     status: OrderStatusEnum;
 
+    @Column({nullable: true}) 
+    shippingAddress: string;
+
     // Relación N:1 con User
     @ManyToOne(() => User, (user) => user.orders)
     @JoinColumn({ name: 'user_id' })
