@@ -75,7 +75,7 @@ export class AuthService {
     const access_token = await this.jwtService.signAsync(payload, {
       expiresIn: '2h',
     });
-
+    
     return { 
       access_token, 
       ...user

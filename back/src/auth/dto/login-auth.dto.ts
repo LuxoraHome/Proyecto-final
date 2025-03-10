@@ -14,4 +14,3 @@ export class LoginAuthDto {
   @IsNotEmpty()
   uid?: string;
 }
-
