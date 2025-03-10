@@ -22,18 +22,18 @@ export class ShoppingCartService {
     private readonly userService: UserService
   ){}
 
-  private async findOrCreateCart(userId: string): Promise<ShoppingCart> {
-    const user = await this.userService.findOneById(userId);
+  private async findOrCreateCart(userUid: string): Promise<ShoppingCart> {
+    const user = await this.userService.findOneById(userUid);
     if (!user) throw new NotFoundException('User not found');
 
     let cart = await this.shoppingCartRepository.findOne({
-      where: { user: { uid: userId } },
+      where: { user: { uid: userUid } },
       relations: ['cartProducts', 'cartProducts.product'],
     });
   
     if (!cart) {
       cart = this.shoppingCartRepository.create({
-        user: { uid: userId }, 
+        user,
         cartProducts: [], 
         totalPrice: 0,
         shippingCost: 0,
@@ -79,6 +79,7 @@ export class ShoppingCartService {
 
     if (findCartProduct) {
       findCartProduct.quantity += quantity;
+      findCartProduct.price = product.price;
       await this.cartProductsService.updateCartProductQuantity(findCartProduct, findCartProduct.quantity)
     } else {
       const newCartProduct = await this.cartProductsService.createCartProduct({cartId: newCart.id, productId, quantity}, uid);
@@ -116,8 +117,9 @@ export class ShoppingCartService {
     return cart;
   }
   
-  async updateCartProductQuantity(updateCartDto: UpdateShoppingCartDto): Promise<GetCartDto> {
+  async updateShoppingCartProductQuantity(updateCartDto: UpdateShoppingCartDto): Promise<GetCartDto> {
     const cart = await this.findOrCreateCart(updateCartDto.uid);
+    
     const product = cart.cartProducts.find(cp => cp.product.id === updateCartDto.productId);
     if (!product) throw new NotFoundException("Product Not Found");
 
@@ -127,17 +129,23 @@ export class ShoppingCartService {
     const previousQuantity = product.quantity;
 
     if (updateCartDto.quantity <= 0) {
-        return await this.removeProductCart({ uid: updateCartDto.uid, productId: updateCartDto.productId });
+        return await this.removeProductCartShopping({ uid: updateCartDto.uid, productId: updateCartDto.productId });
     }
 
     product.quantity = updateCartDto.quantity;
 
     const quantityDifference = updateCartDto.quantity - previousQuantity;
+
     if (quantityDifference > 0 && productInDb.stock < quantityDifference) {
         throw new BadRequestException('Not enough stock available');
     }
-    await this.productsService.updateProduct(updateCartDto.productId, { stock: productInDb.stock - quantityDifference });
 
+    if (quantityDifference > 0) {
+      await this.productsService.updateProduct(updateCartDto.productId, { stock: productInDb.stock - quantityDifference });
+    } else {
+      await this.productsService.updateProduct(updateCartDto.productId, { stock: productInDb.stock + Math.abs(quantityDifference) });
+    }
+    
     cart.totalPrice = cart.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
 
     await this.shoppingCartRepository.save(cart);
@@ -145,7 +153,7 @@ export class ShoppingCartService {
 }
 
 
-async removeProductCart(removeDto: RemoveProductDto) {
+async removeProductCartShopping(removeDto: RemoveProductDto) {
   const cart = await this.findOrCreateCart(removeDto.uid);
   
   const productToRemove = cart.cartProducts.find(cp => cp.product.id === removeDto.productId);
@@ -170,8 +178,6 @@ async removeProductCart(removeDto: RemoveProductDto) {
   return this.getCartByUserId(removeDto.uid);
 }
 
-
-
 async clearCart(uid: string): Promise<GetCartDto> {
   const cart = await this.findOrCreateCart(uid);
 
@@ -184,14 +190,15 @@ async clearCart(uid: string): Promise<GetCartDto> {
       if (productInDb) {
           await this.productsService.updateProduct(cartProduct.product.id, { stock: productInDb.stock + cartProduct.quantity });
       }
+      await this.cartProductsService.removeCartProduct(cartProduct.id);
   }
 
   cart.cartProducts = [];
   cart.totalPrice = 0;
+
   await this.shoppingCartRepository.save(cart);
 
   return this.getCartByUserId(uid);
 }
-
 
 }
