@@ -1,6 +1,5 @@
 import { IsString, IsEmail, IsNotEmpty, MinLength, IsOptional, IsEnum } from 'class-validator';
-import { UserClient } from 'src/user/enum/userClient.enum'; // Importa el enum UserClient si es necesario
-import { Role } from 'src/auth/enum/roles.enum'; // Importa el enum Role si es necesario
+import { Role } from 'src/auth/enum/roles.enum';
 
 export class CreateDashboardDto {
     @IsString()
@@ -34,9 +33,5 @@ export class CreateDashboardDto {
 
     @IsEnum(Role)
     @IsOptional()
-    role?: Role; // Rol del usuario (por defecto, podría ser 'User')
-
-    @IsEnum(UserClient)
-    @IsOptional()
-    client?: UserClient; // Tipo de cliente (por defecto, podría ser 'STANDARD')
+    role?: Role;
 }
