@@ -58,6 +58,8 @@ export class AuthService {
       country,
       city,
       password: hashedPassword,
+      createdAt: new Date(),
+      lastLogin: new Date(),
     });
 
     return { ...newUser, password: undefined };
@@ -71,12 +73,6 @@ export class AuthService {
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) throw new BadRequestException('Invalid credentials');
-
-    // Actualiza lastLogin
-    user.lastLogin = new Date();
-    await this.userRepository.save(user);
-    console.log('fecha de último login', user.lastLogin);
-
 
     const payload = {
       userId: user.id,
@@ -94,6 +90,10 @@ export class AuthService {
       'Inicio de sesión exitoso Luxora',
       `Hola ${user.name}, has iniciado sesión correctamente en nuestro eCommerce Luxora.`,
     );
+
+    // Actualiza lastLogin
+    user.lastLogin = new Date();
+    await this.userRepository.save(user);
 
     return {
       access_token,

@@ -1,4 +1,5 @@
 import {
+  IsBoolean,
   IsEmail,
   IsEmpty,
   IsEnum,
@@ -55,11 +56,11 @@ export class CreateAuthDto {
   @Length(5, 20)
   city: string;
 
-  @IsEmpty()
+  @IsBoolean()
   isAdmin: boolean;
 
   // @IsEnum(UserClient)
   // @IsOptional()
   // client?: UserClient;
-  
+
 }
