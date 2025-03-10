@@ -42,7 +42,12 @@ export class User {
     // @Column({type: 'enum', enum: UserClient, default: UserClient.STANDARD})
     // client: UserClient;
 
-    @Column({ type: 'timestamp', nullable: true }) // Nuevo campo
+    // Nuevo campo createdAt registra la fecha de creacion de usuario
+    @Column({ type: 'timestamp', nullable: true })
+    createdAt: Date
+
+    // Nuevo campo lastLogin registra la fecha de último login del usuario
+    @Column({ type: 'timestamp', nullable: true })
     lastLogin: Date;
 
     // Relación 1:N con Order
