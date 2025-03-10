@@ -12,17 +12,11 @@ import { getProducts, searchProduct } from "@/helpers/getProducts";
 import { iProducts } from "@/interfaces/iProducts";
 
 export const Navbar: React.FC = () => {
-<<<<<<< HEAD
 
   const router = useRouter()
   const { user, setUser } = useAuth()
  
 
-=======
-  const router = useRouter();
-  const { user, setUser } = useAuth();
-
->>>>>>> cart
 
 
 
