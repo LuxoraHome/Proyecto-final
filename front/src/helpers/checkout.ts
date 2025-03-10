@@ -16,6 +16,9 @@ export const userCheckout = async (orderData: ICheckout) => {
         }
 
 
+        const errorResponse = await response.json();
+        console.log("Error en la respuesta del servidor:", errorResponse);
+        return;
     }
     catch (error) {
         console.log(`aca esta el error`, error);
