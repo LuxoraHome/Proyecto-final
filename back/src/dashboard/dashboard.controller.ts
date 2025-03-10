@@ -25,7 +25,14 @@ export class DashboardController {
     return this.dashboardService.getOrderStats();
   }
 
-  // 3. Gestión de usuarios
+  // 3. Top compradores
+  @Get('stats/buyers')
+  async getTopBuyers() {
+    return this.dashboardService.getBuyersStats();
+  }
+
+
+  // ---------3. Gestión de usuarios
 
   // Crear un nuevo usuario
   @Post('users')
