@@ -41,7 +41,7 @@ export const CartComponent: React.FC = () => {
             return
         }
 
-        const ordenDetail: IOrderDetail[] = cart.map((products) => ({
+        const orderDetail: IOrderDetail[] = cart.map((products) => ({
             productId: products.id,
             quantity: 1,
         }))
@@ -49,7 +49,7 @@ export const CartComponent: React.FC = () => {
 
         const ordenData: ICheckout = {
             uid: user.uid,
-            ordenDetails: ordenDetail,
+            orderDetails: orderDetail,
         }
   
      console.log(`Esto es ordenData` , ordenData);
