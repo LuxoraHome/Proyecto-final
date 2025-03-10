@@ -10,23 +10,27 @@ export class UserSeed {
     constructor(
         @InjectRepository(User)
         private readonly userRepository: Repository<User>
-    ){}
+    ) { }
 
-    async createUserSeeder(){
+    async createUserSeeder() {
         const preUser = (await this.userRepository.find()).map((user) => user.name)
-        
-        for(const userData of userMock){
-            if(!preUser.some((userNmae) => userNmae === userData.name)){
+
+        for (const userData of userMock) {
+            if (!preUser.some((userNmae) => userNmae === userData.name)) {
                 const newUser = new User();
                 newUser.name = userData.name,
-                newUser.email = userData.email,
-                newUser.password = userData.password,
-                newUser.phone = userData.phone,
-                newUser.country = userData.country,
-                newUser.city = userData.city,
-                newUser.address = userData.address
+                    newUser.email = userData.email,
+                    newUser.password = userData.password,
+                    newUser.phone = userData.phone,
+                    newUser.country = userData.country,
+                    newUser.city = userData.city,
+                    newUser.address = userData.address,
+                    newUser.isAdmin = userData.isAdmin,
+                    newUser.uid = userData.uid,
+                    newUser.createdAt = userData.createdAt,
+                    newUser.lastLogin = userData.lastLogin
                 await this.userRepository.save(newUser)
-            }else{
+            } else {
                 return "Ya existen usuarios precargados"
             }
         }
