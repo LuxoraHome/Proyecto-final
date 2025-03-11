@@ -50,7 +50,7 @@ export const CartComponent: React.FC = () => {
        const response = await userCheckout(ordenData)
        if (response) {
             setCart([])
-            localStorage.removeItem("cart")
+            localStorage.removeItem("cart") //Saque la alerta ya que esta en la funcion userCheckout.
        }
     }
 
