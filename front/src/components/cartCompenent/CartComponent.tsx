@@ -52,15 +52,11 @@ export const CartComponent: React.FC = () => {
             orderDetails: orderDetail,
         }
   
-     console.log(`Esto es ordenData` , ordenData);
-     
-         
-       
        const response = await userCheckout(ordenData)
        if (response) {
         setCart([])
         localStorage.removeItem("cart")
-        alert("Checkout Succesful")
+        
        }
         else{ 
             alert("Checkout Fail")
