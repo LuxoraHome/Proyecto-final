@@ -4,6 +4,12 @@ import "./globals.css";
 import { Footer } from "@/components/Footer/Footer";
 import { AuthProvider } from "@/context/AuthContext";
 import Navbar from "@/components/navbar/NavBar";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const API_PUBLIC = process.env.NEXT_PUBLIC_PUBLIC_KEY
+
+const stripe = loadStripe(`${API_PUBLIC}`)
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,12 +34,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-
-        <AuthProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </AuthProvider>
+        <Elements stripe={stripe}>
+          <AuthProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </AuthProvider>
+        </Elements>
       </body>
 
     </html>
