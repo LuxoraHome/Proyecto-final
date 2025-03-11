@@ -42,21 +42,15 @@ export const CartComponent: React.FC = () => {
             router.push("/login")
             return
         }
-
         const ordenDetail: IOrderDetail[] = cart.map((products) => ({
             productId: products.id,
             quantity: 1,
         }))
 
-
         const ordenData: ICheckout = {
             uid: user.uid,
             ordenDetails: ordenDetail,
         }
-
-     
-
-
 
         const response = await userCheckout(ordenData)
         if (response) {
