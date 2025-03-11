@@ -4,7 +4,7 @@ import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 
 const ProfileView: React.FC = () => {
-    const { user } = useAuth(); // Obtener usuario desde el contexto
+    const { user } = useAuth(); 
 
     return (
         <div className="max-w-lg mx-auto bg-white shadow-xl p-8 mt-12 flex flex-col items-center">
