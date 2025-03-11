@@ -21,7 +21,7 @@ export const Navbar: React.FC = () => {
   const [filteredProducts, setFilteredProducts] = useState<iProducts[]>([]);
   const [showAll, setShowAll] = useState(false);
   const [isDropdownFocused, setIsDropdownFocused] = useState(false);
-  const searchBarRef = useRef<HTMLDivElement>(null); // Ref para la barra de búsqueda
+  const searchBarRef = useRef<HTMLDivElement>(null); 
 
   // Verificar si el usuario está logueado
   useEffect(() => {
