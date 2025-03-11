@@ -1,6 +1,7 @@
 import { Order } from "src/order/entities/order.entity"
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { v4 as uuid } from "uuid"
+import { UserClient } from "../enum/userClient.enum"
 // import { UserClient } from "../enum/userClient.enum"
 
 
@@ -39,8 +40,8 @@ export class User {
     @Column({ default: false })
     isAdmin: boolean;
 
-    // @Column({type: 'enum', enum: UserClient, default: UserClient.STANDARD})
-    // client: UserClient;
+    @Column({ type: 'enum', enum: UserClient, default: UserClient.STANDARD })
+    client: UserClient;
 
     // Nuevo campo createdAt registra la fecha de creacion de usuario
     @Column({ type: 'timestamp', nullable: true })

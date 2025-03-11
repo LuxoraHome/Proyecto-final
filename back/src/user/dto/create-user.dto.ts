@@ -3,10 +3,10 @@ import { IsDate, IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Ma
 
 export class CreateUserDto {
     @IsString()
-    @MinLength(3, { message: 'El nombre debe tener al menos 3 caracteres.' })
-    @MaxLength(80, { message: 'El nombre no puede superar los 80 caracteres.' })
-    @IsNotEmpty({ message: 'El nombre es requerido.' })
-    name: string
+    @MinLength(3)
+    @MaxLength(80)
+    @IsNotEmpty()
+    name: string;
 
     @IsString()
     @IsNotEmpty({ message: 'El uid es requerido.' })
@@ -30,14 +30,16 @@ export class CreateUserDto {
     phone: string
 
     @IsString()
-    @MinLength(5, { message: 'El país debe tener al menos 5 caracteres.' })
-    @MaxLength(20, { message: 'El país no puede superar los 20 caracteres.' })
-    country?: string
+    @MinLength(5)
+    @MaxLength(20)
+    @IsOptional()
+    country?: string;
 
     @IsString()
-    @MinLength(5, { message: 'La ciudad debe tener al menos 5 caracteres.' })
-    @MaxLength(20, { message: 'La ciudad no puede superar los 20 caracteres.' })
-    city?: string
+    @MinLength(5)
+    @MaxLength(20)
+    @IsOptional()
+    city?: string;
 
     // Nuevo campo createdAt el cual registra la fecha de creación del usuario
     @IsDate()
