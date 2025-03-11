@@ -26,7 +26,7 @@ export class CreateUserDto {
     @MaxLength(80, { message: 'La dirección no puede superar los 80 caracteres.' })
     address: string
 
-    @IsNumber({}, { message: 'El número de teléfono debe ser un número.' })
+    @IsString({ message: 'El teléfono debe ser una cadena de texto' })
     phone: string
 
     @IsString()

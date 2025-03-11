@@ -50,6 +50,10 @@ export class User {
     @Column({ type: 'timestamp', nullable: true })
     lastLogin: Date;
 
+    // Nuevo campo loginCount registra la cantidad de logins del usuario
+    @Column({ type: 'int', default: 0 })
+    loginCount: number;
+
     // Relación 1:N con Order
     @OneToMany(() => Order, (order) => order.user)
     orders: Order[]

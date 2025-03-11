@@ -28,7 +28,8 @@ export class UserSeed {
                     newUser.isAdmin = userData.isAdmin,
                     newUser.uid = userData.uid,
                     newUser.createdAt = userData.createdAt,
-                    newUser.lastLogin = userData.lastLogin
+                    newUser.lastLogin = userData.lastLogin,
+                    newUser.loginCount = userData.loginCount
                 await this.userRepository.save(newUser)
             } else {
                 return "Ya existen usuarios precargados"

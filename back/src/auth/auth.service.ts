@@ -95,6 +95,10 @@ export class AuthService {
     user.lastLogin = new Date();
     await this.userRepository.save(user);
 
+    // Incrementar el contador de inicio de sesión
+    user.loginCount += 1;
+    await this.userRepository.save(user);
+
     return {
       access_token,
       ...user

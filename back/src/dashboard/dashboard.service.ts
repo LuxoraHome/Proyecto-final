@@ -107,55 +107,22 @@ export class DashboardService {
     }
   }
 
-  // ----- 3. Gestión de usuarios *** modoficar esta ruta
+  // 4. Top usuarios más frecuentes
+  async getTopFrequentUsers() {
+    try {
+      const topFrequentUsers = await this.userRepository
+        .createQueryBuilder('user')
+        .select(['user.id', 'user.uid', 'user.name', 'user.email', 'user.loginCount'])
+        .orderBy('user.loginCount', 'DESC')
+        .limit(5)
+        .getMany();
 
-  // Crear un nuevo usuario
-  async createUser(createUserDto: CreateUserDto) {
-    const newUser = this.userRepository.create(createUserDto);
-    return await this.userRepository.save(newUser);
-  }
-
-  // Modificar un usuario existente
-  async updateUser(id: string, updateUserDto: UpdateUserDto) {
-    const user = await this.userRepository.findOne({ where: { id } });
-    if (!user) {
-      throw new NotFoundException(`Usuario con ID ${id} no encontrado`);
+      return topFrequentUsers;
+    } catch (error) {
+      throw new HttpException(
+        'Error al obtener los usuarios más frecuentes',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
-    Object.assign(user, updateUserDto); // Actualiza los campos del usuario
-    return await this.userRepository.save(user);
   }
-
-  // Obtener todos los usuarios
-  async findAllUsers() {
-    return await this.userRepository.find();
-  }
-
-  // Obtener un usuario por ID
-  async findOneUser(id: string) {
-    const user = await this.userRepository.findOne({ where: { id } });
-    if (!user) {
-      throw new NotFoundException(`Usuario con ID ${id} no encontrado`);
-    }
-    return user;
-  }
-
-  // Eliminar un usuario por ID
-  async removeUser(id: string) {
-    const user = await this.userRepository.findOne({ where: { id } });
-    if (!user) {
-      throw new NotFoundException(`Usuario con ID ${id} no encontrado`);
-    }
-    await this.userRepository.delete(id);
-    return { message: `Usuario con ID ${id} eliminado correctamente` };
-  }
-
-  // Pausar un usuario por ID
-  //  async pauseUser(id: string) {
-  //    const user = await this.userRepository.findOne({ where: { id } });
-  //    if (!user) {
-  //      throw new NotFoundException(`Usuario con ID ${id} no encontrado`);
-  //    }
-  //    user.isActive = false; // Suponiendo que tienes un campo `isActive` en la entidad User
-  //    return await this.userRepository.save(user);
-  //  }
 }

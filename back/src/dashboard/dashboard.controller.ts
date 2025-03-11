@@ -31,45 +31,9 @@ export class DashboardController {
     return this.dashboardService.getBuyersStats();
   }
 
-
-  // ---------3. Gestión de usuarios
-
-  // Crear un nuevo usuario
-  @Post('users')
-  async createUser(@Body() createUserDto: CreateUserDto) {
-    return this.dashboardService.createUser(createUserDto);
+  @Get('stats/frequent')
+  async getTopFrequentUsers() {
+    return this.dashboardService.getTopFrequentUsers();
   }
 
-  // Modificar un usuario existente
-  @Put('users/:id')
-  async updateUser(
-    @Param('id') id: string,
-    @Body() updateUserDto: UpdateUserDto,
-  ) {
-    return this.dashboardService.updateUser(id, updateUserDto);
-  }
-
-  // Obtener todos los usuarios
-  @Get('users')
-  async findAllUsers() {
-    return this.dashboardService.findAllUsers();
-  }
-
-  // Obtener un usuario por ID
-  @Get('users/:id')
-  async findOneUser(@Param('id') id: string) {
-    return this.dashboardService.findOneUser(id);
-  }
-
-  // Eliminar un usuario por ID
-  @Delete('users/:id')
-  async removeUser(@Param('id') id: string) {
-    return this.dashboardService.removeUser(id);
-  }
-
-  // Pausar un usuario por ID
-  //  @Patch('users/:id/pause')
-  //  async pauseUser(@Param('id') id: string) {
-  //    return this.dashboardService.pauseUser(id);
-  //  }
 }

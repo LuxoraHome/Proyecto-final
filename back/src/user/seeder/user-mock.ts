@@ -14,6 +14,7 @@ export const userMock = [
     "uid": "Abc123",
     "createdAt": new Date(Date.now() - 26 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
+    "loginCount": 4,
   },
   {
     "name": "Sofía Ramírez",
@@ -28,6 +29,7 @@ export const userMock = [
     "uid": "Abc456",
     "createdAt": new Date(Date.now() - 36 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
+    "loginCount": 2,
   },
   {
     "name": "Liam Smith",
@@ -42,6 +44,7 @@ export const userMock = [
     "uid": "Abc789",
     "createdAt": new Date(Date.now() - 14 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+    "loginCount": 1,
   },
   {
     "name": "Emma Johnson",
@@ -56,6 +59,7 @@ export const userMock = [
     "uid": "Abc101",
     "createdAt": new Date(Date.now() - 24 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 12 * 24 * 60 * 60 * 1000),
+    "loginCount": 35,
   },
   {
     "name": "Mateo Fernández",
@@ -70,6 +74,7 @@ export const userMock = [
     "uid": "Abc102",
     "createdAt": new Date(Date.now() - 32 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 16 * 24 * 60 * 60 * 1000),
+    "loginCount": 10,
   },
   {
     "name": "Isabella González",
@@ -84,6 +89,7 @@ export const userMock = [
     "uid": "Abc103",
     "createdAt": new Date(Date.now() - 40 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 20 * 24 * 60 * 60 * 1000),
+    "loginCount": 72,
   },
   {
     "name": "Noah Wilson",
@@ -98,6 +104,7 @@ export const userMock = [
     "uid": "Abc104",
     "createdAt": new Date(Date.now() - 48 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 24 * 24 * 60 * 60 * 1000),
+    "loginCount": 55,
   },
   {
     "name": "Ava Martínez",
@@ -112,6 +119,7 @@ export const userMock = [
     "uid": "Abc105",
     "createdAt": new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
+    "loginCount": 93,
   },
   {
     "name": "Lucas Dubois",
@@ -126,6 +134,7 @@ export const userMock = [
     "uid": "Abc106",
     "createdAt": new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
+    "loginCount": 42,
   },
   {
     "name": "Mia Rossi",
@@ -140,6 +149,7 @@ export const userMock = [
     "uid": "Abc107",
     "createdAt": new Date(Date.now() - 12 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    "loginCount": 72,
   },
   {
     "name": "Benjamin Kim",
@@ -154,6 +164,7 @@ export const userMock = [
     "uid": "Abc108",
     "createdAt": new Date(Date.now() - 14 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+    "loginCount": 22,
   },
   {
     "name": "Elena Petrov",
@@ -168,6 +179,7 @@ export const userMock = [
     "uid": "Abc109",
     "createdAt": new Date(Date.now() - 36 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
+    "loginCount": 10,
   },
   {
     "name": "Ethan Brown",
@@ -182,6 +194,7 @@ export const userMock = [
     "uid": "Abc110",
     "createdAt": new Date(Date.now() - 48 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
+    "loginCount": 85,
   },
   {
     "name": "Chloe Müller",
@@ -196,6 +209,7 @@ export const userMock = [
     "uid": "Abc111",
     "createdAt": new Date(Date.now() - 28 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
+    "loginCount": 62,
   },
   {
     "name": "Gabriel Silva",
@@ -210,5 +224,6 @@ export const userMock = [
     "uid": "Abc112",
     "createdAt": new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
+    "loginCount": 45,
   }
 ]
