@@ -7,6 +7,7 @@ import { userCheckout } from "@/helpers/checkout"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/context/AuthContext"
 import { CardElement } from "@stripe/react-stripe-js"
+import { confirmPay, createOrder } from "@/helpers/payment"
 
 export const CartComponent: React.FC = () => {
 
@@ -61,6 +62,10 @@ export const CartComponent: React.FC = () => {
         else {
             alert("Checkout Fail")
         }
+
+        await createOrder() , 
+
+         await confirmPay(),
     }
 
 
