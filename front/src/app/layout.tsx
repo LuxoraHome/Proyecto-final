@@ -1,15 +1,13 @@
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer/Footer";
 import { AuthProvider } from "@/context/AuthContext";
 import Navbar from "@/components/navbar/NavBar";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
+import StripeClient from "./StripteClient";
 
-const API_PUBLIC = process.env.NEXT_PUBLIC_PUBLIC_KEY
 
-const stripe = loadStripe(`${API_PUBLIC}`)
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,13 +32,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Elements stripe={stripe}>
+       <StripeClient>
           <AuthProvider>
             <Navbar />
             {children}
             <Footer />
           </AuthProvider>
-        </Elements>
+          </StripeClient>
       </body>
 
     </html>

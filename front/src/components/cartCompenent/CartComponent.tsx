@@ -16,6 +16,7 @@ export const CartComponent: React.FC = () => {
 
     const [cart, setCart] = useState<iProducts[]>([])
     const [price, setPrice] = useState<number>(0)
+   
 
 
     useEffect(() => {
@@ -53,7 +54,7 @@ export const CartComponent: React.FC = () => {
             ordenDetails: ordenDetail,
         }
 
-        console.log(`Esto es ordenData`, ordenData);
+     
 
 
 
@@ -104,11 +105,11 @@ export const CartComponent: React.FC = () => {
                         <h3 className="text-xl font-bold text-gray-900">${price.toFixed(2)}</h3>
                     </div>
 
-                    <div>
+                    <div className="relative space-y-8 border-2 border-gray-300 p-4 rounded-lg">
                         <CardElement options={{
                             style: {
                                 base: {
-                                    fontSize: "16px",
+                                    fontSize: "20px",
                                     color: "#333",
                                     "::placeholder": {
                                         color: "#bbb",
@@ -125,7 +126,7 @@ export const CartComponent: React.FC = () => {
                             },
                         }} />
                         <button onClick={handelOnClick} className="w-full bg-black text-white text-lg font-medium py-3 rounded-lg hover:bg-gray-900 transition-all">
-                            Checkout
+                            PAY
                         </button>
                     </div>
 
