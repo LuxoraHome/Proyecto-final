@@ -82,7 +82,7 @@ export class ShoppingCartService {
       findCartProduct.price = product.price;
       await this.cartProductsService.updateCartProductQuantity(findCartProduct, findCartProduct.quantity)
     } else {
-      const newCartProduct = await this.cartProductsService.createCartProduct({cartId: newCart.id, productId, quantity}, uid);
+      const newCartProduct = await this.cartProductsService.createCartProduct({cartId: newCart.id, productId, quantity, price: product.price}, uid);
       newCart.cartProducts.push(newCartProduct);
     }
 
