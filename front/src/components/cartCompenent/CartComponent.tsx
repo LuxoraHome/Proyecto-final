@@ -82,7 +82,7 @@ export const CartComponent: React.FC = () => {
 
         if (error) {
             Swal.fire({
-                icon: "fail pay",
+                icon: "error",
                 title: "Fail Payment",
                 text: error.message,
             });
@@ -132,7 +132,7 @@ export const CartComponent: React.FC = () => {
             });
             return
 
-        }
+        }}
 
 
 
