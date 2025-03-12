@@ -23,7 +23,7 @@ export const Navbar: React.FC = () => {
   const [isDropdownFocused, setIsDropdownFocused] = useState(false);
   const searchBarRef = useRef<HTMLDivElement>(null); 
 
-  // Verificar si el usuario está logueado
+  // Supongo que este debe ser el error
   useEffect(() => {
     const localUid = Cookies.get("access_uid");
     setIsLoggedIn(!!user?.uid || !!localUid);
