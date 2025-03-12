@@ -13,7 +13,7 @@ export class User {
     @PrimaryGeneratedColumn("uuid")
     id: string
 
-    @Column({ nullable: true })
+    @Column({ type: "varchar", length: 255, nullable: true, unique: true })
     uid: string
 
     @Column({ length: 50, nullable: false })
@@ -58,5 +58,4 @@ export class User {
     // Relación 1:N con Order
     @OneToMany(() => Order, (order) => order.user)
     orders: Order[]
-
 }

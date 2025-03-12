@@ -1,0 +1,133 @@
+import { OrderStatusEnum } from "src/order/orderStatus-enum";
+
+export const ordersMock = [
+    {
+        date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+        shippingAddress: 'Calle 123 Carrera 45 No 67-89',
+        status: OrderStatusEnum.DELIVERED,
+        total: 1000,
+        user_uid: 'Abc123',
+    },
+    {
+        date: new Date(Date.now() - 2 * 14 * 60 * 60 * 1000),
+        shippingAddress: 'Calle 456 Carrera 78 No 90-12',
+        status: OrderStatusEnum.CANCELLED,
+        total: 2000,
+        user_uid: 'Abc456',
+    },
+    {
+        date: new Date(Date.now() - 1 * 4 * 60 * 60 * 1000),
+        shippingAddress: 'Calle 789 Carrera 23 No 45-67',
+        status: OrderStatusEnum.PAID,
+        total: 3000,
+        user_uid: 'Abc789',
+    },
+    {
+        date: new Date(Date.now() - 2 * 7 * 60 * 60 * 1000),
+        shippingAddress: 'Calle 101 Carrera 12 No 34-56',
+        status: OrderStatusEnum.PENDING,
+        total: 4000,
+        user_uid: 'Abc101',
+    },
+    {
+        date: new Date(Date.now() - 1 * 7 * 60 * 60 * 1000),
+        shippingAddress: 'Calle 112 Carrera 56 No 78-90',
+        status: OrderStatusEnum.SHIPPED,
+        total: 5000,
+        user_uid: 'Abc102',
+    },
+    {
+        date: new Date(Date.now() - 2 * 9 * 60 * 60 * 100),
+        shippingAddress: 'Calle 131 Carrera 78 No 90-12',
+        status: OrderStatusEnum.CANCELLED,
+        total: 6000,
+        user_uid: 'Abc103',
+    },
+    {
+        date: new Date(Date.now() - 1 * 5 * 60 * 60 * 100),
+        shippingAddress: 'Calle 141 Carrera 23 No 45-67',
+        status: OrderStatusEnum.DELIVERED,
+        total: 7000,
+        user_uid: 'Abc104',
+    },
+    {
+        date: new Date(Date.now() - 2 * 6 * 60 * 60 * 100),
+        shippingAddress: 'Calle 151 Carrera 12 No 34-56',
+        status: OrderStatusEnum.PAID,
+        total: 8000,
+        user_uid: 'Abc105',
+    },
+    {
+        date: new Date(Date.now() - 1 * 8 * 60 * 60 * 100),
+        shippingAddress: 'Calle 161 Carrera 56 No 78-90',
+        status: OrderStatusEnum.PENDING,
+        total: 9000,
+        user_uid: 'Abc106',
+    },
+
+
+
+    {
+        date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+        shippingAddress: 'Calle 123 Carrera 45 No 67-89',
+        status: OrderStatusEnum.DELIVERED,
+        total: 5000,
+        user_uid: 'Abc123',
+    },
+    {
+        date: new Date(Date.now() - 2 * 14 * 60 * 60 * 1000),
+        shippingAddress: 'Calle 456 Carrera 78 No 90-12',
+        status: OrderStatusEnum.CANCELLED,
+        total: 3500,
+        user_uid: 'Abc456',
+    },
+    {
+        date: new Date(Date.now() - 1 * 4 * 60 * 60 * 1000),
+        shippingAddress: 'Calle 789 Carrera 23 No 45-67',
+        status: OrderStatusEnum.PAID,
+        total: 2500,
+        user_uid: 'Abc789',
+    },
+    {
+        date: new Date(Date.now() - 2 * 7 * 60 * 60 * 1000),
+        shippingAddress: 'Calle 101 Carrera 12 No 34-56',
+        status: OrderStatusEnum.PENDING,
+        total: 1500,
+        user_uid: 'Abc101',
+    },
+    {
+        date: new Date(Date.now() - 1 * 7 * 60 * 60 * 1000),
+        shippingAddress: 'Calle 112 Carrera 56 No 78-90',
+        status: OrderStatusEnum.SHIPPED,
+        total: 1000,
+        user_uid: 'Abc102',
+    },
+    {
+        date: new Date(Date.now() - 2 * 9 * 60 * 60 * 100),
+        shippingAddress: 'Calle 131 Carrera 78 No 90-12',
+        status: OrderStatusEnum.CANCELLED,
+        total: 2000,
+        user_uid: 'Abc103',
+    },
+    {
+        date: new Date(Date.now() - 1 * 5 * 60 * 60 * 100),
+        shippingAddress: 'Calle 141 Carrera 23 No 45-67',
+        status: OrderStatusEnum.DELIVERED,
+        total: 3000,
+        user_uid: 'Abc104',
+    },
+    {
+        date: new Date(Date.now() - 2 * 6 * 60 * 60 * 100),
+        shippingAddress: 'Calle 151 Carrera 12 No 34-56',
+        status: OrderStatusEnum.PAID,
+        total: 4000,
+        user_uid: 'Abc105',
+    },
+    {
+        date: new Date(Date.now() - 1 * 8 * 60 * 60 * 100),
+        shippingAddress: 'Calle 161 Carrera 56 No 78-90',
+        status: OrderStatusEnum.PENDING,
+        total: 5000,
+        user_uid: 'Abc106',
+    },
+]

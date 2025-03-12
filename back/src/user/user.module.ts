@@ -9,10 +9,14 @@ import { MailModule } from 'src/mail/mail.module';
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
-    MailModule
+    MailModule,
+
   ],
   controllers: [UserController],
-  providers: [UserService, UserSeed],
+  providers: [
+    UserService,
+    UserSeed,
+  ],
   exports: [UserService],
 })
 export class UserModule { }
