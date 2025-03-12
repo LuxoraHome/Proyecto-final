@@ -22,7 +22,6 @@ export const Navbar: React.FC = () => {
   const [showAll, setShowAll] = useState(false);
   const searchBarRef = useRef<HTMLDivElement>(null);
 
-  // Obtener productos al cargar la página
   useEffect(() => {
     const fetchProducts = async () => {
       const data = await getProducts();
@@ -31,7 +30,7 @@ export const Navbar: React.FC = () => {
     fetchProducts();
   }, []);
 
-  // Filtrar productos según la búsqueda
+
   useEffect(() => {
     if (query) {
       setFilteredProducts(searchProduct(query, products));
@@ -42,13 +41,11 @@ export const Navbar: React.FC = () => {
     }
   }, [query, products, showAll]);
 
-  // Limpiar búsqueda al cambiar de ruta
   useEffect(() => {
     setQuery("");
     setFilteredProducts([]);
   }, [pathname]);
 
-  // Cerrar el SearchBar al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (searchBarRef.current && !searchBarRef.current.contains(event.target as Node)) {
