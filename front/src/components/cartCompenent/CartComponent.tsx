@@ -128,14 +128,7 @@ export const CartComponent: React.FC = () => {
                 text: "Your order has been placed successfully."
             });
         }
-        else {
-            console.log("Payment status not succeeded:", result.paymentIntent?.status);
-            Swal.fire({
-                icon: "error",
-                title: "Payment Failed",
-                text: "Payment status not succeeded. Please try again.",
-            });
-        }
+       
 
 
     }
