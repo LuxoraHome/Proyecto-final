@@ -42,7 +42,12 @@ export const CartComponent: React.FC = () => {
             router.push("/login")
             return
         }
+<<<<<<< HEAD
         const ordenDetail: IOrderDetail[] = cart.map((products) => ({
+=======
+
+        const orderDetail: IOrderDetail[] = cart.map((products) => ({
+>>>>>>> developfront
             productId: products.id,
             quantity: 1,
         }))
@@ -51,6 +56,7 @@ export const CartComponent: React.FC = () => {
             uid: user.uid,
             orderDetails: ordenDetail,
         }
+<<<<<<< HEAD
 
         const response = await userCheckout(ordenData)
         if (response) {
@@ -92,6 +98,16 @@ export const CartComponent: React.FC = () => {
         }
 
 
+=======
+  
+       const response = await userCheckout(ordenData)
+       console.log('Respuesta del checkout', response);
+       
+       if (response) {
+            setCart([])
+            localStorage.removeItem("cart") 
+       }
+>>>>>>> developfront
     }
 
     return (
@@ -124,6 +140,7 @@ export const CartComponent: React.FC = () => {
                         <h3 className="text-xl font-bold text-gray-900">${price.toFixed(2)}</h3>
                     </div>
 
+<<<<<<< HEAD
                     <div className="relative space-y-8 border-2 border-gray-300 p-4 rounded-lg">
                         <CardElement options={{
                             style: {
@@ -150,6 +167,12 @@ export const CartComponent: React.FC = () => {
                     </div>
 
                 </div >
+=======
+                    <button onClick={handelOnClick} className="w-full bg-black text-white text-lg font-medium py-3 rounded-lg hover:bg-gray-900 transition-all">
+                        Checkout
+                    </button>
+                </div>
+>>>>>>> developfront
             ) : (
                 <div className="text-center mt-12">
                     <h3 className="text-2xl text-gray-500">Your cart is empty</h3>
