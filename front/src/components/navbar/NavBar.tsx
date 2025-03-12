@@ -23,13 +23,7 @@ export const Navbar: React.FC = () => {
   const [isDropdownFocused, setIsDropdownFocused] = useState(false);
   const searchBarRef = useRef<HTMLDivElement>(null); 
 
-  // Verificar si el usuario está logueado
-  useEffect(() => {
-    const localUid = Cookies.get("access_uid");
-    setIsLoggedIn(!!user?.uid || !!localUid);
-  }, [user]);
 
-  // Manejar el cierre de sesión
   const handleLogOut = () => {
     setUser(null);
     Cookies.remove("access_uid");
@@ -41,7 +35,6 @@ export const Navbar: React.FC = () => {
     router.push("/");
   };
 
-  // Obtener productos
   useEffect(() => {
     const fetchProducts = async () => {
       const data = await getProducts();
@@ -51,7 +44,6 @@ export const Navbar: React.FC = () => {
     fetchProducts();
   }, []);
 
-  // Filtrar productos según la búsqueda
   useEffect(() => {
     if (query) {
       setFilteredProducts(searchProduct(query, products));
@@ -62,19 +54,16 @@ export const Navbar: React.FC = () => {
     }
   }, [query, products, showAll]);
 
-  // Vaciar la búsqueda cuando cambia la ruta
   useEffect(() => {
     setQuery("");
     setFilteredProducts([]);
   }, [pathname]);
 
-  // Manejar clics en productos
   const handleProductClick = () => {
     setQuery("");
     setFilteredProducts([]);
   };
 
-  // Detectar clics fuera de la barra de búsqueda
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (searchBarRef.current && !searchBarRef.current.contains(event.target as Node)) {
