@@ -6,8 +6,10 @@ import { ICheckout, IOrderDetail } from "@/interfaces/ICheckout"
 import { userCheckout } from "@/helpers/checkout"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/context/AuthContext"
-import { CardElement } from "@stripe/react-stripe-js"
-import { confirmPay, createOrder } from "@/helpers/payment"
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
+import Swal from "sweetalert2";
+import { createOrder, IUserpay } from "@/helpers/payment"
+
 
 export const CartComponent: React.FC = () => {
 
@@ -15,7 +17,10 @@ export const CartComponent: React.FC = () => {
     const router = useRouter()
     const [cart, setCart] = useState<iProducts[]>([])
     const [price, setPrice] = useState<number>(0)
-   
+    const stripe = useStripe()
+    const elements = useElements()
+
+
 
     useEffect(() => {
         const products: iProducts[] = JSON.parse(localStorage.getItem("cart") || "[]")
@@ -39,46 +44,126 @@ export const CartComponent: React.FC = () => {
             router.push("/login")
             return
         }
-<<<<<<< HEAD
         const ordenDetail: IOrderDetail[] = cart.map((products) => ({
-=======
-
-        const orderDetail: IOrderDetail[] = cart.map((products) => ({
->>>>>>> developfront
             productId: products.id,
             quantity: 1,
         }))
 
         const ordenData: ICheckout = {
             uid: user.uid,
-            orderDetails: orderDetail,
+            orderDetails: ordenDetail,
         }
-<<<<<<< HEAD
 
         const response = await userCheckout(ordenData)
         if (response) {
             setCart([])
             localStorage.removeItem("cart")
-            alert("Checkout Succesful")
+
         }
         else {
             alert("Checkout Fail")
         }
 
-        await createOrder() , 
 
-         await confirmPay(),
-=======
-  
-       const response = await userCheckout(ordenData)
-       console.log('Respuesta del checkout', response);
-       
-       if (response) {
-            setCart([])
-            localStorage.removeItem("cart") 
-       }
->>>>>>> developfront
+        if (!stripe || !elements) {
+            Swal.fire({
+                icon: "error",
+                title: "Error de Pago",
+                text: "Stripe no está disponible. Intenta recargar la página.",
+            });
+            return
+        }
+
+
+        const { paymentMethod, error } = await stripe?.createPaymentMethod({
+            type: "card",
+            card: elements?.getElement(CardElement)!,
+        })
+
+        if (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Error al Crear el Método de Pago",
+                text: error.message,
+            });
+            return;
+        }
+
+        const userPay: IUserpay = {
+            amount: price,
+            currency: "USD",
+            paymentMethodId: paymentMethod.id,
+        }
+
+
+
+        const clientSecret = await createOrder(userPay)
+        if (!clientSecret) {
+            Swal.fire({
+                icon: "error",
+                title: "Payment Error",
+                text: "Client secret is missing. Please try again.",
+            });
+            return;
+
+        }
+
+
+        const result = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: paymentMethod.id
+
+        })
+
+        if (result.error) {
+            Swal.fire({
+                icon: "error",
+                title: "Payment Failed",
+                text: result.error.message,
+            });
+
+        } else if (result.paymentIntent?.status === "succeeded") {
+            Swal.fire({
+                icon: "success",
+                title: "Payment Successful",
+                text: "Your order has been placed successfully."
+            });
+        }
+        else {
+            console.log("Payment status not succeeded:", result.paymentIntent?.status);
+            Swal.fire({
+                icon: "error",
+                title: "Payment Failed",
+                text: "Payment status not succeeded. Please try again.",
+            });
+        }
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return (
         <div className="max-w-3xl mx-auto p-6">
@@ -119,10 +204,10 @@ export const CartComponent: React.FC = () => {
                                     "::placeholder": {
                                         color: "#bbb",
                                     },
-                                 
+
                                     padding: "12px",
                                     backgroundColor: "#f7f7f7",
-                                 
+
                                 },
                                 invalid: {
                                     color: "#e53e3e",
@@ -135,13 +220,13 @@ export const CartComponent: React.FC = () => {
                         </button>
                     </div>
 
-                </div>
+                </div >
             ) : (
                 <div className="text-center mt-12">
                     <h3 className="text-2xl text-gray-500">Your cart is empty</h3>
                 </div>
             )}
-        </div>
+        </div >
     )
 }
 
