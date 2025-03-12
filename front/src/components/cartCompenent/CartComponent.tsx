@@ -82,8 +82,8 @@ export const CartComponent: React.FC = () => {
 
         if (error) {
             Swal.fire({
-                icon: "error",
-                title: "Error al Crear el Método de Pago",
+                icon: "fail pay",
+                title: "Fail Payment",
                 text: error.message,
             });
             return;
@@ -114,34 +114,25 @@ export const CartComponent: React.FC = () => {
 
         })
 
-        if (result.error) {
-            Swal.fire({
-                icon: "error",
-                title: "Payment Failed",
-                text: result.error.message,
-            });
-
-        } else if (result.paymentIntent?.status === "succeeded") {
+        if (result.paymentIntent?.status === "succeeded") {
             Swal.fire({
                 icon: "success",
                 title: "Payment Successful",
                 text: "Your order has been placed successfully."
             });
+            return
         }
-       
 
 
-    }
+        else if (result.error) {
+            Swal.fire({
+                icon: "error",
+                title: "Payment Failed",
+                text: result.error.message,
+            });
+            return
 
-
-
-
-
-
-
-
-
-
+        }
 
 
 
@@ -158,69 +149,79 @@ export const CartComponent: React.FC = () => {
 
 
 
-    return (
-        <div className="max-w-3xl mx-auto p-6">
-            <h2 className="text-4xl font-semibold tracking-wide text-gray-800 mb-6">Your Cart</h2>
 
-            {cart.length > 0 ? (
-                <div className="space-y-4">
-                    {cart.map((item) => (
-                        <div key={item.id} className="flex items-center justify-between p-4 border border-gray-300 rounded-lg shadow-md bg-white">
-                            <img src={item.image} alt={item.name} className="w-24 h-24 object-cover rounded-md" />
 
-                            <div className="flex-1 ml-4">
-                                <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
-                                <p className="text-gray-600">{item.product}</p>
-                                <h3 className="text-lg font-bold text-gray-900">${item.price}</h3>
+
+
+
+
+
+
+
+
+        return (
+            <div className="max-w-3xl mx-auto p-6">
+                <h2 className="text-4xl font-semibold tracking-wide text-gray-800 mb-6">Your Cart</h2>
+
+                {cart.length > 0 ? (
+                    <div className="space-y-4">
+                        {cart.map((item) => (
+                            <div key={item.id} className="flex items-center justify-between p-4 border border-gray-300 rounded-lg shadow-md bg-white">
+                                <img src={item.image} alt={item.name} className="w-24 h-24 object-cover rounded-md" />
+
+                                <div className="flex-1 ml-4">
+                                    <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
+                                    <p className="text-gray-600">{item.product}</p>
+                                    <h3 className="text-lg font-bold text-gray-900">${item.price}</h3>
+                                </div>
+
+                                <button
+                                    onClick={() => handelDelete(item.id)}
+                                    className="text-black font-bold text-l"
+                                >
+                                    ✖
+                                </button>
                             </div>
+                        ))}
 
-                            <button
-                                onClick={() => handelDelete(item.id)}
-                                className="text-black font-bold text-l"
-                            >
-                                ✖
+                        <div className="flex justify-between items-center mt-6 p-4 bg-gray-100 rounded-lg">
+                            <h3 className="text-xl font-semibold text-gray-800">Total:</h3>
+                            <h3 className="text-xl font-bold text-gray-900">${price.toFixed(2)}</h3>
+                        </div>
+
+                        <div className="relative space-y-8 border-2 border-gray-300 p-4 rounded-lg">
+                            <CardElement options={{
+                                style: {
+                                    base: {
+                                        fontSize: "20px",
+                                        color: "#333",
+                                        "::placeholder": {
+                                            color: "#bbb",
+                                        },
+
+                                        padding: "12px",
+                                        backgroundColor: "#f7f7f7",
+
+                                    },
+                                    invalid: {
+                                        color: "#e53e3e",
+                                        iconColor: "#e53e3e",
+                                    },
+                                },
+                            }} />
+                            <button onClick={handelOnClick} className="w-full bg-black text-white text-lg font-medium py-3 rounded-lg hover:bg-gray-900 transition-all">
+                                PAY
                             </button>
                         </div>
-                    ))}
 
-                    <div className="flex justify-between items-center mt-6 p-4 bg-gray-100 rounded-lg">
-                        <h3 className="text-xl font-semibold text-gray-800">Total:</h3>
-                        <h3 className="text-xl font-bold text-gray-900">${price.toFixed(2)}</h3>
+                    </div >
+                ) : (
+                    <div className="text-center mt-12">
+                        <h3 className="text-2xl text-gray-500">Your cart is empty</h3>
                     </div>
+                )}
+            </div >
+        )
+    }
 
-                    <div className="relative space-y-8 border-2 border-gray-300 p-4 rounded-lg">
-                        <CardElement options={{
-                            style: {
-                                base: {
-                                    fontSize: "20px",
-                                    color: "#333",
-                                    "::placeholder": {
-                                        color: "#bbb",
-                                    },
-
-                                    padding: "12px",
-                                    backgroundColor: "#f7f7f7",
-
-                                },
-                                invalid: {
-                                    color: "#e53e3e",
-                                    iconColor: "#e53e3e",
-                                },
-                            },
-                        }} />
-                        <button onClick={handelOnClick} className="w-full bg-black text-white text-lg font-medium py-3 rounded-lg hover:bg-gray-900 transition-all">
-                            PAY
-                        </button>
-                    </div>
-
-                </div >
-            ) : (
-                <div className="text-center mt-12">
-                    <h3 className="text-2xl text-gray-500">Your cart is empty</h3>
-                </div>
-            )}
-        </div >
-    )
-}
-
-export default CartComponent;
+    export default CartComponent;

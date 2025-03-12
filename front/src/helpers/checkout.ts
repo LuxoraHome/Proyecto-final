@@ -12,6 +12,11 @@ export const userCheckout = async (orderData: ICheckout) => {
         });
 
         if (response.ok) {
+            Swal.fire({
+                icon: "success",
+                title: "Checkout Successful",
+                text: "Your order has been placed successfully."
+            });
             return response.json();
         }
 
