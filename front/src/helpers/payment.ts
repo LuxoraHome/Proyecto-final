@@ -7,8 +7,9 @@ const APIURL = process.env.NEXT_PUBLIC_API_URL
 
 
 
-interface IUserpay {
-    ammount: number;
+export interface IUserpay {
+    amount: number;
+    currency : string ,
 }
 
 
@@ -17,10 +18,10 @@ interface IUserpay {
 export const createOrder = async (userPay: IUserpay) => {
 
     try {
-        const response = await fetch(`${APIURL}`, {
+        const response = await fetch(`${APIURL}/payments/intent`, {
             method: "POST",
             headers: { "Content:type": "application/json" },
-            body: JSON.stringify(userPay.ammount * 100)
+            body: JSON.stringify(userPay.amount * 100)
         })
 
         const data = await response.json()
