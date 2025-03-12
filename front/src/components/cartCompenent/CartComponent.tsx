@@ -7,7 +7,9 @@ import { userCheckout } from "@/helpers/checkout"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/context/AuthContext"
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
+import Swal from "sweetalert2";
 import { createOrder, IUserpay } from "@/helpers/payment"
+
 
 export const CartComponent: React.FC = () => {
 
@@ -62,40 +64,98 @@ export const CartComponent: React.FC = () => {
             alert("Checkout Fail")
         }
 
-        const userPay: IUserpay = {
-            amount: price * 100,
-            currency: "USD",
+
+        if (!stripe || !elements) {
+            Swal.fire({
+                icon: "error",
+                title: "Error de Pago",
+                text: "Stripe no está disponible. Intenta recargar la página.",
+            });
+            return
         }
+
+
+        const { paymentMethod, error } = await stripe?.createPaymentMethod({
+            type: "card",
+            card: elements?.getElement(CardElement)!,
+        })
+
+        if (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Error al Crear el Método de Pago",
+                text: error.message,
+            });
+            return;
+        }
+
+        const userPay: IUserpay = {
+            amount: price,
+            currency: "USD",
+            paymentMethodId: paymentMethod.id,
+        }
+
+
 
         const clientSecret = await createOrder(userPay)
         if (!clientSecret) {
-            alert("Error al crear la orden de pago")
-            return
+            Swal.fire({
+                icon: "error",
+                title: "Payment Error",
+                text: "Client secret is missing. Please try again.",
+            });
+            return;
+
         }
-
-        if (!stripe || !elements) {
-            console.log(`stripe o elements no estan disponibles`);
-            return
-        }
-
-
-        
 
 
         const result = await stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-                card: elements.getElement(CardElement)!,
-            }
+            payment_method: paymentMethod.id
+
         })
 
         if (result.error) {
-            alert(`Error en el pago: ${result.error.message}`);
+            Swal.fire({
+                icon: "error",
+                title: "Payment Failed",
+                text: result.error.message,
+            });
+
         } else if (result.paymentIntent?.status === "succeeded") {
-            alert("Pago exitoso!");
+            Swal.fire({
+                icon: "success",
+                title: "Payment Successful",
+                text: "Your order has been placed successfully."
+            });
         }
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return (
         <div className="max-w-3xl mx-auto p-6">
