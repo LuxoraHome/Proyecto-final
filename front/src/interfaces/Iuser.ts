@@ -1,13 +1,13 @@
 export interface IUserRegister {
-    name: string,
+    name?: string,
     uid? : string,
-    email: string,
-    password: string,
-    confirmPassword: string,
-    address: string,
-    phone: string,
-    city: string,
-    country: string,
+    email?: string,
+    password?: string,
+    confirmPassword?: string,
+    address?: string,
+    phone?: string,
+    city?: string,
+    country?: string,
 
 }
 

@@ -10,12 +10,9 @@ import { useAuth } from "@/context/AuthContext"
 export const CartComponent: React.FC = () => {
 
     const { user } = useAuth()
-
     const router = useRouter()
-
     const [cart, setCart] = useState<iProducts[]>([])
     const [price, setPrice] = useState<number>(0)
-
 
     useEffect(() => {
         const products: iProducts[] = JSON.parse(localStorage.getItem("cart") || "[]")
@@ -35,7 +32,6 @@ export const CartComponent: React.FC = () => {
     }
 
     const handelOnClick = async () => {
-
         if (!user?.uid) {
             router.push("/login")
             return
@@ -46,7 +42,6 @@ export const CartComponent: React.FC = () => {
             quantity: 1,
         }))
 
-
         const ordenData: ICheckout = {
             uid: user.uid,
             orderDetails: orderDetail,
@@ -54,21 +49,12 @@ export const CartComponent: React.FC = () => {
   
        const response = await userCheckout(ordenData)
        if (response) {
-        setCart([])
-        localStorage.removeItem("cart")
-        
+            setCart([])
+            localStorage.removeItem("cart") //Saque la alerta ya que esta en la funcion userCheckout.
        }
-        else{ 
-            alert("Checkout Fail")
-        }
     }
 
-
-
-
-
     return (
-
         <div className="max-w-3xl mx-auto p-6">
             <h2 className="text-4xl font-semibold tracking-wide text-gray-800 mb-6">Your Cart</h2>
 
@@ -93,12 +79,10 @@ export const CartComponent: React.FC = () => {
                         </div>
                     ))}
 
-
                     <div className="flex justify-between items-center mt-6 p-4 bg-gray-100 rounded-lg">
                         <h3 className="text-xl font-semibold text-gray-800">Total:</h3>
                         <h3 className="text-xl font-bold text-gray-900">${price.toFixed(2)}</h3>
                     </div>
-
 
                     <button onClick={handelOnClick} className="w-full bg-black text-white text-lg font-medium py-3 rounded-lg hover:bg-gray-900 transition-all">
                         Checkout
@@ -110,11 +94,7 @@ export const CartComponent: React.FC = () => {
                 </div>
             )}
         </div>
-
-
     )
-
-
 }
 
 export default CartComponent;
