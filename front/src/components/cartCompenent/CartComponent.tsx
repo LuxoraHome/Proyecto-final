@@ -6,7 +6,7 @@ import { ICheckout, IOrderDetail } from "@/interfaces/ICheckout"
 import { userCheckout } from "@/helpers/checkout"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/context/AuthContext"
-import { CardElement } from "@stripe/react-stripe-js"
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import { createOrder, IUserpay } from "@/helpers/payment"
 
 export const CartComponent: React.FC = () => {
@@ -15,6 +15,9 @@ export const CartComponent: React.FC = () => {
     const router = useRouter()
     const [cart, setCart] = useState<iProducts[]>([])
     const [price, setPrice] = useState<number>(0)
+    const stripe = useStripe()
+    const elements = useElements()
+
 
 
     useEffect(() => {
@@ -53,21 +56,40 @@ export const CartComponent: React.FC = () => {
         if (response) {
             setCart([])
             localStorage.removeItem("cart")
-            alert("Checkout Succesful")
+
         }
         else {
             alert("Checkout Fail")
         }
 
         const userPay: IUserpay = {
-            amount: price,
+            amount: price * 100,
             currency: "USD",
         }
 
-        const order = await createOrder(userPay)
+        const clientSecret = await createOrder(userPay)
+        if (!clientSecret) {
+            alert("Error al crear la orden de pago")
+            return
+        }
 
-        console.log(`esto devuelve el back al crear la orden`, order);
+        if (!stripe || !elements) {
+            console.log(`stripe o elements no estan disponibles`);
+            return
+        }
 
+
+        const result = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: elements.getElement(CardElement)!,
+            }
+        })
+
+        if (result.error) {
+            alert(`Error en el pago: ${result.error.message}`);
+        } else if (result.paymentIntent?.status === "succeeded") {
+            alert("Pago exitoso!");
+        }
 
 
     }
