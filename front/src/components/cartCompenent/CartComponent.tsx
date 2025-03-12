@@ -128,7 +128,7 @@ export const CartComponent: React.FC = () => {
                 text: "Your order has been placed successfully."
             });
         }
-
+     
 
     }
 
