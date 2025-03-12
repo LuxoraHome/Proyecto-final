@@ -1,6 +1,6 @@
 export interface iProducts {
     id: string,
-    categoriId?: string,
+    categoryId: string,
     stock?: string,
     name?: string,
     image?: string,

@@ -10,6 +10,9 @@ import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 import { getProducts, searchProduct } from "@/helpers/getProducts";
 import { iProducts } from "@/interfaces/iProducts";
+import { ICategories } from "@/interfaces/ICategories";
+import { getCategories } from "@/helpers/categories";
+
 
 export const Navbar: React.FC = () => {
 
@@ -46,15 +49,46 @@ const [query, setQuery] = useState<string>("")
           }
           fetchProducts()
         },[])
-        useEffect(() => {
-          if(query) {
-            setFilteredProducts(searchProduct(query,products))
-          } else if(showAll) {
-            setFilteredProducts(products)
-          } else {
-            setFilteredProducts([])
-          }
-        },[query,products, showAll]);
+        
+      
+      const [categories, setCategories] = useState<ICategories[]>([])
+      const [loading, setLoading] = useState<boolean>(true);
+      const [error, setError] = useState<string | null>(null);
+      const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+      useEffect(() => {
+        const loadCategories =async () => {
+          const data = await getCategories()
+          setCategories(data)
+          
+        }
+        loadCategories()
+      }, [])
+      useEffect(() => {
+        let filtered = products;
+      
+        if (selectedCategory) {
+          filtered = filtered.filter(
+            (product) => product.category.id === selectedCategory
+          );
+        }
+      
+        if (query) {
+          filtered = searchProduct(query, filtered);
+        }
+      
+        if (showAll) {
+          setFilteredProducts(products);
+        } else {
+          setFilteredProducts(filtered);
+        }
+      }, [query, products, showAll, selectedCategory]);
+      console.log(selectedCategory);
+      useEffect(() => {
+        console.log(filteredProducts);
+        
+      },[filteredProducts])
+      
 
 
   return (
@@ -78,7 +112,10 @@ const [query, setQuery] = useState<string>("")
         />
         <ul className="absolute mt-2 bg-white z-50 rounded-lg w-80 ">
           {filteredProducts.map((products) => (
+            
+            
             <Link key={products.id} href={`/productDetail/${products.id}`}>
+              
             <li key={products.id} className="hover:bg-gray-300 cursor-pointer overflow-y-auto z-50 grid grid-cols-[auto_1fr] w-full transition-all duration-300 ease-in-out border border-gray-300">
               <img src={products.image} 
               alt=""
@@ -87,11 +124,33 @@ const [query, setQuery] = useState<string>("")
               className="object-cover" />
               
               <span className="text-left text-black font-bold">{products.name}</span> 
+              
+              <span className="text-left text-black font-bold">{products.price}</span> 
             </li>
               </Link>
+              
+              
           ))}
+          
+          
+          
         </ul>
       </div>
+      
+      
+      
+      <div>
+      <h2>Categories</h2>
+      {categories.map((category) => (
+        <button 
+        key={category.id} 
+        className={`px-4 py-2 m-1 border rounded-lg ${selectedCategory === category.id ? 'bg-gray-800 text-white' : 'bg-gray-200'}`}
+        onClick={() => setSelectedCategory(category.id)}
+      >
+        {category.name}
+      </button>
+      ))}
+    </div>
 
       {isLoggedIn ? (
         <div className="flex items-center space-x-6 text-2xl text-gray-800">
