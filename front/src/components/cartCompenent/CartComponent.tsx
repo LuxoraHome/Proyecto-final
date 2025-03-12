@@ -6,6 +6,8 @@ import { ICheckout, IOrderDetail } from "@/interfaces/ICheckout"
 import { userCheckout } from "@/helpers/checkout"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/context/AuthContext"
+import { CardElement } from "@stripe/react-stripe-js"
+import { confirmPay, createOrder } from "@/helpers/payment"
 
 export const CartComponent: React.FC = () => {
 
@@ -13,6 +15,7 @@ export const CartComponent: React.FC = () => {
     const router = useRouter()
     const [cart, setCart] = useState<iProducts[]>([])
     const [price, setPrice] = useState<number>(0)
+   
 
     useEffect(() => {
         const products: iProducts[] = JSON.parse(localStorage.getItem("cart") || "[]")
@@ -36,8 +39,12 @@ export const CartComponent: React.FC = () => {
             router.push("/login")
             return
         }
+<<<<<<< HEAD
+        const ordenDetail: IOrderDetail[] = cart.map((products) => ({
+=======
 
         const orderDetail: IOrderDetail[] = cart.map((products) => ({
+>>>>>>> developfront
             productId: products.id,
             quantity: 1,
         }))
@@ -46,12 +53,31 @@ export const CartComponent: React.FC = () => {
             uid: user.uid,
             orderDetails: orderDetail,
         }
+<<<<<<< HEAD
+
+        const response = await userCheckout(ordenData)
+        if (response) {
+            setCart([])
+            localStorage.removeItem("cart")
+            alert("Checkout Succesful")
+        }
+        else {
+            alert("Checkout Fail")
+        }
+
+        await createOrder() , 
+
+         await confirmPay(),
+=======
   
        const response = await userCheckout(ordenData)
+       console.log('Respuesta del checkout', response);
+       
        if (response) {
             setCart([])
-            localStorage.removeItem("cart") //Saque la alerta ya que esta en la funcion userCheckout.
+            localStorage.removeItem("cart") 
        }
+>>>>>>> developfront
     }
 
     return (
@@ -84,9 +110,37 @@ export const CartComponent: React.FC = () => {
                         <h3 className="text-xl font-bold text-gray-900">${price.toFixed(2)}</h3>
                     </div>
 
+<<<<<<< HEAD
+                    <div className="relative space-y-8 border-2 border-gray-300 p-4 rounded-lg">
+                        <CardElement options={{
+                            style: {
+                                base: {
+                                    fontSize: "20px",
+                                    color: "#333",
+                                    "::placeholder": {
+                                        color: "#bbb",
+                                    },
+                                 
+                                    padding: "12px",
+                                    backgroundColor: "#f7f7f7",
+                                 
+                                },
+                                invalid: {
+                                    color: "#e53e3e",
+                                    iconColor: "#e53e3e",
+                                },
+                            },
+                        }} />
+                        <button onClick={handelOnClick} className="w-full bg-black text-white text-lg font-medium py-3 rounded-lg hover:bg-gray-900 transition-all">
+                            PAY
+                        </button>
+                    </div>
+
+=======
                     <button onClick={handelOnClick} className="w-full bg-black text-white text-lg font-medium py-3 rounded-lg hover:bg-gray-900 transition-all">
                         Checkout
                     </button>
+>>>>>>> developfront
                 </div>
             ) : (
                 <div className="text-center mt-12">

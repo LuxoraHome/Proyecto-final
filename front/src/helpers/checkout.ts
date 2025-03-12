@@ -20,23 +20,13 @@ export const userCheckout = async (orderData: ICheckout) => {
             return response.json();
         }
 
-        const errorResponse = await response.json();
-        console.log("Error en la respuesta del servidor:", errorResponse);
-
+    } catch (error) {
+        console.log(`Error:`, error);
         Swal.fire({
             icon: "error",
             title: "Checkout Failed",
             text: "There was an issue processing your order. Please try again."
         });
 
-        return;
-    } catch (error) {
-        console.log(`Error:`, error);
-
-        Swal.fire({
-            icon: "error",
-            title: "Network Error",
-            text: "An unexpected error occurred. Please check your connection and try again."
-        });
     }
 };
