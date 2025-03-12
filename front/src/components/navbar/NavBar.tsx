@@ -35,6 +35,9 @@ export const Navbar: React.FC = () => {
   const [products, setProducts] = useState<iProducts[]>([])
   const [filteredProducts, setFilteredProducts] = useState<iProducts[]>([])
   const [showAll, setShowAll] = useState(false)
+
+
+
   useEffect(() => {
     const fetchProducts = async () => {
       const data = await getProducts()
@@ -43,6 +46,9 @@ export const Navbar: React.FC = () => {
     }
     fetchProducts()
   }, [])
+
+
+
   useEffect(() => {
     if (query) {
       setFilteredProducts(searchProduct(query, products))
@@ -52,6 +58,12 @@ export const Navbar: React.FC = () => {
       setFilteredProducts([])
     }
   }, [query, products, showAll]);
+
+
+
+
+
+
 
 
   return (
@@ -65,7 +77,7 @@ export const Navbar: React.FC = () => {
         <h3 className="text-gray-600 text-xl self-end mt-1">Paris</h3>
       </div>
 
-      <div className="w-full max-w-md mx-auto">
+      {user?.id ? (<div className="w-full max-w-md mx-auto">
         <input
           type="text"
           placeholder="Search..."
@@ -88,7 +100,9 @@ export const Navbar: React.FC = () => {
             </Link>
           ))}
         </ul>
-      </div>
+      </div>) : (<div></div>)}
+
+
 
       {user?.uid ? (
         <div className="flex items-center space-x-6 text-2xl text-gray-800">

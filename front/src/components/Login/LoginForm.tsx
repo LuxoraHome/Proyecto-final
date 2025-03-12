@@ -12,16 +12,12 @@ import { authProvider, googleProvider } from "@/services/Firebase"
 import { auth } from "@/services/Firebase"
 import { signInWithEmailAndPassword } from "firebase/auth"
 
-
-
 export const LoginForm = () => {
 
     const router = useRouter()
     const { setUser } = useAuth()
 
-
     const handelSubmit = async (values: IUserLogin) => {
-
         try {
             const userRegister = await signInWithEmailAndPassword(auth, values.email, values.password)
             const uid = userRegister.user.uid
@@ -31,30 +27,25 @@ export const LoginForm = () => {
             
             setUser(response)
             Cookies.set("access_uid", uid)
-            router.push("/")
+            router.push("/")  
         }
         catch (error) {
             console.log(`Aca esta el error`, error);
-
         }
     }
-
 
     const handelOnClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
         try {
             const user = await authProvider(googleProvider , setUser)
-                router.push("/")
-
+            router.push("/completeRegistration")
         } catch (error) {
             console.log(`Aca esta el error`, error);
-
         }
     }
 
     return (
         <div className="grid justify-center h-48 m-8 mb-96 mt-10 ">
-    
             <fieldset className="border border-black shadow-lg max-w-screen-md mr-auto p-8">
                 <h1 className="mt-10 text-center text-2xl font-bold tracking-tight text-gray-900 m-2">
                     Welcome to LUXORA
@@ -111,12 +102,6 @@ export const LoginForm = () => {
             </fieldset>
         </div>
     )
-    
-
-
-
-
-
 }
 
 export default LoginForm;

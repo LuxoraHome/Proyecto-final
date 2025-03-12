@@ -12,13 +12,10 @@ import { confirmPay, createOrder } from "@/helpers/payment"
 export const CartComponent: React.FC = () => {
 
     const { user } = useAuth()
-
     const router = useRouter()
-
     const [cart, setCart] = useState<iProducts[]>([])
     const [price, setPrice] = useState<number>(0)
    
-
 
     useEffect(() => {
         const products: iProducts[] = JSON.parse(localStorage.getItem("cart") || "[]")
@@ -38,20 +35,25 @@ export const CartComponent: React.FC = () => {
     }
 
     const handelOnClick = async () => {
-
         if (!user?.uid) {
             router.push("/login")
             return
         }
+<<<<<<< HEAD
         const ordenDetail: IOrderDetail[] = cart.map((products) => ({
+=======
+
+        const orderDetail: IOrderDetail[] = cart.map((products) => ({
+>>>>>>> developfront
             productId: products.id,
             quantity: 1,
         }))
 
         const ordenData: ICheckout = {
             uid: user.uid,
-            ordenDetails: ordenDetail,
+            orderDetails: orderDetail,
         }
+<<<<<<< HEAD
 
         const response = await userCheckout(ordenData)
         if (response) {
@@ -66,14 +68,19 @@ export const CartComponent: React.FC = () => {
         await createOrder() , 
 
          await confirmPay(),
+=======
+  
+       const response = await userCheckout(ordenData)
+       console.log('Respuesta del checkout', response);
+       
+       if (response) {
+            setCart([])
+            localStorage.removeItem("cart") 
+       }
+>>>>>>> developfront
     }
 
-
-
-
-
     return (
-
         <div className="max-w-3xl mx-auto p-6">
             <h2 className="text-4xl font-semibold tracking-wide text-gray-800 mb-6">Your Cart</h2>
 
@@ -98,12 +105,12 @@ export const CartComponent: React.FC = () => {
                         </div>
                     ))}
 
-
                     <div className="flex justify-between items-center mt-6 p-4 bg-gray-100 rounded-lg">
                         <h3 className="text-xl font-semibold text-gray-800">Total:</h3>
                         <h3 className="text-xl font-bold text-gray-900">${price.toFixed(2)}</h3>
                     </div>
 
+<<<<<<< HEAD
                     <div className="relative space-y-8 border-2 border-gray-300 p-4 rounded-lg">
                         <CardElement options={{
                             style: {
@@ -129,6 +136,11 @@ export const CartComponent: React.FC = () => {
                         </button>
                     </div>
 
+=======
+                    <button onClick={handelOnClick} className="w-full bg-black text-white text-lg font-medium py-3 rounded-lg hover:bg-gray-900 transition-all">
+                        Checkout
+                    </button>
+>>>>>>> developfront
                 </div>
             ) : (
                 <div className="text-center mt-12">
@@ -136,11 +148,7 @@ export const CartComponent: React.FC = () => {
                 </div>
             )}
         </div>
-
-
     )
-
-
 }
 
 export default CartComponent;
