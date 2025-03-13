@@ -27,6 +27,9 @@ export const createOrder = async (userPay: IUserpay) => {
 
         const data = await response.json()
 
+console.log("esto me devuelve el back", data);
+
+
         return data.client_secret
 
 
