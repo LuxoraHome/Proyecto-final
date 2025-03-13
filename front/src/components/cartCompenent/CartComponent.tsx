@@ -173,25 +173,27 @@ export const CartComponent: React.FC = () => {
                     </div>
 
                     <div className="relative space-y-8 border-2 border-gray-300 p-4 rounded-lg">
-                        <CardElement options={{
-                            style: {
-                                base: {
-                                    fontSize: "20px",
-                                    color: "#333",
-                                    "::placeholder": {
-                                        color: "#bbb",
+
+                        <div style={{ padding: "12px", backgroundColor: "#f7f7f7" }}>
+                            <CardElement
+                                options={{
+                                    style: {
+                                        base: {
+                                            fontSize: "20px",
+                                            color: "#333",
+                                            "::placeholder": {
+                                                color: "#bbb",
+                                            },
+                                        },
+                                        invalid: {
+                                            color: "#e53e3e",
+                                            iconColor: "#e53e3e",
+                                        },
                                     },
+                                }}
+                            />
+                        </div>
 
-                                    padding: "12px",
-                                    backgroundColor: "#f7f7f7",
-
-                                },
-                                invalid: {
-                                    color: "#e53e3e",
-                                    iconColor: "#e53e3e",
-                                },
-                            },
-                        }} />
                         <button onClick={handelOnClick} className="w-full bg-black text-white text-lg font-medium py-3 rounded-lg hover:bg-gray-900 transition-all">
                             PAY
                         </button>
