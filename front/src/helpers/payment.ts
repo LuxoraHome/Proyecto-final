@@ -1,14 +1,15 @@
 "use client"
 
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL
 
 
 
 
-interface IUserpay {
-    ammount: number;
+export interface IUserpay {
+    amount: number;
+    currency: string,
+    paymentMethodId: string,
 }
 
 
@@ -17,15 +18,16 @@ interface IUserpay {
 export const createOrder = async (userPay: IUserpay) => {
 
     try {
-        const response = await fetch(`${APIURL}`, {
+        const response = await fetch(`${APIURL}/payments/intent`, {
             method: "POST",
-            headers: { "Content:type": "application/json" },
-            body: JSON.stringify(userPay.ammount * 100)
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ amount: userPay.amount * 100, currency: userPay.currency, paymentMethodId: userPay.paymentMethodId })
         })
 
         const data = await response.json()
-        console.log(`Esto me devuelve el back al hacer la funcion` , data);
-        return data.clientSecret;
+
+        return data.client_secret
+
 
 
     } catch (error) {
