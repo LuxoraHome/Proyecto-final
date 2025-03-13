@@ -1,16 +1,12 @@
 import {
+  IsBoolean,
   IsEmail,
-  IsEmpty,
-  IsEnum,
   IsNotEmpty,
-  IsNumber,
-  IsOptional,
   IsString,
   Length,
   Matches,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { UserClient } from 'src/user/enum/userClient.enum';
 
 export class CreateAuthDto {
   @ApiProperty({
@@ -105,20 +101,6 @@ export class CreateAuthDto {
   @Length(5, 20)
   city: string;
 
-  @ApiProperty({
-    description: 'Define si el usuario es administrador',
-    default: false,
-    readOnly: true,
-  })
-  @IsEmpty()
+  @IsBoolean()
   isAdmin: boolean;
-
-  @ApiProperty({
-    description: 'Tipo de cliente (STANDARD, PREMIUM, VIP)',
-    enum: UserClient,
-    example: UserClient.STANDARD,
-  })
-  @IsEnum(UserClient)
-  @IsOptional()
-  client?: UserClient;
 }

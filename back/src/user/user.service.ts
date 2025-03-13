@@ -31,6 +31,10 @@ export class UserService {
       `Hola ${savedUser.name}, gracias por registrarte en nuestra pagina de Luxora.`,
     );
 
+    // Registro de fecha de creación
+    savedUser.createdAt = new Date();
+    await this.userRepository.save(savedUser);
+
     return savedUser;
   }
 

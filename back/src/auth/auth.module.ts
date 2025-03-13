@@ -4,6 +4,8 @@ import { AuthController } from './auth.controller';
 import { UserModule } from '../user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { MailModule } from 'src/mail/mail.module'; // se agrega el módulo de mail
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from 'src/user/entities/user.entity';
 
 @Module({
   imports: [
@@ -12,7 +14,8 @@ import { MailModule } from 'src/mail/mail.module'; // se agrega el módulo de ma
       secret: 'MY_SECRET_KEY',
       signOptions: { expiresIn: '1h' },
     }),
-    MailModule
+    MailModule,
+    TypeOrmModule.forFeature([User]),
   ],
   controllers: [AuthController],
   providers: [AuthService],

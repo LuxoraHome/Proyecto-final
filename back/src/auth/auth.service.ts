@@ -5,13 +5,19 @@ import * as bcrypt from 'bcrypt';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { Role } from './enum/roles.enum';
+import { MailService } from 'src/mail/mail.service'; // se agrega el servicio de mail
+import { Repository } from 'typeorm';
+import { User } from 'src/user/entities/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
-  ) {}
+    private readonly mailService: MailService,
+    @InjectRepository(User) private readonly userRepository: Repository<User>,
+  ) { }
 
   async signUp(CreateAuthDto: CreateAuthDto) {
     const {
@@ -52,6 +58,8 @@ export class AuthService {
       country,
       city,
       password: hashedPassword,
+      createdAt: new Date(),
+      lastLogin: new Date(),
     });
 
     return { ...newUser, password: undefined };
@@ -70,14 +78,29 @@ export class AuthService {
       userId: user.id,
       email: user.email,
       uid: user.uid,
-      roles: [user.admin ? Role.Admin : Role.User]
+      roles: [user.isAdmin ? Role.Admin : Role.User]
     };
     const access_token = await this.jwtService.signAsync(payload, {
       expiresIn: '2h',
     });
-    
-    return { 
-      access_token, 
+
+    // Enviar correo de notificación de inicio de sesión
+    await this.mailService.sendMail(
+      user.email,
+      'Inicio de sesión exitoso Luxora',
+      `Hola ${user.name}, has iniciado sesión correctamente en nuestro eCommerce Luxora.`,
+    );
+
+    // Actualiza lastLogin
+    user.lastLogin = new Date();
+    await this.userRepository.save(user);
+
+    // Incrementar el contador de inicio de sesión
+    user.loginCount += 1;
+    await this.userRepository.save(user);
+
+    return {
+      access_token,
       ...user
     };
 
