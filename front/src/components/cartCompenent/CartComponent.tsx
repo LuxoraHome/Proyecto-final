@@ -53,6 +53,8 @@ export const CartComponent: React.FC = () => {
             uid: user.uid,
             orderDetails: ordenDetail,
         }
+      
+        
 
         const response = await userCheckout(ordenData)
         if (response) {
@@ -64,8 +66,11 @@ export const CartComponent: React.FC = () => {
             alert("Checkout Fail")
         }
 
+        
+
 
         if (!stripe || !elements) {
+            
             Swal.fire({
                 icon: "error",
                 title: "Error de Pago",
@@ -73,6 +78,8 @@ export const CartComponent: React.FC = () => {
             });
             return
         }
+
+
 
 
         const { paymentMethod, error } = await stripe?.createPaymentMethod({
@@ -96,9 +103,12 @@ export const CartComponent: React.FC = () => {
         }
 
 
+        console.log("Enviado datos a stripe"    ,     ordenData) ;
 
         const clientSecret = await createOrder(userPay)
         if (!clientSecret) {
+            console.log("no se genero el clientsecret");
+            
             Swal.fire({
                 icon: "error",
                 title: "Payment Error",
@@ -107,6 +117,8 @@ export const CartComponent: React.FC = () => {
             return;
 
         }
+            console.log("client secrte generado exitosamente" , clientSecret);
+        
 
 
         const result = await stripe.confirmCardPayment(clientSecret, {
@@ -114,7 +126,12 @@ export const CartComponent: React.FC = () => {
 
         })
 
+        console.log("resultaddo de confirmaccion de pago" , result);
+        
+
         if (result.paymentIntent?.status === "succeeded") {
+            console.log("pago exitoso" , result.paymentIntent);
+            
             Swal.fire({
                 icon: "success",
                 title: "Payment Successful",
