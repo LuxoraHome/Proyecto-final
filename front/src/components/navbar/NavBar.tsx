@@ -31,6 +31,10 @@ export const Navbar: React.FC = () => {
     fetchProducts();
   }, []);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> developfront
   useEffect(() => {
     if (query) {
       setFilteredProducts(searchProduct(query, products));
