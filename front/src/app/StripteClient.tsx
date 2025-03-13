@@ -6,9 +6,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import React from "react";
 
-const API_PUBLIC = process.env.NEXT_PUBLIC_PUBLIC_KEY;
 
-const stripePromise = loadStripe(`${API_PUBLIC}`);
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
 
 interface IStripe {

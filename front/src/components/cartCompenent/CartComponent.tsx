@@ -94,29 +94,28 @@ return
             currency: "USD",
             paymentMethodId: paymentMethod.id,
         }
-        console.log("enviando datos a stripe", userPay);
+       
 
 
 
         const clientSecret = await createOrder(userPay)
-
+      
         if (!clientSecret) {
-            console.error("❌ No se generó el client_secret. Stripe rechazó la solicitud.");
             Swal.fire({
                 icon: "error",
-                title: "Payment Error",
-                text: "Client secret is missing. Please try again.",
+                title: "Error de Pago",
+                text: "No se pudo crear la orden de pago. Intente nuevamente.",
             });
-       
+            return
 
         }
-        console.log("✅ Client Secret recibido:", clientSecret);
+        
 
         const result = await stripe.confirmCardPayment(clientSecret, {
-            payment_method: paymentMethod.id
+            payment_method:paymentMethod.id
         })
 
-        console.log("✅ Resultado de confirmación:", result);
+      
 
         if (result.paymentIntent?.status === "succeeded") {
             console.log("🎉 Pago exitoso:", result.paymentIntent);
@@ -130,7 +129,7 @@ return
 
 
         else if (result.error) {
-            console.error("❌ Error en confirmCardPayment:", result.error)
+            console.error(" Error en confirmCardPayment:", result.error)
             Swal.fire({
                 icon: "error",
                 title: "Payment Failed",
