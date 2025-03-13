@@ -7,7 +7,14 @@ export class StripeController {
     constructor(private readonly stripeService: StripeService) { }
 
     @Post('intent')
-    async intent(@Body() body: { amount: number; currency: string }) {
-        return this.stripeService.intent(body.amount, body.currency);
+    async intent(@Body() body: { amount: number; currency: string; paymentMethodId: string  }) {
+        return this.stripeService.intent(body.amount, body.currency, body.paymentMethodId);
+    }
+
+    @Post('confirm')
+    async confirm(@Body() body: { payIntentId: string }) {
+        return this.stripeService.confirm(body.payIntentId);
+
+
     }
 }
