@@ -3,7 +3,7 @@
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL
 
-
+console.log(process.env.NEXT_PUBLIC_API_URL);
 
 
 export interface IUserpay {
@@ -13,23 +13,18 @@ export interface IUserpay {
 }
 
 
-
-
 export const createOrder = async (userPay: IUserpay) => {
 
     try {
-        const response = await fetch(`${APIURL}/payments/intents`
-            , {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ amount: userPay.amount * 100, currency: userPay.currency, paymentMethodId: userPay.paymentMethodId })
-            })
+        const response = await fetch(`${APIURL}/payments/intent`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ amount: userPay.amount * 100, currency: userPay.currency, paymentMethodId: userPay.paymentMethodId })
+        })
+
 
         const data = await response.json()
-
-console.log("esto me devuelve el back", data);
-
-
+        console.log("esto me devuelve el back al crear la orden", data);
         return data.client_secret
 
 
@@ -41,4 +36,4 @@ console.log("esto me devuelve el back", data);
     }
 
 
-}
+}  

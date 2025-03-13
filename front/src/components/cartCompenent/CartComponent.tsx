@@ -86,7 +86,7 @@ export const CartComponent: React.FC = () => {
                 title: "Fail Payment",
                 text: error.message,
             });
-            return;
+return
         }
 
         const userPay: IUserpay = {
@@ -107,15 +107,15 @@ export const CartComponent: React.FC = () => {
                 title: "Payment Error",
                 text: "Client secret is missing. Please try again.",
             });
-            return;
+       
 
         }
         console.log("✅ Client Secret recibido:", clientSecret);
 
         const result = await stripe.confirmCardPayment(clientSecret, {
             payment_method: paymentMethod.id
-
         })
+
         console.log("✅ Resultado de confirmación:", result);
 
         if (result.paymentIntent?.status === "succeeded") {
@@ -125,7 +125,7 @@ export const CartComponent: React.FC = () => {
                 title: "Payment Successful",
                 text: "Your order has been placed successfully."
             });
-            return
+          
         }
 
 
@@ -136,7 +136,7 @@ export const CartComponent: React.FC = () => {
                 title: "Payment Failed",
                 text: result.error.message,
             });
-            return
+      
 
         }
     }
