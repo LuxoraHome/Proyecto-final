@@ -8,7 +8,7 @@ export interface IUserRegister {
     phone?: string,
     city?: string,
     country?: string,
-
+    admin?: boolean,
 }
 
 
@@ -33,6 +33,8 @@ export interface IUserBack {
     phone?: string,
     city?: string,
     country?: string,
+    admin?: boolean,
+    client?: "standard" | "premium"
 
 }
 

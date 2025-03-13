@@ -10,6 +10,7 @@ import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 import { getProducts, searchProduct } from "@/helpers/getProducts";
 import { iProducts } from "@/interfaces/iProducts";
+import AdminProfile from "@/views/AdminProfile";
 
 export const Navbar: React.FC = () => {
   const router = useRouter();
@@ -22,7 +23,6 @@ export const Navbar: React.FC = () => {
   const [showAll, setShowAll] = useState(false);
   const searchBarRef = useRef<HTMLDivElement>(null);
 
-  // Obtener productos al cargar la página
   useEffect(() => {
     const fetchProducts = async () => {
       const data = await getProducts();
@@ -31,7 +31,6 @@ export const Navbar: React.FC = () => {
     fetchProducts();
   }, []);
 
-  // Filtrar productos según la búsqueda
   useEffect(() => {
     if (query) {
       setFilteredProducts(searchProduct(query, products));
@@ -42,13 +41,11 @@ export const Navbar: React.FC = () => {
     }
   }, [query, products, showAll]);
 
-  // Limpiar búsqueda al cambiar de ruta
   useEffect(() => {
     setQuery("");
     setFilteredProducts([]);
   }, [pathname]);
 
-  // Cerrar el SearchBar al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (searchBarRef.current && !searchBarRef.current.contains(event.target as Node)) {
@@ -72,7 +69,6 @@ export const Navbar: React.FC = () => {
 
   return (
     <nav className="bg-white flex items-center justify-between px-6 py-4 border-b border-black">
-
       <div className="flex flex-col items-start">
         <Link href="/">
           <h1 className="text-4xl font-semibold font-mono tracking-wide">LUXORA</h1>
@@ -93,10 +89,7 @@ export const Navbar: React.FC = () => {
           {filteredProducts.length > 0 && (
             <ul className="absolute mt-2 bg-transparent z-50 w-80 flex flex-col gap-2">
               {filteredProducts.map((product) => (
-                <Link
-                  key={product.id}
-                  href={`/productDetail/${product.id}`}
-                >
+                <Link key={product.id} href={`/productDetail/${product.id}`}>
                   <li className="cursor-pointer overflow-hidden z-50 flex items-center gap-4 transition-all duration-300 ease-in-out p-2 bg-white/80 shadow-md rounded-lg">
                     <img
                       src={product.image}
@@ -114,17 +107,30 @@ export const Navbar: React.FC = () => {
         </div>
       )}
 
-
       {user?.uid ? (
         <div className="flex items-center space-x-6 text-2xl text-gray-800">
           <Link href="/cart" className="flex items-center space-x-2">
             <PiShoppingBag />
             <span className="text-sm">Cart</span>
           </Link>
-          <Link href="/profile" className="flex items-center space-x-2">
-            <FaRegUserCircle />
-            <span className="text-sm">Profile</span>
-          </Link>
+
+          {/* Renderizado condicional según si el usuario es administrador o no */}
+          {user.admin ? (
+            <div className="flex items-center space-x-4">
+              <AdminProfile />
+              <Link href="/adminDashboard" className="flex items-center space-x-2">
+                <FaRegUserCircle />
+                <span className="text-sm">Admin Panel</span>
+              </Link>
+            </div>
+          ) : (
+            <Link href="/profile" className="flex items-center space-x-2">
+              <FaRegUserCircle />
+              <span className="text-sm">Profile</span>
+            </Link>
+          )}
+
+
           <button onClick={handleLogOut} className="flex items-center space-x-2">
             <IoLogOutOutline />
             <span className="text-sm">Log Out</span>
