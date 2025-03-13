@@ -65,7 +65,7 @@ export class DashboardService {
         .createQueryBuilder('orderdetails')
         .select('product.name', 'productName')
         .addSelect('product.id', 'productId')
-        .addSelect('COUNT(orderdetails.product_id)', 'totalSold')
+        .addSelect('SUM(orderdetails.quantity)', 'totalSold')
         .leftJoin('orderdetails.product', 'product')
         .groupBy('product.id, product.name')
         .orderBy('"totalSold"', 'DESC')

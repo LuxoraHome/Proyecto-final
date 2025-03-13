@@ -6,8 +6,7 @@ import { ProductsSeed } from './seeds/products/products.seeds';
 import { loggerGlobal } from './middleware/logger.middleware';
 import { CategoriesSeed } from './seeds/categories/categories.seeds';
 import { ValidationPipe } from '@nestjs/common';
-import { OrderSeed } from './seeds/orders/order.seeds';
-
+import { OrderDetailSeed } from './seeds/order_details/order_details.seeds';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -43,8 +42,8 @@ async function bootstrap() {
   await productsSeed.createSeedProduct();
   console.log('*** LA INSERCION DE PRODUCTOS FUE EXITOSA ***');
 
-  const orderSeed = app.get(OrderSeed);
-  await orderSeed.createSeedOrder();
+  const orderDetailsSeed = app.get(OrderDetailSeed);
+  await orderDetailsSeed.orderDetailSeed();
   console.log('*** LA INSERCION DE ORDENES FUE EXITOSA ***');
 
   await app.listen(process.env.PORT ?? 3000);
