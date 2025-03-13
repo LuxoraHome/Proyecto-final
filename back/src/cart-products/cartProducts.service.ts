@@ -10,7 +10,7 @@ import { Repository } from 'typeorm';
 import { CartProducts } from './carProducts.entity';
 import { ProductService } from 'src/product/product.service';
 import { ShoppingCartService } from 'src/shopping-cart/shopping-cart.service';
-import { CartProductDto } from 'src/shopping-cart/dto/cartProduct.dto';
+import { CartProductDto } from 'src/cart-products/card-product.dto'
 
 @Injectable()
 export class CartProductsService {

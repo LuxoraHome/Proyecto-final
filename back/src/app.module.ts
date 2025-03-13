@@ -11,12 +11,12 @@ import { OrderModule } from './order/order.module';
 import { OrderDetailsModule } from './order_details/order_details.module';
 import { CategoryModule } from './category/category.module';
 import { JwtModule } from '@nestjs/jwt';
-import { CloudinaryService } from './services/cloudinary/cloudinary.service';
 import { FileUploadModule } from './file-upload/file-upload.module';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { CartProductsModule } from './cart-products/cartProducts.module';
 import { MailModule } from './mail/mail.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { StripeModule } from './stripe/stripe.module';
 
 
 @Module({
@@ -36,6 +36,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     OrderModule,
     OrderDetailsModule,
     CategoryModule,
+    StripeModule,
     JwtModule.register({
       global: true, //para usarlo en cualquier lado
       signOptions: { expiresIn: '2h' }, //entiende el string como hora(h), minuto(m),segundo(s)

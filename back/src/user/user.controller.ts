@@ -1,14 +1,27 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  BadRequestException,
+  Put,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserSeed } from './seeder/user.seed';
+import { UserResponseDto } from './dto/user-response.dto';
 
 @Controller('user')
 export class UserController {
   constructor(
     private readonly userService: UserService,
-    private readonly userSeed: UserSeed
+    private readonly userSeed: UserSeed,
   ) {}
 
   @Post()
@@ -16,17 +29,25 @@ export class UserController {
     return await this.userService.createUser(createUserDto);
   }
 
-  @Post("seeder")
-  async seeder(){
+  @Post('seeder')
+  async seeder() {
     try {
-      return await this.userSeed.createUserSeeder()
+      return await this.userSeed.createUserSeeder();
     } catch (error) {
-      throw new BadRequestException("Error al cargar los usuarios precargados")
+      throw new BadRequestException('Error al cargar los usuarios precargados');
     }
   }
+
   @Get()
   async findAll() {
     return await this.userService.findAllUsers();
+  }
+
+  @Get('public')
+  async findAllPublic() {
+    const users = await this.userService.findAllUsers();
+    const responseUser = users.map((user) => new UserResponseDto(user));
+    return responseUser;
   }
 
   @Get(':id')
@@ -38,9 +59,9 @@ export class UserController {
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     try {
       await this.userService.updateUser(id, updateUserDto);
-      return {message: "User updated successfully", id}
+      return { message: 'User updated successfully', id };
     } catch (error) {
-      throw new BadRequestException ("Error updating user")
+      throw new BadRequestException('Error updating user');
     }
   }
 

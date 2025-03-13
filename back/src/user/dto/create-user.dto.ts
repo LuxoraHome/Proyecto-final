@@ -1,7 +1,9 @@
-import { IsDate, IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Matches, MaxLength, MinLength } from "class-validator"
+import { ApiProperty } from "@nestjs/swagger";
+import { IsBoolean, IsDate, IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Matches, MaxLength, MinLength } from "class-validator"
 // import { UserClient } from "../enum/userClient.enum"
 
 export class CreateUserDto {
+    @ApiProperty({ example: "John Doe", description: "Full name of the user" })
     @IsString()
     @MinLength(3)
     @MaxLength(80)
@@ -15,12 +17,17 @@ export class CreateUserDto {
     @IsEmail({}, { message: 'El correo electrónico debe ser válido.' })
     email: string
 
+    @ApiProperty({
+        example: "Str0ngP@ss!",
+        description: "Password with at least one uppercase, one lowercase, one number, and one special character. Length: 8-15 characters"
+    })
     @IsString()
     @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,15}$/, {
         message: 'La contraseña debe tener entre 8 y 15 caracteres, incluyendo al menos una letra minúscula, una letra mayúscula, un número y un carácter especial (!@#$%^&*).'
     })
     password: string
 
+    @ApiProperty({ example: "Str0ngP@ss!", description: "Password confirmation (optional)", required: false })
     @IsString()
     @MinLength(3, { message: 'La dirección debe tener al menos 3 caracteres.' })
     @MaxLength(80, { message: 'La dirección no puede superar los 80 caracteres.' })
@@ -29,12 +36,14 @@ export class CreateUserDto {
     @IsString({ message: 'El teléfono debe ser una cadena de texto' })
     phone: string
 
+    @ApiProperty({ example: "United States", description: "User's country (optional)", required: false })
     @IsString()
     @MinLength(5)
     @MaxLength(20)
     @IsOptional()
     country?: string;
 
+    @ApiProperty({ example: "New York", description: "User's city (optional)", required: false })
     @IsString()
     @MinLength(5)
     @MaxLength(20)
@@ -49,7 +58,8 @@ export class CreateUserDto {
     @IsDate()
     lastLogin: Date;
 
-    // @IsEnum(UserClient)
-    // @IsOptional()
-    // client?: UserClient;
+    @ApiProperty({ example: false, description: "Indicates if the user is an admin", required: false })
+    @IsBoolean()
+    @IsOptional()
+    isAdmin?: boolean;
 }
