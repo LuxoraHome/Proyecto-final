@@ -53,8 +53,6 @@ export const CartComponent: React.FC = () => {
             uid: user.uid,
             orderDetails: ordenDetail,
         }
-      
-        
 
         const response = await userCheckout(ordenData)
         if (response) {
@@ -66,11 +64,8 @@ export const CartComponent: React.FC = () => {
             alert("Checkout Fail")
         }
 
-        
-
 
         if (!stripe || !elements) {
-            
             Swal.fire({
                 icon: "error",
                 title: "Error de Pago",
@@ -78,8 +73,6 @@ export const CartComponent: React.FC = () => {
             });
             return
         }
-
-
 
 
         const { paymentMethod, error } = await stripe?.createPaymentMethod({
@@ -101,14 +94,14 @@ export const CartComponent: React.FC = () => {
             currency: "USD",
             paymentMethodId: paymentMethod.id,
         }
+        console.log("enviando datos a stripe", userPay);
 
 
-        console.log("Enviado datos a stripe"    ,     ordenData) ;
 
         const clientSecret = await createOrder(userPay)
+
         if (!clientSecret) {
-            console.log("no se genero el clientsecret");
-            
+            console.error("❌ No se generó el client_secret. Stripe rechazó la solicitud.");
             Swal.fire({
                 icon: "error",
                 title: "Payment Error",
@@ -117,21 +110,16 @@ export const CartComponent: React.FC = () => {
             return;
 
         }
-            console.log("client secrte generado exitosamente" , clientSecret);
-        
-
+        console.log("✅ Client Secret recibido:", clientSecret);
 
         const result = await stripe.confirmCardPayment(clientSecret, {
             payment_method: paymentMethod.id
 
         })
-
-        console.log("resultaddo de confirmaccion de pago" , result);
-        
+        console.log("✅ Resultado de confirmación:", result);
 
         if (result.paymentIntent?.status === "succeeded") {
-            console.log("pago exitoso" , result.paymentIntent);
-            
+            console.log("🎉 Pago exitoso:", result.paymentIntent);
             Swal.fire({
                 icon: "success",
                 title: "Payment Successful",
@@ -141,71 +129,82 @@ export const CartComponent: React.FC = () => {
         }
 
 
+        else if (result.error) {
+            console.error("❌ Error en confirmCardPayment:", result.error)
+            Swal.fire({
+                icon: "error",
+                title: "Payment Failed",
+                text: result.error.message,
+            });
+            return
+
+        }
     }
 
-        return (
-            <div className="max-w-3xl mx-auto p-6">
-                <h2 className="text-4xl font-semibold tracking-wide text-gray-800 mb-6">Your Cart</h2>
 
-                {cart.length > 0 ? (
-                    <div className="space-y-4">
-                        {cart.map((item) => (
-                            <div key={item.id} className="flex items-center justify-between p-4 border border-gray-300 rounded-lg shadow-md bg-white">
-                                <img src={item.image} alt={item.name} className="w-24 h-24 object-cover rounded-md" />
+    return (
+        <div className="max-w-3xl mx-auto p-6">
+            <h2 className="text-4xl font-semibold tracking-wide text-gray-800 mb-6">Your Cart</h2>
 
-                                <div className="flex-1 ml-4">
-                                    <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
-                                    <p className="text-gray-600">{item.product}</p>
-                                    <h3 className="text-lg font-bold text-gray-900">${item.price}</h3>
-                                </div>
+            {cart.length > 0 ? (
+                <div className="space-y-4">
+                    {cart.map((item) => (
+                        <div key={item.id} className="flex items-center justify-between p-4 border border-gray-300 rounded-lg shadow-md bg-white">
+                            <img src={item.image} alt={item.name} className="w-24 h-24 object-cover rounded-md" />
 
-                                <button
-                                    onClick={() => handelDelete(item.id)}
-                                    className="text-black font-bold text-l"
-                                >
-                                    ✖
-                                </button>
+                            <div className="flex-1 ml-4">
+                                <h3 className="text-lg font-semibold text-gray-800">{item.name}</h3>
+                                <p className="text-gray-600">{item.product}</p>
+                                <h3 className="text-lg font-bold text-gray-900">${item.price}</h3>
                             </div>
-                        ))}
 
-                        <div className="flex justify-between items-center mt-6 p-4 bg-gray-100 rounded-lg">
-                            <h3 className="text-xl font-semibold text-gray-800">Total:</h3>
-                            <h3 className="text-xl font-bold text-gray-900">${price.toFixed(2)}</h3>
-                        </div>
-
-                        <div className="relative space-y-8 border-2 border-gray-300 p-4 rounded-lg">
-                            <CardElement options={{
-                                style: {
-                                    base: {
-                                        fontSize: "20px",
-                                        color: "#333",
-                                        "::placeholder": {
-                                            color: "#bbb",
-                                        },
-
-                                        padding: "12px",
-                                        backgroundColor: "#f7f7f7",
-
-                                    },
-                                    invalid: {
-                                        color: "#e53e3e",
-                                        iconColor: "#e53e3e",
-                                    },
-                                },
-                            }} />
-                            <button onClick={handelOnClick} className="w-full bg-black text-white text-lg font-medium py-3 rounded-lg hover:bg-gray-900 transition-all">
-                                PAY
+                            <button
+                                onClick={() => handelDelete(item.id)}
+                                className="text-black font-bold text-l"
+                            >
+                                ✖
                             </button>
                         </div>
+                    ))}
 
-                    </div >
-                ) : (
-                    <div className="text-center mt-12">
-                        <h3 className="text-2xl text-gray-500">Your cart is empty</h3>
+                    <div className="flex justify-between items-center mt-6 p-4 bg-gray-100 rounded-lg">
+                        <h3 className="text-xl font-semibold text-gray-800">Total:</h3>
+                        <h3 className="text-xl font-bold text-gray-900">${price.toFixed(2)}</h3>
                     </div>
-                )}
-            </div >
-        )
-    }
 
-    export default CartComponent;
+                    <div className="relative space-y-8 border-2 border-gray-300 p-4 rounded-lg">
+                        <CardElement options={{
+                            style: {
+                                base: {
+                                    fontSize: "20px",
+                                    color: "#333",
+                                    "::placeholder": {
+                                        color: "#bbb",
+                                    },
+
+                                    padding: "12px",
+                                    backgroundColor: "#f7f7f7",
+
+                                },
+                                invalid: {
+                                    color: "#e53e3e",
+                                    iconColor: "#e53e3e",
+                                },
+                            },
+                        }} />
+                        <button onClick={handelOnClick} className="w-full bg-black text-white text-lg font-medium py-3 rounded-lg hover:bg-gray-900 transition-all">
+                            PAY
+                        </button>
+                    </div>
+
+                </div >
+            ) : (
+                <div className="text-center mt-12">
+                    <h3 className="text-2xl text-gray-500">Your cart is empty</h3>
+                </div>
+            )}
+        </div >
+    )
+}
+
+export default CartComponent;
