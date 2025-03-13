@@ -18,15 +18,15 @@ export class StripeService {
             payment_method: paymentMethodId,
             confirm: true,
             payment_method_types: ['card'],
-            // automatic_payment_methods: {
-            //     enabled: true,
-            //     allow_redirects: 'never',
-            // }
         });
     }
 
     async confirm(IntentId:string) {
         return this.stripe.paymentIntents.confirm(IntentId);
+    }
+
+    async retrievePaymentIntent(intentId: string) {
+        return this.stripe.paymentIntents.retrieve(intentId);
     }
 
 }

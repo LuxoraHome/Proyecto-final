@@ -13,7 +13,19 @@ export class StripeController {
 
     @Post('confirm')
     async confirm(@Body() body: { payIntentId: string }) {
-        return this.stripeService.confirm(body.payIntentId);
+
+        const { payIntentId } = body
+        const paymentIntent = await this.stripeService.retrievePaymentIntent(payIntentId);
+
+        if (paymentIntent.status === 'succeeded') {
+            return { success: true, message: 'Pago realizado con exito', paymentIntent };
+        }else if (paymentIntent.status === 'requires_payment_method') {
+            return { success: false, message: 'Pago fallido, intenta de nuevo', paymentIntent };
+        }else{
+            return { success: false, message: 'Pago fallido', paymentIntent };
+        }
+
+       // return this.stripeService.confirm(body.payIntentId);
 
 
     }
