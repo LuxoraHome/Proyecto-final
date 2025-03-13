@@ -10,7 +10,7 @@ import { AddToCartDto } from './dto/addtocart.dto';
 import { UpdateShoppingCartDto } from './dto/update-shopping-cart.dto';
 import { CartProducts } from 'src/cart-products/carProducts.entity';
 import { RemoveProductDto } from './dto/removeProduct.dto';
-import { CartProductDto } from './dto/cartProduct.dto';
+import { CartProductDto } from 'src/cart-products/card-product.dto';
 
 @Injectable()
 export class ShoppingCartService {
@@ -82,7 +82,7 @@ export class ShoppingCartService {
       findCartProduct.price = product.price;
       await this.cartProductsService.updateCartProductQuantity(findCartProduct, findCartProduct.quantity)
     } else {
-      const newCartProduct = await this.cartProductsService.createCartProduct({cartId: newCart.id, productId, quantity}, uid);
+      const newCartProduct = await this.cartProductsService.createCartProduct({cartId: newCart.id, productId, quantity, price: product.price}, uid);
       newCart.cartProducts.push(newCartProduct);
     }
 

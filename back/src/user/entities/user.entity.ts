@@ -38,7 +38,7 @@ export class User {
     address: string
 
     @Column({default: false})
-    isAdmin: boolean;
+    admin: boolean;
 
     @Column({type: 'enum', enum: UserClient, default: UserClient.STANDARD})
     client: UserClient;
