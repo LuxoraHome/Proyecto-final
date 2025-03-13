@@ -124,40 +124,7 @@ export const CartComponent: React.FC = () => {
         }
 
 
-        else if (result.error) {
-            Swal.fire({
-                icon: "error",
-                title: "Payment Failed",
-                text: result.error.message,
-            });
-            return
-
-        }}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
         return (
             <div className="max-w-3xl mx-auto p-6">

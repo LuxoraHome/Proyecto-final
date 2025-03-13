@@ -14,7 +14,7 @@ export const userCheckout = async (orderData: ICheckout) => {
         if (response.ok) {
             Swal.fire({
                 icon: "success",
-                title: "Checkout Successful",
+                title: "Payment Successful",
                 text: "Your order has been placed successfully."
             });
             return response.json();
