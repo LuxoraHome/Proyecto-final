@@ -24,12 +24,11 @@ export const FormCompleteRegistration: React.FC = () => {
             country: '',
             city: ''
           }}
-          validate={validateRegister} 
+          validate={validateRegister}
           onSubmit={handleSubmit}
         >
           {({ isSubmitting }) => (
             <Form className="space-y-6">
-              {/* Nombre */}
               <div className="flex flex-col">
                 <label htmlFor="name" className="text-lg text-gray-700">Name</label>
                 <Field
@@ -41,7 +40,7 @@ export const FormCompleteRegistration: React.FC = () => {
                 <ErrorMessage name="name" component="div" className="text-red-500 text-sm mt-1" />
               </div>
 
-              {/* Address */}
+
               <div className="flex flex-col">
                 <label htmlFor="address" className="text-lg text-gray-700">Address</label>
                 <Field
@@ -53,7 +52,6 @@ export const FormCompleteRegistration: React.FC = () => {
                 <ErrorMessage name="address" component="div" className="text-red-500 text-sm mt-1" />
               </div>
 
-              {/* Phone */}
               <div className="flex flex-col">
                 <label htmlFor="phone" className="text-lg text-gray-700">Phone</label>
                 <Field
@@ -65,7 +63,6 @@ export const FormCompleteRegistration: React.FC = () => {
                 <ErrorMessage name="phone" component="div" className="text-red-500 text-sm mt-1" />
               </div>
 
-              {/* Country */}
               <div className="flex flex-col">
                 <label htmlFor="country" className="text-lg text-gray-700">Country</label>
                 <Field
@@ -77,7 +74,7 @@ export const FormCompleteRegistration: React.FC = () => {
                 <ErrorMessage name="country" component="div" className="text-red-500 text-sm mt-1" />
               </div>
 
-              {/* City */}
+
               <div className="flex flex-col">
                 <label htmlFor="city" className="text-lg text-gray-700">City</label>
                 <Field
@@ -89,12 +86,11 @@ export const FormCompleteRegistration: React.FC = () => {
                 <ErrorMessage name="city" component="div" className="text-red-500 text-sm mt-1" />
               </div>
 
-              {/* Botón de enviar */}
               <div className="flex justify-center mt-6">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-gray-800 text-white py-2 px-6 text-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                  className="bg-gray-800 text-white py-2 px-6 text-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 w-full sm:w-auto"
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit'}
                 </button>
@@ -104,5 +100,5 @@ export const FormCompleteRegistration: React.FC = () => {
         </Formik>
       </div>
     </div>
-  )
+  );
 }

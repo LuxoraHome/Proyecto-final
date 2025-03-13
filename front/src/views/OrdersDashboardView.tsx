@@ -32,13 +32,17 @@ const OrdersDashboardView: React.FC = () => {
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100 p-4">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
+      <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-4xl">
         <h1 className="text-3xl font-semibold text-center mb-8 text-gray-800">Orders Dashboard</h1>
         <ul className="space-y-8">
           {orders.map((order) => (
             <li key={order.id} className="border-b border-gray-300 pb-6">
-              <div className="flex items-center space-x-6">
-                <img src={order.img} alt={`Order ${order.id}`} className="w-24 h-24 object-cover rounded-lg shadow-md" />
+              <div className="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-6">
+                <img
+                  src={order.img}
+                  alt={`Order ${order.id}`}
+                  className="w-24 h-24 object-cover rounded-lg shadow-md mb-4 sm:mb-0"
+                />
                 <div>
                   <strong className="text-xl text-gray-700">Order #{order.id}</strong>
                   <p className="text-base text-gray-500 mt-2">Customer: {order.customerName}</p>
@@ -57,7 +61,8 @@ const OrdersDashboardView: React.FC = () => {
         </ul>
       </div>
     </div>
-  )
+  );
+  
 }
 
 export default OrdersDashboardView
