@@ -1,4 +1,4 @@
 export enum UserClient {
-    STANDARD = 'standard',
-    PREMIUM = 'premium',
-  }
+  STANDARD = 'standard',
+  PREMIUM = 'premium',
+}

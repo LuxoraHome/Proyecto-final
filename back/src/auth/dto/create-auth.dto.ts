@@ -8,6 +8,11 @@ import {
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
+import { UserClient } from 'src/user/enum/userClient.enum';
+import { Role } from '../enum/roles.enum';
+import { UserStatus } from 'src/user/enum/userStatus.enum';
+
+
 export class CreateAuthDto {
   @ApiProperty({
     description: 'Nombre del usuario',
@@ -101,6 +106,37 @@ export class CreateAuthDto {
   @Length(5, 20)
   city: string;
 
+
+  
+  @ApiProperty({
+    description: 'Tipo de cliente (STANDARD, PREMIUM)',
+    enum: UserClient,
+    example: UserClient.STANDARD,
+  })
+  @IsEnum(UserClient)
+  @IsOptional()
+  client?: UserClient;
+  
+  @ApiProperty({
+    description: 'Tipo de usuario (USER, ADMIN, SUPERADMIN)',
+    enum: Role,
+    example: Role.User,
+  })
+  @IsEnum(Role)
+  @IsOptional()
+  role?: Role;
+
+  @ApiProperty({
+    description: 'Tipo de status (ACTIVE, SUSPENDED)',
+    enum: UserStatus,
+    example: UserStatus.ACTIVE,
+  })
+  @IsEnum(UserStatus)
+  @IsOptional()
+  status?: UserStatus;
+
+
   @IsBoolean()
   isAdmin: boolean;
+
 }
