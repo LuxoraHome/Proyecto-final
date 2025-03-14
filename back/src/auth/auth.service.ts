@@ -70,12 +70,12 @@ export class AuthService {
       userId: user.id,
       email: user.email,
       uid: user.uid,
-      roles: [user.admin ? Role.Admin : Role.User]
+      roles: [user.role ? Role.Admin : Role.User]
     };
     const access_token = await this.jwtService.signAsync(payload, {
       expiresIn: '2h',
     });
-    
+
     return { 
       access_token, 
       ...user

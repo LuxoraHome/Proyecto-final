@@ -10,12 +10,17 @@ import {
   Put,
   UsePipes,
   ValidationPipe,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserSeed } from './seeder/user.seed';
 import { UserResponseDto } from './dto/user-response.dto';
+import { SuperAdminGuard } from './superadmin-guard';
+import { AuthenticatedRequest } from './user-interface';
+import { JwtAuthGuard } from './Jwtauthguard';
 
 @Controller('user')
 export class UserController {
@@ -55,14 +60,15 @@ export class UserController {
     return await this.userService.findOneById(id);
   }
 
-  @Put(':id')
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    try {
-      await this.userService.updateUser(id, updateUserDto);
-      return { message: 'User updated successfully', id };
-    } catch (error) {
-      throw new BadRequestException('Error updating user');
-    }
+  @UseGuards(SuperAdminGuard, JwtAuthGuard) 
+  @Put(':userUid')
+  async updateUser(
+    @Req() req: AuthenticatedRequest, // Obtener datos del usuario autenticado
+    @Param('userUid') userUid: string,
+    @Body() updateUserDto: UpdateUserDto
+  ) {
+    const adminId = req.user.uid; // Obtener UID del usuario autenticado
+    return this.userService.updateUser(adminId, userUid, updateUserDto);
   }
 
   @Delete(':id')

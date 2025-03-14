@@ -9,10 +9,6 @@ export class ShoppingCart {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  // @OneToOne(() => User, { eager: true })
-  // @JoinColumn()
-  // user: User;
-
   @OneToOne(() => User, { eager: true })
   @JoinColumn({ name: "uid", referencedColumnName: "uid" }) 
   user: User;
