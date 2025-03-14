@@ -78,11 +78,19 @@ export class AuthService {
       userId: user.id,
       email: user.email,
       uid: user.uid,
+
+      roles: [user.role ? Role.Admin : Role.User]
+
       roles: [user.isAdmin ? Role.Admin : Role.User]
+
     };
     const access_token = await this.jwtService.signAsync(payload, {
       expiresIn: '2h',
     });
+
+
+    return { 
+      access_token, 
 
     // Enviar correo de notificación de inicio de sesión
     await this.mailService.sendMail(
@@ -101,6 +109,7 @@ export class AuthService {
 
     return {
       access_token,
+      
       ...user
     };
 
