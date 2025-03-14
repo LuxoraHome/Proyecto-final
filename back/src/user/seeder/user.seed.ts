@@ -8,26 +8,32 @@ import { userMock } from './user-mock';
 export class UserSeed {
   constructor(
     @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
-  ) {}
+    private readonly userRepository: Repository<User>
+  ) { }
 
   async createUserSeeder() {
-    const preUser = (await this.userRepository.find()).map((user) => user.name);
+    const preUser = (await this.userRepository.find()).map((user) => user.name)
 
     for (const userData of userMock) {
-      if (!preUser.some((userName) => userName === userData.name)) {
+      if (!preUser.some((userNmae) => userNmae === userData.name)) {
         const newUser = new User();
-        newUser.name = userData.name,
-        newUser.email = userData.email,
-        newUser.password = userData.password,
-        newUser.phone = userData.phone,
-        newUser.country = userData.country,
-        newUser.city = userData.city,
+        newUser.name = userData.name;
+        newUser.email = userData.email;
+        newUser.password = userData.password;
+        newUser.phone = userData.phone;
+        newUser.country = userData.country;
+        newUser.city = userData.city;
         newUser.address = userData.address;
-        await this.userRepository.save(newUser);
+        newUser.isAdmin = userData.isAdmin;
+        newUser.uid = userData.uid;
+        newUser.createdAt = userData.createdAt;
+        newUser.lastLogin = userData.lastLogin;
+        newUser.loginCount = userData.loginCount;
+        await this.userRepository.save(newUser)
       } else {
-        return 'Ya existen usuarios precargados';
+        return "Ya existen usuarios precargados"
       }
     }
   }
 }
+

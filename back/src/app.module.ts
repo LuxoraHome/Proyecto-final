@@ -11,11 +11,11 @@ import { OrderModule } from './order/order.module';
 import { OrderDetailsModule } from './order_details/order_details.module';
 import { CategoryModule } from './category/category.module';
 import { JwtModule } from '@nestjs/jwt';
-import { CloudinaryService } from './services/cloudinary/cloudinary.service';
 import { FileUploadModule } from './file-upload/file-upload.module';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { CartProductsModule } from './cart-products/cartProducts.module';
 import { MailModule } from './mail/mail.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { StripeModule } from './stripe/stripe.module';
 
 
@@ -45,7 +45,8 @@ import { StripeModule } from './stripe/stripe.module';
     FileUploadModule,
     ShoppingCartModule,
     CartProductsModule,
-    MailModule
+    MailModule,
+    DashboardModule
 
   ],
   controllers: [],

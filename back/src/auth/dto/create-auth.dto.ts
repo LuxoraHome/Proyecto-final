@@ -1,18 +1,17 @@
 import {
+  IsBoolean,
   IsEmail,
-  IsEmpty,
-  IsEnum,
   IsNotEmpty,
-  IsNumber,
-  IsOptional,
   IsString,
   Length,
   Matches,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+
 import { UserClient } from 'src/user/enum/userClient.enum';
 import { Role } from '../enum/roles.enum';
 import { UserStatus } from 'src/user/enum/userStatus.enum';
+
 
 export class CreateAuthDto {
   @ApiProperty({
@@ -107,6 +106,7 @@ export class CreateAuthDto {
   @Length(5, 20)
   city: string;
 
+
   
   @ApiProperty({
     description: 'Tipo de cliente (STANDARD, PREMIUM)',
@@ -134,5 +134,9 @@ export class CreateAuthDto {
   @IsEnum(UserStatus)
   @IsOptional()
   status?: UserStatus;
+
+
+  @IsBoolean()
+  isAdmin: boolean;
 
 }
