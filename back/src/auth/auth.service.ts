@@ -68,7 +68,10 @@ export class AuthService {
   async signIn(loginAuthDto: LoginAuthDto): Promise<{ access_token: string }> {
     const { email, password } = loginAuthDto;
 
+
     const user = await this.userService.findByEmail(email);
+
+    console.log('role ENCONTRADO:', user.role);
     if (!user) throw new BadRequestException('User not found');
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -78,13 +81,13 @@ export class AuthService {
       userId: user.id,
       email: user.email,
       uid: user.uid,
-
-      roles: [user.role ? Role.Admin : Role.User]
-
+      roles: user.role
     };
     const access_token = await this.jwtService.signAsync(payload, {
       expiresIn: '2h',
     });
+
+    console.log('TOKEN GENERADO:', access_token);
 
     // Enviar correo de notificación de inicio de sesión
     await this.mailService.sendMail(
@@ -102,7 +105,7 @@ export class AuthService {
 
     return {
       access_token,
-      
+
       ...user
     };
 
