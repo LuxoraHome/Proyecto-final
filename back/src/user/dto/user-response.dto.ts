@@ -1,5 +1,7 @@
+import { Role } from "src/auth/enum/roles.enum";
 import { User } from "../entities/user.entity";
 import { UserClient } from "../enum/userClient.enum";
+import { UserStatus } from "../enum/userStatus.enum";
 
 export class UserResponseDto {
     readonly id: string;
@@ -8,7 +10,8 @@ export class UserResponseDto {
     readonly address: string;
     readonly country?: string;
     readonly city?: string;
-    readonly admin: boolean;
+    readonly role: Role;
+    readonly status: UserStatus;
     readonly client?: UserClient;
   
     constructor(user: Partial<User>) {
@@ -18,7 +21,8 @@ export class UserResponseDto {
       this.address = user.address;
       this.country = user.country;
       this.city = user.city;
-      this.admin = user.admin;
+      this.role = user.role;
+      this.status = user.status;
       this.client = user.client;
     }
   }
