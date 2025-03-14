@@ -1,5 +1,5 @@
 import React from "react";
-import ProductRender from "./ProductsRender";
+
 
 import { iProducts } from "@/interfaces/iProducts";
 import { getProducts } from "@/helpers/getProducts";
@@ -15,8 +15,8 @@ export const ProductMap: React.FC = async () => {
 
         <div className="flex flex-wrap justify-center gap-16  h-full">
             
-            <Filter  />
-        </div>
+            <Filter products={data}/>  
+            </div>
     )
 
 
