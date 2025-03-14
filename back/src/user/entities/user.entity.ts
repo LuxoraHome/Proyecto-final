@@ -42,14 +42,11 @@ export class User {
     address: string
 
 
-    @Column({type: "enum", enum: Role, default: Role.User})
+    @Column({ type: "enum", enum: Role, default: Role.User })
     role: Role;
 
-    @Column({type: "enum", enum: UserStatus, default: UserStatus.ACTIVE})
+    @Column({ type: "enum", enum: UserStatus, default: UserStatus.ACTIVE })
     status: UserStatus;
-
-    @Column({ default: false })
-    isAdmin: boolean;
 
 
     @Column({ type: 'enum', enum: UserClient, default: UserClient.STANDARD })

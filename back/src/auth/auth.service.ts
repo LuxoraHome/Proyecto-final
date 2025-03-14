@@ -81,16 +81,10 @@ export class AuthService {
 
       roles: [user.role ? Role.Admin : Role.User]
 
-      roles: [user.isAdmin ? Role.Admin : Role.User]
-
     };
     const access_token = await this.jwtService.signAsync(payload, {
       expiresIn: '2h',
     });
-
-
-    return { 
-      access_token, 
 
     // Enviar correo de notificación de inicio de sesión
     await this.mailService.sendMail(
@@ -98,7 +92,6 @@ export class AuthService {
       'Inicio de sesión exitoso Luxora',
       `Hola ${user.name}, has iniciado sesión correctamente en nuestro eCommerce Luxora.`,
     );
-
     // Actualiza lastLogin
     user.lastLogin = new Date();
     await this.userRepository.save(user);
