@@ -1,7 +1,10 @@
 import {
   IsBoolean,
   IsEmail,
+  IsEmpty,
+  IsEnum,
   IsNotEmpty,
+  IsOptional,
   IsString,
   Length,
   Matches,
@@ -134,9 +137,5 @@ export class CreateAuthDto {
   @IsEnum(UserStatus)
   @IsOptional()
   status?: UserStatus;
-
-
-  @IsBoolean()
-  isAdmin: boolean;
 
 }

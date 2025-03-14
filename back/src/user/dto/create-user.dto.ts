@@ -2,6 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 
 import { 
     IsBoolean,
+    IsDate,
     IsEmail, 
     IsEnum, 
     IsNotEmpty, 
@@ -16,8 +17,6 @@ import {
 import { Role } from "src/auth/enum/roles.enum";
 import { UserStatus } from "../enum/userStatus.enum";
 
-import { IsBoolean, IsDate, IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Matches, MaxLength, MinLength } from "class-validator"
-// import { UserClient } from "../enum/userClient.enum"
 
 
 export class CreateUserDto {
