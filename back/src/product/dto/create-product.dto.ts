@@ -1,83 +1,76 @@
-import { ApiHideProperty, ApiProperty } from "@nestjs/swagger"
-import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID } from "class-validator"
+import { ApiProperty } from "@nestjs/swagger";
+import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID } from "class-validator";
 
 export class CreateProductDto {
-
-    @ApiHideProperty()
-    @IsUUID()
-    @IsOptional() 
-    id?: string
-
     @ApiProperty({
-        type: String,
-        description: 'The name of the product. This name is required and is generated for the user',
-        required: true
+        example: "Gaming Mouse",
+        description: "Name of the product",
+        required: true,
     })
     @IsNotEmpty()
     @IsString()
-    name: string
-
+    name: string;
 
     @ApiProperty({
-        type: String,
-        description: 'The description of the product. This description is required and is generated for the user',
-        required: true
+        example: "A high-quality gaming mouse with RGB lighting",
+        description: "Detailed description of the product",
+        required: true,
     })
     @IsNotEmpty()
     @IsString()
-    description: string
-
+    description: string;
 
     @ApiProperty({
-        type: String,
-        description: 'The type of the product. This type is required and is generated for the user',
-        required: true
+        example: "Electronics",
+        description: "Category or type of the product",
+        required: true,
     })
     @IsNotEmpty()
     @IsString()
-    type: string
-
+    type: string;
 
     @ApiProperty({
-        type: Number,
-        description: 'The price of the product. This price is required and is generated for the user',
-        required: true
+        example: 49.99,
+        description: "Price of the product in USD",
+        required: true,
     })
     @IsNotEmpty()
     @IsNumber()
-    price: number
+    price: number;
 
     @ApiProperty({
-        type: String,
-        description: 'The designer of the product. This designer is required and is generated for the user',
-        required: true
+        example: "Logitech",
+        description: "Brand or designer of the product",
+        required: true,
     })
     @IsNotEmpty()
     @IsString()
-    designer: string
-
+    designer: string;
 
     @ApiProperty({
-        type: String,
-        description: 'The image of the product. This image is required and is generated for the user',
-        required: true
+        example: "https://example.com/image.jpg",
+        description: "URL of the product image",
+        required: true,
     })
     @IsNotEmpty()
     @IsString()
-    image: string
+    image: string;
 
     @ApiProperty({
-        type: Number,
-        description: 'The stock of the product. This stock is required and is generated for the user',
-        required: true
+        example: 100,
+        description: "Available stock for the product",
+        required: true,
     })
     @IsNotEmpty()
     @IsNumber()
-    stock: number
+    stock: number;
 
-    @IsString()
+    @ApiProperty({
+        example: "550e8400-e29b-41d4-a716-446655440000",
+        description: "UUID of the category this product belongs to",
+        required: true,
+    })
     @IsNotEmpty()
     @IsUUID()
-    categoryId: string
-
+    categoryId: string;
 }
