@@ -21,6 +21,7 @@ import { UserResponseDto } from './dto/user-response.dto';
 import { SuperAdminGuard } from './superadmin-guard';
 import { AuthenticatedRequest } from './user-interface';
 import { JwtAuthGuard } from './Jwtauthguard';
+import { AuthGuard } from 'src/auth/auth.guards';
 
 @Controller('user')
 export class UserController {
@@ -60,7 +61,7 @@ export class UserController {
     return await this.userService.findOneById(id);
   }
 
-  @UseGuards(SuperAdminGuard, JwtAuthGuard) 
+  @UseGuards(AuthGuard, SuperAdminGuard, JwtAuthGuard) 
   @Put(':userUid')
   async updateUser(
     @Req() req: AuthenticatedRequest, // Obtener datos del usuario autenticado

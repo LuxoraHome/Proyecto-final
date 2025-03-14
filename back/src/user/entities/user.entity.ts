@@ -42,7 +42,7 @@ export class User {
     address: string
 
 
-    @Column({ type: "enum", enum: Role, default: Role.User })
+    @Column({ type: "enum", enum: Role, default: Role.Superadmin })
     role: Role;
 
     @Column({ type: "enum", enum: UserStatus, default: UserStatus.ACTIVE })

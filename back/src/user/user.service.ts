@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ForbiddenException,
   HttpException,
   HttpStatus,
@@ -83,7 +84,7 @@ export class UserService {
   
     return this.userRepository.save(user);
   }
-  
+
 
   async removeUser(id: string) {
     const userToDelete = await this.userRepository.findOne({ where: { id } });

@@ -7,6 +7,7 @@ import { loggerGlobal } from './middleware/logger.middleware';
 import { CategoriesSeed } from './seeds/categories/categories.seeds';
 import { ValidationPipe } from '@nestjs/common';
 import { OrderDetailSeed } from './seeds/order_details/order_details.seeds';
+import  * as dotenv  from 'dotenv';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -29,6 +30,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
+  dotenv.config();
 
   const categorySeeder = app.get(CategoriesSeed);
   await categorySeeder.seedCategories();

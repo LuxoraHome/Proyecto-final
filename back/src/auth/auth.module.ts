@@ -11,7 +11,7 @@ import { User } from 'src/user/entities/user.entity';
   imports: [
     UserModule,
     JwtModule.register({
-      secret: 'MY_SECRET_KEY',
+      secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1h' },
     }),
     MailModule,
