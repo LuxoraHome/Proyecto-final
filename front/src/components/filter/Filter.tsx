@@ -1,16 +1,18 @@
 "use client";
 
 import { ICategories } from "@/interfaces/ICategories";
+import { iProducts } from "@/interfaces/iProducts";
 
 import { useState } from "react";
 
 interface FilterProps {
   categories: ICategories[];
-  
+  products: iProducts[]
 }
 
-const Filter: React.FC<FilterProps> = ({ categories,  }) => {
+const Filter: React.FC = ({ categories, products  }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [productfilter, setProductfilter] = useState<iProducts[]>([])
     
   
 

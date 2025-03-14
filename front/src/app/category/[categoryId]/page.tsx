@@ -2,14 +2,18 @@ import ProductRender from '@/components/products/ProductsRender'
 import { getProductsbyCategories } from '@/helpers/categories'
 import React from 'react'
 
-const page = async ({
+const category = async ({
     params, 
 }: {
     params: Promise<{categoryId: string}>}) => {
-    const category = params.categoryId
+    const category = (await params).categoryId
     const products =await getProductsbyCategories(category)
+
+    console.log("products", products);
+    
   return (
     <div className="flex flex-wrap justify-center gap-16 h-full">
+        hola
             {products?.map((product) => (
                 <ProductRender key={product.id} products={product} />
             ))}
@@ -17,4 +21,4 @@ const page = async ({
   )
 }
 
-export default page
+export default category
