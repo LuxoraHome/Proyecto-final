@@ -17,6 +17,7 @@ import { CartProductsModule } from './cart-products/cartProducts.module';
 import { MailModule } from './mail/mail.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { StripeModule } from './stripe/stripe.module';
+import { OfferModule } from './offer/offer.module';
 
 
 @Module({
@@ -46,7 +47,8 @@ import { StripeModule } from './stripe/stripe.module';
     ShoppingCartModule,
     CartProductsModule,
     MailModule,
-    DashboardModule
+    DashboardModule,
+    OfferModule
 
   ],
   controllers: [],
