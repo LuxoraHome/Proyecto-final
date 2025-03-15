@@ -7,7 +7,7 @@ export const productsMock = [
         "designer": "Sacha Lakic",
         "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/bubble2_orsetto_c3-4p_pers1_test?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=236,236,231",
         "stock": 10,
-        "category": 'Sofas & Sofa beds'
+        "categoryName": 'Sofas Sofa Beds'
     },
     {
         "name": "BAMBOO MOOD",
@@ -17,7 +17,7 @@ export const productsMock = [
         "designer": "Jiang Qiong Er",
         "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/Bamboo-Mood_C3-4P_L250_Bamboo_24RB1_Face_V5?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=RevP&color=240,240,240&obj=RevS&color=220,216,211",
         "stock": 10,
-        "category": 'Sofas & Sofa beds'
+        "categoryName": 'Sofas Sofa Beds'
     },
     {
         "name": "FOLK",
@@ -27,7 +27,7 @@ export const productsMock = [
         "designer": "Stefan Heiliger",
         "image": "https://media.roche-bobois.com/is/image/rochebobois/Folk_fauteuil_pers?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "category": 'Armchairs'
+        "categoryName": 'Armchairs'
     },
     {
         "name": "MORSA",
@@ -37,7 +37,7 @@ export const productsMock = [
         "designer": "Rafael Navot",
         "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/Walrus_Fauteuil_Plana_refonte_pers?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=RevP&color=181,165,155",
         "stock": 10,
-        "category": 'Armchairs'
+        "categoryName": 'Armchairs'
     },
     {
         "name": "CESTELLO",
@@ -47,7 +47,7 @@ export const productsMock = [
         "designer": "Gabriel Fedele",
         "image": "https://media.roche-bobois.com/is/image/rochebobois/Cestello_tb_D114_verre_clair_02?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "category": 'Cocktail Tables'
+        "categoryName": 'Cocktail Tables'
     },
     {
         "name": "SHARK",
@@ -57,7 +57,7 @@ export const productsMock = [
         "designer": "Juam Studio",
         "image": "https://media.roche-bobois.com/is/image/rochebobois/Shark_TB_01_f11?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "category": 'Cocktail Tables'
+        "categoryName": 'Cocktail Tables'
     },
     {
         "name": "PIXL",
@@ -67,7 +67,7 @@ export const productsMock = [
         "designer": "Fabrice Berrux",
         "image": "https://media.roche-bobois.com/is/image/rochebobois/Pixl-bronze-bois-LISTE_v2?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "category": 'Bookcases and Cabinets'
+        "categoryName": 'Bookcases and Cabinets'
     },
     {
         "name": "CELTA",
@@ -77,7 +77,7 @@ export const productsMock = [
         "designer": "Sacha Lakic",
         "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/celta_bibliotheque_PM_L150_noyer_caramel_face_24RB1?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=finition&color=138,89,58",
         "stock": 10,
-        "category": 'Bookcases and Cabinets'
+        "categoryName": 'Bookcases and Cabinets'
     },
     {
         "name": "IVRESSE",
@@ -87,7 +87,7 @@ export const productsMock = [
         "designer": "Roberto Tapinassi y Maurizio Manzoni",
         "image": "https://media.roche-bobois.com/is/image/rochebobois/2018-03-13_10-54-59_Ivresse_Table_repas_ronde_01?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "category": 'Tables'
+        "categoryName": 'Tables'
     },
     {
         "name": "JANE",
@@ -97,7 +97,7 @@ export const productsMock = [
         "designer": "Delcourt Christophe",
         "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/Jane-210-naturelle-pers1?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=186,169,152",
         "stock": 10,
-        "category": 'Tables'
+        "categoryName": 'Tables'
     },
     {
         "name": "AVA",
@@ -107,7 +107,7 @@ export const productsMock = [
         "designer": "Canción Wen Zhong",
         "image": "https://media.roche-bobois.com/is/image/rochebobois/2018-01-03_16-12-57_Ava-emeraude-liste?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "category": 'Chairs Stools Benches'
+        "categoryName": 'Chairs Stools Benches'
     },
     {
         "name": "PULP",
@@ -117,7 +117,7 @@ export const productsMock = [
         "designer": "Eugeni Quitllet",
         "image": "https://media.roche-bobois.com/is/image/rochebobois/Pulp_Brdg_piet_frene_tissu_grain_Pers?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "category": 'Chairs Stools Benches'
+        "categoryName": 'Chairs Stools Benches'
     },
     {
         "name": "GLOBO",
@@ -127,7 +127,7 @@ export const productsMock = [
         "designer": "Studio Roche Bobois",
         "image": "https://media.roche-bobois.com/is/image/rochebobois/Globo_vaisselier_01?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "category": 'Dining Room Storage'
+        "categoryName": 'Dining Room Storage'
     },
     {
         "name": "LIFT",
@@ -137,7 +137,7 @@ export const productsMock = [
         "designer": "Sacha Lakic",
         "image": "https://media.roche-bobois.com/is/image/rochebobois/Lift_bois_cln_face_1?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "category": 'Dining Room Storage'
+        "categoryName": 'Dining Room Storage'
     },
     {
         "name": "RIO IPANEMA",
@@ -147,7 +147,7 @@ export const productsMock = [
         "designer": "Bruno Moinard",
         "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/Rio_Ipanema_Br_Face?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=RevP&color=229,216,191",
         "stock": 10,
-        "category": 'Desks'
+        "categoryName": 'Desks'
     },
     {
         "name": "MELT",
@@ -157,7 +157,7 @@ export const productsMock = [
         "designer": "Cédric Ragot",
         "image": "https://media.roche-bobois.com/is/image/rochebobois/MELT_bureau_O19_face1?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "category": 'Desks'
+        "categoryName": 'Desks'
     },
     {
         "name": "CEO",
@@ -167,7 +167,7 @@ export const productsMock = [
         "designer": "Sacha Lakic",
         "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/fauteuil_ceo_orsetto_pers1?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=58,58,59&obj=revs&color=58,58,59",
         "stock": 10,
-        "category": 'Office Chairs'
+        "categoryName": 'Office Chairs'
     },
     {
         "name": "PULP",
@@ -177,7 +177,7 @@ export const productsMock = [
         "designer": "Eugeni Quitllet",
         "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/pulp_fauteuil_visiteur_pers1?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=224,222,214",
         "stock": 10,
-        "category": 'Office Chairs'
+        "categoryName": 'Office Chairs'
     },
     {
         "name": "BUBBLE",
@@ -187,7 +187,7 @@ export const productsMock = [
         "designer": "Sacha Lakic",
         "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/bubble_lit_front?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=236,236,231",
         "stock": 10,
-        "category": 'Beds'
+        "categoryName": 'Beds'
     },
     {
         "name": "MANGROVE",
@@ -197,7 +197,7 @@ export const productsMock = [
         "designer": "Marco Fumagalli",
         "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/mangrove_armoire_pers1_2016(2)?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=239,238,238&obj=revs&color=191,180,163",
         "stock": 10,
-        "category": 'Wardrobes'
+        "categoryName": 'Wardrobes'
     },
     {
         "name": "TRACE",
@@ -207,7 +207,7 @@ export const productsMock = [
         "designer": "Florencia Bourel",
         "image": "https://media.roche-bobois.com/is/image/rochebobois/Trace_Tapis_Top?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "category": 'Rugs'
+        "categoryName": 'Rugs'
     },
 
 ]

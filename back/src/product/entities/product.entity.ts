@@ -1,13 +1,10 @@
-import { ApiProperty } from "@nestjs/swagger"
 import { Category } from "src/category/entities/category.entity";
+import { Offer } from "src/offer/entities/offer.entity";
 import { OrderDetail } from "src/order_details/entities/order_detail.entity"
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
-import { v4 as uuid } from 'uuid'
 
-
-
-@Entity({ 
-    name: 'products' 
+@Entity({
+    name: 'products'
 })
 export class Product {
     @PrimaryGeneratedColumn("uuid")
@@ -43,5 +40,9 @@ export class Product {
 
     @ManyToOne(() => Category, (category) => category.products, { nullable: true, eager: true })
     category: Category
+
+    // Relacion con tabla offer
+    @OneToMany(() => Offer, (offer) => offer.product)
+    offers: Offer[];
 }
 

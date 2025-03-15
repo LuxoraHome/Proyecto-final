@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, Query, NotFoundException } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
@@ -26,6 +26,19 @@ export class CategoryController {
   @Get()
   findAll() {
     return this.categoryService.findAll();
+  }
+
+  @Get('filter')
+  async filterByTypeAndColor(
+    @Query('name') name?: string,
+    @Query('type') type?: string,
+    @Query('color') color?: string,
+  ) {
+    try {
+      return await this.categoryService.filterByTypeAndColor(name, type, color);
+    } catch (error) {
+      throw new NotFoundException(error.message);
+    }
   }
 
   @Get(':id')

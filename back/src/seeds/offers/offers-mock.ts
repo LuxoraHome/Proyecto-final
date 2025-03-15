@@ -1,0 +1,128 @@
+export const offersMock = [
+    {
+        productName: "BUBBLE 2",
+        discountPriceProduct: 20,
+        startOfferDate: new Date(Date.now() - 16 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "BAMBOO MOOD",
+        discountPriceProduct: 10,
+        startOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "FOLK",
+        discountPriceProduct: 15,
+        startOfferDate: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "MORSA",
+        discountPriceProduct: 30,
+        startOfferDate: new Date(Date.now() - 16 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "CESTELLO",
+        discountPriceProduct: 25,
+        startOfferDate: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "SHARK",
+        discountPriceProduct: 23,
+        startOfferDate: new Date(Date.now() - 26 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "PIXL",
+        discountPriceProduct: 5,
+        startOfferDate: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "CELTA",
+        discountPriceProduct: 15,
+        startOfferDate: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "IVRESSE",
+        discountPriceProduct: 20,
+        startOfferDate: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "JANE",
+        discountPriceProduct: 10,
+        startOfferDate: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "AVA",
+        discountPriceProduct: 15,
+        startOfferDate: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "PULP",
+        discountPriceProduct: 10,
+        startOfferDate: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "GLOBO",
+        discountPriceProduct: 15,
+        startOfferDate: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "LIFT",
+        discountPriceProduct: 25,
+        startOfferDate: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "RIO IPANEMA",
+        discountPriceProduct: 20,
+        startOfferDate: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "MELT",
+        discountPriceProduct: 15,
+        startOfferDate: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "CEO",
+        discountPriceProduct: 20,
+        startOfferDate: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "PULP",
+        discountPriceProduct: 10,
+        startOfferDate: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "BUBBLE",
+        discountPriceProduct: 15,
+        startOfferDate: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "MANGROVE",
+        discountPriceProduct: 25,
+        startOfferDate: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    },
+    {
+        productName: "TRACE",
+        discountPriceProduct: 20,
+        startOfferDate: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000),
+        endOfferDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    }
+]

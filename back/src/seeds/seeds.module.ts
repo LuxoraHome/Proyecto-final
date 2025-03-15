@@ -8,6 +8,8 @@ import { Order } from "src/order/entities/order.entity";
 import { OrderDetail } from "src/order_details/entities/order_detail.entity";
 import { User } from "src/user/entities/user.entity";
 import { OrderDetailSeed } from "./order_details/order_details.seeds";
+import { OfferSeed } from "./offers/offers.seeds";
+import { Offer } from "src/offer/entities/offer.entity";
 
 @Module({
     imports: [TypeOrmModule.forFeature([
@@ -15,17 +17,20 @@ import { OrderDetailSeed } from "./order_details/order_details.seeds";
         Product,
         Order,
         OrderDetail,
-        User
+        User,
+        Offer
     ])],
     providers: [
         CategoriesSeed,
         ProductsSeed,
-        OrderDetailSeed
+        OrderDetailSeed,
+        OfferSeed
     ],
     exports: [
         CategoriesSeed,
         ProductsSeed,
-        OrderDetailSeed
+        OrderDetailSeed,
+        OfferSeed
     ]
 })
 

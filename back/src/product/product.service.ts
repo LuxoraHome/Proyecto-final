@@ -15,7 +15,7 @@ export class ProductService {
     private readonly productRepository: Repository<Product>,
     private readonly categoryService: CategoryService,
     private readonly fileUploadService: FileUploadService
-  ) {}
+  ) { }
 
   async createProduct(createProductDto: CreateProductDto): Promise<Product> {
     const { categoryId, ...productData } = createProductDto;
@@ -66,27 +66,26 @@ export class ProductService {
 
   async removeProduct(id: string): Promise<{ message: string; }> {
     const product = await this.productRepository.findOne({ where: { id } });
-  
+
     if (!product) {
       throw new NotFoundException(`Product with ID ${id} not found`);
     }
-  
+
     await this.productRepository.delete(id);
-    
-    return { message: `Product has been deleted successfully`};
+
+    return { message: `Product has been deleted successfully` };
   }
-  
 
-//   async fileUpload(id: string, file: FileUploadDto){
-//     const url = await this.fileUploadService.createFileUpload({
-//         fieldname: file.fieldname,
-//         originalname: file.originalname,
-//         mimetype: file.mimetype,
-//         size: file.size,
-//         buffer: file.buffer
-//     })
+  //   async fileUpload(id: string, file: FileUploadDto){
+  //     const url = await this.fileUploadService.createFileUpload({
+  //         fieldname: file.fieldname,
+  //         originalname: file.originalname,
+  //         mimetype: file.mimetype,
+  //         size: file.size,
+  //         buffer: file.buffer
+  //     })
 
-//     await this.productRepository.update(id, {image: url})
-//     return {image: url}
-// }
+  //     await this.productRepository.update(id, {image: url})
+  //     return {image: url}
+  // }
 }

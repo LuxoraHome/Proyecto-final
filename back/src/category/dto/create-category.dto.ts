@@ -7,5 +7,7 @@ export class CreateCategoryDto {
     @ApiHideProperty()
     @IsOptional()
     id: string;
-    name: string;
+    name?: string;
+    type?: string;
+    color?: string
 }

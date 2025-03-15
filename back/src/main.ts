@@ -7,7 +7,7 @@ import { loggerGlobal } from './middleware/logger.middleware';
 import { CategoriesSeed } from './seeds/categories/categories.seeds';
 import { ValidationPipe } from '@nestjs/common';
 import { OrderDetailSeed } from './seeds/order_details/order_details.seeds';
-import  * as dotenv  from 'dotenv';
+import { OfferSeed } from './seeds/offers/offers.seeds';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,7 +17,6 @@ async function bootstrap() {
     methods: 'GET, PATCH, HEAD, PUT, POST, DELETE',
     credentials: true,
   });
-
 
   app.use(loggerGlobal);
   app.useGlobalPipes(new ValidationPipe());
@@ -30,7 +29,6 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
-  dotenv.config();
 
   const categorySeeder = app.get(CategoriesSeed);
   await categorySeeder.seedCategories();
@@ -47,6 +45,10 @@ async function bootstrap() {
   const orderDetailsSeed = app.get(OrderDetailSeed);
   await orderDetailsSeed.orderDetailSeed();
   console.log('*** LA INSERCION DE ORDENES FUE EXITOSA ***');
+
+  const offersSeed = app.get(OfferSeed);
+  await offersSeed.offerSeed();
+  console.log('*** LA INSERCION DE OFERTAS FUE EXITOSA ***');
 
   await app.listen(process.env.PORT ?? 3000);
 }

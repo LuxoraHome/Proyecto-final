@@ -7,13 +7,21 @@ import { v4 as uuid } from 'uuid';
     name: "categories"
 })
 export class Category {
-    
+
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column({ unique: true, nullable: false })
-    name: string;
+    @Column({ nullable: false, default: "" })
+    name?: string;
 
     @OneToMany(() => Product, (product) => product.category)
     products: Product[];
+
+    // Nuevo campo: tipo de categoría
+    @Column({ nullable: false, default: "" })
+    type?: string;
+
+    // Nuevo campo: color asociado
+    @Column({ nullable: false, default: "" })
+    color?: string;
 }
