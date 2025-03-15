@@ -18,7 +18,6 @@ async function bootstrap() {
     credentials: true,
   });
 
-
   app.use(loggerGlobal);
   app.useGlobalPipes(new ValidationPipe());
 
