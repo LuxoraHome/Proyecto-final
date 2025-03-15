@@ -15,12 +15,13 @@ export class ProductController {
   constructor(
     private readonly productService: ProductService,
     private readonly productSeed: ProductsSeed
-  ) {}
+  ) { }
 
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
     return this.productService.createProduct(createProductDto);
   }
+
   @Post("seeder")
   createSeeder() {
     return this.productSeed.createSeedProduct()
