@@ -1,6 +1,23 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsDate, IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Matches, MaxLength, MinLength } from "class-validator"
-// import { UserClient } from "../enum/userClient.enum"
+
+import { 
+    IsBoolean,
+    IsDate,
+    IsEmail, 
+    IsEnum, 
+    IsNotEmpty, 
+    IsNumberString, 
+    IsOptional, 
+    IsString, 
+    IsUUID, 
+    Matches, 
+    MaxLength, 
+    MinLength 
+} from "class-validator";
+import { Role } from "src/auth/enum/roles.enum";
+import { UserStatus } from "../enum/userStatus.enum";
+
+
 
 export class CreateUserDto {
     @ApiProperty({ example: "John Doe", description: "Full name of the user" })
@@ -50,6 +67,10 @@ export class CreateUserDto {
     @IsOptional()
     city?: string;
 
+
+    @ApiProperty({ example: Role.User, description: "Indicates if the user is an admin", required: false })
+    @IsEnum(Role)
+
     // Nuevo campo createdAt el cual registra la fecha de creación del usuario
     @IsDate()
     createdAt: Date
@@ -60,6 +81,12 @@ export class CreateUserDto {
 
     @ApiProperty({ example: false, description: "Indicates if the user is an admin", required: false })
     @IsBoolean()
+
     @IsOptional()
-    isAdmin?: boolean;
+    role?: Role;
+
+    @ApiProperty({ example: UserStatus.ACTIVE, description: "Indicates if the user is active", required: false })
+    @IsEnum(UserStatus)
+    @IsOptional()
+    status?: UserStatus
 }

@@ -2,6 +2,12 @@ import { Order } from "src/order/entities/order.entity"
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { UserClient } from "../enum/userClient.enum"
 
+import { Role } from "src/auth/enum/roles.enum"
+import { UserStatus } from "../enum/userStatus.enum"
+// import { UserClient } from "../enum/userClient.enum"
+
+
+
 
 @Entity({
     name: "users"
@@ -35,8 +41,13 @@ export class User {
     @Column({ type: 'text', nullable: true })
     address: string
 
-    @Column({ default: false })
-    isAdmin: boolean;
+
+    @Column({ type: "enum", enum: Role, default: Role.Superadmin })
+    role: Role;
+
+    @Column({ type: "enum", enum: UserStatus, default: UserStatus.ACTIVE })
+    status: UserStatus;
+
 
     @Column({ type: 'enum', enum: UserClient, default: UserClient.STANDARD })
     client: UserClient;

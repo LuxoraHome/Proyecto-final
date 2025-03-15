@@ -11,10 +11,22 @@ export class StripeService {
         })
     }
 
-    async intent(amount:number, currency:string) {
+    async intent(amount:number, currency:string, paymentMethodId:string) {
         return this.stripe.paymentIntents.create({
             amount,
             currency,
+            payment_method: paymentMethodId,
+            confirm: true,
+            payment_method_types: ['card'],
         });
     }
+
+    async confirm(IntentId:string) {
+        return this.stripe.paymentIntents.confirm(IntentId);
+    }
+
+    async retrievePaymentIntent(intentId: string) {
+        return this.stripe.paymentIntents.retrieve(intentId);
+    }
+
 }

@@ -24,7 +24,6 @@ export class UserSeed {
         newUser.country = userData.country;
         newUser.city = userData.city;
         newUser.address = userData.address;
-        newUser.isAdmin = userData.isAdmin;
         newUser.uid = userData.uid;
         newUser.createdAt = userData.createdAt;
         newUser.lastLogin = userData.lastLogin;
