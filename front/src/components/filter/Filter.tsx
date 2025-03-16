@@ -63,8 +63,8 @@ const Filter: React.FC<FilterProps> = ({ products }) => {
 
   return (
     <div className="flex flex-wrap justify-center gap-16  h-full">
-      <div className="">
-        <div className="flex flex-wrap justify-center gap-4 mb-4">
+      <div className="flex flex-col-2">
+        <div className="grid grid-rows-1 justify-center gap-4 mb-4">
           <button
             className={`px-4 py-2 border rounded-lg ${
               selectedCategory.length === 0
