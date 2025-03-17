@@ -15,7 +15,7 @@ import { UpdateOrderStatusDto } from './dto/update-OrderStatus.dto';
 
 @Controller('order')
 export class OrderController {
-  constructor(private readonly orderService: OrderService) {}
+  constructor(private readonly orderService: OrderService) { }
 
   @Post()
   async create(@Body() createOrderDto: CreateOrderDto) {
@@ -27,14 +27,14 @@ export class OrderController {
     return await this.orderService.findAllOrders();
   }
 
+  @Get('user/:uid')
+  async findOneByUser(@Param('uid') uid: string) {
+    return await this.orderService.findUserById(uid);
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return await this.orderService.findOneOrder(id);
-  }
-
-  @Get('user/:uid')
-  async findOneByUser(@Param('id') id: string) {
-    return await this.orderService.findUserById(id);
   }
 
   @Put(':id')

@@ -7,207 +7,648 @@ export const productsMock = [
         "designer": "Sacha Lakic",
         "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/bubble2_orsetto_c3-4p_pers1_test?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=236,236,231",
         "stock": 10,
-        "categoryName": 'Sofas Sofa Beds'
+        "categoryName": 'Living Room',
+        "categoryType": 'Sofas Sofa Beds',
+        "categoryColor": 'white'
     },
     {
-        "name": "BAMBOO MOOD",
-        "description": "Cuando el bambú se dobla y se adapta a todos las exigencias de la casa.",
+        "name": "BUBBLE 2",
+        "description": "Imaginado por Sacha Lakic, diseñador apasionado por las tecnologías de vanguardia, Bubble, expresa el equilibrio entre innovación, función y emoción. Inspirado en formas naturales y minerales y realizado íntegramente a mano, su diseño requirió el desarrollo de tejidos elásticos específicos que combinaran perfectamente con sus formas redondeadas. Con su estilo único, el sofá Bubble, en versión recta o redondeada, es un modelo icónico en las colecciones de Roche Bobois.",
         "type": "Sofa",
-        "price": 5490,
-        "designer": "Jiang Qiong Er",
-        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/Bamboo-Mood_C3-4P_L250_Bamboo_24RB1_Face_V5?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=RevP&color=240,240,240&obj=RevS&color=220,216,211",
-        "stock": 10,
-        "categoryName": 'Sofas Sofa Beds'
-    },
-    {
-        "name": "FOLK",
-        "description": "Tapizado en tela Dune lisa y estampada.",
-        "type": "Sillón",
-        "price": 2680,
-        "designer": "Stefan Heiliger",
-        "image": "https://media.roche-bobois.com/is/image/rochebobois/Folk_fauteuil_pers?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
-        "stock": 10,
-        "categoryName": 'Armchairs'
-    },
-    {
-        "name": "MORSA",
-        "description": "Este sillón de estilo escandinavo parece equilibrado en sus dos patas delanteras. Descansa en la parte posterior de su respiración, que se extiende hasta el suelo.",
-        "type": "Sillón",
-        "price": 1870,
-        "designer": "Rafael Navot",
-        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/Walrus_Fauteuil_Plana_refonte_pers?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=RevP&color=181,165,155",
-        "stock": 10,
-        "categoryName": 'Armchairs'
-    },
-    {
-        "name": "CESTELLO",
-        "description": "La base simple e ingeniosa de esta colección está hecha de 12 listones de aluminio idénticos que encajan entre sí para crear estabilidad.",
-        "type": "Mesa de coctel",
-        "price": 1890,
-        "designer": "Gabriel Fedele",
-        "image": "https://media.roche-bobois.com/is/image/rochebobois/Cestello_tb_D114_verre_clair_02?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
-        "stock": 10,
-        "categoryName": 'Cocktail Tables'
-    },
-    {
-        "name": "SHARK",
-        "description": "La colección Shark revela patas que rompen las mesas, tomando la forma orgánica de esos grandes depredadores marinos que ven en paz.",
-        "type": "Mesa de coctel",
-        "price": 1890,
-        "designer": "Juam Studio",
-        "image": "https://media.roche-bobois.com/is/image/rochebobois/Shark_TB_01_f11?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
-        "stock": 10,
-        "categoryName": 'Cocktail Tables'
-    },
-    {
-        "name": "PIXL",
-        "description": "Diseñada por Fabrice Berrux, la fachada de esta estantería se divide en 28 módulos con diferentes profundidades que pueden ocultar o revelar libros y objetos según lo desee.",
-        "type": "Estantería",
-        "price": 5350,
-        "designer": "Fabrice Berrux",
-        "image": "https://media.roche-bobois.com/is/image/rochebobois/Pixl-bronze-bois-LISTE_v2?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
-        "stock": 10,
-        "categoryName": 'Bookcases and Cabinets'
-    },
-    {
-        "name": "CELTA",
-        "description": "Una mezcla de influencias de la puesta de 1950 e inspiración asiática, la estancia Celta de Sacha Lakic presenta una estructura de nogal cuyas líneas gráficas suavizadas esculpen el espacio con ligereza.",
-        "type": "Librería pequeña",
-        "price": 4710,
+        "price": 4990,
         "designer": "Sacha Lakic",
-        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/celta_bibliotheque_PM_L150_noyer_caramel_face_24RB1?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=finition&color=138,89,58",
+        "image": "https://media.roche-bobois.com/is/image/rochebobois/Bubble2_C5P_calin_olive_pers?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "categoryName": 'Bookcases and Cabinets'
+        "categoryName": 'Living Room',
+        "categoryType": 'Sofas Sofa Beds',
+        "categoryColor": 'green'
     },
     {
-        "name": "IVRESSE",
-        "description": "La base de la mesa de comedor Ivresse y la colección de mesas de cóctel está hecha de una serie de piezas de metal que se cortan en formas onduladas que se asejan a una botella. Estas piezas creán hermosos reflejos y están unidas a una base de piso de acero cromado negro. ",
-        "type": "Mesa redonda de comedor",
-        "price": 8150,
-        "designer": "Roberto Tapinassi y Maurizio Manzoni",
-        "image": "https://media.roche-bobois.com/is/image/rochebobois/2018-03-13_10-54-59_Ivresse_Table_repas_ronde_01?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
-        "stock": 10,
-        "categoryName": 'Tables'
-    },
-    {
-        "name": "JANE",
-        "description": "La mesa Jane es la culminación de la investigación de Christophe Delcourt sobre el tema de la modernidad y la madera.",
-        "type": "Mesa de comedor",
-        "price": 3580,
-        "designer": "Delcourt Christophe",
-        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/Jane-210-naturelle-pers1?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=186,169,152",
-        "stock": 10,
-        "categoryName": 'Tables'
-    },
-    {
-        "name": "AVA",
-        "description": "La silla Ava se inspiró en la idea de los dragones míticos y el diseño de los sillones de la dinastía Ming. Es un objeto de alta tecnología, creado utilizando la técnica moderna de inyección de policarbonato.",
-        "type": "Sillón de comedor",
-        "price": 450,
-        "designer": "Canción Wen Zhong",
-        "image": "https://media.roche-bobois.com/is/image/rochebobois/2018-01-03_16-12-57_Ava-emeraude-liste?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
-        "stock": 10,
-        "categoryName": 'Chairs Stools Benches'
-    },
-    {
-        "name": "PULP",
-        "description": "PULP es la primera colaboración entre el diseñador catalán Eugeni Quitllet y Roche Bobois: una colección de mesas, sillas y sillones con una estética biomórfica que evita las líneas rectas complementado con acabados refinados.",
-        "type": "Sillón de comedor",
-        "price": 1350,
-        "designer": "Eugeni Quitllet",
-        "image": "https://media.roche-bobois.com/is/image/rochebobois/Pulp_Brdg_piet_frene_tissu_grain_Pers?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
-        "stock": 10,
-        "categoryName": 'Chairs Stools Benches'
-    },
-    {
-        "name": "GLOBO",
-        "description": "Globo es una colección completa de muebles de almacenamiento que son gráficos y funcionales. Toda la colección presenta el mismo ritmo horizontal en las fachadas que se destaca por particiones profundas entre las aberturas.",
-        "type": "China unit",
-        "price": 3120,
-        "designer": "Studio Roche Bobois",
-        "image": "https://media.roche-bobois.com/is/image/rochebobois/Globo_vaisselier_01?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
-        "stock": 10,
-        "categoryName": 'Dining Room Storage'
-    },
-    {
-        "name": "LIFT",
-        "description": "Diseñado por Sacha Lakic, el modo de funcionamiento de esta barra de formas hexagonales es único: su almacenamiento está montado en gatos eléctricos. Por lo tanto, no eres tú quien se inclina, sino que viene a ti.",
-        "type": "Columna /bar - estructura de tuerca de pared",
-        "price": 6570,
+        "name": "BUBBLE 2",
+        "description": "Imaginado por Sacha Lakic, diseñador apasionado por las tecnologías de vanguardia, Bubble, expresa el equilibrio entre innovación, función y emoción. Inspirado en formas naturales y minerales y realizado íntegramente a mano, su diseño requirió el desarrollo de tejidos elásticos específicos que combinaran perfectamente con sus formas redondeadas. Con su estilo único, el sofá Bubble, en versión recta o redondeada, es un modelo icónico en las colecciones de Roche Bobois.",
+        "type": "Sofa",
+        "price": 4990,
         "designer": "Sacha Lakic",
-        "image": "https://media.roche-bobois.com/is/image/rochebobois/Lift_bois_cln_face_1?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
+        "image": "https://media.roche-bobois.com/is/image/rochebobois/Bubble2_C5P_calin_corail_pers?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "categoryName": 'Dining Room Storage'
+        "categoryName": 'Living Room',
+        "categoryType": 'Sofas Sofa Beds',
+        "categoryColor": 'red'
     },
     {
-        "name": "RIO IPANEMA",
-        "description": "Con su base orgánica, hecha completamente de madera maciza, la colección Rio Ipanema de Bruno Moinard se mezclaría perfectamente con los mosaicos del jardín Ipanema en Río de Janeiro, creado por arquitectos paisajistas brasileños, promocionando el concepto de 'naturaleza de ciudad', que es completamente contemporáneo.",
-        "type": "Escritorio",
-        "price": 5300,
-        "designer": "Bruno Moinard",
-        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/Rio_Ipanema_Br_Face?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=RevP&color=229,216,191",
-        "stock": 10,
-        "categoryName": 'Desks'
-    },
-    {
-        "name": "MELT",
-        "description": "La parte superior orgánica y fluida que se aseja al líquido y se derrite hacia el suelo se contrae maravillosamente con la caja afilada y cúbica que la sostiene. Las dos piezas están unidas por un eje vertical que le permite ajustar la parte superior para que la unidad del cajón esté a la derecha o a la izquierda.",
-        "type": "Escritorio",
-        "price": 7910,
-        "designer": "Cédric Ragot",
-        "image": "https://media.roche-bobois.com/is/image/rochebobois/MELT_bureau_O19_face1?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
-        "stock": 10,
-        "categoryName": 'Desks'
-    },
-    {
-        "name": "CEO",
-        "description": "Estructura en madera maciza de abeto y madera contrachapada de pino. Suspensión de sartenes elásticos HR. Base en metal con cromado brillante acabado",
-        "type": "Sillón",
-        "price": 2530,
+        "name": "BUBBLE 2",
+        "description": "Imaginado por Sacha Lakic, diseñador apasionado por las tecnologías de vanguardia, Bubble, expresa el equilibrio entre innovación, función y emoción. Inspirado en formas naturales y minerales y realizado íntegramente a mano, su diseño requirió el desarrollo de tejidos elásticos específicos que combinaran perfectamente con sus formas redondeadas. Con su estilo único, el sofá Bubble, en versión recta o redondeada, es un modelo icónico en las colecciones de Roche Bobois.",
+        "type": "Sofa",
+        "price": 4990,
         "designer": "Sacha Lakic",
-        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/fauteuil_ceo_orsetto_pers1?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=58,58,59&obj=revs&color=58,58,59",
+        "image": "https://media.roche-bobois.com/is/image/rochebobois/Bubble2_C5P_calin_bleuet_pers_v2?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "categoryName": 'Office Chairs'
+        "categoryName": 'Living Room',
+        "categoryType": 'Sofas Sofa Beds',
+        "categoryColor": 'blue'
     },
+    //--------------------------------
     {
-        "name": "PULP",
-        "description": "PULP es la primera colaboración entre el diseñador catalán Eugeni Quitllet y Roche Bobois: una colección de mesas, sillas y sillones con una estética biomórfica que evita las líneas rectas y se complementa con acabados refinados.",
-        "type": "Sillón de visita",
-        "price": 3610,
-        "designer": "Eugeni Quitllet",
-        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/pulp_fauteuil_visiteur_pers1?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=224,222,214",
-        "stock": 10,
-        "categoryName": 'Office Chairs'
-    },
-    {
-        "name": "BUBBLE",
-        "description": "Al abrazar una nube, esta cama envolvente con curvas regordetas se hace eco de sus predecesores de los sofás y sillones originales de Bubble. Como todos los modelos de Bubble, esta cama es el epítome de la comodidad y te atrae a un sueño reparador.",
-        "type": "Cama",
-        "price": 6310,
+        "name": "LOVE MOR",
+        "description": "Created by Sacha Lakic, a designer with a passion for cutting-edge technology, Bubble expresses the balance between innovation, function and emotion. Inspired by natural and mineral forms and entirely handmade, its design required the development of specific stretch fabrics that perfectly fit its round shapes. With its unique style, the Bubble sofa, in straight or rounded version, is an iconic model in the Roche Bobois collection. ",
+        "type": "Sofa",
+        "price": 3650,
         "designer": "Sacha Lakic",
-        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/bubble_lit_front?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=236,236,231",
+        "image": "https://media.roche-bobois.com/is/image/rochebobois/Bubble2_C2-5P_calin_blanc_pers?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "categoryName": 'Beds'
+        "categoryName": 'Living Room',
+        "categoryType": 'Sofas Sofa Beds',
+        "categoryColor": 'white'
     },
     {
-        "name": "MANGROVE",
-        "description": "Armario con 2 puertas. Incrustaciones de marquetería en chapa de roble francés con acabado teñido (9 manchas disponibles) y acabado de barniz mate. ",
-        "type": "Armario",
-        "price": 6250,
-        "designer": "Marco Fumagalli",
-        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/mangrove_armoire_pers1_2016(2)?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=239,238,238&obj=revs&color=191,180,163",
+        "name": "LOVE MOR",
+        "description": "Created by Sacha Lakic, a designer with a passion for cutting-edge technology, Bubble expresses the balance between innovation, function and emotion. Inspired by natural and mineral forms and entirely handmade, its design required the development of specific stretch fabrics that perfectly fit its round shapes. With its unique style, the Bubble sofa, in straight or rounded version, is an iconic model in the Roche Bobois collection. ",
+        "type": "Sofa",
+        "price": 3650,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/is/image/rochebobois/Bubble2_C2-5P_calin_kaki_pers?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "categoryName": 'Wardrobes'
+        "categoryName": 'Living Room',
+        "categoryType": 'Sofas Sofa Beds',
+        "categoryColor": 'green'
     },
     {
-        "name": "TRACE",
-        "description": "Un rastro, como una onda que se despliega y se deforma hacia el exterior de la alfombra. Cada onda está formada por un color diferente, una altura ligeramente variable y un hilo más grueso o delgado.",
-        "type": "Alfombra",
-        "price": 2720,
-        "designer": "Florencia Bourel",
-        "image": "https://media.roche-bobois.com/is/image/rochebobois/Trace_Tapis_Top?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
+        "name": "LOVE MOR",
+        "description": "Created by Sacha Lakic, a designer with a passion for cutting-edge technology, Bubble expresses the balance between innovation, function and emotion. Inspired by natural and mineral forms and entirely handmade, its design required the development of specific stretch fabrics that perfectly fit its round shapes. With its unique style, the Bubble sofa, in straight or rounded version, is an iconic model in the Roche Bobois collection. ",
+        "type": "Sofa",
+        "price": 3650,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/is/image/rochebobois/Bubble2_C2-5P_calin_corail_pers?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80",
         "stock": 10,
-        "categoryName": 'Rugs'
+        "categoryName": 'Living Room',
+        "categoryType": 'Sofas Sofa Beds',
+        "categoryColor": 'red'
     },
+    {
+        "name": "LOVE MOR",
+        "description": "Created by Sacha Lakic, a designer with a passion for cutting-edge technology, Bubble expresses the balance between innovation, function and emotion. Inspired by natural and mineral forms and entirely handmade, its design required the development of specific stretch fabrics that perfectly fit its round shapes. With its unique style, the Bubble sofa, in straight or rounded version, is an iconic model in the Roche Bobois collection. ",
+        "type": "Sofa",
+        "price": 3650,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/is/image/rochebobois/Bubble2_C2-5P_calin_bleuet_pers_v2?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Sofas Sofa Beds',
+        "categoryColor": 'blue'
+    },
+    // --------------------
+    {
+        "name": "SENSE EXPECT",
+        "description": "A line of enveloping sofas in an atypical format. The curves of these sofas allow for different seating depths. At the ends, the backrest creates an alcove for snuggling up or, on the contrary, for stretching out to one's full length. out to one's full length. ",
+        "type": "Sofa",
+        "price": 4450,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/is/image/rochebobois/Sense_gc3p_gris_v4_face?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Sofas Sofa Beds',
+        "categoryColor": 'white'
+    },
+    {
+        "name": "SENSE EXPECT",
+        "description": "A line of enveloping sofas in an atypical format. The curves of these sofas allow for different seating depths. At the ends, the backrest creates an alcove for snuggling up or, on the contrary, for stretching out to one's full length. out to one's full length. ",
+        "type": "Sofa",
+        "price": 4450,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/is/image/rochebobois/Sense_gc3p_Olive_v4_face?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Sofas Sofa Beds',
+        "categoryColor": 'green'
+    },
+    {
+        "name": "SENSE EXPECT",
+        "description": "A line of enveloping sofas in an atypical format. The curves of these sofas allow for different seating depths. At the ends, the backrest creates an alcove for snuggling up or, on the contrary, for stretching out to one's full length. out to one's full length. ",
+        "type": "Sofa",
+        "price": 4450,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/is/image/rochebobois/Sense_gc3p_rouge_v4_face?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Sofas Sofa Beds',
+        "categoryColor": 'red'
+    },
+    {
+        "name": "SENSE EXPECT",
+        "description": "A line of enveloping sofas in an atypical format. The curves of these sofas allow for different seating depths. At the ends, the backrest creates an alcove for snuggling up or, on the contrary, for stretching out to one's full length. out to one's full length. ",
+        "type": "Sofa",
+        "price": 4450,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/is/image/rochebobois/Sense_gc3p_turquoise_v4_face?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Sofas Sofa Beds',
+        "categoryColor": 'blue'
+    },
+    // ----------------------------
 
+    {
+        "name": "WINDOW ASTREA",
+        "description": "Roundness, curves and softened angles are combined with a soft, faux fur-like covering in trendy colors. Aesthetically pleasing, cozy and comfortable, the ASTREA armchair will fit in any interior thanks to its small volume and its lovely design that calls for relaxation. ",
+        "type": "chair",
+        "price": 1910,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/astrea_fauteuil_Orseto_pers_v3_VNT?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=224,222,214",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'white'
+    },
+    {
+        "name": "WINDOW ASTREA",
+        "description": "Roundness, curves and softened angles are combined with a soft, faux fur-like covering in trendy colors. Aesthetically pleasing, cozy and comfortable, the ASTREA armchair will fit in any interior thanks to its small volume and its lovely design that calls for relaxation. ",
+        "type": "chair",
+        "price": 1910,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/astrea_fauteuil_Orseto_pers_v3_VNT?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=172,167,88",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'green'
+    },
+    {
+        "name": "WINDOW ASTREA",
+        "description": "Roundness, curves and softened angles are combined with a soft, faux fur-like covering in trendy colors. Aesthetically pleasing, cozy and comfortable, the ASTREA armchair will fit in any interior thanks to its small volume and its lovely design that calls for relaxation. ",
+        "type": "chair",
+        "price": 1910,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/astrea_fauteuil_Orseto_pers_v3_VNT?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=138,26,28",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'red'
+    },
+    {
+        "name": "WINDOW ASTREA",
+        "description": "Roundness, curves and softened angles are combined with a soft, faux fur-like covering in trendy colors. Aesthetically pleasing, cozy and comfortable, the ASTREA armchair will fit in any interior thanks to its small volume and its lovely design that calls for relaxation. ",
+        "type": "chair",
+        "price": 1910,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/astrea_fauteuil_Orseto_pers_v3_VNT?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=60,87,107",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'blue'
+    },
+    // ----------------------------
+
+    {
+        "name": "ASTREA LOUNGE",
+        "description": "Roundness, curves and softened angles are combined with a soft, faux fur-like covering in trendy colors. Aesthetically pleasing, cozy and comfortable, the ASTREA armchair will fit in any interior thanks to its small volume and its lovely design that calls for relaxation. ",
+        "type": "chair",
+        "price": 3280,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/Astrea_lounge_fauteuil_calin_refonte_face_v2?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=tissu&color=254,247,238",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'white'
+    },
+    {
+        "name": "ASTREA LOUNGE",
+        "description": "Roundness, curves and softened angles are combined with a soft, faux fur-like covering in trendy colors. Aesthetically pleasing, cozy and comfortable, the ASTREA armchair will fit in any interior thanks to its small volume and its lovely design that calls for relaxation. ",
+        "type": "chair",
+        "price": 3280,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/Astrea_lounge_fauteuil_calin_refonte_face_v2?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=tissu&color=209,%20203,%208",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'green'
+    },
+    {
+        "name": "ASTREA LOUNGE",
+        "description": "Roundness, curves and softened angles are combined with a soft, faux fur-like covering in trendy colors. Aesthetically pleasing, cozy and comfortable, the ASTREA armchair will fit in any interior thanks to its small volume and its lovely design that calls for relaxation. ",
+        "type": "chair",
+        "price": 3280,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/Astrea_lounge_fauteuil_calin_refonte_face_v2?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=tissu&color=234,0,4",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'red'
+    },
+    {
+        "name": "ASTREA LOUNGE",
+        "description": "Roundness, curves and softened angles are combined with a soft, faux fur-like covering in trendy colors. Aesthetically pleasing, cozy and comfortable, the ASTREA armchair will fit in any interior thanks to its small volume and its lovely design that calls for relaxation. ",
+        "type": "chair",
+        "price": 3280,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/Astrea_lounge_fauteuil_calin_refonte_face_v2?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=tissu&color=2,48,92",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'blue'
+    },
+    // ----------------------------
+
+    {
+        "name": "OPEN APEX",
+        "description": "Entirely round and quilted, the APEX ottoman is the perfect combination of aesthetics and comfort. Its design, shape and volume make it a small seat that is easy to incorporate into any interior.",
+        "type": "chair",
+        "price": 860,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/Apex-pouf?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=236,236,231",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'white'
+    },
+    {
+        "name": "OPEN APEX",
+        "description": "Entirely round and quilted, the APEX ottoman is the perfect combination of aesthetics and comfort. Its design, shape and volume make it a small seat that is easy to incorporate into any interior.",
+        "type": "chair",
+        "price": 860,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/Apex-pouf?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=74,82,61",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'green'
+    },
+    {
+        "name": "OPEN APEX",
+        "description": "Entirely round and quilted, the APEX ottoman is the perfect combination of aesthetics and comfort. Its design, shape and volume make it a small seat that is easy to incorporate into any interior.",
+        "type": "chair",
+        "price": 860,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/Apex-pouf?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=138,26,28",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'red'
+    },
+    {
+        "name": "OPEN APEX",
+        "description": "Entirely round and quilted, the APEX ottoman is the perfect combination of aesthetics and comfort. Its design, shape and volume make it a small seat that is easy to incorporate into any interior.",
+        "type": "chair",
+        "price": 860,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/Apex-pouf?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=60,87,107",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'blue'
+    },
+    // ----------------------------
+
+    {
+        "name": "BILBOQUET XEXY",
+        "description": "It was in 2020, during its 7th edition, that the Roche Bobois Design Award crossed paths with Kateryna Sokolova, a young Ukrainian designer. Her winning project was a series of small pedestal and cocktail tables with molded or blown glass tops. Each of these techniques demonstrates a specific artisanal expertise in handling this extraordinarily versatile material: the powerful mass of the molded cup-and-ball shapes is a pleasure to touch, while the lightness and perfection of blown glass is graceful to a fault.",
+        "type": "table",
+        "price": 3640,
+        "designer": "Kateryna Sokolova",
+        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/Bilboquet_TB_Champignon_D70_04?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=RevS&color=198,165,105&obj=RevP&color=161,12,14",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'red'
+    },
+    {
+        "name": "BILBOQUET XEXY",
+        "description": "It was in 2020, during its 7th edition, that the Roche Bobois Design Award crossed paths with Kateryna Sokolova, a young Ukrainian designer. Her winning project was a series of small pedestal and cocktail tables with molded or blown glass tops. Each of these techniques demonstrates a specific artisanal expertise in handling this extraordinarily versatile material: the powerful mass of the molded cup-and-ball shapes is a pleasure to touch, while the lightness and perfection of blown glass is graceful to a fault.",
+        "type": "table",
+        "price": 3640,
+        "designer": "Kateryna Sokolova",
+        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/Bilboquet_TB_Champignon_D70_04?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=RevS&color=198,165,105&obj=RevP&color=88,146,138",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'blue'
+    },
+    // ----------------------------
+
+
+    {
+        "name": "BILBOQUET",
+        "description": "It was in 2020, during its 7th edition, that the Roche Bobois Design Award crossed paths with Kateryna Sokolova, a young Ukrainian designer. Her winning project was a series of small pedestal and cocktail tables with molded or blown glass tops. Each of these techniques demonstrates a specific artisanal expertise in handling this extraordinarily versatile material: the powerful mass of the molded cup-and-ball shapes is a pleasure to touch, while the lightness and perfection of blown glass is graceful to a fault.",
+        "type": "table",
+        "price": 9850,
+        "designer": "Kateryna Sokolova",
+        "image": "https://media.roche-bobois.com/is/image/rochebobois/BILBOQUET_TB_Coupole_D58_Rouge_Pers_v2?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'red'
+    },
+    {
+        "name": "BILBOQUET",
+        "description": "It was in 2020, during its 7th edition, that the Roche Bobois Design Award crossed paths with Kateryna Sokolova, a young Ukrainian designer. Her winning project was a series of small pedestal and cocktail tables with molded or blown glass tops. Each of these techniques demonstrates a specific artisanal expertise in handling this extraordinarily versatile material: the powerful mass of the molded cup-and-ball shapes is a pleasure to touch, while the lightness and perfection of blown glass is graceful to a fault.",
+        "type": "table",
+        "price": 9850,
+        "designer": "Kateryna Sokolova",
+        "image": "https://media.roche-bobois.com/is/image/rochebobois/BILBOQUET_TB_Coupole_D58_Vert_Pers_v2?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Armchairs',
+        "categoryColor": 'blue'
+    },
+    // ----------------------------
+
+    {
+        "name": "ONDO RONDO",
+        "description": "Entirely round and quilted, the APEX ottoman is the perfect combination of aesthetics and comfort. Its design, shape and volume make it a small seat that is easy to incorporate into any interior.",
+        "type": "table tv",
+        "price": 3260,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/rondo2-mtv-face?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=224,234,236&obj=revs&color=219,227,229",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Tv Units',
+        "categoryColor": 'white'
+    },
+    {
+        "name": "ONDO RONDO",
+        "description": "Entirely round and quilted, the APEX ottoman is the perfect combination of aesthetics and comfort. Its design, shape and volume make it a small seat that is easy to incorporate into any interior.",
+        "type": "table tv",
+        "price": 3260,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/rondo2-mtv-face?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=170,191,124&obj=revs&color=171,188,126",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Tv Units',
+        "categoryColor": 'green'
+    },
+    {
+        "name": "ONDO RONDO",
+        "description": "Entirely round and quilted, the APEX ottoman is the perfect combination of aesthetics and comfort. Its design, shape and volume make it a small seat that is easy to incorporate into any interior.",
+        "type": "table tv",
+        "price": 3260,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/rondo2-mtv-face?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=166,75,66&obj=revs&color=166,60,50",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Tv Units',
+        "categoryColor": 'red'
+    },
+    {
+        "name": "ONDO RONDO",
+        "description": "Entirely round and quilted, the APEX ottoman is the perfect combination of aesthetics and comfort. Its design, shape and volume make it a small seat that is easy to incorporate into any interior.",
+        "type": "table tv",
+        "price": 3260,
+        "designer": "Sacha Lakic",
+        "image": "https://media.roche-bobois.com/ir/render/rocheboboisRender/rondo2-mtv-face?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=106,121,163&obj=revs&color=96,112,155",
+        "stock": 10,
+        "categoryName": 'Living Room',
+        "categoryType": 'Tv Units',
+        "categoryColor": 'blue'
+    },
+    // ----------------------------
+
+    {
+        "name": "WHISPER",
+        "description": "Always in search of beautiful woodworking details, Sacha Lakic designed the Whisper collection with a base featuring a fluted element of solid Oak joined by delicate assemblies highlighted by a subtle engraving. This detail is also present on the top.",
+        "type": "table",
+        "price": 2540,
+        "designer": "Sacha Lakic",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_2X_802053-MLM40411200376_012020-F.webp",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Tables',
+        "categoryColor": 'white'
+    },
+    {
+        "name": "WHISPER",
+        "description": "Always in search of beautiful woodworking details, Sacha Lakic designed the Whisper collection with a base featuring a fluted element of solid Oak joined by delicate assemblies highlighted by a subtle engraving. This detail is also present on the top.",
+        "type": "table",
+        "price": 2540,
+        "designer": "Sacha Lakic",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_2X_840905-MLM75008888837_032024-F.webp",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Tables',
+        "categoryColor": 'green'
+    },
+    {
+        "name": "WHISPER",
+        "description": "Always in search of beautiful woodworking details, Sacha Lakic designed the Whisper collection with a base featuring a fluted element of solid Oak joined by delicate assemblies highlighted by a subtle engraving. This detail is also present on the top.",
+        "type": "table",
+        "price": 2540,
+        "designer": "Sacha Lakic",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_896405-MLM75008986097_032024-O.webp",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Tables',
+        "categoryColor": 'red'
+    },
+    {
+        "name": "WHISPER",
+        "description": "Always in search of beautiful woodworking details, Sacha Lakic designed the Whisper collection with a base featuring a fluted element of solid Oak joined by delicate assemblies highlighted by a subtle engraving. This detail is also present on the top.",
+        "type": "table",
+        "price": 2540,
+        "designer": "Sacha Lakic",
+        "image": "https://http2.mlstatic.com/D_NQ_NP_628982-MLM75008492081_032024-O.webp",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Tables',
+        "categoryColor": 'blue'
+    },
+    // ----------------------------
+
+    {
+        "name": "LUMPA",
+        "description": "Always in search of beautiful woodworking details, Sacha Lakic designed the Whisper collection with a base featuring a fluted element of solid Oak joined by delicate assemblies highlighted by a subtle engraving. This detail is also present on the top.",
+        "type": "table",
+        "price": 1890,
+        "designer": "Sacha Lakic",
+        "image": "https://medias.maisonsdumonde.com/image/upload/ar_1:1,c_fill,f_auto,q_auto,w_354/v1/img/mesas-de-centro-empilhaveis-de-jardim-em-aco-branco-1000-2-27-245822_2.jpg",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Tables',
+        "categoryColor": 'white'
+    },
+    {
+        "name": "LUMPA",
+        "description": "Always in search of beautiful woodworking details, Sacha Lakic designed the Whisper collection with a base featuring a fluted element of solid Oak joined by delicate assemblies highlighted by a subtle engraving. This detail is also present on the top.",
+        "type": "table",
+        "price": 1890,
+        "designer": "Sacha Lakic",
+        "image": "https://medias.maisonsdumonde.com/image/upload/ar_1:1,c_fill,f_auto,q_auto,w_354/v1/img/mesas-de-centro-empilhaveis-de-jardim-em-aco-verde-caqui-1000-5-30-245825_2.jpg",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Tables',
+        "categoryColor": 'green'
+    },
+    {
+        "name": "LUMPA",
+        "description": "Always in search of beautiful woodworking details, Sacha Lakic designed the Whisper collection with a base featuring a fluted element of solid Oak joined by delicate assemblies highlighted by a subtle engraving. This detail is also present on the top.",
+        "type": "table",
+        "price": 1890,
+        "designer": "Sacha Lakic",
+        "image": "https://medias.maisonsdumonde.com/image/upload/ar_1:1,c_fill,f_auto,q_auto,w_354/v1/img/mesas-de-centro-empilhaveis-de-jardim-em-aco-terracota-1000-3-28-245823_2.jpg",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Tables',
+        "categoryColor": 'red'
+    },
+    {
+        "name": "LUMPA",
+        "description": "Always in search of beautiful woodworking details, Sacha Lakic designed the Whisper collection with a base featuring a fluted element of solid Oak joined by delicate assemblies highlighted by a subtle engraving. This detail is also present on the top.",
+        "type": "table",
+        "price": 1890,
+        "designer": "Sacha Lakic",
+        "image": "https://medias.maisonsdumonde.com/image/upload/ar_1:1,c_fill,f_auto,q_auto,w_354/v1/img/mesas-de-centro-empilhaveis-de-jardim-em-aco-cinza-antracite-1000-4-29-245824_2.jpg",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Tables',
+        "categoryColor": 'blue'
+    },
+    // ----------------------------
+
+
+    {
+        "name": "LOVE TEL",
+        "description": "A fine exercise in balance, as the backrest rests delicately on the seat, making it easy to hold. Fred Rieffel's model is both graceful and enveloping.",
+        "type": "chair",
+        "price": 850,
+        "designer": "Fred Richel",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/Yel_chaise_orsetto_pers?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=224,222,214",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Chairs Stools Benches',
+        "categoryColor": 'white'
+    },
+    {
+        "name": "LOVE TEL",
+        "description": "A fine exercise in balance, as the backrest rests delicately on the seat, making it easy to hold. Fred Rieffel's model is both graceful and enveloping.",
+        "type": "chair",
+        "price": 850,
+        "designer": "Fred Richel",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/Yel_chaise_orsetto_pers?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=74,82,61",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Chairs Stools Benches',
+        "categoryColor": 'green'
+    },
+    {
+        "name": "LOVE TEL",
+        "description": "A fine exercise in balance, as the backrest rests delicately on the seat, making it easy to hold. Fred Rieffel's model is both graceful and enveloping.",
+        "type": "chair",
+        "price": 850,
+        "designer": "Fred Richel",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/Yel_chaise_orsetto_pers?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=138,26,28",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Chairs Stools Benches',
+        "categoryColor": 'red'
+    },
+    {
+        "name": "LOVE TEL",
+        "description": "A fine exercise in balance, as the backrest rests delicately on the seat, making it easy to hold. Fred Rieffel's model is both graceful and enveloping.",
+        "type": "chair",
+        "price": 850,
+        "designer": "Fred Richel",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/Yel_chaise_orsetto_pers?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=59,78,95",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Chairs Stools Benches',
+        "categoryColor": 'blue'
+    },
+    // ----------------------------
+
+    {
+        "name": "QISS",
+        "description": "In reference to the iconic, bold design of the Sixties, the Qiss chair features an ergonomic shell supported by an elegant central leg, a tribute to the fluid forms of the era. Its two-part backrest frames the swivel seat with the gentleness of an embrace. ",
+        "type": "chair",
+        "price": 760,
+        "designer": "Richel Rihot",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/MEUBLES_QISS_CHAISE_ORANGE_TIGE_REVETUE_PERS_MASTER?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=Revp_01&color=0,0,0&obj=Revp_02&color=199,192,190",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Chairs Stools Benches',
+        "categoryColor": 'white'
+    },
+    {
+        "name": "QISS",
+        "description": "In reference to the iconic, bold design of the Sixties, the Qiss chair features an ergonomic shell supported by an elegant central leg, a tribute to the fluid forms of the era. Its two-part backrest frames the swivel seat with the gentleness of an embrace. ",
+        "type": "chair",
+        "price": 760,
+        "designer": "Richel Rihot",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/MEUBLES_QISS_CHAISE_ORANGE_TIGE_REVETUE_PERS_MASTER?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=Revp_01&color=0,0,0&obj=Revp_02&color=75,84,80",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Chairs Stools Benches',
+        "categoryColor": 'green'
+    },
+    {
+        "name": "QISS",
+        "description": "In reference to the iconic, bold design of the Sixties, the Qiss chair features an ergonomic shell supported by an elegant central leg, a tribute to the fluid forms of the era. Its two-part backrest frames the swivel seat with the gentleness of an embrace. ",
+        "type": "chair",
+        "price": 760,
+        "designer": "Richel Rihot",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/MEUBLES_QISS_CHAISE_ORANGE_TIGE_REVETUE_PERS_MASTER?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=Revp_01&color=0,0,0&obj=Revp_02&color=127,72,67",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Chairs Stools Benches',
+        "categoryColor": 'red'
+    },
+    {
+        "name": "QISS",
+        "description": "In reference to the iconic, bold design of the Sixties, the Qiss chair features an ergonomic shell supported by an elegant central leg, a tribute to the fluid forms of the era. Its two-part backrest frames the swivel seat with the gentleness of an embrace. ",
+        "type": "chair",
+        "price": 760,
+        "designer": "Richel Rihot",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/MEUBLES_QISS_CHAISE_ORANGE_TIGE_REVETUE_PERS_MASTER?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=Revp_01&color=0,0,0&obj=Revp_02&color=51,56,89",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Chairs Stools Benches',
+        "categoryColor": 'blue'
+    },
+    // ----------------------------
+
+
+    {
+        "name": "KEEEN",
+        "description": "The KEEEN collection is a range of storage units with sober lines, offering modularity and customization thanks to a wide choice of veneers and lacquers.Supported and reinforced by a metal base and frame for great strength, the fronts reveal a subtle interplay of vertical (flaps) and horizontal (drawers) grooves.",
+        "type": "table",
+        "price": 990,
+        "designer": "Richel Rihot",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/KEEEN_Buffet_Haut_L200_4portes_4tirroirs_laque_bois_24RB1_Face?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=plateau&color=1,1,1&obj=corpus&color=215,209,205&obj=facade&color=249,247,238&obj=eclairage&color=1,1,1",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Dining Room Storage',
+        "categoryColor": 'white'
+    },
+    {
+        "name": "KEEEN",
+        "description": "The KEEEN collection is a range of storage units with sober lines, offering modularity and customization thanks to a wide choice of veneers and lacquers.Supported and reinforced by a metal base and frame for great strength, the fronts reveal a subtle interplay of vertical (flaps) and horizontal (drawers) grooves.",
+        "type": "table",
+        "price": 990,
+        "designer": "Richel Rihot",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/KEEEN_Buffet_Haut_L200_4portes_4tirroirs_laque_bois_24RB1_Face?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=plateau&color=1,1,1&obj=corpus&color=215,209,205&obj=facade&color=122,155,116&obj=eclairage&color=1,1,1",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Dining Room Storage',
+        "categoryColor": 'green'
+    },
+    {
+        "name": "KEEEN",
+        "description": "The KEEEN collection is a range of storage units with sober lines, offering modularity and customization thanks to a wide choice of veneers and lacquers.Supported and reinforced by a metal base and frame for great strength, the fronts reveal a subtle interplay of vertical (flaps) and horizontal (drawers) grooves.",
+        "type": "table",
+        "price": 990,
+        "designer": "Richel Rihot",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/KEEEN_Buffet_Haut_L200_4portes_4tirroirs_laque_bois_24RB1_Face?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=plateau&color=1,1,1&obj=corpus&color=215,209,205&obj=facade&color=125,84,72&obj=eclairage&color=1,1,1",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Dining Room Storage',
+        "categoryColor": 'red'
+    },
+    {
+        "name": "KEEEN",
+        "description": "The KEEEN collection is a range of storage units with sober lines, offering modularity and customization thanks to a wide choice of veneers and lacquers.Supported and reinforced by a metal base and frame for great strength, the fronts reveal a subtle interplay of vertical (flaps) and horizontal (drawers) grooves.",
+        "type": "table",
+        "price": 990,
+        "designer": "Richel Rihot",
+        "image": "https://media.roche-bobois.com/is/render/rocheboboisRender/KEEEN_Buffet_Haut_L200_4portes_4tirroirs_laque_bois_24RB1_Face?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=plateau&color=1,1,1&obj=corpus&color=215,209,205&obj=facade&color=91,102,101&obj=eclairage&color=1,1,1",
+        "stock": 10,
+        "categoryName": 'Dining Room',
+        "categoryType": 'Dining Room Storage',
+        "categoryColor": 'blue'
+    },
+    // ----------------------------
 ]

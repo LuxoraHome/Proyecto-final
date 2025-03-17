@@ -23,7 +23,7 @@ export class OrderService {
     private readonly userService: UserService,
     private readonly productService: ProductService,
     private readonly mailService: MailService, // Se inyecta el servicio de mail
-  ) {}
+  ) { }
 
   async createOrder(createOrderDto: CreateOrderDto) {
     const { uid, orderDetails } = createOrderDto;
@@ -89,34 +89,41 @@ export class OrderService {
     return order;
   }
 
-  async findUserById(id: string) {
-    const user = await this.userService.findOneById(id);
-    const order = await this.orderRepository.find({
-      where: { user: { id: user.id } },
+  async findUserById(uid: string) {
+
+    const user = await this.userService.findOneById(uid);
+
+    if (!user) {
+      throw new NotFoundException(`Usuario con UID ${uid} no encontrado`);
+    }
+
+    const orders = await this.orderRepository.find({
+      where: { user: { uid: user.uid } },
     });
-    return { order: order, user };
+
+    return { orders: orders, user };
   }
 
   async updateOrder(id: string, updateOrderDto: UpdateOrderDto) {
     // Buscar la orden existente
     const order = await this.orderRepository.findOne({ where: { id } });
-  
+
     if (!order) {
       throw new NotFoundException(`Order with ID ${id} not found`);
     }
-  
+
     // Actualizar solo los campos proporcionados en updateOrderDto
     Object.assign(order, updateOrderDto);
-  
+
     // Guardar los cambios en la base de datos
     await this.orderRepository.save(order);
-  
+
     return {
       message: "Order updated successfully",
       order,
     };
   }
-  
+
 
   async removeOrder(id: string) {
     const order = await this.orderRepository.findOne({

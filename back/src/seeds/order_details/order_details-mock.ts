@@ -7,11 +7,11 @@ export const orderDetailsMock = [
         shippingAddress: "Calle 123 Carrera 45 No 67-89",
         orderDetails: [
             {
-                productName: "BUBBLE 2",
+                productName: "QISS",
                 quantity: 2
             },
             {
-                productName: "BAMBOO MOOD",
+                productName: "LOVE MOR",
                 quantity: 1
             },
         ],
@@ -22,7 +22,7 @@ export const orderDetailsMock = [
         shippingAddress: "Calle 456 Carrera 78 No 90-12",
         orderDetails: [
             {
-                productName: "FOLK",
+                productName: "SENSE EXPECT",
                 quantity: 1
             }
         ],
@@ -33,15 +33,15 @@ export const orderDetailsMock = [
         shippingAddress: "Calle 789 Carrera 23 No 45-67",
         orderDetails: [
             {
-                productName: "MORSA",
+                productName: "WINDOW ASTREA",
                 quantity: 2
             },
             {
-                productName: "CESTELLO",
+                productName: "ASTREA LOUNGE",
                 quantity: 1
             },
             {
-                productName: "BAMBOO MOOD",
+                productName: "LOVE MOR",
                 quantity: 3
             }
         ],
@@ -52,7 +52,7 @@ export const orderDetailsMock = [
         shippingAddress: "Calle 101 Carrera 56 No 78-90",
         orderDetails: [
             {
-                productName: "IVRESSE",
+                productName: "OPEN APEX",
                 quantity: 5
             }
         ],
@@ -63,11 +63,11 @@ export const orderDetailsMock = [
         shippingAddress: "Calle 112 Carrera 12 No 34-56",
         orderDetails: [
             {
-                productName: "PIXL",
+                productName: "BILBOQUET XEXY",
                 quantity: 3
             },
             {
-                productName: "CELTA",
+                productName: "BILBOQUET",
                 quantity: 1
             },
         ],
@@ -78,15 +78,15 @@ export const orderDetailsMock = [
         shippingAddress: "Calle 123 Carrera 45 No 67-89",
         orderDetails: [
             {
-                productName: "IVRESSE",
+                productName: "OPEN APEX",
                 quantity: 7
             },
             {
-                productName: "JANE",
+                productName: "ONDO RONDO",
                 quantity: 1
             },
             {
-                productName: "AVA",
+                productName: "WHISPER",
                 quantity: 2
             }
         ],
@@ -97,11 +97,11 @@ export const orderDetailsMock = [
         shippingAddress: "Calle 123 Carrera 45 No 67-89",
         orderDetails: [
             {
-                productName: "MANGROVE",
+                productName: "LUMPA",
                 quantity: 4
             },
             {
-                productName: "TRACE",
+                productName: "LOVE TEL",
                 quantity: 1
             },
         ],
@@ -112,11 +112,11 @@ export const orderDetailsMock = [
         shippingAddress: "Calle 123 Carrera 45 No 67-89",
         orderDetails: [
             {
-                productName: "BUBBLE",
+                productName: "QISS",
                 quantity: 3
             },
             {
-                productName: "PULP",
+                productName: "KEEEN",
                 quantity: 1
             },
         ],
@@ -127,7 +127,7 @@ export const orderDetailsMock = [
         shippingAddress: "Calle 456 Carrera 78 No 90-12",
         orderDetails: [
             {
-                productName: "CEO",
+                productName: "BUBBLE 2",
                 quantity: 1
             }
         ],
@@ -138,15 +138,15 @@ export const orderDetailsMock = [
         shippingAddress: "Calle 789 Carrera 23 No 45-67",
         orderDetails: [
             {
-                productName: "PULP",
+                productName: "KEEEN",
                 quantity: 2
             },
             {
-                productName: "MELT",
+                productName: "LOVE MOR",
                 quantity: 1
             },
             {
-                productName: "RIO IPANEMA",
+                productName: "SENSE EXPECT",
                 quantity: 3
             }
         ],
@@ -157,7 +157,7 @@ export const orderDetailsMock = [
         shippingAddress: "Calle 101 Carrera 56 No 14-6",
         orderDetails: [
             {
-                productName: "LIFT",
+                productName: "WINDOW ASTREA",
                 quantity: 5
             }
         ],
@@ -168,11 +168,11 @@ export const orderDetailsMock = [
         shippingAddress: "Carrera 12 No 34-56",
         orderDetails: [
             {
-                productName: "GLOBO",
+                productName: "ASTREA LOUNGE",
                 quantity: 3
             },
             {
-                productName: "PULP",
+                productName: "KEEEN",
                 quantity: 1
             },
         ],
@@ -183,15 +183,15 @@ export const orderDetailsMock = [
         shippingAddress: "Calle 123 Carrera 45 No 67-89",
         orderDetails: [
             {
-                productName: "IVRESSE",
+                productName: "OPEN APEX",
                 quantity: 7
             },
             {
-                productName: "JANE",
+                productName: "ONDO RONDO",
                 quantity: 1
             },
             {
-                productName: "AVA",
+                productName: "WHISPER",
                 quantity: 2
             }
         ],
@@ -202,11 +202,11 @@ export const orderDetailsMock = [
         shippingAddress: "Calle 123 Carrera 45 No 67-89",
         orderDetails: [
             {
-                productName: "MANGROVE",
+                productName: "LUMPA",
                 quantity: 4
             },
             {
-                productName: "TRACE",
+                productName: "LOVE TEL",
                 quantity: 1
             },
         ],
