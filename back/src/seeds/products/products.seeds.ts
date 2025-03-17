@@ -15,13 +15,17 @@ export class ProductsSeed {
         private readonly categoryRepository: Repository<Category>
     ) { }
 
-    async findCategories(category: string) {
+    async findCategories(name: string, type: string, color: string) {
         const findCategory = await this.categoryRepository.findOne({
-            where: { type: category }
+            where: {
+                name: name,
+                type: type,
+                color: color
+            }
         })
 
         if (!findCategory) {
-            throw new Error(`Category ${category} not found`)
+            throw new Error(`Category name ${name} / type ${type} / color ${color} not found`)
         }
         return findCategory;
     }
@@ -41,7 +45,11 @@ export class ProductsSeed {
                 newProduct.designer = productData.designer;
                 newProduct.image = productData.image;
                 newProduct.stock = productData.stock;
-                newProduct.category = await this.findCategories(productData.categoryName)
+                newProduct.category = await this.findCategories(
+                    productData.categoryName,
+                    productData.categoryType,
+                    productData.categoryColor
+                );
                 await this.productRepository.save(newProduct);
             } else {
                 return "Ya existen productos"
