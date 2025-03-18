@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export const CompleteRegistration: React.FC = () => {
+export const CompleteRegistrationView: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-8">
       <div className="bg-white p-8 shadow-xl w-full sm:w-2/3 lg:w-2/3 xl:w-2/3 max-w-4xl">

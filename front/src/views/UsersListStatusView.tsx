@@ -5,7 +5,7 @@ import { IUserBack } from '@/interfaces/Iuser';
 import { deleteUser } from '@/helpers/adminActions';
 import { FaRegTrashAlt } from 'react-icons/fa';
 
-const UsersListStatus = () => {
+const UsersListStatusView:React.FC = () => {
   const [users, setUsers] = useState<IUserBack[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -99,4 +99,4 @@ const UsersListStatus = () => {
 
 };
 
-export default UsersListStatus;
+export default UsersListStatusView;

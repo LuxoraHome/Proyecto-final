@@ -1,12 +1,17 @@
 import React from "react";
 import ProductMap from "@/components/products/ProductsMap";
+import GetOffersView from "./GetOffersView";
 
 
 const HomeView: React.FC = () => {
 
 
     return (
-        <ProductMap />
+        <div>
+            <GetOffersView />
+            <ProductMap />
+
+        </div>
     )
 
 

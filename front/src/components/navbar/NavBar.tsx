@@ -10,7 +10,7 @@ import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 import { getProducts, searchProduct } from "@/helpers/getProducts";
 import { iProducts } from "@/interfaces/iProducts";
-import AdminProfile from "@/views/AdminProfile";
+import AdminProfile from "@/views/AdminProfileView";
 
 export const Navbar: React.FC = () => {
   const router = useRouter();

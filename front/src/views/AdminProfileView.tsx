@@ -3,7 +3,7 @@ import { useAuth } from '@/context/AuthContext';
 import { Link } from 'lucide-react';
 import React from 'react'
 
-const AdminProfile = () => {
+const AdminProfileView: React.FC = () => {
   const { user } = useAuth(); 
 
   return (
@@ -45,4 +45,4 @@ const AdminProfile = () => {
   
 };
 
-export default AdminProfile
+export default AdminProfileView

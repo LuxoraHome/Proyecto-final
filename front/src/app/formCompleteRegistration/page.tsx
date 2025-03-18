@@ -1,5 +1,5 @@
 "use client"
-import { FormCompleteRegistration } from '@/views/FormCompleteRegistration'
+import { FormCompleteRegistrationView } from '@/views/FormCompleteRegistrationView'
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/AuthContext'
@@ -20,7 +20,7 @@ const Page = () => {
 
   return (
     <div>
-      <FormCompleteRegistration />
+      <FormCompleteRegistrationView />
     </div>
   );
 };

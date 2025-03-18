@@ -4,7 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik'
 import validateRegister from '@/helpers/validateFormRegister'
 import { IUserRegister } from "@/interfaces/Iuser"
 
-export const FormCompleteRegistration: React.FC = () => {
+export const FormCompleteRegistrationView: React.FC = () => {
   const handleSubmit = (values: IUserRegister) => {
     console.log('Form data', values)
   }

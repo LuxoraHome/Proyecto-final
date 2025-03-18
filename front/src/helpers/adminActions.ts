@@ -1,4 +1,5 @@
 import { IUserBack } from "@/interfaces/Iuser";
+import { IGetOffers } from "@/interfaces/IOffer";
 import Swal from "sweetalert2";
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL;
@@ -56,3 +57,23 @@ export const deleteUser = async (userId: string) => {
   }
 };
 
+export const getOffers = async (): Promise<IGetOffers[]> => {
+  try {
+    const response = await fetch(`${APIURL}/offer`);
+
+    if (!response.ok) {
+      throw new Error('Error fetching offers');
+    }
+
+    const offers: IGetOffers[] = await response.json();
+    return offers;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+
+export const createOffer = () => {
+
+}
