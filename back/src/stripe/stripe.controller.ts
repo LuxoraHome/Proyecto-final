@@ -17,6 +17,8 @@ export class StripeController {
         const { payIntentId } = body
         const paymentIntent = await this.stripeService.retrievePaymentIntent(payIntentId);
 
+        console.log("Estado actual:", paymentIntent.status);
+
         if (paymentIntent.status === 'succeeded') {
             return { success: true, message: 'Pago realizado con exito', paymentIntent };
         }else if (paymentIntent.status === 'requires_payment_method') {

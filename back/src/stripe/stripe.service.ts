@@ -12,13 +12,15 @@ export class StripeService {
     }
 
     async intent(amount:number, currency:string, paymentMethodId:string) {
-        return this.stripe.paymentIntents.create({
+        const paymentIntent = await  this.stripe.paymentIntents.create({
             amount,
             currency,
             payment_method: paymentMethodId,
-            confirm: true,
+            confirm: false,
             payment_method_types: ['card'],
         });
+
+        return { client_secret: paymentIntent.client_secret, id: paymentIntent.id };
     }
 
     async confirm(IntentId:string) {
