@@ -57,6 +57,8 @@ export const CartComponent: React.FC = () => {
         const response = await userCheckout(ordenData)
         if (response) {
             setCart([])
+            console.log(`checkout realizado con exito`);
+
             localStorage.removeItem("cart")
 
         }
@@ -76,6 +78,8 @@ export const CartComponent: React.FC = () => {
 
 
         const { paymentMethod, error } = await stripe?.createPaymentMethod({
+
+
             type: "card",
             card: elements?.getElement(CardElement)!,
         })
@@ -100,7 +104,7 @@ export const CartComponent: React.FC = () => {
 
         const clientSecret = await createOrder(userPay)
 
-        console.log(`Client secret obtendio con exito`, clientSecret);
+        console.log(`Client secret obtendio con exito desde el back`, clientSecret);
 
 
         if (!clientSecret) {
