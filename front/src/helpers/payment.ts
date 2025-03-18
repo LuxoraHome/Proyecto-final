@@ -28,11 +28,6 @@ export const createOrder = async (userPay: IUserpay) => {
 
         const data = await response.json()
 
-        if (!data.client_secret) {
-            console.error("Error: client_secret no recibido", data);
-            return { success: false, message: "No se recibió client_secret" };
-        }
-
         return data.client_secret; 
 
     } catch (error) {
