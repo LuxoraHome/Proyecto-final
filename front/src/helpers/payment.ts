@@ -22,7 +22,6 @@ export const createOrder = async (userPay: IUserpay) => {
             body: JSON.stringify({ amount: userPay.amount * 100, currency: userPay.currency, paymentMethodId: userPay.paymentMethodId })
         })
 
-
         const data = await response.json()
 
         if (!data.client_secret) {
