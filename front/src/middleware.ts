@@ -9,7 +9,7 @@ export const middleware = (request: NextRequest) => {
 
     const { pathname, origin } = request.nextUrl
 
-    if ((pathname === "/cart" || pathname === "/dashboard") && !request.cookies.get("access_uid")) {
+    if ((pathname === "/cart" || pathname === "/dashboard" || pathname === "/orders") && !request.cookies.get("access_uid")) {
         const newUrl = new NextURL("/login", origin)
         return NextResponse.redirect(newUrl);
     }
