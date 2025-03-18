@@ -86,7 +86,7 @@ export const CartComponent: React.FC = () => {
                 title: "Fail Payment",
                 text: error.message,
             });
-return
+            return
         }
 
         const userPay: IUserpay = {
@@ -94,12 +94,15 @@ return
             currency: "USD",
             paymentMethodId: paymentMethod.id,
         }
-       
+
 
 
 
         const clientSecret = await createOrder(userPay)
-      
+
+        console.log(`Client secret obtendio con exito`, clientSecret);
+
+
         if (!clientSecret) {
             Swal.fire({
                 icon: "error",
@@ -109,13 +112,13 @@ return
             return
 
         }
-        
+
 
         const result = await stripe.confirmCardPayment(clientSecret, {
-            payment_method:paymentMethod.id
+            payment_method: paymentMethod.id
         })
 
-      
+
 
         if (result.paymentIntent?.status === "succeeded") {
             console.log("🎉 Pago exitoso:", result.paymentIntent);
@@ -124,7 +127,7 @@ return
                 title: "Payment Successful",
                 text: "Your order has been placed successfully."
             });
-          
+
         }
 
 
@@ -135,7 +138,7 @@ return
                 title: "Payment Failed",
                 text: result.error.message,
             });
-      
+
 
         }
     }
