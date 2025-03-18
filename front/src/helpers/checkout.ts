@@ -10,8 +10,15 @@ export const userCheckout = async (orderData: ICheckout) => {
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(orderData)
         });
-        return response.json();
 
+        if (response.ok) {
+            Swal.fire({
+                icon: "success",
+                title: "Checkout Successful",
+                text: "Your order has been placed successfully."
+            });
+            return response.json();
+        }
 
     } catch (error) {
         console.log(`Error:`, error);
