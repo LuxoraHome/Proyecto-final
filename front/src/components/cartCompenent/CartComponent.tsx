@@ -71,13 +71,11 @@ export const CartComponent: React.FC = () => {
                 title: "Error de Pago",
                 text: "Stripe no está disponible. Intenta recargar la página.",
             });
-            return
+            return ;
         }
 
 
         const { paymentMethod, error } = await stripe?.createPaymentMethod({
-
-
             type: "card",
             card: elements?.getElement(CardElement)!,
         })
@@ -88,8 +86,17 @@ export const CartComponent: React.FC = () => {
                 title: "Fail Payment",
                 text: error.message,
             });
-            return
+            return;
         }
+        if (!paymentMethod) {
+            Swal.fire({
+                icon: "error",
+                title: "Payment Method Error",
+                text: "No se pudo crear el método de pago.",
+            });
+            return;
+        }
+
 
         const userPay: IUserpay = {
             amount: price,
