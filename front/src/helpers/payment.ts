@@ -3,7 +3,7 @@
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL
 
-console.log(process.env.NEXT_PUBLIC_API_URL);
+
 
 
 export interface IUserpay {

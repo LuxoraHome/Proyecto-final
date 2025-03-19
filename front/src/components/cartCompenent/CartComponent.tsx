@@ -58,9 +58,7 @@ export const CartComponent: React.FC = () => {
         if (response) {
             setCart([])
             console.log(`checkout realizado con exito`);
-
             localStorage.removeItem("cart")
-
         }
         else {
             alert("Checkout Fail")
@@ -136,7 +134,6 @@ export const CartComponent: React.FC = () => {
 
 
         else if (result.error) {
-            console.error(" Error en confirmCardPayment:", result.error)
             Swal.fire({
                 icon: "error",
                 title: "Payment Failed",
