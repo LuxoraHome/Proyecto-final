@@ -6,3 +6,8 @@ export interface IOrder {
     status: string; 
     products: iProducts[] | [];
   }
+  export interface IUserpay {
+    amount: number;
+    currency: string,
+    paymentMethodId: string,
+}
