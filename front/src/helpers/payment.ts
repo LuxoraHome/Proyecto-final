@@ -23,13 +23,9 @@ export const createOrder = async (userPay: IUserpay) => {
         })
 
         const data = await response.json()
-
-        if (!data.client_secret) {
-            console.error("Error: client_secret no recibido", data);
-            return { success: false, message: "No se recibió client_secret" };
-        }
-        console.log("esto me devuelve el back al crear la orden", data);
+        console.log(`esto me devuelve data createOrder`, data);
         return data.client_secret
+
 
 
     } catch (error) {

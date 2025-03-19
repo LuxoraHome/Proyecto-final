@@ -55,15 +55,14 @@ export const CartComponent: React.FC = () => {
         }
 
         const response = await userCheckout(ordenData)
-        console.log(`data de checkout`,response);
+        console.log(`data de checkout`, response);
         if (response) {
             setCart([])
-            console.log(`checkout realizado con exito`);
             localStorage.removeItem("cart")
         }
         else {
             alert("Checkout Fail")
-            return; 
+            return;
         }
 
 
@@ -73,7 +72,7 @@ export const CartComponent: React.FC = () => {
                 title: "Error de Pago",
                 text: "Stripe no está disponible. Intenta recargar la página.",
             });
-            return ;
+            return;
         }
 
 
@@ -108,22 +107,8 @@ export const CartComponent: React.FC = () => {
 
 
 
-
         const clientSecret = await createOrder(userPay)
-
-        console.log(`Client secret: ${clientSecret}`);
-
-
-        if (!clientSecret) {
-            Swal.fire({
-                icon: "error",
-                title: "Error de Pago",
-                text: "No se pudo crear la orden de pago. Intente nuevamente.",
-            });
-            return
-
-        }
-
+        console.log(`Esto devuelvo el back al hacer la funcion CreateOrder`, clientSecret);
 
         const result = await stripe.confirmCardPayment(clientSecret, {
             payment_method: paymentMethod.id
@@ -132,6 +117,11 @@ export const CartComponent: React.FC = () => {
 
 
         if (result.paymentIntent?.status === "succeeded") {
+            await fetch("/api/payments/confirm", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ payIntentId: result.paymentIntent.id }),
+            });
             console.log("🎉 Pago exitoso:", result.paymentIntent);
             Swal.fire({
                 icon: "success",
