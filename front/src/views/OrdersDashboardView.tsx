@@ -17,7 +17,7 @@ export const OrdersDashboardView: React.FC = () => {
 
     interface Order {
         client: string;
-        image: string ,
+        image: string,
         customerName: string;
         total: string;
         date: string;
@@ -29,15 +29,15 @@ export const OrdersDashboardView: React.FC = () => {
 
     const dataOrder = async () => {
         const data = await orderDashboard(user?.uid)
-       
-console.log(`esta data me devuelve el back` , data);
+
+        console.log(`esta data me devuelve el back`, data);
 
 
         if (data?.orders && data?.user) {
             const dataFilter: Order[] = data.orders.map((order: Order) => ({
                 client: data.user.client,
                 customerName: data.user.name,
-                image : order.image ,
+                image: order.image,
                 total: order.total,
                 date: order.date,
                 status: order.status,
@@ -56,42 +56,46 @@ console.log(`esta data me devuelve el back` , data);
 
     return (
         <div className="min-h-screen flex justify-center items-center bg-gray-100 p-4">
-            <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-4xl">
-                <h1 className="text-3xl font-semibold text-center mb-8 text-gray-800">Orders Dashboard</h1>
-
-
-
-                {dash?.map((items, index) => (
-                    <li key={index} className="border-b border-gray-300 pb-6">
-                        <div className="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-6">
-                            <div>
-                                <strong className="text-xl text-gray-700">{items.customerName}</strong>
-                                <p className="text-base text-gray-500 mt-2">{items.client}</p>
-                                <p className="text-base text-gray-700 mt-1">
-                                    {new Date(items.date).toLocaleDateString('es-ES', {
-                                        day: '2-digit',
-                                        month: 'long',
-                                        year: 'numeric'
-                                    })}
-                                </p>
-                                <p className="text-sm text-gray-500 mt-2">{items.total}</p>
-                                <p className="text-sm mt-2">
-                                    <span className={items.status === 'Active' ? 'text-green-500' : 'text-red-500'}>
-                                        <span className="text-gray-700">Status:{items.status} </span>
-                                    </span>
+        <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-4xl">
+            <h1 className="text-4xl font-semibold text-center mb-10 text-gray-900">Orders Dashboard</h1>
+    
+            {dash?.map((items, index) => (
+                <li key={index} className="border-b border-gray-200 py-6">
+                    <div className="flex flex-col sm:flex-row items-center sm:space-x-6">
+                        <div className="sm:w-2/3">
+                            <h2 className="text-xl font-medium text-gray-800">{items.customerName}</h2>
+                            <p className="text-sm text-gray-600">{items.client}</p>
+    
+                            <p className="text-sm text-gray-500 mt-2">
+                                {new Date(items.date).toLocaleDateString('es-ES', {
+                                    day: '2-digit',
+                                    month: 'long',
+                                    year: 'numeric'
+                                })}
+                            </p>
+                        </div>
+                        
+                        <div className="flex items-center justify-between sm:w-1/3 mt-4 sm:mt-0">
+                            <div className="w-20 h-20 relative rounded-lg overflow-hidden shadow-sm">
+                                <img
+                                    src={items.image}
+                                    className="w-full h-full object-cover object-center"
+                                    alt="Order Image"
+                                />
+                            </div>
+    
+                            <div className="text-right">
+                                <p className="text-lg font-semibold text-gray-900">${items.total}</p>
+                                <p className={`text-sm mt-1 ${items.status === 'Active' ? 'text-green-500' : 'text-red-500'}`}>
+                                    {items.status}
                                 </p>
                             </div>
                         </div>
-                    </li>
-                ))}
-
-
-
-
-
-
-            </div>
+                    </div>
+                </li>
+            ))}
         </div>
+    </div>
 
     )
 
