@@ -58,11 +58,11 @@ export const deleteUser = async (userId: string) => {
   }
 };
 
-export const blockStatusUser = async (userId: string, status: "active" | "suspended") => {
+export const blockStatusUser = async (userUid: string, status: "active" | "suspended") => {
   try {
       const newStatus = status === "active" ? "suspended" : "active";
 
-      const response = await fetch(`${APIURL}/user/${userId}`, {
+      const response = await fetch(`${APIURL}/user/${userUid}`, {
           method: "PUT",
           headers: {
               "Content-Type": "application/json",

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getUsersList, deleteUser, blockStatusUser } from "@/helpers/adminActions";
 import { IUserBack } from "@/interfaces/Iuser";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { FaLock, FaUnlock } from "react-icons/fa"; // Importamos iconos de bloqueo
+import { FaLock, FaUnlock } from "react-icons/fa";
 
 const UsersListStatusView: React.FC = () => {
   const [users, setUsers] = useState<IUserBack[]>([]);
@@ -30,93 +30,98 @@ const UsersListStatusView: React.FC = () => {
     user.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleDeleteUser = async (userId: string) => {
-    const success = await deleteUser(userId);
+  const handleDeleteUser = async (userUid: string) => {
+    const success = await deleteUser(userUid);
     if (success) {
-      setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+      setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userUid));
     }
   };
 
-  const handleToggleStatus = async (userId: string, status: "active" | "suspended") => {
-    const updatedUser = await blockStatusUser(userId, status);
+  const handleToggleStatus = async (userUid: string, status: "active" | "suspended") => {
+    const updatedUser = await blockStatusUser(userUid, status);
     if (updatedUser) {
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
-          user.id === userId ? { ...user, status: updatedUser.status } : user
+          user.id === userUid ? { ...user, status: updatedUser.status } : user
         )
       );
     }
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6 mt-12 bg-white rounded-lg shadow-md">
-      <h1 className="text-3xl font-semibold text-gray-900 mb-4">Users List</h1>
+    <div className="max-w-full mx-auto p-6 mt-12 bg-white rounded-lg shadow-md">
+  <h1 className="text-3xl font-semibold text-gray-900 mb-4">Users List</h1>
 
-      <div className="mb-6">
-        <input
-          type="text"
-          placeholder="Search by name..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
-        />
-      </div>
+  <div className="mb-6">
+    <input
+      type="text"
+      placeholder="Search by name..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      className="w-full p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500"
+    />
+  </div>
 
-      {loading ? (
-        <p className="text-gray-600">Loading users...</p>
-      ) : error ? (
-        <p className="text-red-600">{error}</p>
-      ) : filteredUsers.length === 0 ? (
-        <p className="text-gray-600">No users found</p>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="min-w-full table-auto border-collapse">
-            <thead>
-              <tr>
-                <th className="px-4 py-2 text-left text-gray-800 border-b">Id</th>
-                <th className="px-4 py-2 text-left text-gray-800 border-b">Name</th>
-                <th className="px-4 py-2 text-left text-gray-800 border-b">Email</th>
-                <th className="px-4 py-2 text-left text-gray-800 border-b">City</th>
-                <th className="px-4 py-2 text-left text-gray-800 border-b">Country</th>
-                <th className="px-4 py-2 text-left text-gray-800 border-b">Client Type</th>
-                <th className="px-4 py-2 text-left text-gray-800 border-b">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredUsers.map((user) => (
-                <tr key={user.id} className="bg-gray-100 hover:bg-gray-200">
-                  <td className="px-4 py-2 text-gray-800 border-b">{user.id}</td>
-                  <td className="px-4 py-2 text-gray-800 border-b">{user.name}</td>
-                  <td className="px-4 py-2 text-gray-800 border-b">{user.email}</td>
-                  <td className="px-4 py-2 text-gray-800 border-b">{user.city}</td>
-                  <td className="px-4 py-2 text-gray-800 border-b">{user.country}</td>
-                  <td className="px-4 py-2 text-gray-800 border-b">{user.client}</td>
-                  <td className="px-4 py-2 text-gray-800 border-b flex gap-4">
-                    <button
-                      onClick={() => handleDeleteUser(user.id!)}
-                      className="text-gray-500 hover:text-gray-700"
-                    >
-                      <FaRegTrashAlt className="h-6 w-6" />
-                    </button>
+  {loading ? (
+    <p className="text-gray-600">Loading users...</p>
+  ) : error ? (
+    <p className="text-red-600">{error}</p>
+  ) : filteredUsers.length === 0 ? (
+    <p className="text-gray-600">No users found</p>
+  ) : (
+    <div className="overflow-x-auto">
+      <table className="min-w-full table-auto border-collapse">
+        <thead>
+          <tr>
+            <th className="px-4 py-2 text-left text-gray-800 border-b">Id</th>
+            <th className="px-4 py-2 text-left text-gray-800 border-b">Name</th>
+            <th className="px-4 py-2 text-left text-gray-800 border-b">Email</th>
+            <th className="px-4 py-2 text-left text-gray-800 border-b">City</th>
+            <th className="px-4 py-2 text-left text-gray-800 border-b">Country</th>
+            <th className="px-4 py-2 text-left text-gray-800 border-b">Client Type</th>
+            <th className="px-4 py-2 text-left text-gray-800 border-b">Role</th> 
+            <th className="px-4 py-2 text-left text-gray-800 border-b">Status</th> 
+            <th className="px-4 py-2 text-left text-gray-800 border-b">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredUsers.map((user) => (
+            <tr key={user.id} className="bg-gray-100 hover:bg-gray-200">
+              <td className="px-4 py-2 text-gray-800 border-b">{user.id}</td>
+              <td className="px-4 py-2 text-gray-800 border-b">{user.name}</td>
+              <td className="px-4 py-2 text-gray-800 border-b">{user.email}</td>
+              <td className="px-4 py-2 text-gray-800 border-b">{user.city}</td>
+              <td className="px-4 py-2 text-gray-800 border-b">{user.country}</td>
+              <td className="px-4 py-2 text-gray-800 border-b">{user.client}</td>
+              <td className="px-4 py-2 text-gray-800 border-b">{user.role}</td> 
+              <td className="px-4 py-2 text-gray-800 border-b">{user.status}</td> 
+              <td className="px-4 py-2 text-gray-800 border-b flex gap-4">
+                <button
+                  onClick={() => handleDeleteUser(user.id!)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <FaRegTrashAlt className="h-6 w-6" />
+                </button>
 
-                    <button
-                      onClick={() => handleToggleStatus(user.id!, user.status!)}
-                      className="text-gray-500 hover:text-gray-700"
-                    >
-                      {user.status === "active" ? (
-                        <FaLock className="h-6 w-6 text-red-500" />
-                      ) : (
-                        <FaUnlock className="h-6 w-6 text-green-500" />
-                      )}
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+                <button
+                  onClick={() => handleToggleStatus(user.id!, user.status!)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  {user.status === "active" ? (
+                    <FaLock className="h-6 w-6 text-red-500" />
+                  ) : (
+                    <FaUnlock className="h-6 w-6 text-green-500" />
+                  )}
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
+  )}
+</div>
+
   );
 };
 
