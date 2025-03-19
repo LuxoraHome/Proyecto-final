@@ -18,9 +18,7 @@ export class OfferService {
 
   async create(createOfferDto: CreateOfferDto): Promise<ResponseOfferDto> {
     const {
-      productId,
       productName,
-      productPrice,
       productDiscount,
       startDate,
       endDate
@@ -29,9 +27,7 @@ export class OfferService {
     // Buscar el producto en la base de datos
     const product = await this.productRepository.findOne({
       where: {
-        id: productId,
         name: productName,
-        price: productPrice
       }
     });
 
