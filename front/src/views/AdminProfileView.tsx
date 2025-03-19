@@ -30,11 +30,11 @@ const AdminProfileView: React.FC = () => {
             <span className="font-bold">City:</span> {user.city || "No city available"}
           </p>
           <p className="text-gray-700 mb-3 text-center">
-            <span className="font-bold">Admin:</span> {user.admin ? "Yes" : "No"}
+            <span className="font-bold">Role:</span> {user.role === "superadmin" ? "Yes" : "No"}
           </p>
   
-          <Link href="/orders" className="bg-black text-white px-6 py-3 w-full sm:w-auto text-center mt-4">
-            View Orders
+          <Link href="/adminDashboard" className="bg-black text-white px-6 py-3 w-full sm:w-auto text-center mt-4">
+            Dashboard
           </Link>
         </>
       ) : (

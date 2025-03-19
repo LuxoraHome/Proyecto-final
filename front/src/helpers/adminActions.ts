@@ -58,9 +58,9 @@ export const deleteUser = async (userId: string) => {
   }
 };
 
-export const blockStatusUser = async (userId: string, status: "Active" | "Suspended") => {
+export const blockStatusUser = async (userId: string, status: "active" | "suspended") => {
   try {
-      const newStatus = status === "Active" ? "Suspended" : "Active";
+      const newStatus = status === "active" ? "suspended" : "active";
 
       const response = await fetch(`${APIURL}/user/${userId}`, {
           method: "PUT",
@@ -74,7 +74,7 @@ export const blockStatusUser = async (userId: string, status: "Active" | "Suspen
           throw new Error(`Error al actualizar el estado del usuario: ${response.statusText}`);
       }
 
-      return await response.json(); 
+      return await response.json(); // Devuelve la respuesta si se necesita
   } catch (error) {
       console.error("Error en blockStatusUser:", error);
   }

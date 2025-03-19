@@ -4,9 +4,9 @@ import CreateOffertView from './CreateOfferView'
 import AdminProfileView from './AdminProfileView'
 import StatsBuyersViews from './StatsBuyersViews'
 import StatsLoguersView from './StatsLoguersView'
-import StatsOrdersView from './statsOrdersView'
 import StatsUsersView from './StatsUsersView'
 import GetOffersView from './GetOffersView'
+import StatsOrdersView from './StatsOrdersView'
 
 const AdminDashboardView = () => {
   return (

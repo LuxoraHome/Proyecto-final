@@ -33,9 +33,9 @@ export interface IUserBack {
     phone?: string,
     city?: string,
     country?: string,
-    client?: "Standard" | "Premium",
-    rol?: "Superadmin"| "Admin" | "User",
-    status?: "Active" | "Suspended",
+    client?: "standard" | "premium",
+    role: "superadmin"| "admin" | "user",
+    status: "active" | "suspended",
 }
 
 

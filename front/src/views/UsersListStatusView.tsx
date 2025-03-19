@@ -37,7 +37,7 @@ const UsersListStatusView: React.FC = () => {
     }
   };
 
-  const handleToggleStatus = async (userId: string, status: "Active" | "Suspended") => {
+  const handleToggleStatus = async (userId: string, status: "active" | "suspended") => {
     const updatedUser = await blockStatusUser(userId, status);
     if (updatedUser) {
       setUsers((prevUsers) =>
@@ -103,7 +103,7 @@ const UsersListStatusView: React.FC = () => {
                       onClick={() => handleToggleStatus(user.id!, user.status!)}
                       className="text-gray-500 hover:text-gray-700"
                     >
-                      {user.status === "Active" ? (
+                      {user.status === "active" ? (
                         <FaLock className="h-6 w-6 text-red-500" />
                       ) : (
                         <FaUnlock className="h-6 w-6 text-green-500" />
