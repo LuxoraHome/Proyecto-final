@@ -28,6 +28,9 @@ export const OrdersDashboardView: React.FC = () => {
 
     const dataOrder = async () => {
         const data = await orderDashboard(user?.uid)
+        console.log(`esto me devuelve el back al hacer la funcion`, data);
+
+
         if (data?.orders && data?.user) {
             const dataFilter: Order[] = data.orders.map((order: Order) => ({
                 client: data.user.client,
