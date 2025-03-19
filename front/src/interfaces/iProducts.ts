@@ -2,12 +2,12 @@ export interface iProducts {
     id: string,
     categoriId?: string,
     stock?: string,
-    name?: string,
+    name?: string ,
     image?: string,
     price: number,
     product?: string,
     description? : string,
-    quantity : number ,
+    quantity?: number ,
 } 
 
 export interface iPro {
