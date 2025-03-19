@@ -1,4 +1,5 @@
 export interface IPostOffer {
+    id? : string;
     productName?: string;
     productDiscount?: number;
     startDate?: Date;

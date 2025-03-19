@@ -1,10 +1,10 @@
 import { IUserBack } from "@/interfaces/Iuser";
-import { IGetOffers } from "@/interfaces/IOffer";
+import { IGetOffers, IPostOffer } from "@/interfaces/IOffer";
 import Swal from "sweetalert2";
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL;
 
-//Funciones disponibles para SuperAdmin y Administrador comun:
+// FUNCION PARA OBTENER LISTA DE USUARIOS.
 export const getUsersList = async (): Promise<IUserBack[] | null> => {
   try {
     const response = await fetch(`${APIURL}/user`, {
@@ -33,6 +33,7 @@ export const getUsersList = async (): Promise<IUserBack[] | null> => {
   }
 };
 
+// FUNCION PARA ELIMINAR USUARIO.
 export const deleteUser = async (userId: string) => {
   try {
     const response = await fetch(`${APIURL}/user/${userId}`, { method: 'DELETE' });
@@ -58,11 +59,12 @@ export const deleteUser = async (userId: string) => {
   }
 };
 
-export const blockStatusUser = async (userUid: string, status: "active" | "suspended") => {
+// FUNCION PARA CAMBIAR EL ESTADO DEL USUARIO DE "active" a "suspended" y viceversa.
+export const blockStatusUser = async (userId: string, status: "active" | "suspended") => {
   try {
       const newStatus = status === "active" ? "suspended" : "active";
 
-      const response = await fetch(`${APIURL}/user/${userUid}`, {
+      const response = await fetch(`${APIURL}/user/${userId}`, {
           method: "PUT",
           headers: {
               "Content-Type": "application/json",
@@ -80,7 +82,33 @@ export const blockStatusUser = async (userUid: string, status: "active" | "suspe
   }
 };
 
-//Offer's Functions:
+// FUNCION PARA CONVERTIR "USER" A "ADMIN".
+export const adminConvert = async (userId: string) => {
+  try {
+    const response = await fetch(`${APIURL}/user/${userId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        role: "admin",
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Error al actualizar el rol del usuario');
+    }
+
+    const data = await response.json();
+    console.log('Usuario actualizado:', data);
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+
+// FUNCION PARA OBTENER OFERTAS.
 export const getOffers = async (): Promise<IGetOffers[]> => {
   try {
     const response = await fetch(`${APIURL}/offer`);
@@ -97,7 +125,45 @@ export const getOffers = async (): Promise<IGetOffers[]> => {
   }
 };
 
+// FUNCION PARA CREAR OFERTAS.
+export const createOffer = async (offerData: IPostOffer) => {
+  try {
+    const response = await fetch(`${APIURL}/offer`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(offerData),
+    });
 
-export const createOffer = () => {
+    if (!response.ok) {
+      throw new Error('Error creating the offer');
+    }
 
-}
+    const data = await response.json();
+
+    
+    Swal.fire({
+      title: 'Success!',
+      text: 'The offer has been created successfully.',
+      icon: 'success',
+      confirmButtonText: 'OK',
+    });
+
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+
+    
+    Swal.fire({
+      title: 'Error',
+      text: 'There was an issue creating the offer. Please try again.',
+      icon: 'error',
+      confirmButtonText: 'OK',
+    });
+
+    throw error;
+  }
+};
+
+
