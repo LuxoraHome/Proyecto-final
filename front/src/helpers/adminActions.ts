@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL;
 
+//Funciones disponibles para SuperAdmin y Administrador comun:
 export const getUsersList = async (): Promise<IUserBack[] | null> => {
   try {
     const response = await fetch(`${APIURL}/user`, {
@@ -57,6 +58,29 @@ export const deleteUser = async (userId: string) => {
   }
 };
 
+export const blockStatusUser = async (userId: string, status: "Active" | "Suspended") => {
+  try {
+      const newStatus = status === "Active" ? "Suspended" : "Active";
+
+      const response = await fetch(`${APIURL}/user/${userId}`, {
+          method: "PUT",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status: newStatus }),
+      });
+
+      if (!response.ok) {
+          throw new Error(`Error al actualizar el estado del usuario: ${response.statusText}`);
+      }
+
+      return await response.json(); 
+  } catch (error) {
+      console.error("Error en blockStatusUser:", error);
+  }
+};
+
+//Offer's Functions:
 export const getOffers = async (): Promise<IGetOffers[]> => {
   try {
     const response = await fetch(`${APIURL}/offer`);

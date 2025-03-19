@@ -1,15 +1,15 @@
 "use client";
-import React, { useEffect, useState } from 'react';
-import { getUsersList } from '@/helpers/adminActions';
-import { IUserBack } from '@/interfaces/Iuser';
-import { deleteUser } from '@/helpers/adminActions';
-import { FaRegTrashAlt } from 'react-icons/fa';
+import React, { useEffect, useState } from "react";
+import { getUsersList, deleteUser, blockStatusUser } from "@/helpers/adminActions";
+import { IUserBack } from "@/interfaces/Iuser";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { FaLock, FaUnlock } from "react-icons/fa"; // Importamos iconos de bloqueo
 
-const UsersListStatusView:React.FC = () => {
+const UsersListStatusView: React.FC = () => {
   const [users, setUsers] = useState<IUserBack[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -37,6 +37,17 @@ const UsersListStatusView:React.FC = () => {
     }
   };
 
+  const handleToggleStatus = async (userId: string, status: "Active" | "Suspended") => {
+    const updatedUser = await blockStatusUser(userId, status);
+    if (updatedUser) {
+      setUsers((prevUsers) =>
+        prevUsers.map((user) =>
+          user.id === userId ? { ...user, status: updatedUser.status } : user
+        )
+      );
+    }
+  };
+
   return (
     <div className="max-w-6xl mx-auto p-6 mt-12 bg-white rounded-lg shadow-md">
       <h1 className="text-3xl font-semibold text-gray-900 mb-4">Users List</h1>
@@ -58,7 +69,7 @@ const UsersListStatusView:React.FC = () => {
       ) : filteredUsers.length === 0 ? (
         <p className="text-gray-600">No users found</p>
       ) : (
-        <div className="overflow-x-auto"> 
+        <div className="overflow-x-auto">
           <table className="min-w-full table-auto border-collapse">
             <thead>
               <tr>
@@ -80,12 +91,23 @@ const UsersListStatusView:React.FC = () => {
                   <td className="px-4 py-2 text-gray-800 border-b">{user.city}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.country}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.client}</td>
-                  <td className="px-4 py-2 text-gray-800 border-b">
+                  <td className="px-4 py-2 text-gray-800 border-b flex gap-4">
                     <button
                       onClick={() => handleDeleteUser(user.id!)}
                       className="text-gray-500 hover:text-gray-700"
                     >
                       <FaRegTrashAlt className="h-6 w-6" />
+                    </button>
+
+                    <button
+                      onClick={() => handleToggleStatus(user.id!, user.status!)}
+                      className="text-gray-500 hover:text-gray-700"
+                    >
+                      {user.status === "Active" ? (
+                        <FaLock className="h-6 w-6 text-red-500" />
+                      ) : (
+                        <FaUnlock className="h-6 w-6 text-green-500" />
+                      )}
                     </button>
                   </td>
                 </tr>
@@ -96,7 +118,6 @@ const UsersListStatusView:React.FC = () => {
       )}
     </div>
   );
-
 };
 
 export default UsersListStatusView;
