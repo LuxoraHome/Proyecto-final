@@ -17,6 +17,7 @@ export const OrdersDashboardView: React.FC = () => {
 
     interface Order {
         client: string;
+        image: string ,
         customerName: string;
         total: string;
         date: string;
@@ -28,13 +29,15 @@ export const OrdersDashboardView: React.FC = () => {
 
     const dataOrder = async () => {
         const data = await orderDashboard(user?.uid)
-        console.log(`esto me devuelve el back al hacer la funcion`, data);
+       
+console.log(`esta data me devuelve el back` , data);
 
 
         if (data?.orders && data?.user) {
             const dataFilter: Order[] = data.orders.map((order: Order) => ({
                 client: data.user.client,
                 customerName: data.user.name,
+                image : order.image ,
                 total: order.total,
                 date: order.date,
                 status: order.status,
