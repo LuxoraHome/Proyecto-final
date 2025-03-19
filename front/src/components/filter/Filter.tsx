@@ -1,7 +1,7 @@
 "use client";
 
 import { getCategories } from "@/helpers/categories";
-import { ICategories } from "@/interfaces/ICategories";
+import { ICategories, IFilter } from "@/interfaces/ICategories";
 import { iProducts } from "@/interfaces/iProducts";
 
 import { useEffect, useState } from "react";
@@ -13,6 +13,7 @@ interface FilterProps {
 
 const Filter: React.FC<FilterProps> = ({ products }) => {
   const [categories, setCategories] = useState<ICategories[]>([]);
+  const [filter, setFilter] = useState<IFilter[]>([])
   const [selectedCategory, setSelectedCategory] = useState<number[]>([]);
   const [productfilter, setProductfilter] = useState<iProducts[]>(products);
 
@@ -53,6 +54,7 @@ const Filter: React.FC<FilterProps> = ({ products }) => {
       setProductfilter(products);
     }
   };
+  
   const handleClick = (categoryId: number) => {
     setSelectedCategory((prevSelected) =>
       prevSelected.includes(categoryId)
