@@ -55,6 +55,7 @@ export const CartComponent: React.FC = () => {
         }
 
         const response = await userCheckout(ordenData)
+        console.log(`data de checkout`,response);
         if (response) {
             setCart([])
             console.log(`checkout realizado con exito`);
@@ -62,6 +63,7 @@ export const CartComponent: React.FC = () => {
         }
         else {
             alert("Checkout Fail")
+            return; 
         }
 
 
@@ -109,7 +111,7 @@ export const CartComponent: React.FC = () => {
 
         const clientSecret = await createOrder(userPay)
 
-        console.log(`Client secret obtendio con exito desde el back`, clientSecret);
+        console.log(`Client secret: ${clientSecret}`);
 
 
         if (!clientSecret) {
