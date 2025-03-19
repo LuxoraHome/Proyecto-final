@@ -8,6 +8,7 @@ export class CreateOfferDto {
         example: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
         required: true
     })
+    @IsOptional()
     @IsUUID()
     @IsString()
     productId: string;
@@ -16,7 +17,6 @@ export class CreateOfferDto {
         description: 'The name of the product',
         example: 'Product 1',
     })
-    @IsOptional()
     @IsString()
     productName: string;
 
