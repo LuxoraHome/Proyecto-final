@@ -31,4 +31,7 @@ export class Order {
 
     @Column({ type: 'decimal', precision: 10, scale: 2 })
     total: number;
+
+    @Column({nullable: true})
+    image: string
 }

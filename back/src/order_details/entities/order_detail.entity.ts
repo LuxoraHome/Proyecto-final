@@ -30,4 +30,7 @@ export class OrderDetail{
 
     @Column({ type: 'decimal', precision: 10, scale: 2 })
     subtotal: number;
+
+    // @Column({ type: 'varchar', length: 255, nullable: true})
+    // image: string
 }

@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsUUID } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString, IsUUID } from "class-validator";
 
 export class CreateOrderDetailDto {
   @IsUUID()
@@ -20,4 +20,8 @@ export class CreateOrderDetailDto {
   @IsNumber()
   @IsNotEmpty()
   subtotal: number;
+
+  // @IsString()
+  // @IsNotEmpty()
+  // image: string
 }
