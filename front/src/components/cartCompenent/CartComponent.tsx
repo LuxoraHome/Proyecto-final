@@ -117,11 +117,7 @@ export const CartComponent: React.FC = () => {
 
 
         if (result.paymentIntent?.status === "succeeded") {
-            await fetch("/api/payments/confirm", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ payIntentId: result.paymentIntent.id }),
-            });
+          
             console.log("🎉 Pago exitoso:", result.paymentIntent);
             Swal.fire({
                 icon: "success",
