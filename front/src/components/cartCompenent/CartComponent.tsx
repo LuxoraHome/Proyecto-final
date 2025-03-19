@@ -57,14 +57,6 @@ export const CartComponent: React.FC = () => {
 
         const response = await userCheckout(ordenData)
         console.log(`data de checkout`, response);
-        if (response) {
-            setCart([])
-            localStorage.removeItem("cart")
-        }
-        else {
-            alert("Checkout Fail")
-            return;
-        }
 
 
         if (!stripe || !elements) {
@@ -124,6 +116,8 @@ export const CartComponent: React.FC = () => {
                 title: "Payment Successful",
                 text: "Your order has been placed successfully."
             });
+            setCart([])
+            localStorage.removeItem("cart")
 
         }
 
