@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation"
 import { useAuth } from "@/context/AuthContext"
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js"
 import Swal from "sweetalert2";
-import { createOrder, IUserpay } from "@/helpers/payment"
+import { createOrder } from "@/helpers/payment"
+import { IUserpay } from "@/interfaces/IOrder"
 
 
 export const CartComponent: React.FC = () => {
@@ -117,7 +118,6 @@ export const CartComponent: React.FC = () => {
 
 
         if (result.paymentIntent?.status === "succeeded") {
-          
             console.log("🎉 Pago exitoso:", result.paymentIntent);
             Swal.fire({
                 icon: "success",
