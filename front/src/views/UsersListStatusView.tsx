@@ -38,16 +38,19 @@ const UsersListStatusView: React.FC = () => {
     }
   };
 
-  const handleToggleStatus = async (userId: string, status: "active" | "suspended") => {
-    const updatedUser = await blockStatusUser(userId, status);
+  const handleToggleStatus = async (uid: string, currentStatus: "active" | "suspended") => {
+    const newStatus = currentStatus === "active" ? "suspended" : "active";
+    
+    const updatedUser = await blockStatusUser(uid, newStatus);
     if (updatedUser) {
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
-          user.id === userId ? { ...user, status: updatedUser.status } : user
+          user.id === uid ? { ...user, status: updatedUser.status } : user
         )
       );
     }
   };
+  
 
   // Función para manejar la conversión de "user" a "admin"
   const handleConvertToAdmin = async (userId: string) => {
@@ -121,9 +124,9 @@ const UsersListStatusView: React.FC = () => {
                       className="text-gray-500 hover:text-gray-700"
                     >
                       {user.status === "active" ? (
-                        <FaLock className="h-6 w-6 text-red-500" />
-                      ) : (
                         <FaUnlock className="h-6 w-6 text-green-500" />
+                      ) : (
+                        <FaLock className="h-6 w-6 text-red-500" />
                       )}
                     </button>
 
