@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { PiShoppingBag } from "react-icons/pi";
 import { FaRegUserCircle, FaRegUser } from "react-icons/fa";
-import { IoLogOutOutline } from "react-icons/io5";
+import { IoLogOutOutline, IoArrowBack } from "react-icons/io5";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter, usePathname } from "next/navigation";
@@ -10,7 +10,6 @@ import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 import { getProducts, searchProduct } from "@/helpers/getProducts";
 import { iProducts } from "@/interfaces/iProducts";
-import AdminProfile from "@/views/AdminProfile";
 
 
 
@@ -72,6 +71,14 @@ export const Navbar: React.FC = () => {
   return (
     <nav className="bg-white flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 border-b border-black">
       <div className="flex flex-col sm:flex-row items-start sm:items-center sm:space-x-4">
+        {/* Mostrar botón de retroceso solo si no estamos en el home */}
+        {pathname !== "/" && (
+          <button onClick={() => router.back()} className="flex items-center space-x-2 text-2xl text-gray-800">
+            <IoArrowBack />
+            <span className="text-sm">Back</span>
+          </button>
+        )}
+
         <Link href="/">
           <h1 className="text-4xl font-semibold font-mono tracking-wide">LUXORA</h1>
         </Link>
@@ -116,21 +123,11 @@ export const Navbar: React.FC = () => {
             <span className="text-sm">Cart</span>
           </Link>
   
-          {/* Renderizado condicional según si el usuario es administrador o no */}
-          {user.admin ? (
-            <div className="flex items-center space-x-4">
-              <AdminProfile />
-              <Link href="/adminDashboard" className="flex items-center space-x-2">
-                <FaRegUserCircle />
-                <span className="text-sm">Admin Panel</span>
-              </Link>
-            </div>
-          ) : (
-            <Link href="/profile" className="flex items-center space-x-2">
-              <FaRegUserCircle />
-              <span className="text-sm">Profile</span>
-            </Link>
-          )}
+          {/* Renderizado condicional para el perfil de usuario */}
+          <Link href="/profile" className="flex items-center space-x-2">
+            <FaRegUserCircle />
+            <span className="text-sm">Profile</span>
+          </Link>
   
           <button onClick={handleLogOut} className="flex items-center space-x-2">
             <IoLogOutOutline />
@@ -150,7 +147,7 @@ export const Navbar: React.FC = () => {
         </div>
       )}
     </nav>
-  );  
+  );
 };
 
 export default Navbar;

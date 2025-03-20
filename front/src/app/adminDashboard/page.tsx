@@ -1,12 +1,28 @@
-import AdminDashboard from '@/views/AdminDashboard'
-import React from 'react'
+"use client";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
+import AdminDashboardView from "@/views/AdminDashboardView";
 
-const page = () => {
+const Page = () => {
+  const { user } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user || (user.role !== "superadmin" && user.role !== "admin")) {
+      router.replace("/login"); 
+    }
+  }, [user, router]);
+
+  if (!user || (user.role !== "superadmin" && user.role !== "admin")) {
+    return null; 
+  }
+
   return (
     <div>
-      <AdminDashboard/>
+      <AdminDashboardView />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;
