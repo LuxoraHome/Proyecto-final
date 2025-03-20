@@ -3,8 +3,21 @@ import React from "react";
 import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 
+import orderDashboard from "@/helpers/orderDashboard";
+import { useRouter } from "next/navigation";
+import { authProvider } from "@/services/Firebase";
+
 const ProfileView: React.FC = () => {
   const { user } = useAuth();
+  const router = useRouter()
+
+  const handelOnClick = async () => {
+    const response = await orderDashboard(user?.uid)
+    router.push('/orders')
+  }
+
+  authProvider
+
 
   return (
     <div className="max-w-lg mx-auto bg-white shadow-xl p-6 sm:p-8 mt-12 flex flex-col items-center">
@@ -16,7 +29,7 @@ const ProfileView: React.FC = () => {
       {user ? (
         <>
           <p className="text-gray-700 mb-3 text-center">
-            <span className="font-bold">Name:</span> {user.name || "No name provided"}
+            <span className="font-bold">Name:</span> {user.displayName} {user.name}
           </p>
           <p className="text-gray-700 mb-3 text-center">
             <span className="font-bold">Email:</span> {user.email}
@@ -37,7 +50,7 @@ const ProfileView: React.FC = () => {
             <span className="font-bold">Role:</span> {user.role || "No role available"}
           </p>
 
-          {/* Botón según el rol del usuario */}
+
           {user.role === "superadmin" || user.role === "admin" ? (
             <Link
               href="/adminDashboard"
@@ -45,14 +58,14 @@ const ProfileView: React.FC = () => {
             >
               Dashboard
             </Link>
-          ) : user.role === "user" ? (
-            <Link
-              href="/orders"
+          ) : (
+            <button onClick={handelOnClick}
+
               className="bg-black text-white px-6 py-3 w-full sm:w-auto text-center mt-4"
             >
               View Orders
-            </Link>
-          ) : null}
+            </button>
+          )}
         </>
       ) : (
         <p className="text-gray-700 text-center">No authenticated user.</p>

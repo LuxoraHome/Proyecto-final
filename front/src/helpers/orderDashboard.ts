@@ -2,7 +2,7 @@
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL
 
-export const orderDashboard = async (uid: string|undefined) => {
+export const orderDashboard = async (uid: string | undefined) => {
     try {
         const response = await fetch(`${APIURL}/order/user/${uid}`, {
             method: "GET",
