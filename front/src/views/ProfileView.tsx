@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import orderDashboard from "@/helpers/orderDashboard";
 import { useRouter } from "next/navigation";
-import { authProvider } from "@/services/Firebase";
+
 
 const ProfileView: React.FC = () => {
   const { user } = useAuth();
@@ -16,7 +16,6 @@ const ProfileView: React.FC = () => {
     router.push('/orders')
   }
 
-  authProvider
 
 
   return (
@@ -29,28 +28,28 @@ const ProfileView: React.FC = () => {
       {user ? (
         <>
           <p className="text-gray-700 mb-3 text-center">
-            <span className="font-bold">Name:</span> {user.displayName} {user.name}
+            <span className="font-bold">Name:</span> {user.displayName || user.name}
           </p>
           <p className="text-gray-700 mb-3 text-center">
             <span className="font-bold">Email:</span> {user.email}
           </p>
-          <p className="text-gray-700 mb-3 text-center">
-            <span className="font-bold">Address:</span> {user.address || "No address available"}
-          </p>
-          <p className="text-gray-700 mb-3 text-center">
-            <span className="font-bold">Phone:</span> {user.phone || "No phone available"}
-          </p>
-          <p className="text-gray-700 mb-3 text-center">
-            <span className="font-bold">Country:</span> {user.country || "No country available"}
-          </p>
-          <p className="text-gray-700 mb-3 text-center">
-            <span className="font-bold">City:</span> {user.city || "No city available"}
-          </p>
-          <p className="text-gray-700 mb-3 text-center">
-            <span className="font-bold">Role:</span> {user.role || "No role available"}
-          </p>
 
-
+          {user.address && (  <p className="text-gray-700 mb-3 text-center">
+            <span className="font-bold">Address:</span> {user.address }
+          </p>)}
+           {user.phone && ( <p className="text-gray-700 mb-3 text-center">
+            <span className="font-bold">Phone:</span> {user.phone }
+          </p>)}
+           {user.country &&( <p className="text-gray-700 mb-3 text-center">
+            <span className="font-bold">Country:</span> {user.country}
+          </p>)}
+           {user.city && (  <p className="text-gray-700 mb-3 text-center">
+            <span className="font-bold">City:</span> {user.city }
+          </p>)}
+             {user.role && (   <p className="text-gray-700 mb-3 text-center">
+            <span className="font-bold">Role:</span> {user.role}
+          </p>)}
+        
           {user.role === "superadmin" || user.role === "admin" ? (
             <Link
               href="/adminDashboard"
