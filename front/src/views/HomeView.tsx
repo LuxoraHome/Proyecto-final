@@ -8,8 +8,8 @@ const HomeView: React.FC = () => {
 
     return (
         <div>
-            <GetOffersView />
             <ProductMap />
+            <GetOffersView />
 
         </div>
     )

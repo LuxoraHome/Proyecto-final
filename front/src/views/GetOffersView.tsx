@@ -42,7 +42,7 @@ const GetOffersView: React.FC = () => {
                   <tr key={offer.id} className="bg-gray-100 hover:bg-gray-200">
                     <td className="px-6 py-4 text-gray-800 border-b">{offer.productName}</td>
                     <td className="px-6 py-4 text-gray-600 border-b">${offer.priceProduct}</td>
-                    <td className="px-6 py-4 text-gray-600 border-b">${offer.discountPriceProduct}</td>
+                    <td className="px-6 py-4 text-gray-600 border-b">%{offer.discountPriceProduct}</td>
                     <td className="px-6 py-4 text-gray-700 font-semibold border-b">${offer.finalPriceProduct}</td>
                     <td className="px-6 py-4 text-gray-500 border-b">
                       {new Date(offer.startOfferDate!).toLocaleDateString()} -{" "}

@@ -1,10 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { getUsersList, deleteUser, blockStatusUser } from "@/helpers/adminActions";
+import { getUsersList, deleteUser } from "@/helpers/adminActions";
 import { IUserBack } from "@/interfaces/Iuser";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { FaLock, FaUnlock } from "react-icons/fa";
-import { adminConvert } from "@/helpers/adminActions";  
+
 
 const UsersListStatusView: React.FC = () => {
   const [users, setUsers] = useState<IUserBack[]>([]);
@@ -38,32 +37,6 @@ const UsersListStatusView: React.FC = () => {
     }
   };
 
-  const handleToggleStatus = async (uid: string, currentStatus: "active" | "suspended") => {
-    const newStatus = currentStatus === "active" ? "suspended" : "active";
-    
-    const updatedUser = await blockStatusUser(uid, newStatus);
-    if (updatedUser) {
-      setUsers((prevUsers) =>
-        prevUsers.map((user) =>
-          user.id === uid ? { ...user, status: updatedUser.status } : user
-        )
-      );
-    }
-  };
-  
-
-  // Función para manejar la conversión de "user" a "admin"
-  const handleConvertToAdmin = async (userId: string) => {
-    const updatedUser = await adminConvert(userId);  
-    if (updatedUser) {
-      setUsers((prevUsers) =>
-        prevUsers.map((user) =>
-          user.id === userId ? { ...user, role: "admin" } : user
-        )
-      );
-    }
-  };
-
   return (
     <div className="max-w-full mx-auto p-6 mt-12 bg-white rounded-lg shadow-md">
       <h1 className="text-3xl font-semibold text-gray-900 mb-4">Users List</h1>
@@ -90,11 +63,11 @@ const UsersListStatusView: React.FC = () => {
             <thead>
               <tr>
                 <th className="px-4 py-2 text-left text-gray-800 border-b">Id</th>
+                <th className="px-4 py-2 text-left text-gray-800 border-b">Uid</th>
                 <th className="px-4 py-2 text-left text-gray-800 border-b">Name</th>
                 <th className="px-4 py-2 text-left text-gray-800 border-b">Email</th>
                 <th className="px-4 py-2 text-left text-gray-800 border-b">City</th>
                 <th className="px-4 py-2 text-left text-gray-800 border-b">Country</th>
-                <th className="px-4 py-2 text-left text-gray-800 border-b">Client Type</th>
                 <th className="px-4 py-2 text-left text-gray-800 border-b">Role</th>
                 <th className="px-4 py-2 text-left text-gray-800 border-b">Status</th>
                 <th className="px-4 py-2 text-left text-gray-800 border-b">Actions</th>
@@ -104,11 +77,11 @@ const UsersListStatusView: React.FC = () => {
               {filteredUsers.map((user) => (
                 <tr key={user.id} className="bg-gray-100 hover:bg-gray-200">
                   <td className="px-4 py-2 text-gray-800 border-b">{user.id}</td>
+                  <td className="px-4 py-2 text-gray-800 border-b">{user.uid}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.name}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.email}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.city}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.country}</td>
-                  <td className="px-4 py-2 text-gray-800 border-b">{user.client}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.role}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.status}</td>
                   <td className="px-4 py-2 text-gray-800 border-b flex gap-4">
@@ -118,27 +91,6 @@ const UsersListStatusView: React.FC = () => {
                     >
                       <FaRegTrashAlt className="h-6 w-6" />
                     </button>
-
-                    <button
-                      onClick={() => handleToggleStatus(user.id!, user.status!)}
-                      className="text-gray-500 hover:text-gray-700"
-                    >
-                      {user.status === "active" ? (
-                        <FaUnlock className="h-6 w-6 text-green-500" />
-                      ) : (
-                        <FaLock className="h-6 w-6 text-red-500" />
-                      )}
-                    </button>
-
-                    {/* Botón para convertir a "admin" */}
-                    {user.role === "user" && (
-                      <button
-                        onClick={() => handleConvertToAdmin(user.id!)}
-                        className="text-blue-500 hover:text-blue-700"
-                      >
-                        Convert to Admin
-                      </button>
-                    )}
                   </td>
                 </tr>
               ))}
