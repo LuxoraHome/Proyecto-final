@@ -1,4 +1,4 @@
-import UsersListStatus from '@/views/UsersListStatus'
+import UsersListStatus from '@/views/UsersListStatusView'
 import React from 'react'
 
 const page = () => {
