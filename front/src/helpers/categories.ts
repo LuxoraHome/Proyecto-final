@@ -4,9 +4,9 @@ import { ICategories } from "@/interfaces/ICategories";
 
 const APIURL=process.env.NEXT_PUBLIC_API_URL
 
-export const getCategories = async (): Promise<{ id: string; name: string }[]> => {
+export const getCategories = async (): Promise<{ id: string; name: string, type: string, color: string }[]> => {
     try {
-      const response = await fetch(`${APIURL}/categories`);
+      const response = await fetch(`${APIURL}/categories/filter`);
       if (!response.ok) {
         throw new Error("Error loading the categories");
       }
@@ -32,7 +32,7 @@ export async function getProductsbyCategories (category: string) {
 
     const filtered = products.filter((product) => {
       console.log(`Comparando: ${product.category?.id} === ${selectedCategory.id}`);
-      return String(product.category?.id) === String(category);
+      return String(product.category?.type) === String(category);
     });
   
 

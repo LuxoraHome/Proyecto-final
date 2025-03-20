@@ -1,7 +1,7 @@
 "use client";
 
 import { getCategories } from "@/helpers/categories";
-import { ICategories, IFilter } from "@/interfaces/ICategories";
+import { ICategories} from "@/interfaces/ICategories";
 import { iProducts } from "@/interfaces/iProducts";
 
 import { useEffect, useState } from "react";
@@ -13,13 +13,19 @@ interface FilterProps {
 
 const Filter: React.FC<FilterProps> = ({ products }) => {
   const [categories, setCategories] = useState<ICategories[]>([]);
-  const [filter, setFilter] = useState<IFilter[]>([])
-  const [selectedCategory, setSelectedCategory] = useState<number[]>([]);
+  
+  const [selectedCategory, setSelectedCategory] = useState({
+    category:"",
+    color:""
+  });
   const [productfilter, setProductfilter] = useState<iProducts[]>(products);
+  
 
   useEffect(() => {
     const data = async () => {
       const categoryFetch = await getCategories();
+      console.log("categorias obtenidas", categoryFetch);
+      
       setCategories(categoryFetch);
     };
 
@@ -27,70 +33,77 @@ const Filter: React.FC<FilterProps> = ({ products }) => {
   }, []);
 
   useEffect(() => {
-    if (selectedCategory) {
-      setProductfilter(
-        products.filter((product) => product.category.id === selectedCategory)
+    let filteredProducts = products;
+
+    // Filtrado por tipo
+    if (selectedCategory.category) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.category?.type === selectedCategory.category
       );
-    } else {
-      setProductfilter(products);
     }
-  }, [selectedCategory, products]);
 
-  useEffect(() => {
-    setProductfilter(products);
-  }, [products]);
-
-  useEffect(() => {
-    multifilter();
-  }, [selectedCategory, products]);
-
-  const multifilter = () => {
-    if (selectedCategory.length > 0) {
-      const filtered = products.filter((product) =>
-        selectedCategory.includes(product.category.id)
+    // Filtrado por color
+    if (selectedCategory.color) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.category?.color === selectedCategory.color
       );
-      setProductfilter(filtered);
-    } else {
-      setProductfilter(products);
     }
-  };
+
+    setProductfilter(filteredProducts);
+  }, [selectedCategory, products]);
   
-  const handleClick = (categoryId: number) => {
-    setSelectedCategory((prevSelected) =>
-      prevSelected.includes(categoryId)
-        ? prevSelected.filter((id) => id !== categoryId)
-        : [...prevSelected, categoryId]
-    );
-  };
+
+  const handleFilterChange = (filterType: "category" | "color") => (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSelectedCategory((prevCategory) => ({
+      ...prevCategory,
+      [filterType]: e.target.value,
+    }))
+  }
+
+  const uniqueCategories = Array.from(new Set(categories.map(category => category.type)));
+  const uniqueColor = Array.from(new Set(categories.map(category => category.color)));
 
   return (
-    <div className="flex flex-wrap justify-center gap-16  h-full">
-      <div className="flex flex-col-2">
-        <div className="grid grid-rows-1 justify-center gap-4 mb-4">
+    <div className=" flex flex-col justify-center gap-16 h-full">
+      <div className="flex flex-col items-center">
+        <div className="gap-4 mb-4">
           <button
-            className={`px-4 py-2 border rounded-lg ${
-              selectedCategory.length === 0
-                ? "bg-gray-800 text-white"
-                : "bg-gray-200"
-            }`}
-            onClick={() => setSelectedCategory([])}
+            className="px-4 py-2 border border-black rounded-lg font-bold text-[12px]"
+            onClick={() => setSelectedCategory({category: "", color: ""})}
           >
             All
           </button>
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              className={`px-4 py-2 border rounded-lg ${
-                selectedCategory.includes(category.id)
-                  ? "bg-gray-800 text-white"
-                  : "bg-gray-200"
-              }`}
-              onClick={() => handleClick(category.id)}
-            >
-              {category.name}
-            </button>
+          
+          
+          <select value={selectedCategory.category}
+          onChange={handleFilterChange("category")}
+          className="px-4 py-2 m-5 border border-black rounded-lg font-bold text-[12px]"
+          >
+            <option value="">All Categories</option>
+
+          {uniqueCategories.map((categoryType) => (
+            <option key={categoryType} value={categoryType}>
+              {categoryType}
+            </option>
           ))}
-        </div>
+          </select>
+          
+          <select value={selectedCategory.color}
+            onChange={handleFilterChange("color")}
+            className="px-4 py-2 border border-black rounded-lg font-bold text-[12px]">
+            <option value ="">All Colors</option>
+          {uniqueColor.map((color) => (
+            <option key={color} value={color}>
+              {color}
+            </option>
+          ) )}
+
+          </select>
+          
+          </div>
+        
 
         <div className="flex flex-wrap justify-center gap-16  h-full">
           {productfilter.length > 0 ? (
