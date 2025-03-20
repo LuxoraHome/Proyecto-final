@@ -1,6 +1,6 @@
 export interface iProducts {
     id: string,
-    categoriId?: string,
+    categoryId: string,
     stock?: string,
     name?: string,
     image?: string,
@@ -8,6 +8,8 @@ export interface iProducts {
     product?: string,
     description? : string,
     quantity : number ,
+    type: string,
+    color: string
 } 
 
 export interface iPro {

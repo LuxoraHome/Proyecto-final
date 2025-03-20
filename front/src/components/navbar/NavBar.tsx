@@ -12,6 +12,8 @@ import { getProducts, searchProduct } from "@/helpers/getProducts";
 import { iProducts } from "@/interfaces/iProducts";
 import AdminProfile from "@/views/AdminProfile";
 
+
+
 export const Navbar: React.FC = () => {
   const router = useRouter();
   const pathname = usePathname();
