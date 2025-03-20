@@ -9,7 +9,7 @@ export class UpdateOrderDto {
   })
   @IsOptional()
   @IsUUID()
-  userId?: string; 
+  userId?: string;
 
   @ApiPropertyOptional({
     description: "Total del pedido en la moneda establecida",
@@ -17,7 +17,7 @@ export class UpdateOrderDto {
   })
   @IsOptional()
   @IsNumber()
-  total?: number; 
+  total?: number;
 
   @ApiPropertyOptional({
     description: "Dirección de envío del pedido",
@@ -25,7 +25,7 @@ export class UpdateOrderDto {
   })
   @IsOptional()
   @IsString()
-  shippingAddress?: string; 
+  shippingAddress?: string;
 
   @ApiPropertyOptional({
     description: "Estado actual del pedido",
@@ -34,5 +34,5 @@ export class UpdateOrderDto {
   })
   @IsOptional()
   @IsEnum(OrderStatusEnum)
-  status?: OrderStatusEnum; 
+  status?: OrderStatusEnum;
 }

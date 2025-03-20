@@ -1,13 +1,14 @@
 import { Body, Controller, Post } from "@nestjs/common";
 import { StripeService } from "./stripe.service";
-import Stripe from "stripe";
+import { ApiExcludeController } from "@nestjs/swagger";
 
+@ApiExcludeController()
 @Controller('payments')
 export class StripeController {
     constructor(private readonly stripeService: StripeService) { }
 
     @Post('intent')
-    async intent(@Body() body: { amount: number; currency: string; paymentMethodId: string  }) {
+    async intent(@Body() body: { amount: number; currency: string; paymentMethodId: string }) {
         return this.stripeService.intent(body.amount, body.currency, body.paymentMethodId);
     }
 
@@ -21,14 +22,10 @@ export class StripeController {
 
         if (paymentIntent.status === 'succeeded') {
             return { success: true, message: 'Pago realizado con exito', paymentIntent };
-        }else if (paymentIntent.status === 'requires_payment_method') {
+        } else if (paymentIntent.status === 'requires_payment_method') {
             return { success: false, message: 'Pago fallido, intenta de nuevo', paymentIntent };
-        }else{
+        } else {
             return { success: false, message: 'Pago fallido', paymentIntent };
         }
-
-       // return this.stripeService.confirm(body.payIntentId);
-
-
     }
 }

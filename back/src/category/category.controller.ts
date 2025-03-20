@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param, Delete, Put, Query, NotFoundExcepti
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiExcludeEndpoint, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { CategoriesSeed } from 'src/seeds/categories/categories.seeds';
 
 @ApiTags('Category')
@@ -18,6 +18,7 @@ export class CategoryController {
     return this.categoryService.createCategory(createCategoryDto);
   }
 
+  @ApiExcludeEndpoint()
   @Post("seeder")
   seeder() {
     return this.categorySeeder.seedCategories()
@@ -29,6 +30,9 @@ export class CategoryController {
   }
 
   @Get('filter')
+  @ApiQuery({ name: 'name', required: false })
+  @ApiQuery({ name: 'type', required: false })
+  @ApiQuery({ name: 'color', required: false })
   async filterByTypeAndColor(
     @Query('name') name?: string,
     @Query('type') type?: string,
@@ -52,6 +56,7 @@ export class CategoryController {
   }
 
   @Delete(':id')
+  @ApiExcludeEndpoint()
   remove(@Param('id') id: string) {
     return this.categoryService.removeCategory(id);
   }

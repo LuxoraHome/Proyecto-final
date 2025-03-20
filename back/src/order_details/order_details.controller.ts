@@ -2,10 +2,11 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/
 import { OrderDetailsService } from './order_details.service';
 import { CreateOrderDetailDto } from './dto/create-order_detail.dto';
 import { UpdateOrderDetailDto } from './dto/update-order_detail.dto';
+import { ApiExcludeEndpoint } from '@nestjs/swagger';
 
 @Controller('order-details')
 export class OrderDetailsController {
-  constructor(private readonly orderDetailsService: OrderDetailsService) {}
+  constructor(private readonly orderDetailsService: OrderDetailsService) { }
 
   @Post()
   create(@Body() createOrderDetailDto: CreateOrderDetailDto) {
@@ -19,15 +20,17 @@ export class OrderDetailsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.orderDetailsService.findOne(+id);
+    return this.orderDetailsService.findOne(id);
   }
 
   @Put(':id')
+  @ApiExcludeEndpoint()
   update(@Param('id') id: string, @Body() updateOrderDetailDto: UpdateOrderDetailDto) {
-    return this.orderDetailsService.update(+id, updateOrderDetailDto);
+    return this.orderDetailsService.update(id, updateOrderDetailDto);
   }
 
   @Delete(':id')
+  @ApiExcludeEndpoint()
   remove(@Param('id') id: string) {
     return this.orderDetailsService.removeOrderDetail(id);
   }
