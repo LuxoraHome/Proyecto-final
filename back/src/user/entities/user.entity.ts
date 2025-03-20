@@ -10,56 +10,50 @@ import { UserStatus } from "../enum/userStatus.enum"
 export class User {
 
     @PrimaryGeneratedColumn("uuid")
-    id: string
+    id?: string
 
     @Column({ type: "varchar", length: 255, nullable: true, unique: true })
-    uid: string
+    uid?: string
+
+    @Column({ length: 50, nullable: true })
+    name?: string
 
     @Column({ length: 50, nullable: false })
-    name: string
-
-    @Column({ length: 50, /* unique: true, */ nullable: false })
     email: string
 
-    @Column({ length: 80, nullable: false })
-    password: string
+    @Column({ length: 80, nullable: true })
+    password?: string
 
     @Column({ length: 20, nullable: true })
-    phone: string;
+    phone?: string
 
     @Column({ length: 50, nullable: true })
-    country: string
+    country?: string
 
     @Column({ length: 50, nullable: true })
-    city: string
+    city?: string
 
     @Column({ type: 'text', nullable: true })
-    address: string
+    address?: string
 
+    @Column({ type: "enum", enum: Role, nullable: true })
+    role?: Role
 
-    @Column({ type: "enum", enum: Role, default: Role.User })
-    role: Role;
+    @Column({ type: "enum", enum: UserStatus, nullable: true })
+    status?: UserStatus
 
-    @Column({ type: "enum", enum: UserStatus, default: UserStatus.ACTIVE })
-    status: UserStatus;
+    @Column({ type: 'enum', enum: UserClient, nullable: true })
+    client?: UserClient
 
-
-    @Column({ type: 'enum', enum: UserClient, default: UserClient.STANDARD })
-    client: UserClient;
-
-    // Nuevo campo createdAt registra la fecha de creacion de usuario
     @Column({ type: 'timestamp', nullable: true })
-    createdAt: Date
+    createdAt?: Date
 
-    // Nuevo campo lastLogin registra la fecha de último login del usuario
     @Column({ type: 'timestamp', nullable: true })
-    lastLogin: Date;
+    lastLogin?: Date
 
-    // Nuevo campo loginCount registra la cantidad de logins del usuario
-    @Column({ type: 'int', default: 0 })
-    loginCount: number;
+    @Column({ type: 'int', nullable: true })
+    loginCount?: number
 
-    // Relación 1:N con Order
-    @OneToMany(() => Order, (order) => order.user)
-    orders: Order[]
+    @OneToMany(() => Order, (order) => order.user, { nullable: true })
+    orders?: Order[]
 }
