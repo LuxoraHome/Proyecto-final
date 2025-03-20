@@ -3,13 +3,10 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   BadRequestException,
   Put,
-  UsePipes,
-  ValidationPipe,
   UseGuards,
   Req,
 } from '@nestjs/common';
@@ -22,20 +19,23 @@ import { SuperAdminGuard } from './superadmin-guard';
 import { AuthenticatedRequest } from './user-interface';
 import { JwtAuthGuard } from './Jwtauthguard';
 import { AuthGuard } from 'src/auth/auth.guards';
+import { ApiExcludeEndpoint } from '@nestjs/swagger';
 
 @Controller('user')
 export class UserController {
   constructor(
     private readonly userService: UserService,
     private readonly userSeed: UserSeed,
-  ) {}
+  ) { }
 
   @Post()
+  @ApiExcludeEndpoint()
   async create(@Body() createUserDto: CreateUserDto) {
     return await this.userService.createUser(createUserDto);
   }
 
   @Post('seeder')
+  @ApiExcludeEndpoint()
   async seeder() {
     try {
       return await this.userSeed.createUserSeeder();
@@ -50,18 +50,19 @@ export class UserController {
   }
 
   @Get('public')
+  @ApiExcludeEndpoint()
   async findAllPublic() {
     const users = await this.userService.findAllUsers();
     const responseUser = users.map((user) => new UserResponseDto(user));
     return responseUser;
   }
 
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return await this.userService.findOneById(id);
+  @Get(':uid')
+  async findOne(@Param('uid') uid: string) {
+    return await this.userService.findOneById(uid);
   }
 
-  @UseGuards(AuthGuard, SuperAdminGuard, JwtAuthGuard) 
+  @UseGuards(AuthGuard, SuperAdminGuard, JwtAuthGuard)
   @Put(':userUid')
   async updateUser(
     @Req() req: AuthenticatedRequest, // Obtener datos del usuario autenticado
@@ -73,6 +74,7 @@ export class UserController {
   }
 
   @Delete(':id')
+  @ApiExcludeEndpoint()
   async remove(@Param('id') id: string) {
     return await this.userService.removeUser(id);
   }

@@ -1,5 +1,4 @@
 import {
-  BadRequestException,
   ForbiddenException,
   HttpException,
   HttpStatus,
@@ -11,7 +10,6 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
-import * as bcrypt from 'bcrypt';
 import { MailService } from 'src/mail/mail.service'; // se agrega el servicio de mail
 import { Role } from 'src/auth/enum/roles.enum';
 
@@ -21,7 +19,7 @@ export class UserService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private readonly mailService: MailService,
-  ) {}
+  ) { }
 
   async createUser(createUserDto: CreateUserDto) {
     const newUser = await this.userRepository.create(createUserDto);
@@ -52,36 +50,36 @@ export class UserService {
   async updateUser(adminId: string, userUid: string, updateUserDto: UpdateUserDto): Promise<User> {
     // Buscar al admin en la base de datos
     const admin = await this.userRepository.findOne({ where: { uid: adminId } });
-  
+
     // Validar si el usuario autenticado es SuperAdmin
     if (!admin || admin.role !== Role.Superadmin) {
       throw new ForbiddenException('No tienes permisos para actualizar este usuario.');
     }
-  
+
     // Evitar que el SuperAdmin se modifique a sí mismo
     if (adminId === userUid) {
       throw new ForbiddenException('No puedes modificar tu propia cuenta.');
     }
-  
+
     // Buscar al usuario que se quiere actualizar
     const user = await this.userRepository.findOne({ where: { uid: userUid } });
     if (!user) {
       throw new NotFoundException(`Usuario con UID ${userUid} no encontrado.`);
     }
-  
+
     // Evitar modificar el rol de otro SuperAdmin
     if (user.role === Role.Superadmin && updateUserDto.role && updateUserDto.role !== Role.Superadmin) {
       throw new ForbiddenException('No puedes modificar el rol de un SuperAdmin.');
     }
-  
+
     // Evitar que un SuperAdmin asigne otro SuperAdmin (si no es deseado)
     if (updateUserDto.role === Role.Superadmin) {
       throw new ForbiddenException('No puedes asignar el rol de SuperAdmin.');
     }
-  
+
     // Actualizar solo los campos permitidos
     Object.assign(user, updateUserDto);
-  
+
     return this.userRepository.save(user);
   }
 

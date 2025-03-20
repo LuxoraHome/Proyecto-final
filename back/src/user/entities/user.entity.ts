@@ -1,13 +1,8 @@
 import { Order } from "src/order/entities/order.entity"
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 import { UserClient } from "../enum/userClient.enum"
-
 import { Role } from "src/auth/enum/roles.enum"
 import { UserStatus } from "../enum/userStatus.enum"
-// import { UserClient } from "../enum/userClient.enum"
-
-
-
 
 @Entity({
     name: "users"
