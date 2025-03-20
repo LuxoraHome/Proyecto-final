@@ -1,6 +1,6 @@
 export interface IOrderDetail {
-    productId?: string ,
-    quantity ?: number ,
+    productId: string ,
+    quantity : number ,
 }
 
 
