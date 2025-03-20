@@ -45,7 +45,7 @@ export const CartComponent: React.FC = () => {
             router.push("/login")
             return
         }
-console.log('esto tengo en mi cart de procutos' , cart);
+      
 
 
         const ordenDetail: IOrderDetail[] = cart.map((products) => ({
