@@ -12,7 +12,10 @@ export const userCheckout = async (orderData: ICheckout) => {
         });
 
         if (response.ok) {
-            return response.json();
+            const data = await response.json();
+            console.log('esta data mandamos en checkout al back' , data);
+            
+            return data
         }
 
     } catch (error) {

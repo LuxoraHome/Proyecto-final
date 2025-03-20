@@ -45,10 +45,17 @@ export const CartComponent: React.FC = () => {
             router.push("/login")
             return
         }
+console.log('esto tengo en mi cart de procutos' , cart);
+
+
         const ordenDetail: IOrderDetail[] = cart.map((products) => ({
             productId: products.id,
             quantity: 1,
         }))
+
+
+        console.log('esta info tengo en user cuando hago login con goolge!!!', user);
+
 
         const ordenData: ICheckout = {
             uid: user.uid,
