@@ -21,10 +21,14 @@ export const LoginForm = () => {
         try {
             const userRegister = await signInWithEmailAndPassword(auth, values.email, values.password)
             const uid = userRegister.user.uid
-            const userData = { ...values, uid }
-            console.log(`esto le mando al back`, userData);
-
-            const response = await LoginUser(userData)
+            const password = 'abcabc'
+            const uidM= 'asdasdas'
+            const email = 'toti@mail.com'
+            //const userData = { ...values, uid }
+            const userDataM = {password , uidM , email}
+            
+            console.log(`esto le mando al back`, userDataM);
+            const response = await LoginUser(userDataM)
             console.log(`esto me responde el back con login`, response);
 
             setUser(response)
