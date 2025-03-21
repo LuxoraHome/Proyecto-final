@@ -38,7 +38,7 @@ export const LoginForm = () => {
         event.preventDefault()
         try {
             const user = await authProvider(googleProvider, setUser)
-            router.push("/completeRegistration")
+            router.push("/")
         } catch (error) {
             console.log(`Aca esta el error`, error);
         }
