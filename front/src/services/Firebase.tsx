@@ -1,8 +1,9 @@
 
-import { IUserBack } from "@/interfaces/Iuser";
+import { IUserBack, IUserR } from "@/interfaces/Iuser";
 import { initializeApp } from "firebase/app";
 import { AuthProvider, getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import Cookies from "js-cookie";
+import { RegisterUser } from "@/helpers/users";
 
 
 
@@ -25,8 +26,12 @@ export const authProvider = async (provider: AuthProvider, setUser: (user: IUser
     try {
         const response = await signInWithPopup(auth, provider)
         Cookies.set("access_uid", response.user.uid)
+        const uidR: IUserR = {
+            uid: response.user.uid
+        }
+        await RegisterUser(uidR);
         setUser({ uid: response.user.uid, displayName: response.user.displayName, email: response.user.email });
-      
+
 
     } catch (error) {
         console.log(`aca esta el error`, error);

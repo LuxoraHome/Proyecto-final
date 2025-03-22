@@ -86,7 +86,7 @@ export const OrdersDashboardView: React.FC = () => {
     
                             <div className="text-right">
                                 <p className="text-lg font-semibold text-gray-900">${items.total}</p>
-                                <p className={`text-sm mt-1 ${items.status === 'Active' ? 'text-green-500' : 'text-red-500'}`}>
+                                <p className={`text-sm mt-1 text-green-500`}>
                                     {items.status}
                                 </p>
                             </div>

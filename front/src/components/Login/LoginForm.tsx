@@ -1,6 +1,6 @@
 "use client"
 import { Field, ErrorMessage, Form, Formik } from "formik"
-import { LoginUser } from "@/helpers/users"
+import { LoginUser, RegisterUser } from "@/helpers/users"
 import { IUserLogin, IUserR } from "@/interfaces/Iuser"
 import { validateLogin } from "@/helpers/validateLogin"
 import Link from "next/link"
@@ -16,13 +16,14 @@ export const LoginForm = () => {
 
     const router = useRouter()
     const { setUser } = useAuth()
+    
 
     const handelSubmit = async (values: IUserLogin) => {
         try {
             const userRegister = await signInWithEmailAndPassword(auth, values.email, values.password)
             const uid = userRegister.user.uid
-            const userData  = {  email: values.email, uid, password:values.password  }
-            
+            const userData : IUserR  = {  email: values.email, uid }
+    
             console.log(`esto le mando al back`, userData);
             const response = await LoginUser(userData)
             console.log(`esto me responde el back con login`, response);

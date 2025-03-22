@@ -1,3 +1,5 @@
+import { Phone } from "lucide-react";
+
 export interface IUserRegister {
     name?: string,
 
@@ -17,7 +19,10 @@ export interface IUserRegister {
 export interface IUserR {
     name?: string,
     uid : string,
-    email: string ,
+    email?: string ,
+    city?: string ,
+    country?: string , 
+    phone?: string,
 
 }
 
