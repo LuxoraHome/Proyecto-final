@@ -1,7 +1,7 @@
 "use client"
 import { Field, ErrorMessage, Form, Formik } from "formik"
 import { LoginUser } from "@/helpers/users"
-import { IUserLogin } from "@/interfaces/Iuser"
+import { IUserLogin, IUserR } from "@/interfaces/Iuser"
 import { validateLogin } from "@/helpers/validateLogin"
 import Link from "next/link"
 import Cookies from "js-cookie"
@@ -21,7 +21,7 @@ export const LoginForm = () => {
         try {
             const userRegister = await signInWithEmailAndPassword(auth, values.email, values.password)
             const uid = userRegister.user.uid
-            const userData = { ...values, uid }
+            const userData  = {  email: values.email, uid, password:values.password  }
             
             console.log(`esto le mando al back`, userData);
             const response = await LoginUser(userData)

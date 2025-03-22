@@ -40,7 +40,7 @@ export const RegisterUser = async (userData: IUserR) => {
     }
 };
 
-export const LoginUser = async (userData: IUserLogin) => {
+export const LoginUser = async (userData: IUserR) => {
     try {
         const response = await fetch(`${APIURL}/auth/login`, {
             method: "POST",
