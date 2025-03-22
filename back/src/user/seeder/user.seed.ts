@@ -28,6 +28,9 @@ export class UserSeed {
         newUser.createdAt = userData.createdAt;
         newUser.lastLogin = userData.lastLogin;
         newUser.loginCount = userData.loginCount;
+        newUser.role = userData.role;
+        newUser.status = userData.status;
+        newUser.client = userData.client;
         await this.userRepository.save(newUser)
       } else {
         return "Ya existen usuarios precargados"
