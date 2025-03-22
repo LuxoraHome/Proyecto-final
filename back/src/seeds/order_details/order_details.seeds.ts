@@ -34,6 +34,7 @@ export class OrderDetailSeed {
                 status: orderData.status,
                 shippingAddress: orderData.shippingAddress,
                 total: 0,
+                image: orderData.image
             });
             const savedOrder = await this.orderRepository.save(order);
 

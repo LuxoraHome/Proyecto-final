@@ -13,6 +13,7 @@ import { UserService } from 'src/user/user.service';
 import { ProductService } from 'src/product/product.service';
 import { OrderStatusEnum } from './orderStatus-enum';
 import { MailService } from '../mail/mail.service'; // Se importa el servicio de mail
+import { User } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class OrderService {
@@ -27,43 +28,44 @@ export class OrderService {
 
   async createOrder(createOrderDto: CreateOrderDto) {
     const { uid, orderDetails } = createOrderDto;
-  
+
     const findUser = await this.userService.findOneById(uid);
     if (!findUser) throw new NotFoundException('User not found');
-  
+
     let total = 0;
     let firstProductImage: string | null = null;
-  
+
     // Validamos que la orden tenga detalles antes de crearla
     if (!orderDetails || orderDetails.length === 0) {
       throw new BadRequestException('Order must have at least one product');
     }
-  
+
     for (const element of orderDetails) {
       const product = await this.productService.findOneById(element.productId);
       if (!product)
         throw new NotFoundException(`Product ${element.productId} not found`);
       if (product.stock < element.quantity)
         throw new BadRequestException(`Not enough stock for ${product.name}`);
-  
+
       const subtotal = element.quantity * product.price;
       total += subtotal;
-  
+
       if (!firstProductImage && product.image) {
         firstProductImage = product.image;
       }
     }
-  
+
     // ✅ Ahora sí creamos la orden con los valores correctos
     const order = this.orderRepository.create({
       user: findUser,
       total,
-      status: OrderStatusEnum.PENDING,
-      image: firstProductImage || 'URL_DE_IMAGEN_POR_DEFECTO',
+      status: OrderStatusEnum.PAID,
+      image: firstProductImage,
+      shippingAddress: findUser.address
     });
-  
+
     await this.orderRepository.save(order);
-  
+
     // Ahora asociamos los productos a la orden
     for (const element of orderDetails) {
       await this.orderDetailService.create({
@@ -73,18 +75,18 @@ export class OrderService {
         unitPrice: (await this.productService.findOneById(element.productId)).price,
         subtotal: element.quantity * (await this.productService.findOneById(element.productId)).price,
       });
-  
+
       const product = await this.productService.findOneById(element.productId);
       product.stock -= element.quantity;
       await this.productService.updateProduct(product.id, { stock: product.stock });
     }
-  
+
     await this.sendOrderConfirmationEmail(findUser.email, order);
-  
+
     return order;
   }
 
-  
+
 
   async findAllOrders() {
     return await this.orderRepository.find();
@@ -123,7 +125,7 @@ export class OrderService {
       ...order,
       image: order.image || (order.orderDetails.length > 0 ? order.orderDetails[0].product.image : 'URL_DE_IMAGEN_POR_DEFECTO'),
     }));
-  
+
     return { orders: ordersWithImages, user };
 
     // return { orders: orders, user };

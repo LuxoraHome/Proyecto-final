@@ -1,89 +1,76 @@
-import { ApiProperty } from "@nestjs/swagger";
 import {
-    IsBoolean,
-    IsDate,
     IsEmail,
-    IsEnum,
     IsNotEmpty,
     IsOptional,
     IsString,
-    Matches,
-    MaxLength,
-    MinLength
-} from "class-validator";
-import { Role } from "src/auth/enum/roles.enum";
-import { UserStatus } from "../enum/userStatus.enum";
+    IsEnum,
+} from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { UserClient } from 'src/user/enum/userClient.enum';
+import { Role } from 'src/auth/enum/roles.enum';
+import { UserStatus } from 'src/user/enum/userStatus.enum';
 
 export class CreateUserDto {
-    @ApiProperty({ example: "John Doe", description: "Full name of the user", required: false })
+    @ApiProperty({ description: 'Nombre del usuario', example: 'Juan Pérez', required: false })
     @IsString()
-    //@MinLength(3)
-    //@MaxLength(80)
     @IsOptional()
     name?: string = "";
 
+    @ApiProperty({ description: 'UID único del usuario', example: '123e4567-e89b-12d3-a456-426614174000', required: true })
     @IsString()
-    //@IsOptional()
+    @IsNotEmpty()
     uid: string;
 
-    @IsEmail({}, { message: 'El correo electrónico debe ser válido.' })
-    //@IsOptional()
-    email: string = "";
-
-    @ApiProperty({
-        example: "Str0ngP@ss!",
-        description: "Password with at least one uppercase, one lowercase, one number, and one special character. Length: 8-15 characters",
-        required: false
-    })
-    @IsString()
-    @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,15}$/, {
-        message: 'La contraseña debe tener entre 8 y 15 caracteres, incluyendo al menos una letra minúscula, una letra mayúscula, un número y un carácter especial (!@#$%^&*).'
-    })
+    @ApiProperty({ description: 'Correo electrónico del usuario', example: 'usuario@example.com', required: false })
+    @IsEmail()
     @IsOptional()
-    password?: string = "";
+    email?: string;
 
-    @ApiProperty({ example: "Str0ngP@ss!", description: "Password confirmation (optional)", required: false })
+    @ApiProperty({ description: 'Contraseña', example: 'Password123!', required: false })
     @IsString()
-    //@MinLength(3, { message: 'La dirección debe tener al menos 3 caracteres.' })
-    //@MaxLength(80, { message: 'La dirección no puede superar los 80 caracteres.' })
+    @IsOptional()
+    password?: string = "Mundial@123";
+
+    @ApiProperty({ description: 'Confirmación de la contraseña', example: 'Password123!', required: false })
+    @IsOptional()
+    confirmPassword?: string = "Mundial@123";
+
+    @ApiProperty({ description: 'Dirección del usuario', example: 'Calle 123, Ciudad, País', required: false })
+    @IsString()
     @IsOptional()
     address?: string = "";
 
-    @IsString({ message: 'El teléfono debe ser una cadena de texto' })
+    @ApiProperty({ description: 'Número de teléfono del usuario', example: '+1234567890', required: false })
     @IsOptional()
+    @IsString()
     phone?: string = "";
 
-    @ApiProperty({ example: "United States", description: "User's country (optional)", required: false })
+    @ApiProperty({ description: 'País de residencia', example: 'México', required: false })
     @IsString()
-    @MinLength(5)
-    @MaxLength(20)
     @IsOptional()
     country?: string = "";
 
-    @ApiProperty({ example: "New York", description: "User's city (optional)", required: false })
+    @ApiProperty({ description: 'Ciudad de residencia', example: 'Ciudad de México', required: false })
     @IsString()
-    @MinLength(5)
-    @MaxLength(20)
     @IsOptional()
     city?: string = "";
 
-    @ApiProperty({ example: Date.now(), description: "User creation date", required: false })
+    @ApiProperty({ description: 'Tipo de cliente', enum: UserClient, example: UserClient.STANDARD, required: false })
+    @IsEnum(UserClient)
     @IsOptional()
-    @IsDate()
-    createdAt?: Date = new Date();
+    client?: UserClient = UserClient.STANDARD;
 
-    @ApiProperty({ example: Date.now(), description: "User last login date", required: false })
-    @IsOptional()
-    @IsDate()
-    lastLogin?: Date = new Date();
-
-    @ApiProperty({ example: false, description: "Indicates if the user is an admin", required: false })
-    @IsBoolean()
+    @ApiProperty({ description: 'Tipo de usuario', enum: Role, example: Role.User, required: false })
+    @IsEnum(Role)
     @IsOptional()
     role?: Role = Role.User;
 
-    @ApiProperty({ example: UserStatus.ACTIVE, description: "Indicates if the user is active", required: false })
+    @ApiProperty({ description: 'Tipo de status', enum: UserStatus, example: UserStatus.ACTIVE, required: false })
     @IsEnum(UserStatus)
     @IsOptional()
     status?: UserStatus = UserStatus.ACTIVE;
+
+    @ApiProperty({ description: 'Fecha de creación', example: '2023-10-01T00:00:00.000Z', required: false })
+    @IsOptional()
+    createdAt?: Date = new Date();
 }

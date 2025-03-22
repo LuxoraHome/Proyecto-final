@@ -18,8 +18,8 @@ export class User {
     @Column({ length: 50, nullable: true })
     name?: string
 
-    @Column({ length: 50, nullable: false })
-    email: string
+    @Column({ length: 50, nullable: true })
+    email?: string
 
     @Column({ length: 80, nullable: true })
     password?: string
