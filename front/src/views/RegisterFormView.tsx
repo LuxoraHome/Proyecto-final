@@ -3,7 +3,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import React from "react";
 import { RegisterUser } from "@/helpers/users";
-import { IUserRegister } from "@/interfaces/Iuser";
+import { IUserR, IUserRegister } from "@/interfaces/Iuser";
 import validateRegister from "@/helpers/validateFormRegister";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -13,35 +13,29 @@ import { auth } from "@/services/Firebase";
 
 
 
-export const RegisterFormView: React.FC = () => {
 
+
+export const RegisterFormView: React.FC = () => {
 
   const router = useRouter();
 
-
   const handleSubmit = async (values: IUserRegister) => {
-
     try {
       const usercredential = await createUserWithEmailAndPassword(auth, values.email, values.password)
       const uid = usercredential.user.uid
-      const userData = { ...values, uid }
+      const userData: IUserR = { email:values.email , uid  }
       console.log(`esto le mando al back`, userData);
-
       const response = await RegisterUser(userData);
       console.log("Respuesta del backend:", response);
-
-
       router.push("/login");
     } catch (error) {
       console.log(error);
     }
-
   }
 
 
-
   return (
-    <div className="w-1/2 mx-auto p-6 bg-white border border-black shadow-lg mt-10"> {/* Agregado mt-10 para despejar más el top */}
+    <div className="w-1/2 mx-auto p-6 bg-white border border-black shadow-lg mt-10">
       <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
       <Formik
         initialValues={{
@@ -67,7 +61,7 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="name" component="p" className="text-red-500 text-sm" />
           </div>
-  
+
           <div className="flex flex-col">
             <label className="font-medium">Email</label>
             <Field
@@ -77,7 +71,7 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="email" component="p" className="text-red-500 text-sm" />
           </div>
-  
+
           <div className="flex flex-col">
             <label className="font-medium">Address</label>
             <Field
@@ -87,7 +81,7 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="address" component="p" className="text-red-500 text-sm" />
           </div>
-  
+
           <div className="flex flex-col">
             <label className="font-medium">Phone</label>
             <Field
@@ -97,7 +91,7 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="phone" component="p" className="text-red-500 text-sm" />
           </div>
-  
+
           <div className="flex flex-col">
             <label className="font-medium">Password</label>
             <Field
@@ -107,7 +101,7 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="password" component="p" className="text-red-500 text-sm" />
           </div>
-  
+
           <div className="flex flex-col">
             <label className="font-medium">Confirm password</label>
             <Field
@@ -117,7 +111,7 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="confirmPassword" component="p" className="text-red-500 text-sm" />
           </div>
-  
+
           <div className="flex flex-col">
             <label className="font-medium">Country</label>
             <Field
@@ -127,7 +121,7 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="country" component="p" className="text-red-500 text-sm" />
           </div>
-  
+
           <div className="flex flex-col">
             <label className="font-medium">City</label>
             <Field
@@ -137,13 +131,13 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="city" component="p" className="text-red-500 text-sm" />
           </div>
-  
+
           <button
             type="submit"
-            className="w-full font-bold py-2 bg-black text-white hover:bg-gray-800 transition-all"> {/* Eliminado border-radius */}
+            className="w-full font-bold py-2 bg-black text-white hover:bg-gray-800 transition-all">
             Register
           </button>
-  
+
           <div className="text-gray-800 dark:text-white text-lg">
             <span className="mr-1 text-black">Already have an account?</span>
             <Link href="/login" className="font-semibold underline hover:text-gray-600 transition-colors text-black">
@@ -154,5 +148,5 @@ export const RegisterFormView: React.FC = () => {
       </Formik>
     </div>
   );
-  
+
 }; 
