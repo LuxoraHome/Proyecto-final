@@ -1,3 +1,6 @@
+import { Role } from "src/auth/enum/roles.enum";
+import { UserStatus } from "../enum/userStatus.enum";
+import { UserClient } from "../enum/userClient.enum";
 
 
 export const userMock = [
@@ -15,6 +18,9 @@ export const userMock = [
     "createdAt": new Date(Date.now() - 26 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
     "loginCount": 4,
+    "role": Role.User,
+    "status": UserStatus.ACTIVE,
+    "client": UserClient.STANDARD
   },
   {
     "name": "Sofía Ramírez",
@@ -30,6 +36,9 @@ export const userMock = [
     "createdAt": new Date(Date.now() - 36 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
     "loginCount": 2,
+    "role": Role.User,
+    "status": UserStatus.ACTIVE,
+    "client": UserClient.STANDARD
   },
   {
     "name": "Liam Smith",
@@ -45,6 +54,9 @@ export const userMock = [
     "createdAt": new Date(Date.now() - 14 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
     "loginCount": 1,
+    "role": Role.User,
+    "status": UserStatus.ACTIVE,
+    "client": UserClient.STANDARD
   },
   {
     "name": "Emma Johnson",
@@ -60,6 +72,9 @@ export const userMock = [
     "createdAt": new Date(Date.now() - 24 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 12 * 24 * 60 * 60 * 1000),
     "loginCount": 35,
+    "role": Role.User,
+    "status": UserStatus.ACTIVE,
+    "client": UserClient.STANDARD
   },
   {
     "name": "Mateo Fernández",
@@ -75,6 +90,9 @@ export const userMock = [
     "createdAt": new Date(Date.now() - 32 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 16 * 24 * 60 * 60 * 1000),
     "loginCount": 10,
+    "role": Role.User,
+    "status": UserStatus.ACTIVE,
+    "client": UserClient.STANDARD
   },
   {
     "name": "Isabella González",
@@ -90,6 +108,9 @@ export const userMock = [
     "createdAt": new Date(Date.now() - 40 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 20 * 24 * 60 * 60 * 1000),
     "loginCount": 72,
+    "role": Role.User,
+    "status": UserStatus.ACTIVE,
+    "client": UserClient.STANDARD
   },
   {
     "name": "Noah Wilson",
@@ -105,6 +126,9 @@ export const userMock = [
     "createdAt": new Date(Date.now() - 48 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 24 * 24 * 60 * 60 * 1000),
     "loginCount": 55,
+    "role": Role.User,
+    "status": UserStatus.ACTIVE,
+    "client": UserClient.STANDARD
   },
   {
     "name": "Ava Martínez",
@@ -120,6 +144,9 @@ export const userMock = [
     "createdAt": new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
     "loginCount": 93,
+    "role": Role.User,
+    "status": UserStatus.ACTIVE,
+    "client": UserClient.STANDARD
   },
   {
     "name": "Lucas Dubois",
@@ -135,6 +162,9 @@ export const userMock = [
     "createdAt": new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
     "loginCount": 42,
+    "role": Role.User,
+    "status": UserStatus.ACTIVE,
+    "client": UserClient.STANDARD
   },
   {
     "name": "Mia Rossi",
@@ -150,6 +180,9 @@ export const userMock = [
     "createdAt": new Date(Date.now() - 12 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
     "loginCount": 72,
+    "role": Role.User,
+    "status": UserStatus.ACTIVE,
+    "client": UserClient.STANDARD
   },
   {
     "name": "Benjamin Kim",
@@ -165,6 +198,9 @@ export const userMock = [
     "createdAt": new Date(Date.now() - 14 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
     "loginCount": 22,
+    "role": Role.User,
+    "status": UserStatus.ACTIVE,
+    "client": UserClient.STANDARD
   },
   {
     "name": "Elena Petrov",
@@ -180,6 +216,9 @@ export const userMock = [
     "createdAt": new Date(Date.now() - 36 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
     "loginCount": 10,
+    "role": Role.User,
+    "status": UserStatus.ACTIVE,
+    "client": UserClient.STANDARD
   },
   {
     "name": "Ethan Brown",
@@ -195,6 +234,9 @@ export const userMock = [
     "createdAt": new Date(Date.now() - 48 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
     "loginCount": 85,
+    "role": Role.User,
+    "status": UserStatus.ACTIVE,
+    "client": UserClient.STANDARD
   },
   {
     "name": "Chloe Müller",
@@ -210,6 +252,9 @@ export const userMock = [
     "createdAt": new Date(Date.now() - 28 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
     "loginCount": 62,
+    "role": Role.User,
+    "status": UserStatus.ACTIVE,
+    "client": UserClient.STANDARD
   },
   {
     "name": "Gabriel Silva",
@@ -225,5 +270,8 @@ export const userMock = [
     "createdAt": new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
     "lastLogin": new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
     "loginCount": 45,
+    "role": Role.User,
+    "status": UserStatus.ACTIVE,
+    "client": UserClient.STANDARD
   }
 ]

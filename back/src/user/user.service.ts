@@ -10,7 +10,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
-import { MailService } from 'src/mail/mail.service'; // se agrega el servicio de mail
+import { MailService } from 'src/mail/mail.service';
 import { Role } from 'src/auth/enum/roles.enum';
 
 @Injectable()
@@ -25,15 +25,21 @@ export class UserService {
     const newUser = await this.userRepository.create(createUserDto);
     const savedUser = await this.userRepository.save(newUser);
 
-    // Enviar correo de bienvenida
-    await this.mailService.sendMail(
-      savedUser.email,
-      'Bienvenido a Luxora',
-      `Hola ${savedUser.name}, gracias por registrarte en nuestra pagina de Luxora.`,
-    );
+    // Enviar correo de bienvenida solo si el correo electrónico está presente
+    if (savedUser.email) {
+      await this.mailService.sendMail(
+        savedUser.email,
+        'Bienvenido a Luxora',
+        `Hola ${savedUser.name}, gracias por registrarte en nuestra pagina de Luxora.`,
+      );
+    }
 
     // Registro de fecha de creación
     savedUser.createdAt = new Date();
+    await this.userRepository.save(savedUser);
+
+    // Inicializar el contador de inicio de sesión
+    savedUser.loginCount = 0;
     await this.userRepository.save(savedUser);
 
     return savedUser;
@@ -82,7 +88,6 @@ export class UserService {
 
     return this.userRepository.save(user);
   }
-
 
   async removeUser(id: string) {
     const userToDelete = await this.userRepository.findOne({ where: { id } });

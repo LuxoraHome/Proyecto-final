@@ -5,6 +5,7 @@ export const orderDetailsMock = [
         uid: "Abc123",
         status: OrderStatusEnum.DELIVERED,
         shippingAddress: "Calle 123 Carrera 45 No 67-89",
+        image: "https://media.roche-bobois.com/ir/render/rocheboboisRender/bubble2_orsetto_c3-4p_pers1_test?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=236,236,231",
         orderDetails: [
             {
                 productName: "QISS",
@@ -22,6 +23,7 @@ export const orderDetailsMock = [
         uid: "Abc456",
         status: OrderStatusEnum.CANCELLED,
         shippingAddress: "Calle 456 Carrera 78 No 90-12",
+        image: "https://media.roche-bobois.com/is/image/rochebobois/Sense_gc3p_gris_v4_face?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80",
         orderDetails: [
             {
                 productName: "SENSE EXPECT",
@@ -34,6 +36,7 @@ export const orderDetailsMock = [
         uid: "Abc789",
         status: OrderStatusEnum.PAID,
         shippingAddress: "Calle 789 Carrera 23 No 45-67",
+        image: "https://media.roche-bobois.com/ir/render/rocheboboisRender/astrea_fauteuil_Orseto_pers_v3_VNT?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=224,222,214",
         orderDetails: [
             {
                 productName: "WINDOW ASTREA",
@@ -56,6 +59,7 @@ export const orderDetailsMock = [
         uid: "Abc789",
         status: OrderStatusEnum.PENDING,
         shippingAddress: "Calle 101 Carrera 56 No 78-90",
+        image: "https://media.roche-bobois.com/ir/render/rocheboboisRender/Apex-pouf?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=236,236,231",
         orderDetails: [
             {
                 productName: "OPEN APEX",
@@ -68,6 +72,7 @@ export const orderDetailsMock = [
         uid: "Abc789",
         status: OrderStatusEnum.SHIPPED,
         shippingAddress: "Calle 112 Carrera 12 No 34-56",
+        image: "https://media.roche-bobois.com/ir/render/rocheboboisRender/Bilboquet_TB_Champignon_D70_04?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=RevS&color=198,165,105&obj=RevP&color=161,12,14",
         orderDetails: [
             {
                 productName: "BILBOQUET XEXY",
@@ -85,6 +90,7 @@ export const orderDetailsMock = [
         uid: "Abc789",
         status: OrderStatusEnum.DELIVERED,
         shippingAddress: "Calle 123 Carrera 45 No 67-89",
+        image: "https://media.roche-bobois.com/ir/render/rocheboboisRender/Apex-pouf?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=236,236,231",
         orderDetails: [
             {
                 productName: "OPEN APEX",
@@ -107,6 +113,7 @@ export const orderDetailsMock = [
         uid: "Abc789",
         status: OrderStatusEnum.DELIVERED,
         shippingAddress: "Calle 123 Carrera 45 No 67-89",
+        image: "https://medias.maisonsdumonde.com/image/upload/ar_1:1,c_fill,f_auto,q_auto,w_354/v1/img/mesas-de-centro-empilhaveis-de-jardim-em-aco-branco-1000-2-27-245822_2.jpg",
         orderDetails: [
             {
                 productName: "LUMPA",
@@ -124,6 +131,7 @@ export const orderDetailsMock = [
         uid: "Abc105",
         status: OrderStatusEnum.DELIVERED,
         shippingAddress: "Calle 123 Carrera 45 No 67-89",
+        image: "https://media.roche-bobois.com/ir/render/rocheboboisRender/bubble2_orsetto_c3-4p_pers1_test?wid=2000&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=236,236,231",
         orderDetails: [
             {
                 productName: "QISS",
@@ -141,6 +149,7 @@ export const orderDetailsMock = [
         uid: "Abc106",
         status: OrderStatusEnum.CANCELLED,
         shippingAddress: "Calle 456 Carrera 78 No 90-12",
+        image: "https://media.roche-bobois.com/is/render/rocheboboisRender/KEEEN_Buffet_Haut_L200_4portes_4tirroirs_laque_bois_24RB1_Face?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=plateau&color=1,1,1&obj=corpus&color=215,209,205&obj=facade&color=249,247,238&obj=eclairage&color=1,1,1",
         orderDetails: [
             {
                 productName: "BUBBLE 2",
@@ -153,6 +162,7 @@ export const orderDetailsMock = [
         uid: "Abc456",
         status: OrderStatusEnum.PAID,
         shippingAddress: "Calle 789 Carrera 23 No 45-67",
+        image: "https://media.roche-bobois.com/is/render/rocheboboisRender/MEUBLES_QISS_CHAISE_ORANGE_TIGE_REVETUE_PERS_MASTER?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=Revp_01&color=0,0,0&obj=Revp_02&color=199,192,190",
         orderDetails: [
             {
                 productName: "KEEEN",
@@ -175,6 +185,7 @@ export const orderDetailsMock = [
         uid: "Abc110",
         status: OrderStatusEnum.DELIVERED,
         shippingAddress: "Calle 101 Carrera 56 No 14-6",
+        image: "https://media.roche-bobois.com/ir/render/rocheboboisRender/astrea_fauteuil_Orseto_pers_v3_VNT?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=224,222,214",
         orderDetails: [
             {
                 productName: "WINDOW ASTREA",
@@ -187,6 +198,7 @@ export const orderDetailsMock = [
         uid: "Abc456",
         status: OrderStatusEnum.SHIPPED,
         shippingAddress: "Carrera 12 No 34-56",
+        image: "https://media.roche-bobois.com/is/render/rocheboboisRender/Astrea_lounge_fauteuil_calin_refonte_face_v2?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=tissu&color=254,247,238",
         orderDetails: [
             {
                 productName: "ASTREA LOUNGE",
@@ -204,6 +216,7 @@ export const orderDetailsMock = [
         uid: "Abc108",
         status: OrderStatusEnum.DELIVERED,
         shippingAddress: "Calle 123 Carrera 45 No 67-89",
+        image: "https://media.roche-bobois.com/ir/render/rocheboboisRender/Apex-pouf?wid=1250&fmt=pjpeg&resMode=sharp2&qlt=80&obj=revp&color=236,236,231",
         orderDetails: [
             {
                 productName: "OPEN APEX",
@@ -226,6 +239,7 @@ export const orderDetailsMock = [
         uid: "Abc109",
         status: OrderStatusEnum.DELIVERED,
         shippingAddress: "Calle 123 Carrera 45 No 67-89",
+        image: "https://medias.maisonsdumonde.com/image/upload/ar_1:1,c_fill,f_auto,q_auto,w_354/v1/img/mesas-de-centro-empilhaveis-de-jardim-em-aco-branco-1000-2-27-245822_2.jpg",
         orderDetails: [
             {
                 productName: "LUMPA",
