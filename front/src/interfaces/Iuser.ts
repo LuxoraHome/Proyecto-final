@@ -18,11 +18,7 @@ export interface IUserR {
     name?: string,
     uid : string,
     email: string ,
-    address?: string,
-    phone?: string,
-    city?: string,
-    country?: string,
-    admin?: boolean,
+
 }
 
 
