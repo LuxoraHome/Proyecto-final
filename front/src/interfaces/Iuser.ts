@@ -12,17 +12,7 @@ export interface IUserRegister {
 }
 
 
-export interface IUserRRRegister {
-    name?: string,
-    email: string,
-    password: string,
-    confirmPassword?: string,
-    address?: string,
-    phone?: string,
-    city?: string,
-    country?: string,
-    admin?: boolean,
-}
+
 
 export interface IUserR {
     name?: string,
