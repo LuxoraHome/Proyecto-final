@@ -62,7 +62,7 @@ export class UserController {
     return await this.userService.findOneById(uid);
   }
 
-  @UseGuards(AuthGuard, SuperAdminGuard, JwtAuthGuard)
+  @UseGuards(SuperAdminGuard, JwtAuthGuard, AuthGuard)
   @Put(':userUid')
   async updateUser(
     @Req() req: AuthenticatedRequest, // Obtener datos del usuario autenticado
