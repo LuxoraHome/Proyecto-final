@@ -23,7 +23,7 @@ export const RegisterFormView: React.FC = () => {
     try {
       const usercredential = await createUserWithEmailAndPassword(auth, values.email, values.password)
       const uid = usercredential.user.uid
-      const userData: IUserR = { email:values.email , uid  }
+      const userData: IUserR = { email:values.email , uid , name: values.name , phone: values.phone , country: values.country , city:values.city }
       console.log(`esto le mando al back`, userData);
       const response = await RegisterUser(userData);
       console.log("Respuesta del backend:", response);
