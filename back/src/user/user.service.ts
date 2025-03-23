@@ -53,17 +53,17 @@ export class UserService {
     return await this.userRepository.findOne({ where: { uid } });
   }
 
-  async updateUser(adminId: string, userUid: string, updateUserDto: UpdateUserDto): Promise<User> {
+  async updateUser(adminUid: string, userUid: string, updateUserDto: UpdateUserDto): Promise<User> {
     // Buscar al admin en la base de datos
-    const admin = await this.userRepository.findOne({ where: { uid: adminId } });
+    const superAdmin = await this.userRepository.findOne({ where: { uid: adminUid } });
 
     // Validar si el usuario autenticado es SuperAdmin
-    if (!admin || admin.role !== Role.Superadmin) {
+    if (!superAdmin || superAdmin.role !== Role.Superadmin) {
       throw new ForbiddenException('No tienes permisos para actualizar este usuario.');
     }
 
     // Evitar que el SuperAdmin se modifique a sí mismo
-    if (adminId === userUid) {
+    if (adminUid === userUid) {
       throw new ForbiddenException('No puedes modificar tu propia cuenta.');
     }
 

@@ -15,11 +15,14 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserSeed } from './seeder/user.seed';
 import { UserResponseDto } from './dto/user-response.dto';
-import { SuperAdminGuard } from './superadmin-guard';
+// import { SuperAdminGuard } from './superadmin-guard';
 import { AuthenticatedRequest } from './user-interface';
-import { JwtAuthGuard } from './Jwtauthguard';
+// import { JwtAuthGuard } from './Jwtauthguard';
 import { AuthGuard } from 'src/auth/auth.guards';
 import { ApiExcludeEndpoint } from '@nestjs/swagger';
+import { Role } from 'src/auth/enum/roles.enum';
+import { Roles } from 'src/decorators/roles.decorator';
+import { RolesGuard } from 'src/auth/roles.guards';
 
 @Controller('user')
 export class UserController {
@@ -62,15 +65,16 @@ export class UserController {
     return await this.userService.findOneById(uid);
   }
 
-  @UseGuards(AuthGuard, SuperAdminGuard, JwtAuthGuard)
   @Put(':userUid')
+  @Roles(Role.Superadmin)
+  @UseGuards(AuthGuard, RolesGuard)
   async updateUser(
     @Req() req: AuthenticatedRequest, // Obtener datos del usuario autenticado
     @Param('userUid') userUid: string,
     @Body() updateUserDto: UpdateUserDto
   ) {
-    const adminId = req.user.uid; // Obtener UID del usuario autenticado
-    return this.userService.updateUser(adminId, userUid, updateUserDto);
+    const adminUid = req.user.uid; // Obtener UID del usuario autenticado
+    return this.userService.updateUser(adminUid, userUid, updateUserDto);
   }
 
   @Delete(':id')
