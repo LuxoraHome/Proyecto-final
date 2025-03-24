@@ -1,19 +1,8 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put, Query, NotFoundException } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { ApiTags } from '@nestjs/swagger';
-<<<<<<< HEAD
-
-@ApiTags('Category')
-@Controller('category')
-export class CategoryController {
-  constructor(private readonly categoryService: CategoryService) { }
-
-  @Post()
-  create(@Body() createCategoryDto: CreateCategoryDto) {
-    return this.categoryService.create(createCategoryDto);
-=======
+import { ApiExcludeEndpoint, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { CategoriesSeed } from 'src/seeds/categories/categories.seeds';
 
 @ApiTags('Category')
@@ -29,10 +18,10 @@ export class CategoryController {
     return this.categoryService.createCategory(createCategoryDto);
   }
 
+  @ApiExcludeEndpoint()
   @Post("seeder")
   seeder() {
     return this.categorySeeder.seedCategories()
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
   }
 
   @Get()
@@ -40,13 +29,25 @@ export class CategoryController {
     return this.categoryService.findAll();
   }
 
+  @Get('filter')
+  @ApiQuery({ name: 'name', required: false })
+  @ApiQuery({ name: 'type', required: false })
+  @ApiQuery({ name: 'color', required: false })
+  async filterByTypeAndColor(
+    @Query('name') name?: string,
+    @Query('type') type?: string,
+    @Query('color') color?: string,
+  ) {
+    try {
+      return await this.categoryService.filterByTypeAndColor(name, type, color);
+    } catch (error) {
+      throw new NotFoundException(error.message);
+    }
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
-<<<<<<< HEAD
-    return this.categoryService.findOne(id);
-=======
     return this.categoryService.findOneById(id);
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
   }
 
   @Put(':id')
@@ -55,7 +56,8 @@ export class CategoryController {
   }
 
   @Delete(':id')
+  @ApiExcludeEndpoint()
   remove(@Param('id') id: string) {
-    return this.categoryService.remove(id);
+    return this.categoryService.removeCategory(id);
   }
 }

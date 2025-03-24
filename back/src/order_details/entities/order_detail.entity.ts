@@ -1,16 +1,16 @@
 import { Order } from "src/order/entities/order.entity";
 import { Product } from "src/product/entities/product.entity";
 import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import {v4 as uuid} from "uuid"
+import { v4 as uuid } from "uuid"
 
 
 @Entity({
     name: "orderdetails"
 })
-export class OrderDetail{
+export class OrderDetail {
 
     @PrimaryGeneratedColumn('uuid')
-    id: string 
+    id: string
 
     //Relación N:1 con order
     @ManyToOne(() => Order, (order) => order.orderDetails)
@@ -19,7 +19,7 @@ export class OrderDetail{
 
     //Relación N:1 con products
     @ManyToOne(() => Product, (product) => product.orderDetails)
-    @JoinColumn({name: "product_id"})
+    @JoinColumn({ name: "product_id" })
     product: Product
 
     @Column({ type: 'int', nullable: false })
@@ -30,4 +30,7 @@ export class OrderDetail{
 
     @Column({ type: 'decimal', precision: 10, scale: 2 })
     subtotal: number;
+
+    // @Column({ type: 'varchar', length: 255, nullable: true})
+    // image: string
 }

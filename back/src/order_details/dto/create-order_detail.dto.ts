@@ -1,14 +1,27 @@
-<<<<<<< HEAD
-export class CreateOrderDetailDto {}
-=======
-import { Order } from "src/order/entities/order.entity";
+import { IsNotEmpty, IsNumber, IsString, IsUUID } from "class-validator";
 
 export class CreateOrderDetailDto {
-    orderId: string
-    productId: string;
-    quantity: number;
-    unitPrice: number;
-    subtotal: number;
-}
+  @IsUUID()
+  @IsNotEmpty()
+  orderId: string;
 
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
+  @IsUUID()
+  @IsNotEmpty()
+  productId: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  quantity: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  unitPrice: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  subtotal: number;
+
+  // @IsString()
+  // @IsNotEmpty()
+  // image: string
+}

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -11,15 +11,9 @@ export class CategoryService {
   constructor(
     @InjectRepository(Category)
     private readonly categoryRepository: Repository<Category>
-<<<<<<< HEAD
   ) { }
 
-  async create(createCategoryDto: CreateCategoryDto) {
-=======
-  ) {}
-
   async createCategory(createCategoryDto: CreateCategoryDto) {
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
     const newCategoty = this.categoryRepository.create(createCategoryDto);
     return await this.categoryRepository.save(newCategoty);
   }
@@ -28,11 +22,7 @@ export class CategoryService {
     return await this.categoryRepository.find();
   }
 
-<<<<<<< HEAD
-  async findOne(id: string) {
-=======
   async findOneById(id: string) {
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
     return await this.categoryRepository.findOneBy({ id });
   }
 
@@ -44,8 +34,44 @@ export class CategoryService {
     return this.categoryRepository.findOneBy({ id });
   }
 
-  async remove(id: string) {
-    await this.categoryRepository.delete(id);
-    return { id };
+  async removeCategory(id: string): Promise<{ message: string; }> {
+    const category = await this.categoryRepository.findOne({ where: { id } });
+    if (!category) {
+      throw new NotFoundException(`Category with ID ${id} not found`);
+    }
+    await this.categoryRepository.delete(id)
+    return { message: `Category has been deleted successfully` };
+  }
+
+  // Método para filtrar categorías por tipo y color
+  async filterByTypeAndColor(name?: string, type?: string, color?: string): Promise<Category[]> {
+
+    if (!name && !type && !color) {
+      return await this.categoryRepository.find();
+    }
+
+    const query = this.categoryRepository.createQueryBuilder('category');
+
+    if (name) {
+      query.andWhere('category.name = :name', { name });
+    }
+
+    if (type) {
+      query.andWhere('category.type = :type', { type });
+    }
+
+    if (color) {
+      query.andWhere('category.color = :color', { color });
+    }
+
+    const categories = await query.getMany();
+
+    if (categories.length === 0) {
+      throw new NotFoundException(
+        `No categories found with name: ${name}, type: ${type} and color: ${color}`,
+      );
+    }
+
+    return categories;
   }
 }
