@@ -1,46 +1,71 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateOrderDetailDto } from './dto/create-order_detail.dto';
 import { UpdateOrderDetailDto } from './dto/update-order_detail.dto';
-<<<<<<< HEAD
-
-@Injectable()
-export class OrderDetailsService {
-  create(createOrderDetailDto: CreateOrderDetailDto) {
-    return 'This action adds a new orderDetail';
-=======
 import { InjectRepository } from '@nestjs/typeorm';
 import { OrderDetail } from './entities/order_detail.entity';
 import { Repository } from 'typeorm';
+import { Order } from 'src/order/entities/order.entity';
+import { Product } from 'src/product/entities/product.entity';
 
 @Injectable()
 export class OrderDetailsService {
-
   constructor(
     @InjectRepository(OrderDetail)
-    private readonly orderDetailRepository: Repository<OrderDetail>
-){}
+    private readonly orderDetailRepository: Repository<OrderDetail>,
+    @InjectRepository(Order)
+    private readonly orderRepository: Repository<Order>,
+    @InjectRepository(Product)
+    private readonly productRepository: Repository<Product>
+  ) { }
 
+  async create(createOrderDetailDto: CreateOrderDetailDto) {
+    const { orderId, productId, quantity, unitPrice, subtotal } = createOrderDetailDto;
 
-async  create(createOrderDetailDto: CreateOrderDetailDto) {
-    const orderDetail = this.orderDetailRepository.create(createOrderDetailDto);
+    // Busca la orden y el producto en la base de datos
+    const order = await this.orderRepository.findOne({ where: { id: orderId } });
+    if (!order) throw new NotFoundException(`Order with ID ${orderId} not found`);
+
+    const product = await this.productRepository.findOne({ where: { id: productId } });
+    if (!product) throw new NotFoundException(`Product with ID ${productId} not found`);
+
+    // Crea la relación correctamente asignando instancias de Order y Product
+    const orderDetail = this.orderDetailRepository.create({
+      order,
+      product,
+      quantity,
+      unitPrice,
+      subtotal,
+    });
+
     return await this.orderDetailRepository.save(orderDetail);
-
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
   }
 
-  findAll() {
-    return `This action returns all orderDetails`;
+  async findAll() {
+    return await this.orderDetailRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} orderDetail`;
+  async findOne(id: string) {
+    return await this.orderDetailRepository.findOne({ where: { id } });
   }
 
-  update(id: number, updateOrderDetailDto: UpdateOrderDetailDto) {
-    return `This action updates a #${id} orderDetail`;
+  async update(id: string, updateOrderDetailDto: UpdateOrderDetailDto) {
+    return await this.orderDetailRepository.update(id, updateOrderDetailDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} orderDetail`;
+  async removeOrderDetail(id: string) {
+    const orderDetail = await this.orderDetailRepository.findOne({ where: { id } });
+
+    if (!orderDetail) {
+      throw new NotFoundException(`OrderDetail with ID ${id} not found`);
+    }
+
+    await this.orderDetailRepository.delete(id);
+
+    return {
+      message: 'OrderDetail deleted successfully',
+      orderDetailId: id,
+    };
   }
+
+
 }

@@ -10,6 +10,14 @@ import { AuthModule } from './auth/auth.module';
 import { OrderModule } from './order/order.module';
 import { OrderDetailsModule } from './order_details/order_details.module';
 import { CategoryModule } from './category/category.module';
+import { JwtModule } from '@nestjs/jwt';
+import { FileUploadModule } from './file-upload/file-upload.module';
+import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
+import { CartProductsModule } from './cart-products/cartProducts.module';
+import { MailModule } from './mail/mail.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { StripeModule } from './stripe/stripe.module';
+import { OfferModule } from './offer/offer.module';
 
 
 @Module({
@@ -28,10 +36,24 @@ import { CategoryModule } from './category/category.module';
     AuthModule,
     OrderModule,
     OrderDetailsModule,
-    CategoryModule
+    CategoryModule,
+    StripeModule,
+    JwtModule.register({
+      global: true, //para usarlo en cualquier lado
+      signOptions: { expiresIn: '2h' }, //entiende el string como hora(h), minuto(m),segundo(s)
+      secret: process.env.JWT_SECRET, //asegurar que es un jwt generado y no construido por alguien externo
+    }),
+    FileUploadModule,
+    ShoppingCartModule,
+    CartProductsModule,
+    MailModule,
+    DashboardModule,
+    OfferModule
+
   ],
   controllers: [],
-  providers: [],
+
+  //providers: [CloudinaryService],
 })
 
 export class AppModule { }

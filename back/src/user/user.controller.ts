@@ -1,71 +1,85 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException, Put } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  BadRequestException,
+  Put,
+  UseGuards,
+  Req,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserSeed } from './seeder/user.seed';
+import { UserResponseDto } from './dto/user-response.dto';
+// import { SuperAdminGuard } from './superadmin-guard';
+import { AuthenticatedRequest } from './user-interface';
+// import { JwtAuthGuard } from './Jwtauthguard';
+import { AuthGuard } from 'src/auth/auth.guards';
+import { ApiExcludeEndpoint } from '@nestjs/swagger';
+import { Role } from 'src/auth/enum/roles.enum';
+import { Roles } from 'src/decorators/roles.decorator';
+import { RolesGuard } from 'src/auth/roles.guards';
 
 @Controller('user')
 export class UserController {
   constructor(
     private readonly userService: UserService,
-    private readonly userSeed: UserSeed
-  ) {}
+    private readonly userSeed: UserSeed,
+  ) { }
 
   @Post()
+  @ApiExcludeEndpoint()
   async create(@Body() createUserDto: CreateUserDto) {
-<<<<<<< HEAD
-    return await this.userService.create(createUserDto);
-=======
     return await this.userService.createUser(createUserDto);
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
   }
 
-  @Post("seeder")
-  async seeder(){
+  @Post('seeder')
+  @ApiExcludeEndpoint()
+  async seeder() {
     try {
-      return await this.userSeed.createUserSeeder()
+      return await this.userSeed.createUserSeeder();
     } catch (error) {
-      throw new BadRequestException("Error al cargar los usuarios precargados")
+      throw new BadRequestException('Error al cargar los usuarios precargados');
     }
   }
+
   @Get()
   async findAll() {
-<<<<<<< HEAD
-    return await this.userService.findAll();
-=======
     return await this.userService.findAllUsers();
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
   }
 
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
-<<<<<<< HEAD
-    return await this.userService.findOne(id);
-=======
-    return await this.userService.findOneById(id);
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
+  @Get('public')
+  @ApiExcludeEndpoint()
+  async findAllPublic() {
+    const users = await this.userService.findAllUsers();
+    const responseUser = users.map((user) => new UserResponseDto(user));
+    return responseUser;
   }
 
-  @Put(':id')
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    try {
-<<<<<<< HEAD
-      await this.userService.update(id, updateUserDto);
-=======
-      await this.userService.updateUser(id, updateUserDto);
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
-      return {message: "User updated successfully", id}
-    } catch (error) {
-      throw new BadRequestException ("Error updating user")
-    }
+  @Get(':uid')
+  async findOne(@Param('uid') uid: string) {
+    return await this.userService.findOneById(uid);
+  }
+
+  @Put(':userUid')
+  @Roles(Role.Superadmin)
+  @UseGuards(AuthGuard, RolesGuard)
+  async updateUser(
+    @Req() req: AuthenticatedRequest, // Obtener datos del usuario autenticado
+    @Param('userUid') userUid: string,
+    @Body() updateUserDto: UpdateUserDto
+  ) {
+    const adminUid = req.user.uid; // Obtener UID del usuario autenticado
+    return this.userService.updateUser(adminUid, userUid, updateUserDto);
   }
 
   @Delete(':id')
+  @ApiExcludeEndpoint()
   async remove(@Param('id') id: string) {
-<<<<<<< HEAD
-    return await this.userService.remove(id);
-=======
     return await this.userService.removeUser(id);
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
   }
 }

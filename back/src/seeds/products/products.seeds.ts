@@ -21,15 +21,19 @@ export class ProductsSeed {
 =======
         @InjectRepository(Category)
         private readonly categoryRepository: Repository<Category>
-    ) {}
+    ) { }
 
-    async findCategories(category: string){
+    async findCategories(name: string, type: string, color: string) {
         const findCategory = await this.categoryRepository.findOne({
-            where: {name: category}
+            where: {
+                name: name,
+                type: type,
+                color: color
+            }
         })
 
-        if(!findCategory){
-            throw new Error(`Category ${category} not found`)
+        if (!findCategory) {
+            throw new Error(`Category name ${name} / type ${type} / color ${color} not found`)
         }
         return findCategory;
     }
@@ -61,9 +65,13 @@ export class ProductsSeed {
                 newProduct.designer = productData.designer;
                 newProduct.image = productData.image;
                 newProduct.stock = productData.stock;
-                newProduct.category = await this.findCategories(productData.category)
+                newProduct.category = await this.findCategories(
+                    productData.categoryName,
+                    productData.categoryType,
+                    productData.categoryColor
+                );
                 await this.productRepository.save(newProduct);
-            }else{
+            } else {
                 return "Ya existen productos"
 >>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
             }
