@@ -6,7 +6,9 @@ const HomeView: React.FC = () => {
 
 
     return (
-        <ProductMap />
+        <div>
+            <ProductMap />
+        </div>
     )
 
 

@@ -6,47 +6,43 @@ export const validateRegister = (values: IUserRegister) => {
 
 
   if (!values.name) {
-    errors.name = "name is required"
+    errors.name = "Name is required"
   }
 
   if (!values.email) {
-    errors.email = "email is required"
+    errors.email = "Email is required"
   }
 
   if (!values.password) {
-    errors.password = "password is required"
+    errors.password = "Password is required"
   } else if (!/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(values.password)) {
     errors.password = "Password must be at least 8 characters, include one uppercase letter, one number, and one special character";
   }
 
   if (!values.confirmPassword) {
-    errors.confirmPassword = "password dont match"
+    errors.confirmPassword = "Password dont match"
   }
   if (values.password && values.confirmPassword && values.password !== values.confirmPassword) {
     errors.confirmPassword = "Passwords do not match";
   }
 
   if (!values.address) {
-    errors.address = "address is required"
+    errors.address = "Address is required"
   }
 
   if (!values.phone) {
-    errors.phone = "phone is required"
+    errors.phone = "Phone is required"
   }
 
   if (!values.city) {
-    errors.city = "city is required"
+    errors.city = "City is required"
   }
 
   if (!values.country) {
-    errors.country = "country is required"
+    errors.country = "Country is required"
   }
-
-
-
+  
   return errors
-
-
 }
 
-export default validateRegister
+export default validateRegister ;

@@ -1,7 +1,5 @@
 "use client"
-import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL
 
@@ -28,7 +26,9 @@ export const createOrder = async (userPay: IUserpay) => {
 
         const data = await response.json()
 
-        return data.client_secret; 
+        return data.client_secret
+
+
 
     } catch (error) {
         console.log(`Aca esta el error`, error);
@@ -37,8 +37,3 @@ export const createOrder = async (userPay: IUserpay) => {
 
 
 }
-
-
-
-
-

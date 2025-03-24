@@ -3,25 +3,40 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import React from "react";
 import { RegisterUser } from "@/helpers/users";
-import { IUserRegister } from "@/interfaces/Iuser";
+import { IUserR, IUserRegister } from "@/interfaces/Iuser";
 import validateRegister from "@/helpers/validateFormRegister";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/services/Firebase";
+
+
+
+
 
 
 export const RegisterFormView: React.FC = () => {
+
   const router = useRouter();
 
-
   const handleSubmit = async (values: IUserRegister) => {
-    await RegisterUser(values);
-    router.push("/login");
+    try {
+      const usercredential = await createUserWithEmailAndPassword(auth, values.email, values.password)
+      const uid = usercredential.user.uid
+      const userData: IUserR = { email:values.email , uid , name: values.name  , country: values.country , phone : values.phone}
+      console.log(`esto le mando al back`, userData);
+      const response = await RegisterUser(userData);
+      console.log("Respuesta del backend:", response);
+      router.push("/login");
+    } catch (error) {
+      console.log(error);
+    }
   }
-    ;
+
 
   return (
-    <div className="w-1/2 mx-auto p-6 bg-white border border-black rounded-xl shadow-lg ">
-      <h2 className="text-2xl font-bold mb-6  text-center">Register</h2>
+    <div className="w-1/2 mx-auto p-6 bg-white border border-black shadow-lg mt-10">
+      <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
       <Formik
         initialValues={{
           name: "",
@@ -87,8 +102,6 @@ export const RegisterFormView: React.FC = () => {
             <ErrorMessage name="password" component="p" className="text-red-500 text-sm" />
           </div>
 
-
-
           <div className="flex flex-col">
             <label className="font-medium">Confirm password</label>
             <Field
@@ -98,7 +111,6 @@ export const RegisterFormView: React.FC = () => {
             />
             <ErrorMessage name="confirmPassword" component="p" className="text-red-500 text-sm" />
           </div>
-
 
           <div className="flex flex-col">
             <label className="font-medium">Country</label>
@@ -122,22 +134,19 @@ export const RegisterFormView: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full font-bold py-2 rounded transition-all bg-black text-white hover:bg-gray-800">
+            className="w-full font-bold py-2 bg-black text-white hover:bg-gray-800 transition-all">
             Register
           </button>
 
           <div className="text-gray-800 dark:text-white text-lg">
             <span className="mr-1 text-black">Already have an account?</span>
-            <Link href="/login " className="font-semibold underline hover:text-gray-600 transition-colors text-black">
+            <Link href="/login" className="font-semibold underline hover:text-gray-600 transition-colors text-black">
               Log in
             </Link>
           </div>
-
-
-
         </Form>
       </Formik>
     </div>
   );
-};
 
+}; 
