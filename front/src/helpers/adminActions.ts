@@ -2,6 +2,7 @@ import { IUserBack } from "@/interfaces/Iuser";
 import { IGetOffers, IPostOffer } from "@/interfaces/IOffer";
 import Swal from "sweetalert2";
 
+
 const APIURL = process.env.NEXT_PUBLIC_API_URL;
 
 // FUNCION PARA OBTENER LISTA DE USUARIOS.
@@ -76,6 +77,39 @@ export const getOffers = async (): Promise<IGetOffers[]> => {
   }
 };
 
+export const changeStatusUser = async (userUid: string, status: "active" | "suspended") => {
+  
+  const adminToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4YzZmZDU4ZC0zMjY2LTQ3OTEtOGZhMS05YTliZDUyNjVjNzMiLCJlbWFpbCI6Imx1eG9yYXN1cGVyYWRtaW5pc3RyYWRvckBnbWFpbC5jb20iLCJ1aWQiOiI5T0cxZHV2NmxrYktFWEdsQ1JVUHpjZU14MTcyIiwicm9sZXMiOiJzdXBlcmFkbWluIiwiaWF0IjoxNzQyNzgwNjA5LCJleHAiOjE3NDI3ODc4MDl9._H6zcVjPgky0xUP4LLlSs0IRtgUfMrblxq2k3ewLtLY "; // Token del admin
+
+  try {
+    const response = await fetch(`${APIURL}/user/${userUid}`, {  
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${adminToken}`, 
+      },
+      body: JSON.stringify({
+        userUid,  
+        status,  
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Error al cambiar el estado del usuario.");
+    }
+
+    const updatedUser = await response.json();
+    console.log("Usuario actualizado:", updatedUser);
+    return updatedUser;
+  } catch (error) {
+    console.error("Error en changeStatusUser:", error);
+    throw error;
+  }
+};
+
+
+
 // FUNCION PARA CREAR OFERTAS.
 export const createOffer = async (offerData: IPostOffer) => {
   try {
@@ -116,5 +150,4 @@ export const createOffer = async (offerData: IPostOffer) => {
     throw error;
   }
 };
-
 

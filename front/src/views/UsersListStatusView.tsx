@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { getUsersList, deleteUser } from "@/helpers/adminActions";
 import { IUserBack } from "@/interfaces/Iuser";
-import { FaRegTrashAlt } from "react-icons/fa";
-
+import { FaRegTrashAlt, FaLock, FaLockOpen } from "react-icons/fa"; // Importamos los iconos
+import { changeStatusUser } from "@/helpers/adminActions";
 
 const UsersListStatusView: React.FC = () => {
   const [users, setUsers] = useState<IUserBack[]>([]);
@@ -33,7 +33,22 @@ const UsersListStatusView: React.FC = () => {
   const handleDeleteUser = async (userUid: string) => {
     const success = await deleteUser(userUid);
     if (success) {
-      setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userUid));
+      setUsers((prevUsers) => prevUsers.filter((user) => user.uid !== userUid)); // Cambiar de id a uid
+    }
+  };
+
+  const handleChangeStatus = async (userUid: string, currentStatus: "active" | "suspended") => {
+    try {
+      const newStatus = currentStatus === "active" ? "suspended" : "active";
+      const updatedUser = await changeStatusUser(userUid, newStatus);
+      // Actualizar el estado de los usuarios después de la modificación
+      setUsers((prevUsers) =>
+        prevUsers.map((user) =>
+          user.uid === userUid ? { ...user, status: updatedUser.status } : user
+        )
+      );
+    } catch (error) {
+      setError("There was an error changing the user status.");
     }
   };
 
@@ -62,31 +77,45 @@ const UsersListStatusView: React.FC = () => {
           <table className="min-w-full table-auto border-collapse">
             <thead>
               <tr>
-                <th className="px-4 py-2 text-left text-gray-800 border-b">Id</th>
                 <th className="px-4 py-2 text-left text-gray-800 border-b">Uid</th>
                 <th className="px-4 py-2 text-left text-gray-800 border-b">Name</th>
                 <th className="px-4 py-2 text-left text-gray-800 border-b">Email</th>
                 <th className="px-4 py-2 text-left text-gray-800 border-b">City</th>
                 <th className="px-4 py-2 text-left text-gray-800 border-b">Country</th>
-                <th className="px-4 py-2 text-left text-gray-800 border-b">Role</th>
                 <th className="px-4 py-2 text-left text-gray-800 border-b">Status</th>
+                <th className="px-4 py-2 text-left text-gray-800 border-b">Role</th>
                 <th className="px-4 py-2 text-left text-gray-800 border-b">Actions</th>
               </tr>
             </thead>
             <tbody>
               {filteredUsers.map((user) => (
-                <tr key={user.id} className="bg-gray-100 hover:bg-gray-200">
-                  <td className="px-4 py-2 text-gray-800 border-b">{user.id}</td>
+                <tr key={user.uid} className="bg-gray-100 hover:bg-gray-200">
                   <td className="px-4 py-2 text-gray-800 border-b">{user.uid}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.name}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.email}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.city}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.country}</td>
-                  <td className="px-4 py-2 text-gray-800 border-b">{user.role}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.status}</td>
+                  <td className="px-4 py-2 text-gray-800 border-b">{user.role}</td>
+
+                  {/* Columna de Actions con icono de candado */}
                   <td className="px-4 py-2 text-gray-800 border-b flex gap-4">
+                    {/* Candado en la columna de Actions */}
+                    {user.status === "active" ? (
+                      <FaLockOpen
+                        onClick={() => handleChangeStatus(user.uid, user.status)}
+                        className="text-green-500 h-6 w-6 cursor-pointer"
+                      />
+                    ) : (
+                      <FaLock
+                        onClick={() => handleChangeStatus(user.uid, user.status)}
+                        className="text-red-500 h-6 w-6 cursor-pointer"
+                      />
+                    )}
+
+                    {/* Botón de eliminar */}
                     <button
-                      onClick={() => handleDeleteUser(user.id!)}
+                      onClick={() => handleDeleteUser(user.uid)} // Cambiar 'id' a 'uid'
                       className="text-gray-500 hover:text-gray-700"
                     >
                       <FaRegTrashAlt className="h-6 w-6" />
