@@ -79,7 +79,7 @@ export const getOffers = async (): Promise<IGetOffers[]> => {
 
 export const changeStatusUser = async (userUid: string, status: "active" | "suspended") => {
   
-  const adminToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4YzZmZDU4ZC0zMjY2LTQ3OTEtOGZhMS05YTliZDUyNjVjNzMiLCJlbWFpbCI6Imx1eG9yYXN1cGVyYWRtaW5pc3RyYWRvckBnbWFpbC5jb20iLCJ1aWQiOiI5T0cxZHV2NmxrYktFWEdsQ1JVUHpjZU14MTcyIiwicm9sZXMiOiJzdXBlcmFkbWluIiwiaWF0IjoxNzQyNzgwNjA5LCJleHAiOjE3NDI3ODc4MDl9._H6zcVjPgky0xUP4LLlSs0IRtgUfMrblxq2k3ewLtLY "; // Token del admin
+  const adminToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4YzZmZDU4ZC0zMjY2LTQ3OTEtOGZhMS05YTliZDUyNjVjNzMiLCJlbWFpbCI6Imx1eG9yYXN1cGVyYWRtaW5pc3RyYWRvckBnbWFpbC5jb20iLCJ1aWQiOiI5T0cxZHV2NmxrYktFWEdsQ1JVUHpjZU14MTcyIiwicm9sZXMiOiJzdXBlcmFkbWluIiwiaWF0IjoxNzQyODQwMzM2LCJleHAiOjE3NDI4NDc1MzZ9.K59ryz9Ko3NF7SuBZTXPSqj2nVWsO6kcOQmkaMXXKRk"; // Token del admin
 
   try {
     const response = await fetch(`${APIURL}/user/${userUid}`, {  
@@ -96,14 +96,33 @@ export const changeStatusUser = async (userUid: string, status: "active" | "susp
 
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.message || "Error al cambiar el estado del usuario.");
+      throw new Error(errorData.message || "Error updating user status.");
     }
 
     const updatedUser = await response.json();
-    console.log("Usuario actualizado:", updatedUser);
+    console.log("User updated:", updatedUser);
+    
+    Swal.fire({
+      icon: "success",
+      title: "Status Updated",
+      text: `User has been ${status === "active" ? "activated" : "suspended"} successfully.`,
+    });
+
     return updatedUser;
   } catch (error) {
-    console.error("Error en changeStatusUser:", error);
+    console.error("Error in changeStatusUser:", error);
+    
+    let errorMessage = "There was an issue changing the user status.";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: errorMessage,
+    });
+
     throw error;
   }
 };
