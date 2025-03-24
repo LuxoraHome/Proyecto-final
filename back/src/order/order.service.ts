@@ -1,21 +1,3 @@
-<<<<<<< HEAD
-import { Injectable } from '@nestjs/common';
-import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderDto } from './dto/update-order.dto';
-
-@Injectable()
-export class OrderService {
-  create(createOrderDto: CreateOrderDto) {
-    return 'This action adds a new order';
-  }
-
-  findAll() {
-    return `This action returns all order`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} order`;
-=======
 import {
   BadRequestException,
   Injectable,
@@ -124,7 +106,6 @@ export class OrderService {
 
 
     return order;
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
   }
 
   async findUserById(uid: string) {
