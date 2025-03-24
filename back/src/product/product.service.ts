@@ -1,49 +1,12 @@
-<<<<<<< HEAD
-import { Injectable } from '@nestjs/common';
-=======
 import { Injectable, NotFoundException } from '@nestjs/common';
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Product } from './entities/product.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-<<<<<<< HEAD
-
-@Injectable()
-export class ProductService {
-
-  constructor(
-    @InjectRepository(Product)
-    private productRepository: Repository<Product>
-  ) { }
-
-  async create(createProductDto: CreateProductDto): Promise<Product> {
-    const newProduct = this.productRepository.create(createProductDto);
-    return await this.productRepository.save(newProduct);
-  }
-
-  async findAll() {
-    return await this.productRepository.find();
-  }
-
-  async findOne(id: string): Promise<Product> {
-    return await this.productRepository.findOneBy({ id });
-  }
-
-  async update(
-    id: string,
-    updateProductDto: UpdateProductDto
-  ): Promise<Product> {
-
-    await this.productRepository.update(id, updateProductDto)
-    return this.productRepository.findOneBy({ id })
-  }
-
-  async remove(id: string): Promise<{ id: string }> {
-    await this.productRepository.delete(id)
-=======
 import { CategoryService } from 'src/category/category.service';
+import { FileUploadService } from 'src/file-upload/file-upload.service';
+import { FileUploadDto } from 'src/file-upload/dto/file-upload.dto';
 
 @Injectable()
 export class ProductService {
@@ -51,7 +14,8 @@ export class ProductService {
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
     private readonly categoryService: CategoryService,
-  ) {}
+    private readonly fileUploadService: FileUploadService
+  ) { }
 
   async createProduct(createProductDto: CreateProductDto): Promise<Product> {
     const { categoryId, ...productData } = createProductDto;
@@ -100,9 +64,28 @@ export class ProductService {
     return await this.productRepository.save(product);
   }
 
-  async removeProduct(id: string): Promise<{ id: string }> {
+  async removeProduct(id: string): Promise<{ message: string; }> {
+    const product = await this.productRepository.findOne({ where: { id } });
+
+    if (!product) {
+      throw new NotFoundException(`Product with ID ${id} not found`);
+    }
+
     await this.productRepository.delete(id);
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
-    return { id };
+
+    return { message: `Product has been deleted successfully` };
   }
+
+  //   async fileUpload(id: string, file: FileUploadDto){
+  //     const url = await this.fileUploadService.createFileUpload({
+  //         fieldname: file.fieldname,
+  //         originalname: file.originalname,
+  //         mimetype: file.mimetype,
+  //         size: file.size,
+  //         buffer: file.buffer
+  //     })
+
+  //     await this.productRepository.update(id, {image: url})
+  //     return {image: url}
+  // }
 }

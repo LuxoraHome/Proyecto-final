@@ -4,15 +4,22 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { UserSeed } from './user/seeder/user.seed';
 import { ProductsSeed } from './seeds/products/products.seeds';
 import { loggerGlobal } from './middleware/logger.middleware';
-<<<<<<< HEAD
-=======
 import { CategoriesSeed } from './seeds/categories/categories.seeds';
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
+import { ValidationPipe } from '@nestjs/common';
+import { OrderDetailSeed } from './seeds/order_details/order_details.seeds';
+import { OfferSeed } from './seeds/offers/offers.seeds';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors({
+    origin: 'http://localhost:3001',
+    methods: 'GET, PATCH, HEAD, PUT, POST, DELETE',
+    credentials: true,
+  });
+
   app.use(loggerGlobal);
+  app.useGlobalPipes(new ValidationPipe());
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Proyecto LUXORA')
@@ -20,29 +27,28 @@ async function bootstrap() {
     .setVersion('1.0.0')
     .addBearerAuth()
     .build();
-<<<<<<< HEAD
-  const documet = SwaggerModule.createDocument(app, swaggerConfig);
-  SwaggerModule.setup('api', app, documet);
-=======
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
 
   const categorySeeder = app.get(CategoriesSeed);
   await categorySeeder.seedCategories();
   console.log('*** LA INSERCION DE CATEGORIAS FUE EXITOSA ***');
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
 
   const userSeeder = app.get(UserSeed);
   await userSeeder.createUserSeeder();
   console.log('*** LA INSERCION DE USUARIOS FUE EXITOSA ***');
 
   const productsSeed = app.get(ProductsSeed);
-<<<<<<< HEAD
-  await productsSeed.seed();
-=======
   await productsSeed.createSeedProduct();
->>>>>>> 5b4bb86c69a2aa639c2b7e16d6e59c0f40fdbb69
   console.log('*** LA INSERCION DE PRODUCTOS FUE EXITOSA ***');
+
+  const orderDetailsSeed = app.get(OrderDetailSeed);
+  await orderDetailsSeed.orderDetailSeed();
+  console.log('*** LA INSERCION DE ORDENES FUE EXITOSA ***');
+
+  const offersSeed = app.get(OfferSeed);
+  await offersSeed.offerSeed();
+  console.log('*** LA INSERCION DE OFERTAS FUE EXITOSA ***');
 
   await app.listen(process.env.PORT ?? 3000);
 }
