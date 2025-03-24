@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL;
 
-// FUNCION PARA OBTENER LISTA DE USUARIOS.
+
 export const getUsersList = async (): Promise<IUserBack[] | null> => {
   try {
     const response = await fetch(`${APIURL}/user`, {
@@ -34,7 +34,7 @@ export const getUsersList = async (): Promise<IUserBack[] | null> => {
   }
 };
 
-// FUNCION PARA ELIMINAR USUARIO.
+
 export const deleteUser = async (userId: string) => {
   try {
     const response = await fetch(`${APIURL}/user/${userId}`, { method: 'DELETE' });
@@ -60,7 +60,6 @@ export const deleteUser = async (userId: string) => {
   }
 };
 
-// FUNCION PARA OBTENER OFERTAS.
 export const getOffers = async (): Promise<IGetOffers[]> => {
   try {
     const response = await fetch(`${APIURL}/offer`);
@@ -79,7 +78,7 @@ export const getOffers = async (): Promise<IGetOffers[]> => {
 
 export const changeStatusUser = async (userUid: string, status: "active" | "suspended") => {
   
-  const adminToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4YzZmZDU4ZC0zMjY2LTQ3OTEtOGZhMS05YTliZDUyNjVjNzMiLCJlbWFpbCI6Imx1eG9yYXN1cGVyYWRtaW5pc3RyYWRvckBnbWFpbC5jb20iLCJ1aWQiOiI5T0cxZHV2NmxrYktFWEdsQ1JVUHpjZU14MTcyIiwicm9sZXMiOiJzdXBlcmFkbWluIiwiaWF0IjoxNzQyODQwMzM2LCJleHAiOjE3NDI4NDc1MzZ9.K59ryz9Ko3NF7SuBZTXPSqj2nVWsO6kcOQmkaMXXKRk"; // Token del admin
+  const adminToken = ""; 
 
   try {
     const response = await fetch(`${APIURL}/user/${userUid}`, {  
@@ -129,7 +128,6 @@ export const changeStatusUser = async (userUid: string, status: "active" | "susp
 
 
 
-// FUNCION PARA CREAR OFERTAS.
 export const createOffer = async (offerData: IPostOffer) => {
   try {
     const response = await fetch(`${APIURL}/offer`, {
