@@ -78,7 +78,7 @@ export const getOffers = async (): Promise<IGetOffers[]> => {
 
 export const changeStatusUser = async (userUid: string, status: "active" | "suspended") => {
   
-  const adminToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxZWM1N2NkYy1iNzU3LTQyNGItYTA0Yi05NTg5ODY5Y2JkOTAiLCJlbWFpbCI6ImFkbWludXNlcjIyQGdtYWlsLmNvbSIsInVpZCI6IlFLUzVEcmwwVjlQZUNkNlJxdklPZ25xdjAxRjMiLCJyb2xlcyI6InVzZXIiLCJpYXQiOjE3NDI4NDg0ODksImV4cCI6MTc0Mjg1NTY4OX0.1nh9dCk76C5KRQhp0_UD_tELYM05vR4dORJ2Sjp8Xxw"
+  const adminToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhNThjZWQwMC0zMGI0LTQyYzEtYTgxMC04MjQ4NThmNjQyODgiLCJlbWFpbCI6ImFkbWludXNlckBnbWFpbC5jb20iLCJ1aWQiOiJUdFpBRVRMTEFhZzhraU1WREhGeG1vUGFocjkyIiwicm9sZXMiOiJzdXBlcmFkbWluIiwiaWF0IjoxNzQyODQ5NjgyLCJleHAiOjE3NDI4NTY4ODJ9.xARqF8Wdgj_1RNvCF0APDZSJKuF2Ft9Kbmm8pPVG6jc" 
 
   try {
     const response = await fetch(`${APIURL}/user/${userUid}`, {  
