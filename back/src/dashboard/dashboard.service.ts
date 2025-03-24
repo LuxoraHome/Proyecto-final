@@ -1,4 +1,9 @@
-import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../user/entities/user.entity';
@@ -17,7 +22,7 @@ export class DashboardService {
     private readonly orderRepository: Repository<Order>, // Inyecta el repositorio de Order si es necesario
     @InjectRepository(OrderDetail)
     private readonly orderdetailsRepository: Repository<OrderDetail>, // Inyecta el repositorio de OrderDetails si es necesario
-  ) { }
+  ) {}
 
   // 1. Estadísticas de usuarios
 
@@ -43,7 +48,6 @@ export class DashboardService {
         .getCount();
 
       return { totalUsers, activeUsers, newUsers };
-
     } catch (error) {
       throw new HttpException(
         'Error to get user stats.',
@@ -54,13 +58,11 @@ export class DashboardService {
 
   // 2. Métricas de negocio
   async getOrderStats() {
-
     try {
-
       // Total de ordenes
       const totalOrders = await this.orderRepository.count();
 
-      // Productos más vendidos 
+      // Productos más vendidos
       const topProducts = await this.orderdetailsRepository
         .createQueryBuilder('orderdetails')
         .select('product.name', 'productName')
@@ -73,7 +75,6 @@ export class DashboardService {
         .getRawMany();
 
       return { totalOrders, topProducts };
-
     } catch (error) {
       throw new HttpException(
         'Error to get order stats.',
@@ -84,9 +85,7 @@ export class DashboardService {
 
   // 3. Top compradores
   async getBuyersStats() {
-
     try {
-
       const topBuyers = await this.userRepository
         .createQueryBuilder('users')
         .leftJoin('users.orders', 'orders')
@@ -98,7 +97,6 @@ export class DashboardService {
         .getRawMany();
 
       return topBuyers;
-
     } catch (error) {
       throw new HttpException(
         'Error to get top buyers stats.',
@@ -112,7 +110,13 @@ export class DashboardService {
     try {
       const topFrequentUsers = await this.userRepository
         .createQueryBuilder('user')
-        .select(['user.id', 'user.uid', 'user.name', 'user.email', 'user.loginCount'])
+        .select([
+          'user.id',
+          'user.uid',
+          'user.name',
+          'user.email',
+          'user.loginCount',
+        ])
         .orderBy('user.loginCount', 'DESC')
         .limit(5)
         .getMany();

@@ -14,8 +14,8 @@ export class ProductService {
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
     private readonly categoryService: CategoryService,
-    private readonly fileUploadService: FileUploadService
-  ) { }
+    private readonly fileUploadService: FileUploadService,
+  ) {}
 
   async createProduct(createProductDto: CreateProductDto): Promise<Product> {
     const { categoryId, ...productData } = createProductDto;
@@ -64,7 +64,7 @@ export class ProductService {
     return await this.productRepository.save(product);
   }
 
-  async removeProduct(id: string): Promise<{ message: string; }> {
+  async removeProduct(id: string): Promise<{ message: string }> {
     const product = await this.productRepository.findOne({ where: { id } });
 
     if (!product) {

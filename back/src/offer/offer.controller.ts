@@ -1,11 +1,19 @@
-import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Put,
+  Delete,
+} from '@nestjs/common';
 import { OfferService } from './offer.service';
 import { CreateOfferDto } from './dto/create-offer.dto';
 import { UpdateOfferDto } from './dto/update-offer.dto';
 
 @Controller('offer')
 export class OfferController {
-  constructor(private readonly offersService: OfferService) { }
+  constructor(private readonly offersService: OfferService) {}
 
   @Post()
   create(@Body() createOfferDto: CreateOfferDto) {

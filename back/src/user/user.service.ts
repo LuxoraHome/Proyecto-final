@@ -19,7 +19,7 @@ export class UserService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
     private readonly mailService: MailService,
-  ) { }
+  ) {}
 
   async createUser(createUserDto: CreateUserDto) {
     const newUser = await this.userRepository.create(createUserDto);
@@ -53,13 +53,21 @@ export class UserService {
     return await this.userRepository.findOne({ where: { uid } });
   }
 
-  async updateUser(adminUid: string, userUid: string, updateUserDto: UpdateUserDto): Promise<User> {
+  async updateUser(
+    adminUid: string,
+    userUid: string,
+    updateUserDto: UpdateUserDto,
+  ): Promise<User> {
     // Buscar al admin en la base de datos
-    const superAdmin = await this.userRepository.findOne({ where: { uid: adminUid } });
+    const superAdmin = await this.userRepository.findOne({
+      where: { uid: adminUid },
+    });
 
     // Validar si el usuario autenticado es SuperAdmin
     if (!superAdmin || superAdmin.role !== Role.Superadmin) {
-      throw new ForbiddenException('No tienes permisos para actualizar este usuario.');
+      throw new ForbiddenException(
+        'No tienes permisos para actualizar este usuario.',
+      );
     }
 
     // Evitar que el SuperAdmin se modifique a sí mismo
@@ -74,8 +82,14 @@ export class UserService {
     }
 
     // Evitar modificar el rol de otro SuperAdmin
-    if (user.role === Role.Superadmin && updateUserDto.role && updateUserDto.role !== Role.Superadmin) {
-      throw new ForbiddenException('No puedes modificar el rol de un SuperAdmin.');
+    if (
+      user.role === Role.Superadmin &&
+      updateUserDto.role &&
+      updateUserDto.role !== Role.Superadmin
+    ) {
+      throw new ForbiddenException(
+        'No puedes modificar el rol de un SuperAdmin.',
+      );
     }
 
     // Evitar que un SuperAdmin asigne otro SuperAdmin (si no es deseado)

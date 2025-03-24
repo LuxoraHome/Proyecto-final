@@ -1,4 +1,9 @@
-import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from 'src/user/user.service';
 import * as bcrypt from 'bcrypt';
@@ -19,15 +24,15 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly mailService: MailService,
     @InjectRepository(User) private readonly userRepository: Repository<User>,
-  ) { }
+  ) {}
 
   async signUp(CreateAuthDto: CreateAuthDto) {
     const {
       name,
       uid,
-      email = "default@example.com", // Valor predeterminado seguro
-      password = "Mundial@123", // Valor predeterminado seguro
-      confirmPassword = "Mundial@123", // Valor predeterminado seguro
+      email = 'default@example.com', // Valor predeterminado seguro
+      password = 'Mundial@123', // Valor predeterminado seguro
+      confirmPassword = 'Mundial@123', // Valor predeterminado seguro
       address,
       phone,
       country,
@@ -39,14 +44,17 @@ export class AuthService {
     if (dbUser) {
       throw new HttpException(
         { statusCode: HttpStatus.BAD_REQUEST, message: 'Email already exists' },
-        HttpStatus.BAD_REQUEST
+        HttpStatus.BAD_REQUEST,
       );
     }
 
     if (password !== confirmPassword) {
       throw new HttpException(
-        { statusCode: HttpStatus.BAD_REQUEST, message: 'Passwords do not match' },
-        HttpStatus.BAD_REQUEST
+        {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'Passwords do not match',
+        },
+        HttpStatus.BAD_REQUEST,
       );
     }
 
@@ -54,7 +62,7 @@ export class AuthService {
     if (!password) {
       throw new HttpException(
         { statusCode: HttpStatus.BAD_REQUEST, message: 'Password is required' },
-        HttpStatus.BAD_REQUEST
+        HttpStatus.BAD_REQUEST,
       );
     }
 
@@ -73,14 +81,14 @@ export class AuthService {
       password: hashedPassword,
       role: Role.User, // Set default role to User
       status: UserStatus.ACTIVE, // Set default status to ACTIVE
-      client: UserClient.STANDARD // Set default client to STANDARD
+      client: UserClient.STANDARD, // Set default client to STANDARD
     });
 
     return { ...newUser, password: undefined };
   }
 
   async signIn(loginAuthDto: LoginAuthDto): Promise<{ access_token: string }> {
-    const { email, password = "Mundial@123", uid } = loginAuthDto; // Valor predeterminado seguro
+    const { email, password = 'Mundial@123', uid } = loginAuthDto; // Valor predeterminado seguro
 
     const user = await this.userService.findOneById(uid);
 
@@ -99,7 +107,7 @@ export class AuthService {
       userId: user.id,
       email: user.email,
       uid: user.uid,
-      roles: user.role
+      roles: user.role,
     };
     const access_token = await this.jwtService.signAsync(payload, {
       expiresIn: '2h',
@@ -126,7 +134,7 @@ export class AuthService {
 
     return {
       access_token,
-      ...user
+      ...user,
     };
   }
 }

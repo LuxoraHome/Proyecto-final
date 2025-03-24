@@ -14,21 +14,16 @@ export class OfferService {
     private offersRepository: Repository<Offer>,
     @InjectRepository(Product)
     private productRepository: Repository<Product>,
-  ) { }
+  ) {}
 
   async create(createOfferDto: CreateOfferDto): Promise<ResponseOfferDto> {
-    const {
-      productName,
-      productDiscount,
-      startDate,
-      endDate
-    } = createOfferDto;
+    const { productName, productDiscount, startDate, endDate } = createOfferDto;
 
     // Buscar el producto en la base de datos
     const product = await this.productRepository.findOne({
       where: {
         name: productName,
-      }
+      },
     });
 
     if (!product) {

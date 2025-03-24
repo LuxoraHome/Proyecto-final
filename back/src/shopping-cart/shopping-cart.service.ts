@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ShoppingCart } from './entities/shopping-cart.entity';
 import { Repository } from 'typeorm';
@@ -19,8 +23,8 @@ export class ShoppingCartService {
     private readonly shoppingCartRepository: Repository<ShoppingCart>,
     private readonly productsService: ProductService,
     private readonly cartProductsService: CartProductsService,
-    private readonly userService: UserService
-  ){}
+    private readonly userService: UserService,
+  ) {}
 
   private async findOrCreateCart(userUid: string): Promise<ShoppingCart> {
     const user = await this.userService.findOneById(userUid);
@@ -30,17 +34,17 @@ export class ShoppingCartService {
       where: { user: { uid: userUid } },
       relations: ['cartProducts', 'cartProducts.product'],
     });
-  
+
     if (!cart) {
       cart = this.shoppingCartRepository.create({
         user,
-        cartProducts: [], 
+        cartProducts: [],
         totalPrice: 0,
         shippingCost: 0,
       });
-  
+
       return this.shoppingCartRepository.save(cart);
-    }  
+    }
 
     return cart;
   }
@@ -51,7 +55,7 @@ export class ShoppingCartService {
     return {
       id: cart.id,
       uid: cart.user.uid,
-      cartProducts: cart.cartProducts.map(cartProduct => ({
+      cartProducts: cart.cartProducts.map((cartProduct) => ({
         id: cartProduct.id,
         cartId: cart.id,
         productId: cartProduct.product.id,
@@ -65,7 +69,7 @@ export class ShoppingCartService {
 
   async addProductToCart(addToCartDto: AddToCartDto): Promise<GetCartDto> {
     const { uid, productId, quantity } = addToCartDto;
-    
+
     const newCart = await this.findOrCreateCart(uid);
 
     const product = await this.productsService.findOneById(productId);
@@ -75,26 +79,39 @@ export class ShoppingCartService {
       throw new BadRequestException('Not enough stock available');
     }
 
-    let findCartProduct = newCart.cartProducts.find(findCp => findCp.product.id === productId);
+    let findCartProduct = newCart.cartProducts.find(
+      (findCp) => findCp.product.id === productId,
+    );
 
     if (findCartProduct) {
       findCartProduct.quantity += quantity;
       findCartProduct.price = product.price;
-      await this.cartProductsService.updateCartProductQuantity(findCartProduct, findCartProduct.quantity)
+      await this.cartProductsService.updateCartProductQuantity(
+        findCartProduct,
+        findCartProduct.quantity,
+      );
     } else {
-      const newCartProduct = await this.cartProductsService.createCartProduct({cartId: newCart.id, productId, quantity, price: product.price}, uid);
+      const newCartProduct = await this.cartProductsService.createCartProduct(
+        { cartId: newCart.id, productId, quantity, price: product.price },
+        uid,
+      );
       newCart.cartProducts.push(newCartProduct);
     }
 
-    await this.productsService.updateProduct(productId, { stock: product.stock - quantity });
+    await this.productsService.updateProduct(productId, {
+      stock: product.stock - quantity,
+    });
 
-    newCart.totalPrice = newCart.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
+    newCart.totalPrice = newCart.cartProducts.reduce(
+      (total, product) => total + product.price * product.quantity,
+      0,
+    );
     await this.shoppingCartRepository.save(newCart);
 
     return {
       id: newCart.id,
       uid: uid,
-      cartProducts: newCart.cartProducts.map(cartProduct => ({
+      cartProducts: newCart.cartProducts.map((cartProduct) => ({
         id: cartProduct.id,
         cartId: newCart.id,
         productId: cartProduct.product.id,
@@ -108,28 +125,40 @@ export class ShoppingCartService {
 
   async findOneById(id: string, userId: string) {
     const cart = await this.shoppingCartRepository.findOne({
-      where: { id, user: { uid: userId } }, 
+      where: { id, user: { uid: userId } },
       relations: ['user'],
     });
-  
-    if (!cart) throw new NotFoundException('Shopping cart not found or not owned by user');
-  
+
+    if (!cart)
+      throw new NotFoundException(
+        'Shopping cart not found or not owned by user',
+      );
+
     return cart;
   }
-  
-  async updateShoppingCartProductQuantity(updateCartDto: UpdateShoppingCartDto): Promise<GetCartDto> {
-    const cart = await this.findOrCreateCart(updateCartDto.uid);
-    
-    const product = cart.cartProducts.find(cp => cp.product.id === updateCartDto.productId);
-    if (!product) throw new NotFoundException("Product Not Found");
 
-    const productInDb = await this.productsService.findOneById(updateCartDto.productId);
-    if (!productInDb) throw new NotFoundException("Product not found");
+  async updateShoppingCartProductQuantity(
+    updateCartDto: UpdateShoppingCartDto,
+  ): Promise<GetCartDto> {
+    const cart = await this.findOrCreateCart(updateCartDto.uid);
+
+    const product = cart.cartProducts.find(
+      (cp) => cp.product.id === updateCartDto.productId,
+    );
+    if (!product) throw new NotFoundException('Product Not Found');
+
+    const productInDb = await this.productsService.findOneById(
+      updateCartDto.productId,
+    );
+    if (!productInDb) throw new NotFoundException('Product not found');
 
     const previousQuantity = product.quantity;
 
     if (updateCartDto.quantity <= 0) {
-        return await this.removeProductCartShopping({ uid: updateCartDto.uid, productId: updateCartDto.productId });
+      return await this.removeProductCartShopping({
+        uid: updateCartDto.uid,
+        productId: updateCartDto.productId,
+      });
     }
 
     product.quantity = updateCartDto.quantity;
@@ -137,68 +166,88 @@ export class ShoppingCartService {
     const quantityDifference = updateCartDto.quantity - previousQuantity;
 
     if (quantityDifference > 0 && productInDb.stock < quantityDifference) {
-        throw new BadRequestException('Not enough stock available');
+      throw new BadRequestException('Not enough stock available');
     }
 
     if (quantityDifference > 0) {
-      await this.productsService.updateProduct(updateCartDto.productId, { stock: productInDb.stock - quantityDifference });
+      await this.productsService.updateProduct(updateCartDto.productId, {
+        stock: productInDb.stock - quantityDifference,
+      });
     } else {
-      await this.productsService.updateProduct(updateCartDto.productId, { stock: productInDb.stock + Math.abs(quantityDifference) });
+      await this.productsService.updateProduct(updateCartDto.productId, {
+        stock: productInDb.stock + Math.abs(quantityDifference),
+      });
     }
-    
-    cart.totalPrice = cart.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
+
+    cart.totalPrice = cart.cartProducts.reduce(
+      (total, product) => total + product.price * product.quantity,
+      0,
+    );
 
     await this.shoppingCartRepository.save(cart);
     return this.getCartByUserId(updateCartDto.uid);
-}
-
-
-async removeProductCartShopping(removeDto: RemoveProductDto) {
-  const cart = await this.findOrCreateCart(removeDto.uid);
-  
-  const productToRemove = cart.cartProducts.find(cp => cp.product.id === removeDto.productId);
-  if (!productToRemove) {
-      throw new NotFoundException("Product not found in cart");
   }
 
-  const productInDb = await this.productsService.findOneById(removeDto.productId);
-  if (!productInDb) throw new NotFoundException("Product not found");
+  async removeProductCartShopping(removeDto: RemoveProductDto) {
+    const cart = await this.findOrCreateCart(removeDto.uid);
 
-  const quantityToRestore = productToRemove.quantity;
+    const productToRemove = cart.cartProducts.find(
+      (cp) => cp.product.id === removeDto.productId,
+    );
+    if (!productToRemove) {
+      throw new NotFoundException('Product not found in cart');
+    }
 
-  await this.cartProductsService.removeCartProduct(productToRemove.id);
+    const productInDb = await this.productsService.findOneById(
+      removeDto.productId,
+    );
+    if (!productInDb) throw new NotFoundException('Product not found');
 
-  await this.productsService.updateProduct(removeDto.productId, { stock: productInDb.stock + quantityToRestore });
+    const quantityToRestore = productToRemove.quantity;
 
-  cart.cartProducts = cart.cartProducts.filter(cartProduct => cartProduct.product.id !== removeDto.productId);
-  cart.totalPrice = cart.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0);
+    await this.cartProductsService.removeCartProduct(productToRemove.id);
 
-  await this.shoppingCartRepository.save(cart);
+    await this.productsService.updateProduct(removeDto.productId, {
+      stock: productInDb.stock + quantityToRestore,
+    });
 
-  return this.getCartByUserId(removeDto.uid);
-}
+    cart.cartProducts = cart.cartProducts.filter(
+      (cartProduct) => cartProduct.product.id !== removeDto.productId,
+    );
+    cart.totalPrice = cart.cartProducts.reduce(
+      (total, product) => total + product.price * product.quantity,
+      0,
+    );
 
-async clearCart(uid: string): Promise<GetCartDto> {
-  const cart = await this.findOrCreateCart(uid);
+    await this.shoppingCartRepository.save(cart);
 
-  if (cart.cartProducts.length === 0) {
+    return this.getCartByUserId(removeDto.uid);
+  }
+
+  async clearCart(uid: string): Promise<GetCartDto> {
+    const cart = await this.findOrCreateCart(uid);
+
+    if (cart.cartProducts.length === 0) {
       throw new BadRequestException('Cart is already empty');
-  }
+    }
 
-  for (const cartProduct of cart.cartProducts) {
-      const productInDb = await this.productsService.findOneById(cartProduct.product.id);
+    for (const cartProduct of cart.cartProducts) {
+      const productInDb = await this.productsService.findOneById(
+        cartProduct.product.id,
+      );
       if (productInDb) {
-          await this.productsService.updateProduct(cartProduct.product.id, { stock: productInDb.stock + cartProduct.quantity });
+        await this.productsService.updateProduct(cartProduct.product.id, {
+          stock: productInDb.stock + cartProduct.quantity,
+        });
       }
       await this.cartProductsService.removeCartProduct(cartProduct.id);
+    }
+
+    cart.cartProducts = [];
+    cart.totalPrice = 0;
+
+    await this.shoppingCartRepository.save(cart);
+
+    return this.getCartByUserId(uid);
   }
-
-  cart.cartProducts = [];
-  cart.totalPrice = 0;
-
-  await this.shoppingCartRepository.save(cart);
-
-  return this.getCartByUserId(uid);
-}
-
 }

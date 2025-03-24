@@ -15,7 +15,7 @@ import { UpdateOrderStatusDto } from './dto/update-OrderStatus.dto';
 
 @Controller('order')
 export class OrderController {
-  constructor(private readonly orderService: OrderService) { }
+  constructor(private readonly orderService: OrderService) {}
 
   @Post()
   async create(@Body() createOrderDto: CreateOrderDto) {

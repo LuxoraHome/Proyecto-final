@@ -10,7 +10,7 @@ import { Repository } from 'typeorm';
 import { CartProducts } from './carProducts.entity';
 import { ProductService } from 'src/product/product.service';
 import { ShoppingCartService } from 'src/shopping-cart/shopping-cart.service';
-import { CartProductDto } from 'src/cart-products/card-product.dto'
+import { CartProductDto } from 'src/cart-products/card-product.dto';
 
 @Injectable()
 export class CartProductsService {
@@ -64,23 +64,24 @@ export class CartProductsService {
     cartProduct: CartProducts,
     quantity: number,
   ): Promise<CartProducts> {
-    const product = await this.productsService.findOneById(cartProduct.product.id);
+    const product = await this.productsService.findOneById(
+      cartProduct.product.id,
+    );
     if (!product) throw new NotFoundException('Product not found');
-  
+
     const quantityDifference = quantity - cartProduct.quantity;
-  
+
     if (quantityDifference > 0 && quantityDifference > product.stock) {
       throw new BadRequestException('Not enough stock available');
     }
-  
+
     await this.productsService.updateProduct(product.id, {
       stock: product.stock - quantityDifference,
     });
-  
+
     cartProduct.quantity = quantity;
     return this.cartProductsRepository.save(cartProduct);
   }
-  
 
   async removeCartProduct(cartProductId: string): Promise<void> {
     const cartProduct = await this.cartProductsRepository.findOne({

@@ -7,11 +7,10 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class CategoryService {
-
   constructor(
     @InjectRepository(Category)
-    private readonly categoryRepository: Repository<Category>
-  ) { }
+    private readonly categoryRepository: Repository<Category>,
+  ) {}
 
   async createCategory(createCategoryDto: CreateCategoryDto) {
     const newCategoty = this.categoryRepository.create(createCategoryDto);
@@ -26,26 +25,26 @@ export class CategoryService {
     return await this.categoryRepository.findOneBy({ id });
   }
 
-  async update(
-    id: string,
-    updateCategoryDto: UpdateCategoryDto
-  ) {
-    await this.categoryRepository.update(id, updateCategoryDto)
+  async update(id: string, updateCategoryDto: UpdateCategoryDto) {
+    await this.categoryRepository.update(id, updateCategoryDto);
     return this.categoryRepository.findOneBy({ id });
   }
 
-  async removeCategory(id: string): Promise<{ message: string; }> {
+  async removeCategory(id: string): Promise<{ message: string }> {
     const category = await this.categoryRepository.findOne({ where: { id } });
     if (!category) {
       throw new NotFoundException(`Category with ID ${id} not found`);
     }
-    await this.categoryRepository.delete(id)
+    await this.categoryRepository.delete(id);
     return { message: `Category has been deleted successfully` };
   }
 
   // Método para filtrar categorías por tipo y color
-  async filterByTypeAndColor(name?: string, type?: string, color?: string): Promise<Category[]> {
-
+  async filterByTypeAndColor(
+    name?: string,
+    type?: string,
+    color?: string,
+  ): Promise<Category[]> {
     if (!name && !type && !color) {
       return await this.categoryRepository.find();
     }

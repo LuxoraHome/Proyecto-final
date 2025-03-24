@@ -1,4 +1,19 @@
-import { Controller, Get, Post, Body, Param, Delete, ParseUUIDPipe, HttpException, HttpStatus, Put, UseGuards, HttpCode, UseInterceptors, UploadedFile } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  ParseUUIDPipe,
+  HttpException,
+  HttpStatus,
+  Put,
+  UseGuards,
+  HttpCode,
+  UseInterceptors,
+  UploadedFile,
+} from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -10,8 +25,8 @@ import { ProductsSeed } from 'src/seeds/products/products.seeds';
 export class ProductController {
   constructor(
     private readonly productService: ProductService,
-    private readonly productSeed: ProductsSeed
-  ) { }
+    private readonly productSeed: ProductsSeed,
+  ) {}
 
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
@@ -19,9 +34,9 @@ export class ProductController {
   }
 
   @ApiExcludeEndpoint()
-  @Post("seeder")
+  @Post('seeder')
   createSeeder() {
-    return this.productSeed.createSeedProduct()
+    return this.productSeed.createSeedProduct();
   }
 
   @Get()
@@ -47,5 +62,4 @@ export class ProductController {
   remove(@Param('id') id: string) {
     return this.productService.removeProduct(id);
   }
-
 }

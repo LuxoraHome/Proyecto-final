@@ -15,18 +15,25 @@ export class OrderDetailsService {
     @InjectRepository(Order)
     private readonly orderRepository: Repository<Order>,
     @InjectRepository(Product)
-    private readonly productRepository: Repository<Product>
-  ) { }
+    private readonly productRepository: Repository<Product>,
+  ) {}
 
   async create(createOrderDetailDto: CreateOrderDetailDto) {
-    const { orderId, productId, quantity, unitPrice, subtotal } = createOrderDetailDto;
+    const { orderId, productId, quantity, unitPrice, subtotal } =
+      createOrderDetailDto;
 
     // Busca la orden y el producto en la base de datos
-    const order = await this.orderRepository.findOne({ where: { id: orderId } });
-    if (!order) throw new NotFoundException(`Order with ID ${orderId} not found`);
+    const order = await this.orderRepository.findOne({
+      where: { id: orderId },
+    });
+    if (!order)
+      throw new NotFoundException(`Order with ID ${orderId} not found`);
 
-    const product = await this.productRepository.findOne({ where: { id: productId } });
-    if (!product) throw new NotFoundException(`Product with ID ${productId} not found`);
+    const product = await this.productRepository.findOne({
+      where: { id: productId },
+    });
+    if (!product)
+      throw new NotFoundException(`Product with ID ${productId} not found`);
 
     // Crea la relación correctamente asignando instancias de Order y Product
     const orderDetail = this.orderDetailRepository.create({
@@ -53,7 +60,9 @@ export class OrderDetailsService {
   }
 
   async removeOrderDetail(id: string) {
-    const orderDetail = await this.orderDetailRepository.findOne({ where: { id } });
+    const orderDetail = await this.orderDetailRepository.findOne({
+      where: { id },
+    });
 
     if (!orderDetail) {
       throw new NotFoundException(`OrderDetail with ID ${id} not found`);
@@ -66,6 +75,4 @@ export class OrderDetailsService {
       orderDetailId: id,
     };
   }
-
-
 }

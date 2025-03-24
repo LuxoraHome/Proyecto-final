@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
 import { ShoppingCartService } from './shopping-cart.service';
 import { GetCartDto } from './dto/getCart.dto';
 import { AddToCartDto } from './dto/addtocart.dto';
@@ -22,12 +31,18 @@ export class ShoppingCartController {
   }
 
   @Put('update')
-  async updateCartProductQuantity(@Body() updateDto: UpdateShoppingCartDto): Promise<GetCartDto> {
-    return this.shoppingCartService.updateShoppingCartProductQuantity(updateDto);
+  async updateCartProductQuantity(
+    @Body() updateDto: UpdateShoppingCartDto,
+  ): Promise<GetCartDto> {
+    return this.shoppingCartService.updateShoppingCartProductQuantity(
+      updateDto,
+    );
   }
 
-  @Delete("remove")
-  async removeProductFromCart(@Body() removeCart: RemoveProductDto): Promise<GetCartDto> {
+  @Delete('remove')
+  async removeProductFromCart(
+    @Body() removeCart: RemoveProductDto,
+  ): Promise<GetCartDto> {
     return this.shoppingCartService.removeProductCartShopping(removeCart);
   }
 

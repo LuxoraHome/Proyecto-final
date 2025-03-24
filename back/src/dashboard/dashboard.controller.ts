@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, Patch, UseGuards, } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete,
+  Patch,
+  UseGuards,
+} from '@nestjs/common';
 import { DashboardService } from './dashboard.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
 import { UpdateUserDto } from '../user/dto/update-user.dto';
@@ -11,7 +21,7 @@ import { Role } from '../auth/enum/roles.enum';
 // @UseGuards(AuthGuard, RolesGuard) // Protege todos los endpoints del controlador
 @Roles(Role.Admin) // Solo los administradores pueden acceder a estos endpoints
 export class DashboardController {
-  constructor(private readonly dashboardService: DashboardService) { }
+  constructor(private readonly dashboardService: DashboardService) {}
 
   // 1. Estadísticas de usuarios
   @Get('stats/users')
@@ -35,5 +45,4 @@ export class DashboardController {
   async getTopFrequentUsers() {
     return this.dashboardService.getTopFrequentUsers();
   }
-
 }

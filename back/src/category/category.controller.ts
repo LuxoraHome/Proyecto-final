@@ -1,4 +1,14 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, Query, NotFoundException } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Put,
+  Query,
+  NotFoundException,
+} from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
@@ -10,8 +20,8 @@ import { CategoriesSeed } from 'src/seeds/categories/categories.seeds';
 export class CategoryController {
   constructor(
     private readonly categoryService: CategoryService,
-    private readonly categorySeeder: CategoriesSeed
-  ) { }
+    private readonly categorySeeder: CategoriesSeed,
+  ) {}
 
   @Post()
   create(@Body() createCategoryDto: CreateCategoryDto) {
@@ -19,9 +29,9 @@ export class CategoryController {
   }
 
   @ApiExcludeEndpoint()
-  @Post("seeder")
+  @Post('seeder')
   seeder() {
-    return this.categorySeeder.seedCategories()
+    return this.categorySeeder.seedCategories();
   }
 
   @Get()
@@ -51,7 +61,10 @@ export class CategoryController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateCategoryDto: UpdateCategoryDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateCategoryDto: UpdateCategoryDto,
+  ) {
     return this.categoryService.update(id, updateCategoryDto);
   }
 

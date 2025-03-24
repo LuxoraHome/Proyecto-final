@@ -24,7 +24,7 @@ export class OrderService {
     private readonly userService: UserService,
     private readonly productService: ProductService,
     private readonly mailService: MailService, // Se inyecta el servicio de mail
-  ) { }
+  ) {}
 
   async createOrder(createOrderDto: CreateOrderDto) {
     const { uid, orderDetails } = createOrderDto;
@@ -61,7 +61,7 @@ export class OrderService {
       total,
       status: OrderStatusEnum.PAID,
       image: firstProductImage,
-      shippingAddress: findUser.address
+      shippingAddress: findUser.address,
     });
 
     await this.orderRepository.save(order);
@@ -72,21 +72,24 @@ export class OrderService {
         orderId: order.id,
         productId: element.productId,
         quantity: element.quantity,
-        unitPrice: (await this.productService.findOneById(element.productId)).price,
-        subtotal: element.quantity * (await this.productService.findOneById(element.productId)).price,
+        unitPrice: (await this.productService.findOneById(element.productId))
+          .price,
+        subtotal:
+          element.quantity *
+          (await this.productService.findOneById(element.productId)).price,
       });
 
       const product = await this.productService.findOneById(element.productId);
       product.stock -= element.quantity;
-      await this.productService.updateProduct(product.id, { stock: product.stock });
+      await this.productService.updateProduct(product.id, {
+        stock: product.stock,
+      });
     }
 
     await this.sendOrderConfirmationEmail(findUser.email, order);
 
     return order;
   }
-
-
 
   async findAllOrders() {
     return await this.orderRepository.find();
@@ -102,14 +105,16 @@ export class OrderService {
       throw new Error(`Order with ID ${id} not found`);
     }
 
-    order.image = order.image || (order.orderDetails.length > 0 ? order.orderDetails[0].product.image : 'URL_DE_IMAGEN_POR_DEFECTO');
-
+    order.image =
+      order.image ||
+      (order.orderDetails.length > 0
+        ? order.orderDetails[0].product.image
+        : 'URL_DE_IMAGEN_POR_DEFECTO');
 
     return order;
   }
 
   async findUserById(uid: string) {
-
     const user = await this.userService.findOneById(uid);
 
     if (!user) {
@@ -118,12 +123,16 @@ export class OrderService {
 
     const orders = await this.orderRepository.find({
       where: { user: { uid: user.uid } },
-      relations: ['orderDetails', 'orderDetails.product']
+      relations: ['orderDetails', 'orderDetails.product'],
     });
 
-    const ordersWithImages = orders.map(order => ({
+    const ordersWithImages = orders.map((order) => ({
       ...order,
-      image: order.image || (order.orderDetails.length > 0 ? order.orderDetails[0].product.image : 'URL_DE_IMAGEN_POR_DEFECTO'),
+      image:
+        order.image ||
+        (order.orderDetails.length > 0
+          ? order.orderDetails[0].product.image
+          : 'URL_DE_IMAGEN_POR_DEFECTO'),
     }));
 
     return { orders: ordersWithImages, user };
@@ -146,11 +155,10 @@ export class OrderService {
     await this.orderRepository.save(order);
 
     return {
-      message: "Order updated successfully",
+      message: 'Order updated successfully',
       order,
     };
   }
-
 
   async removeOrder(id: string) {
     const order = await this.orderRepository.findOne({
