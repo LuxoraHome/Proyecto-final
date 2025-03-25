@@ -1,37 +1,24 @@
-"use client"
+
 import { iParams } from "@/interfaces/iParams";
 import { getProductsId } from "@/helpers/getProducts";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import RenderProductDetail from "./RenderProductDetail";
-import { iProducts } from "@/interfaces/iProducts";
 
 
 
 
-export const ProductsDetailId: React.FC<iParams> = ({ params }) => {
-
-    const [products, setProducts] = useState<iProducts | null>(null)
-
-    useEffect(() => {
-
-        const getData = async () => {
-            try {
-                const getData = await getProductsId(params.id)
-                setProducts(getData)
-            } catch (error: unknown) {
-                console.log("error", error);
-
-            }
-        }
-        getData()
-    }, [params.id])
-
-if (!products) {
-    return <div>Cant get products</div>
-}
+export const ProductsDetailId: React.FC<iParams> = async ({ params }) => {
 
 
-    const { name, image, price, product, description, id } = products
+
+    const data = await getProductsId(params.id)
+    if (!data) {
+        return (
+            <div>Product not found</div>
+        )
+    }
+
+    const { name, image, price, product, description, id } = data
 
     return (
 
