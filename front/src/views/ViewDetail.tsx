@@ -1,28 +1,15 @@
-
 import React from "react";
 import ProductDetailId from "@/components/productDetail/ProductDetailId";
+import { ProductDetailProps } from "@/components/productDetail/ProductDetailId";
 
 
-export const ViewDetail: React.FC<{ name: string; image: string; price: number; product: string; description: string; id: string }> = ({ name, image, price, product, description, id }) => {
-
-    return (
-
-        <div>
-            <ProductDetailId
-                name={name}
-                image={image}
-                price={price}
-                product={product}
-                description={description}
-                id={id}
-            />
-        </div>
-
-
-    )
-
-
-}
-
+const ViewDetail: React.FC<ProductDetailProps> = ({data}) => {
+  
+  return (
+    <div>
+      <ProductDetailId data={data} />
+    </div>
+  );
+};
 
 export default ViewDetail;
