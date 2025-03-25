@@ -40,7 +40,7 @@ export const LoginForm = () => {
     const handelOnClick = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
         try {
-            const user = await authProvider(googleProvider, setUser)
+            await authProvider(googleProvider, setUser)
             router.push("/")
         } catch (error) {
             console.log(`Aca esta el error`, error);
