@@ -12,7 +12,7 @@ export default async function Page({ params }: PageProps) {
   const data = await getProductsId(id);
   
 
-  console.log("este id recibo en params", params.id);
+  console.log("este id recibo en params", id);
 
   if (!data) {
     return <div>Product not found</div>;
