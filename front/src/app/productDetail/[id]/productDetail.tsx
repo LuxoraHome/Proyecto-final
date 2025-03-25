@@ -1,16 +1,15 @@
 import React from "react";
 import ViewDetail from "@/views/ViewDetail";
+import { iParams } from "@/interfaces/iParams";
 
-interface ProductDetailProps {
-  data: { name: string; image: string; price: number; product: string; description: string; id: string };
-}
 
-const ProductDetail: React.FC<ProductDetailProps> = ({ data }) => {
+
+const ProductDetail: React.FC<iParams> = ({ params}) => {
   return (
     <div>
-      <ViewDetail data={data} />
+      <ViewDetail params={params} />
     </div>
   );
 };
 
-export default ProductDetail; 
+export default ProductDetail;
