@@ -4,7 +4,7 @@ export interface iProducts {
     stock?: string,
     name?: string ,
     image?: string,
-    price: number,
+    price?: number,
     product?: string,
     description? : string,
     quantity?: number ,
