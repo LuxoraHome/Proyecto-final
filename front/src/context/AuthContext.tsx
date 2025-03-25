@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
-
 import { IUserBack, IUserContext } from "@/interfaces/Iuser";
 import React, { useState, createContext, useContext } from "react";
 import { iAuthProvider } from "@/interfaces/Iuser";
