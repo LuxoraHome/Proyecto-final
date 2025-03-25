@@ -2,6 +2,7 @@ import React from "react";
 import HomeView from "@/views/HomeView";
 import Slidebar from "@/components/sliderbar/slidebar";
 
+
 export const Page: React.FC = () => {
   return (
     <div>
@@ -14,6 +15,3 @@ export const Page: React.FC = () => {
     </div>
   );
 };
-
-
-export default Page ;
