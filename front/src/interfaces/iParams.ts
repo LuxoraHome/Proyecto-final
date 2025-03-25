@@ -1,5 +1,5 @@
 export interface iParams {
     params: {
-      id: number; 
+      id: string; 
     };
   }
