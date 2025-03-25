@@ -49,7 +49,7 @@ const UsersListStatusView: React.FC = () => {
           user.uid === userUid ? { ...user, status: updatedUser.status } : user
         )
       );
-    } catch (error :any) {
+    } catch (error :unknown) {
       setError("There was an error changing the user status.");
     }
   };
