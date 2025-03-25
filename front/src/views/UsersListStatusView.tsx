@@ -23,7 +23,9 @@ const UsersListStatusView: React.FC = () => {
       } else {
         setError("There was an error fetching the users.");
         setLoading(false);
+        throw new Error("No users found");
       }
+
     };
 
     fetchUsers();
@@ -37,6 +39,8 @@ const UsersListStatusView: React.FC = () => {
     const success = await deleteUser(userUid);
     if (success) {
       setUsers((prevUsers) => prevUsers.filter((user) => user.uid !== userUid)); 
+    }else {
+      throw new Error("Failed to delete user");
     }
   };
 
