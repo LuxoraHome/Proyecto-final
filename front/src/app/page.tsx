@@ -3,7 +3,7 @@ import HomeView from "@/views/HomeView";
 import Slidebar from "@/components/sliderbar/slidebar";
 
 
-export const Page: React.FC = () => {
+const Page: React.FC = () => {
   return (
     <div>
       <div className="mt-4 mb-8"> 
@@ -15,3 +15,5 @@ export const Page: React.FC = () => {
     </div>
   );
 };
+
+export default Page;
