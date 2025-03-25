@@ -4,7 +4,7 @@ import { getUsersList, deleteUser } from "@/helpers/adminActions";
 import { IUserBack } from "@/interfaces/Iuser";
 import { FaRegTrashAlt, FaLock, FaLockOpen } from "react-icons/fa"; 
 import { changeStatusUser } from "@/helpers/adminActions";
-import { AuthContext } from "@/context/AuthContext";
+
 
 
 const UsersListStatusView: React.FC = () => {
