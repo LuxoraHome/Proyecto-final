@@ -2,7 +2,6 @@
 
 import React from "react";
 import RenderProductDetail from "./RenderProductDetail";
-import { iProducts } from "@/interfaces/iProducts";
 
 
 
