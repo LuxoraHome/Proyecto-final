@@ -5,6 +5,3 @@ export interface ICategories {
     color: string
 }
 
-interface c {
-    
-}

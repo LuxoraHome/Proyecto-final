@@ -1,6 +1,6 @@
 "use client"
 import { Field, ErrorMessage, Form, Formik } from "formik"
-import { LoginUser, RegisterUser } from "@/helpers/users"
+import { LoginUser } from "@/helpers/users"
 import { IUserLogin, IUserR } from "@/interfaces/Iuser"
 import { validateLogin } from "@/helpers/validateLogin"
 import Link from "next/link"
