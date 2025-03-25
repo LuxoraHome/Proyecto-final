@@ -1,10 +1,13 @@
 import React from "react";
 import ViewDetail from "@/views/ViewDetail";
-import { iParams } from "@/interfaces/iParams";
 
 
 
-const ProductDetail: React.FC<iParams> = ({ params}) => {
+
+const ProductDetail: React.FC<{params : {id : string}}> = ({ params}) => {
+
+  console.log('estos son mis params finales',params);
+  
   return (
     <div>
       <ViewDetail params={params} />

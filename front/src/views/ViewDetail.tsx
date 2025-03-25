@@ -1,9 +1,9 @@
-import { iParams } from "@/interfaces/iParams";
+
 import React from "react";
 import ProductDetailId from "@/components/productDetail/ProductDetailId";
 
 
-export const ViewDetail :React.FC <iParams>= ({params})=>{
+export const ViewDetail :React.FC <{params : {id : string}}>= ({params})=>{
 
 return(
 
