@@ -2,7 +2,6 @@
 import React from "react";
 import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
-
 import orderDashboard from "@/helpers/orderDashboard";
 import { useRouter } from "next/navigation";
 
@@ -12,7 +11,7 @@ const ProfileView: React.FC = () => {
   const router = useRouter()
 
   const handelOnClick = async () => {
-    const response = await orderDashboard(user?.uid)
+    await orderDashboard(user?.uid)
     router.push('/orders')
   }
 
@@ -34,22 +33,22 @@ const ProfileView: React.FC = () => {
             <span className="font-bold">Email:</span> {user.email}
           </p>
 
-          {user.address && (  <p className="text-gray-700 mb-3 text-center">
-            <span className="font-bold">Address:</span> {user.address }
+          {user.address && (<p className="text-gray-700 mb-3 text-center">
+            <span className="font-bold">Address:</span> {user.address}
           </p>)}
-           {user.phone && ( <p className="text-gray-700 mb-3 text-center">
-            <span className="font-bold">Phone:</span> {user.phone }
+          {user.phone && (<p className="text-gray-700 mb-3 text-center">
+            <span className="font-bold">Phone:</span> {user.phone}
           </p>)}
-           {user.country &&( <p className="text-gray-700 mb-3 text-center">
+          {user.country && (<p className="text-gray-700 mb-3 text-center">
             <span className="font-bold">Country:</span> {user.country}
           </p>)}
-           {user.city && (  <p className="text-gray-700 mb-3 text-center">
-            <span className="font-bold">City:</span> {user.city }
+          {user.city && (<p className="text-gray-700 mb-3 text-center">
+            <span className="font-bold">City:</span> {user.city}
           </p>)}
-             {user.role && (   <p className="text-gray-700 mb-3 text-center">
+          {user.role && (<p className="text-gray-700 mb-3 text-center">
             <span className="font-bold">Role:</span> {user.role}
           </p>)}
-        
+
           {user.role === "superadmin" || user.role === "admin" ? (
             <Link
               href="/adminDashboard"

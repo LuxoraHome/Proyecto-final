@@ -11,7 +11,7 @@ import { iProducts } from "@/interfaces/iProducts";
 export const ProductsDetailId: React.FC<iParams> = async ({ params }) => {
 
 
-    const data = await getProductsId(params.id)
+    const data  : iProducts= await getProductsId(params.id)
     if (!data) {
         return (
             <div>Product not found</div>

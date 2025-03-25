@@ -2,14 +2,17 @@
 import React, { useEffect, useState } from "react";
 import { getUsersList, deleteUser } from "@/helpers/adminActions";
 import { IUserBack } from "@/interfaces/Iuser";
-import { FaRegTrashAlt, FaLock, FaLockOpen } from "react-icons/fa"; // Importamos los iconos
+import { FaRegTrashAlt, FaLock, FaLockOpen } from "react-icons/fa"; 
 import { changeStatusUser } from "@/helpers/adminActions";
+import { AuthContext } from "@/context/AuthContext";
+
 
 const UsersListStatusView: React.FC = () => {
   const [users, setUsers] = useState<IUserBack[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -33,7 +36,7 @@ const UsersListStatusView: React.FC = () => {
   const handleDeleteUser = async (userUid: string) => {
     const success = await deleteUser(userUid);
     if (success) {
-      setUsers((prevUsers) => prevUsers.filter((user) => user.uid !== userUid)); // Cambiar de id a uid
+      setUsers((prevUsers) => prevUsers.filter((user) => user.uid !== userUid)); 
     }
   };
 
@@ -41,13 +44,12 @@ const UsersListStatusView: React.FC = () => {
     try {
       const newStatus = currentStatus === "active" ? "suspended" : "active";
       const updatedUser = await changeStatusUser(userUid, newStatus);
-      // Actualizar el estado de los usuarios después de la modificación
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
           user.uid === userUid ? { ...user, status: updatedUser.status } : user
         )
       );
-    } catch (error) {
+    } catch (error :any) {
       setError("There was an error changing the user status.");
     }
   };
@@ -98,9 +100,9 @@ const UsersListStatusView: React.FC = () => {
                   <td className="px-4 py-2 text-gray-800 border-b">{user.status}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.role}</td>
 
-                  {/* Columna de Actions con icono de candado */}
+                  
                   <td className="px-4 py-2 text-gray-800 border-b flex gap-4">
-                    {/* Candado en la columna de Actions */}
+                 
                     {user.status === "active" ? (
                       <FaLockOpen
                         onClick={() => handleChangeStatus(user.uid, user.status)}
@@ -113,9 +115,9 @@ const UsersListStatusView: React.FC = () => {
                       />
                     )}
 
-                    {/* Botón de eliminar */}
+                  
                     <button
-                      onClick={() => handleDeleteUser(user.uid)} // Cambiar 'id' a 'uid'
+                      onClick={() => handleDeleteUser(user.uid)}
                       className="text-gray-500 hover:text-gray-700"
                     >
                       <FaRegTrashAlt className="h-6 w-6" />

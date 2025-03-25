@@ -21,7 +21,7 @@ export const Navbar: React.FC = () => {
   const [query, setQuery] = useState<string>("");
   const [products, setProducts] = useState<iProducts[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<iProducts[]>([]);
-  const [showAll, setShowAll] = useState(false);
+  const [showAll] = useState(false);
   const searchBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export const Navbar: React.FC = () => {
   return (
     <nav className="bg-white flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 border-b border-black">
       <div className="flex flex-col sm:flex-row items-start sm:items-center sm:space-x-4">
-        {/* Mostrar botón de retroceso solo si no estamos en el home */}
+        
         {pathname !== "/" && (
           <button onClick={() => router.back()} className="flex items-center space-x-2 text-2xl text-gray-800">
             <IoArrowBack />
@@ -85,7 +85,7 @@ export const Navbar: React.FC = () => {
         <h3 className="text-gray-600 text-xl mt-1 sm:mt-0">Paris</h3>
       </div>
   
-      {/* SearchBar */}
+   
       {user?.id && (
         <div ref={searchBarRef} className="w-full max-w-md mx-auto relative mt-4 sm:mt-0">
           <input
@@ -123,7 +123,6 @@ export const Navbar: React.FC = () => {
             <span className="text-sm">Cart</span>
           </Link>
   
-          {/* Renderizado condicional para el perfil de usuario */}
           <Link href="/profile" className="flex items-center space-x-2">
             <FaRegUserCircle />
             <span className="text-sm">Profile</span>

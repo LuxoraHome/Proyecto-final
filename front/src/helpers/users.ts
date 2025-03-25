@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { IUserLogin, IUserRegister } from "@/interfaces/Iuser";
+
 import { IUserR } from "@/interfaces/Iuser";
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL
