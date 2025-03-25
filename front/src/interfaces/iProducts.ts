@@ -8,6 +8,7 @@ export interface iProducts {
     product?: string,
     description? : string,
     quantity?: number ,
+    params ?: string ,
 } 
 
 export interface iPro {
