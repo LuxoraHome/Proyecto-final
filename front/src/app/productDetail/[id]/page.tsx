@@ -8,8 +8,9 @@ interface PageProps {
 export default async function Page({ params }: PageProps) {
 
   
-  const data = await getProductsId(params.id);
-  console.log("este ", data);
+  const {id} = await params
+  const data = await getProductsId(id);
+  
 
   console.log("este id recibo en params", params.id);
 
