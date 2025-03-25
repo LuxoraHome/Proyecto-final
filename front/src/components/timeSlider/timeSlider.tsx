@@ -56,7 +56,7 @@ function TimelineSlider() {
         ))}
       </div>
 
-      {/* Línea de tiempo */}
+   
       <div className="relative flex flex-col items-center mt-8 w-full max-w-lg">
         
         <div className="flex justify-between w-full">
