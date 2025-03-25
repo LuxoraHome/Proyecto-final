@@ -1,4 +1,4 @@
-import { iParams } from "@/interfaces/iParams";
+
 import React from "react";
 import ViewDetail from "@/views/ViewDetail";
 
