@@ -11,7 +11,7 @@ export const ProductsDetailId: React.FC<iParams> = async ({ params }) => {
 
 
     const data = await getProductsId(params.id)
-    console.log('esto me devuelve el back con products id' , data)
+
     if (!data) {
         return (
             <div>Product not found</div>
