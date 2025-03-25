@@ -37,8 +37,8 @@ export async function getProductsbyCategories (category: string) {
   
 
   return filtered
-  } catch (error: any) {
-    throw new Error(error)
+  } catch (error: unknown) {
+    throw new Error(String(error))
   }
   
 }
