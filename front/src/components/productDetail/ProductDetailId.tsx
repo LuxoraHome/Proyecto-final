@@ -4,16 +4,9 @@ import React from "react";
 import RenderProductDetail from "./RenderProductDetail";
 
 
-interface ProductData {
-  name: string;
-  image: string;
-  price: number;
-  product: string;
-  description: string;
-  id: string;
-}
 
-const ProductsDetailId: React.FC<{ productData: ProductData }> = ({ productData }) => {
+
+const ProductsDetailId: React.FC<{ productData: any }> = ({ productData }) => {
   const { name, image, price, product, description, id } = productData;
 
   return (
