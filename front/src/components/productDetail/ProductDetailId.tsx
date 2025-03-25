@@ -12,11 +12,7 @@ export const ProductsDetailId: React.FC<iParams> = async ({ params }) => {
 
     const data = await getProductsId(params.id)
 
-    if (!data) {
-        return (
-            <div>Product not found</div>
-        )
-    }
+   
 
     const { name, image, price, product, description, id } = data
 
