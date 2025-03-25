@@ -1,3 +1,5 @@
 export interface iParams {
-    params: {id : number}
-}
+    params: {
+      id: number; 
+    };
+  }
