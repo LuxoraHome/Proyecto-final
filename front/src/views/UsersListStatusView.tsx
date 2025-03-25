@@ -45,7 +45,7 @@ const UsersListStatusView: React.FC = () => {
   };
 
   const handleChangeStatus = async (userUid: string, currentStatus: "active" | "suspended") => {
-    try {
+  
       const newStatus = currentStatus === "active" ? "suspended" : "active";
       const updatedUser = await changeStatusUser(userUid, newStatus);
       setUsers((prevUsers) =>
@@ -53,9 +53,7 @@ const UsersListStatusView: React.FC = () => {
           user.uid === userUid ? { ...user, status: updatedUser.status } : user
         )
       );
-    } catch (error :unknown) {
-      setError("There was an error changing the user status.");
-    }
+    
   };
 
   return (
