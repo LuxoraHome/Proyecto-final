@@ -7,7 +7,7 @@ import { iProducts } from "@/interfaces/iProducts";
 
 
 
-const ProductsDetailId: React.FC<{ productData : iProducts }> = ({ productData }) => {
+const ProductsDetailId: React.FC<{ productData : any}> = ({ productData }) => {
   const { name, image, price, product, description, id } = productData;
 
   return (

@@ -16,18 +16,15 @@ export const getProducts = async () => {
 
 
 
-export const getProductsId = async (id: string) => {
-    try {
-        const response = await fetch(`${APIURL}/product/${id}`)
-        const data = await response.json()
-        console.log('esta es la data' , data);
-        
-        return data;
-    } catch (error) {
-        console.log(`there is the ${error}`);
-    }
-}
 
+export const getProductsId = async (id: string): Promise<iProducts | null> => {
+    const response = await fetch(`/api/products/${id}`);
+    if (response.ok) {
+      const data: iProducts = await response.json();
+      return data;
+    }
+    return null;
+  };
 export const searchProduct = (query: string, products: iProducts[]): iProducts[] => {
     if(!query) return products
 
