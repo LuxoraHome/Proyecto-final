@@ -4,7 +4,7 @@ import ViewDetail from "@/views/ViewDetail";
 
 
 
-const ProductDetail: React.FC<{params : {id : string}}> = async({ params}) => {
+const ProductDetail: React.FC<{params : {id : string}}> = ({ params}) => {
   
   return (
     <div>
