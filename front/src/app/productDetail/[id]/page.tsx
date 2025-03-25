@@ -1,18 +1,14 @@
 import { getProductsId } from "@/helpers/getProducts";
 import ProductsDetailId from "@/components/productDetail/ProductDetailId";
 
-interface PageProps {
-  params: { id: string };
-}
 
-export default async function Page({ params }: PageProps) {
 
-  
-  const {id} = await params
-  const data = await getProductsId(id);
-  
+export default async function Page({ params }: { params: { id: string } }) {
 
-  console.log("este id recibo en params", id);
+  const data = await getProductsId(params.id);
+
+  console.log("Producto recuperado:", data);
+  console.log("ID de params recibido:", params.id);
 
   if (!data) {
     return <div>Product not found</div>;
