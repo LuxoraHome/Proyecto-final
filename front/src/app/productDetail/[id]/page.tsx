@@ -1,22 +1,35 @@
+import { useEffect, useState } from "react";
 import { getProductsId } from "@/helpers/getProducts";
 import ProductsDetailId from "@/components/productDetail/ProductDetailId";
+import { iProducts } from "@/interfaces/iProducts";
 
 interface PageProps {
   params: { id: string };
 }
 
-export default async function Page({ params }: PageProps) {
+const Page: React.FC<PageProps> = ({ params }) => {
+  const [productData, setProductData] = useState<iProducts | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  
-  const data = await getProductsId(params.id);
-  console.log('esto retorna backkk' , data);
-  
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getProductsId(params.id);
+      setProductData(data);
+      setLoading(false);
+    };
 
-  console.log("este id recibo en params", params.id);
+    fetchData();
+  }, [params.id]);
 
-  if (!data) {
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!productData) {
     return <div>Product not found</div>;
   }
 
-  return <ProductsDetailId productData={data} />;
-}
+  return <ProductsDetailId productData={productData} />;
+};
+
+export default Page;
