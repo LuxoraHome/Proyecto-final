@@ -20,6 +20,8 @@ export const getProductsId = async (id: string) => {
     try {
         const response = await fetch(`${APIURL}/product/${id}`)
         const data = await response.json()
+        console.log('esta es la data' , data);
+        
         return data;
     } catch (error) {
         console.log(`there is the ${error}`);
