@@ -6,7 +6,11 @@ interface PageProps {
 }
 
 export default async function Page({ params }: PageProps) {
+
+  
   const data = await getProductsId(params.id);
+  console.log('esto retorna backkk' , data);
+  
 
   console.log("este id recibo en params", params.id);
 
