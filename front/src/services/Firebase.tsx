@@ -30,10 +30,8 @@ export const authProvider = async (provider: AuthProvider, setUser: (user: IUser
         const uidR :IUserR = {
             uid: response.user.uid
         }
-        console.log("Datos enviados a RegisterUser:", uidR);
-
-        const data = await  RegisterUser(uidR)
-        console.log('data' , data);
+        await RegisterUser(uidR);
+        setUser({ uid: response.user.uid, displayName: response.user.displayName, email: response.user.email , status:"active", });
         
       
 
