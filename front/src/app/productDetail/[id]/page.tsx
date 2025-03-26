@@ -5,7 +5,6 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   const { id } = params;
 
-  
   const data = await getProductsId(id);
 
   console.log("Producto recuperado:", data);
@@ -17,3 +16,4 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   return <ProductsDetailId productData={data} />;
 }
+
