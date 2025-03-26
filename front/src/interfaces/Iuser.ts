@@ -1,7 +1,8 @@
-
+import { Phone } from "lucide-react";
 
 export interface IUserRegister {
     name?: string,
+
     email: string,
     password: string,
     confirmPassword?: string,
@@ -37,19 +38,18 @@ export interface IUserLogin {
 
 export interface IUserBack {
     access_token?: string,
-    uid: string   ,
+    uid?: string  ,
     name?: string,
     email?: string | null,
     displayName?: string | null, 
     password?: string,
     address?: string,
     phone?: string,
-    id?:string,
     city?: string,
     country?: string,
     client?: "standard" | "premium",
     role?: "superadmin"| "admin" | "user",
-    status: "active" | "suspended",
+    status?: "active" | "suspended",
 }
 
 
