@@ -44,6 +44,7 @@ export interface IUserBack {
     password?: string,
     address?: string,
     phone?: string,
+    id:string,
     city?: string,
     country?: string,
     client?: "standard" | "premium",
