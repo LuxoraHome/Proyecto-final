@@ -30,7 +30,8 @@ export const OrdersDashboardView: React.FC = () => {
     const dataOrder = async () => {
         const data = await orderDashboard(user?.uid)
 
-        console.log(`esta data me devuelve el backENDDDD`, data);
+        console.log('esto devuevle el back al traer las orders' , data);
+        
 
 
         if (data?.orders && data?.user) {

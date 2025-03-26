@@ -24,14 +24,12 @@ const ProfileView: React.FC = () => {
           ? "Administrator Profile"
           : "User Profile"}
       </h2>
-      {user ? (
+      {user?.uid ? (
         <>
           <p className="text-gray-700 mb-3 text-center">
             <span className="font-bold">Name:</span> {user.displayName || user.name}
           </p>
-          <p className="text-gray-700 mb-3 text-center">
-            <span className="font-bold">Email:</span> {user.email}
-          </p>
+          
 
           {user.address && (<p className="text-gray-700 mb-3 text-center">
             <span className="font-bold">Address:</span> {user.address}

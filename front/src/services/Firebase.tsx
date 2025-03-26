@@ -36,7 +36,6 @@ export const authProvider = async (provider: AuthProvider, setUser: (user: IUser
       
 
 
-        setUser({ uid: response.user.uid, displayName: response.user.displayName, status: "active" });
 
 
     } catch (error) {
