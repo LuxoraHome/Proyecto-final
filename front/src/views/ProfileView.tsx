@@ -30,7 +30,10 @@ const ProfileView: React.FC = () => {
             <span className="font-bold">Name:</span> {user.displayName || user.name}
           </p>
        
-
+          <p className="text-gray-700 mb-3 text-center">
+            <span className="font-bold">Name:</span> {user.displayName || user.name}
+          </p>
+          
           {user.address && (<p className="text-gray-700 mb-3 text-center">
             <span className="font-bold">Address:</span> {user.address}
           </p>)}
