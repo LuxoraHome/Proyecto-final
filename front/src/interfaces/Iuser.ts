@@ -37,7 +37,7 @@ export interface IUserLogin {
 
 export interface IUserBack {
     access_token?: string,
-    uid?: string   ,
+    uid: string   ,
     name?: string,
     email?: string | null,
     displayName?: string | null, 
