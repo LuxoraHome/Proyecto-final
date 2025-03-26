@@ -1,10 +1,11 @@
 export interface iProducts {
     id: string,
-    categoryId?: {
+    category?: {
         type: string;
-        color: string;
         id:string ,
+        color: string;
       },
+ 
     stock?: string,
     name?: string ,
     image?: string,

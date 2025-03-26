@@ -38,14 +38,14 @@ const Filter: React.FC<FilterProps> = ({ products }) => {
     
     if (selectedCategory.category) {
       filteredProducts = filteredProducts.filter((product) =>
-        product.categoryId?.type === selectedCategory.category
+        product.category?.type === selectedCategory.category
       );
     }
 
     
     if (selectedCategory.color) {
       filteredProducts = filteredProducts.filter((product) =>
-        product.categoryId?.color === selectedCategory.color
+        product.category?.color === selectedCategory.color
       );
     }
 
