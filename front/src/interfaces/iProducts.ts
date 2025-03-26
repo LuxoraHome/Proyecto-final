@@ -3,6 +3,7 @@ export interface iProducts {
     categoryId?: {
         type: string;
         color: string;
+        id:string ,
       },
     stock?: string,
     name?: string ,
