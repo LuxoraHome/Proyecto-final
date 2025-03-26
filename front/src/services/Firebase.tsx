@@ -24,13 +24,21 @@ export const googleProvider = new GoogleAuthProvider()
 export const authProvider = async (provider: AuthProvider, setUser: (user: IUserBack | null) => void) => {
 
     try {
-        const response = await signInWithPopup(auth, provider)
-        Cookies.set("access_uid", response.user.uid)
-        const uidR: IUserR = {
+        const response = await signInWithPopup(auth, provider) 
+        Cookies.set("access_uid", response.user.uid)  
+        console.log('esto me deveuelvddev ffirbeBase' , response);   
+        const uidR :IUserR = {
             uid: response.user.uid
         }
-        await RegisterUser(uidR);
-        setUser({ uid: response.user.uid, displayName: response.user.displayName, email: response.user.email });
+        console.log("Datos enviados a RegisterUser:", uidR);
+
+        const data = await  RegisterUser(uidR)
+        console.log('data' , data);
+        
+      
+
+
+        setUser({ uid: response.user.uid, displayName: response.user.displayName, status: "active" });
 
 
     } catch (error) {

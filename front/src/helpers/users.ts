@@ -3,10 +3,7 @@ import Swal from "sweetalert2";
 import { IUserR } from "@/interfaces/Iuser";
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL
-
-
-
-
+console.log("API URL:", APIURL);
 
 export const RegisterUser = async (userData: IUserR) => {
     try {
@@ -23,6 +20,8 @@ export const RegisterUser = async (userData: IUserR) => {
                 text: "Your account has been created successfully."
             });
             return response.json();
+          
+            
         } else {
             Swal.fire({
                 icon: "error",
