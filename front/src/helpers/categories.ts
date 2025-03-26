@@ -31,8 +31,8 @@ export async function getProductsbyCategories (category: string) {
     }
 
     const filtered = products.filter((product) => {
-      console.log(`Comparando: ${product.categoryId?.id} === ${selectedCategory.id}`);
-      return String(product.categoryId?.type) === String(category);
+
+      return String(product.category?.type) === String(category);
     });
   
 
