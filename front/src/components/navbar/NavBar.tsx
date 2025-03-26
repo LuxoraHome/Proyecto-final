@@ -86,7 +86,7 @@ export const Navbar: React.FC = () => {
       </div>
   
    
-      {user?.id && (
+      {user && (
         <div ref={searchBarRef} className="w-full max-w-md mx-auto relative mt-4 sm:mt-0">
           <input
             type="text"
