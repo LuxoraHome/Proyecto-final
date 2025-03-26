@@ -37,7 +37,7 @@ export interface IUserLogin {
 
 export interface IUserBack {
     access_token?: string,
-    uid?: string  ,
+    uid: string   ,
     name?: string,
     email?: string | null,
     displayName?: string | null, 
@@ -49,7 +49,7 @@ export interface IUserBack {
     country?: string,
     client?: "standard" | "premium",
     role?: "superadmin"| "admin" | "user",
-    status?: "active" | "suspended",
+    status: "active" | "suspended",
 }
 
 

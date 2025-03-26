@@ -30,7 +30,7 @@ export const authProvider = async (provider: AuthProvider, setUser: (user: IUser
             uid: response.user.uid
         }
         await RegisterUser(uidR);
-        setUser({ uid: response.user.uid, displayName: response.user.displayName, email: response.user.email });
+        setUser({ uid: response.user.uid, displayName: response.user.displayName, status:"active" });
 
 
     } catch (error) {

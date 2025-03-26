@@ -12,7 +12,7 @@ const UsersListStatusView: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  
+
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -102,12 +102,13 @@ const UsersListStatusView: React.FC = () => {
                   <td className="px-4 py-2 text-gray-800 border-b">{user.status}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.role}</td>
 
-                  
+              
+
                   <td className="px-4 py-2 text-gray-800 border-b flex gap-4">
                  
-                    {user.status === "active" ? (
+                    {user.status === "active" ? (    
                       <FaLockOpen
-                        onClick={() => handleChangeStatus(user.uid, user.status)}
+                        onClick={() => handleChangeStatus( user.uid, user.status)}
                         className="text-green-500 h-6 w-6 cursor-pointer"
                       />
                     ) : (
