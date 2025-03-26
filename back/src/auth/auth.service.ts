@@ -36,12 +36,12 @@ export class AuthService {
 
     // Verificar si el correo electrónico ya existe
     const dbUser = await this.userService.findByEmail(email);
-    if (dbUser) {
-      throw new HttpException(
-        { statusCode: HttpStatus.BAD_REQUEST, message: 'Email already exists' },
-        HttpStatus.BAD_REQUEST
-      );
-    }
+    //if (dbUser) {
+    //  throw new HttpException(
+    //    { statusCode: HttpStatus.BAD_REQUEST, message: 'Email already exists' },
+    //    HttpStatus.BAD_REQUEST
+    //  );
+    //}
 
     if (password !== confirmPassword) {
       throw new HttpException(
