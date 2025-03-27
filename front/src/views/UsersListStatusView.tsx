@@ -1,18 +1,17 @@
-"use client";
+"use client"
 import React, { useEffect, useState } from "react";
 import { getUsersList } from "@/helpers/adminActions";
 import { IUserBack } from "@/interfaces/Iuser";
-import {  FaLock, FaLockOpen } from "react-icons/fa"; 
+import { FaLock, FaLockOpen } from "react-icons/fa"; 
 import { changeStatusUser } from "@/helpers/adminActions";
-
-
+import { useAuth } from "@/context/AuthContext";
 
 const UsersListStatusView: React.FC = () => {
   const [users, setUsers] = useState<IUserBack[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
-
+  const { user } = useAuth(); 
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -25,7 +24,6 @@ const UsersListStatusView: React.FC = () => {
         setLoading(false);
         throw new Error("No users found");
       }
-
     };
 
     fetchUsers();
@@ -35,18 +33,20 @@ const UsersListStatusView: React.FC = () => {
     user.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
- 
-
   const handleChangeStatus = async (userUid: string, currentStatus: "active" | "suspended") => {
-  
-      const newStatus = currentStatus === "active" ? "suspended" : "active";
-      const updatedUser = await changeStatusUser(userUid, newStatus);
+    const newStatus = currentStatus === "active" ? "suspended" : "active";
+    
+    
+    if (user && user.access_token) {
+      const updatedUser = await changeStatusUser(userUid, newStatus, user.access_token); 
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
           user.uid === userUid ? { ...user, status: updatedUser.status } : user
         )
       );
-    
+    } else {
+      console.error("User not found or token missing");
+    }
   };
 
   return (
@@ -94,14 +94,10 @@ const UsersListStatusView: React.FC = () => {
                   <td className="px-4 py-2 text-gray-800 border-b">{user.country}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.status}</td>
                   <td className="px-4 py-2 text-gray-800 border-b">{user.role}</td>
-
-              
-
                   <td className="px-4 py-2 text-gray-800 border-b flex gap-4">
-                 
-                    {user.status === "active" ? (    
+                    {user.status === "active" ? (
                       <FaLockOpen
-                        onClick={() => handleChangeStatus( user.uid, user.status)}
+                        onClick={() => handleChangeStatus(user.uid, user.status)}
                         className="text-green-500 h-6 w-6 cursor-pointer"
                       />
                     ) : (
@@ -110,9 +106,6 @@ const UsersListStatusView: React.FC = () => {
                         className="text-red-500 h-6 w-6 cursor-pointer"
                       />
                     )}
-
-                  
-                    
                   </td>
                 </tr>
               ))}

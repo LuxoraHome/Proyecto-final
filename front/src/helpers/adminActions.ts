@@ -53,11 +53,8 @@ export const getOffers = async (): Promise<IGetOffers[]> => {
   }
 };
 
-export const changeStatusUser = async (userUid: string, status: "active" | "suspended") => {
+export const changeStatusUser = async (userUid: string, status: "active" | "suspended", adminToken:string) => {
 
-  const {user} = useAuth()
-  
-  const adminToken = user?.access_token
   try {
     const response = await fetch(`${APIURL}/user/${userUid}`, {  
       method: "PUT",
