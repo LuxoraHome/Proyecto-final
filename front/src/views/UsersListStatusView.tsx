@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { getUsersList, deleteUser } from "@/helpers/adminActions";
+import { getUsersList } from "@/helpers/adminActions";
 import { IUserBack } from "@/interfaces/Iuser";
-import { FaRegTrashAlt, FaLock, FaLockOpen } from "react-icons/fa"; 
+import {  FaLock, FaLockOpen } from "react-icons/fa"; 
 import { changeStatusUser } from "@/helpers/adminActions";
 
 
@@ -35,14 +35,7 @@ const UsersListStatusView: React.FC = () => {
     user.name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleDeleteUser = async (userUid: string) => {
-    const success = await deleteUser(userUid);
-    if (success) {
-      setUsers((prevUsers) => prevUsers.filter((user) => user.uid !== userUid)); 
-    }else {
-      throw new Error("Failed to delete user");
-    }
-  };
+ 
 
   const handleChangeStatus = async (userUid: string, currentStatus: "active" | "suspended") => {
   
@@ -119,12 +112,7 @@ const UsersListStatusView: React.FC = () => {
                     )}
 
                   
-                    <button
-                      onClick={() => handleDeleteUser(user.uid)}
-                      className="text-gray-500 hover:text-gray-700"
-                    >
-                      <FaRegTrashAlt className="h-6 w-6" />
-                    </button>
+                    
                   </td>
                 </tr>
               ))}
