@@ -28,9 +28,15 @@ export const authProvider = async (provider: AuthProvider, setUser: (user: IUser
         Cookies.set("access_uid", response.user.uid)  
         console.log('esto me deveuelvddev ffirbeBase' , response);   
         const uidR :IUserR = {
-            uid: response.user.uid
+            uid
+            : response.user.uid
         }
-        await RegisterUser(uidR);
+        console.log('UID de Firebase:', response.user.uid);
+
+
+      await RegisterUser(uidR);
+      
+        
         setUser({ uid: response.user.uid, displayName: response.user.displayName, email: response.user.email , status:"active", });
         
       
