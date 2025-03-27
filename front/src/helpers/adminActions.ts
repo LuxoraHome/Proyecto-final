@@ -39,6 +39,8 @@ export const getUsersList = async (): Promise<IUserBack[] | null> => {
 export const deleteUser = async (userId: string) => {
   try {
     const response = await fetch(`${APIURL}/user/${userId}`, { method: 'DELETE' });
+    console.log('esto me da el back cuando llamo a delte' , response);
+    
     if (!response.ok) throw new Error('Failed to delete user');
 
     Swal.fire({
