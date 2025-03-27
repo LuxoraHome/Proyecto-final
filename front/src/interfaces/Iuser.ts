@@ -50,6 +50,8 @@ export interface IUserBack {
     client?: "standard" | "premium",
     role?: "superadmin"| "admin" | "user",
     status: "active" | "suspended",
+ 
+
 }
 
 

@@ -1,6 +1,7 @@
 import { IUserBack } from "@/interfaces/Iuser";
 import { IGetOffers, IPostOffer } from "@/interfaces/IOffer";
 import Swal from "sweetalert2";
+import { useAuth } from "@/context/AuthContext";
 
 
 const APIURL = process.env.NEXT_PUBLIC_API_URL;
@@ -77,9 +78,10 @@ export const getOffers = async (): Promise<IGetOffers[]> => {
 };
 
 export const changeStatusUser = async (userUid: string, status: "active" | "suspended") => {
-  
-  const adminToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJkZWQyYTRkNC0xMTliLTQ0YzUtYjk3Zi0zMGM5NjkxZGNlMzIiLCJlbWFpbCI6ImFkbWludXNlckBnbWFpbC5jb20iLCJ1aWQiOiJVVGVqeWtqNXYzWTNscFpURjRWTURIYzNmdGwyIiwicm9sZXMiOiJzdXBlcmFkbWluIiwiaWF0IjoxNzQzMTA5MjgzLCJleHAiOjE3NDMxMTY0ODN9.S-gelFSjgxcinQwcrCMcV46L48fiAr07fo-fHo6Kskw"
 
+  const {user} = useAuth()
+  
+  const adminToken = user?.access_token
   try {
     const response = await fetch(`${APIURL}/user/${userUid}`, {  
       method: "PUT",
